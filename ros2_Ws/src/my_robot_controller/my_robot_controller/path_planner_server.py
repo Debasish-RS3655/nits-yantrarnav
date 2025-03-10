@@ -3,6 +3,7 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 from flask import Flask, jsonify
+from flask_cors import CORS
 import threading
 
 class PathPlanner(Node):
@@ -36,6 +37,7 @@ path_planner_node = None
 
 # Create Flask app
 app = Flask(__name__)
+CORS(app)
 @app.route('/current', methods=['GET'])
 def current_position():
     """

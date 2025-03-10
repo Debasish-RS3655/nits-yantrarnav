@@ -12,7 +12,7 @@ class PosePublisher(Node):
         super().__init__('pose_publisher')        
         self.data_pub_ = self.create_publisher(String, 'position/current', 10)        # data type, topic name and queue size
         # positions to be actually read using the VINS-slam
-        self.velocity_step = 0.1
+        self.velocity_step = 1
         
         # initial position values
         self.x_ = 0.0
