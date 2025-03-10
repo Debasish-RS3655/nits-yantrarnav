@@ -4,16 +4,19 @@ from rclpy.node import Node
 from std_msgs.msg import String
 
 # dummy implementation of the slam output
-# in this imlpementation, this pose publisher subscribes to the target positions from the path planner node and increments the current postions
+
+# this dummy code assumes incremental changes in the robot's position and udpates the current position
 # given the velocity
 
 class PosePublisher(Node):    
     def __init__(self):
-        super().__init__('pose_publisher ')        
-        self.data_pub_ = self.create_publisher(String, 'position/current', 10)        # data type, topic name and queue size
-        # positions to be actually read using the VINS-slam
-        self.velocity_step = 0.1
+        super().__init__('pose_publisher')
+
+        # publishing the current positions                
+        self.data_pub_ = self.create_publisher(String, 'position/current', 10)
         
+        # positions to be actually read using the VINS-slam
+        self.velocity_step = 1        
         # initial position values
         self.x_ = 0.0
         self.y_ = 0.0
@@ -24,21 +27,21 @@ class PosePublisher(Node):
         self.target_y = self.y_
         self.target_z = self.z_
         
-        self.timer_ = self.create_timer(0.5, self.send_pos)
-        
+        self.timer_ = self.create_timer(0.5, self.send_pos)        
         self.target_pos_subscriber = self.create_subscription(String, 'position/target', self.update_pos, 10)
 
         self.get_logger().info('Position publisher node has been started.')
 
     # publish the current positions regularly
-    def send_pos(self):        
+    def send_pos(self):                
         self.update_current_position()
         msg = String()
         msg.data = f'x={self.x_} y={self.y_} z={self.z_}'
         self.data_pub_.publish(msg)        
-        self.get_logger().info(f'Published: {msg.data}')
+        self.get_logger().info(f'Current postion Published: {msg.data}')        
         
-        
+    # !! dummy implementation
+    # in the actual implementation 
     def update_current_position(self):
         # update X coord
         if abs(self.x_ - self.target_x) < self.velocity_step:
@@ -82,9 +85,7 @@ class PosePublisher(Node):
                 f'Received new target: x={self.target_x}, y={self.target_y}, z={self.target_z}'
             )
         except Exception as e:
-            self.get_logger().error('Failed to parse target position: ' + str(e))
-        
-    
+            self.get_logger().error('Failed to parse target position: ' + str(e))    
         
 def main(args=None):
     rclpy.init(args=args)

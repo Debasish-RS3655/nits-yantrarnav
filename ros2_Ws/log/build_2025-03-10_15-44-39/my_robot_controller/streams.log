@@ -1,0 +1,22 @@
+[1.593s] Invoking command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller': PYTHONPATH=/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/build
+[2.130s] Traceback (most recent call last):
+[2.131s]   File "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/setup.py", line 1, in <module>
+[2.132s]     from setuptools import find_packages, setup
+[2.142s]   File "/usr/lib/python3/dist-packages/setuptools/__init__.py", line 16, in <module>
+[2.144s]     import setuptools.version
+[2.145s]   File "/usr/lib/python3/dist-packages/setuptools/version.py", line 1, in <module>
+[2.146s]     import pkg_resources
+[2.147s]   File "/usr/lib/python3/dist-packages/pkg_resources/__init__.py", line 3267, in <module>
+[2.147s]     def _initialize_master_working_set():
+[2.148s]   File "/usr/lib/python3/dist-packages/pkg_resources/__init__.py", line 3241, in _call_aside
+[2.149s]     f(*args, **kwargs)
+[2.152s]   File "/usr/lib/python3/dist-packages/pkg_resources/__init__.py", line 3302, in _initialize_master_working_set
+[2.153s]     list(map(working_set.add_entry, sys.path))
+[2.154s]   File "/usr/lib/python3/dist-packages/pkg_resources/__init__.py", line 613, in add_entry
+[2.155s]     for dist in find_distributions(entry, True):
+[2.156s]   File "/usr/lib/python3/dist-packages/pkg_resources/__init__.py", line 2060, in find_on_path
+[2.158s]     for child in safe_listdir(path_item)
+[2.159s]   File "/usr/lib/python3/dist-packages/pkg_resources/__init__.py", line 2121, in safe_listdir
+[2.160s]     return os.listdir(path)
+[2.160s] KeyboardInterrupt
+[2.164s] Invoked command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller' returned '-2': PYTHONPATH=/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/build

@@ -20,9 +20,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "postion_node = my_robot_controller.position_publisher:main",
+            "position_node = my_robot_controller.position_publisher:main",
             "path_planner_node = my_robot_controller.path_planner:main",
-            "path_planner_server = my_robot_controller.path_planner_server:main"
+            "path_planner_server_node = my_robot_controller.path_planner_server:main"
         ],
     },
 )

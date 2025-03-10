@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Position & Target Tracker</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px;
+            font-family: monospace;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">
+        <h3>Position & Target Tracker</h3>
+        <p>Current Position: <span id="position">x=0 y=0 z=0</span></p>
+        <p>Target Position: <span id="target">x=0 y=0 z=0</span></p>
+        <p>Connection Status: <span id="status">Connecting...</span></p>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Set up Three.js scene
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x111133);
+        
+        // Camera
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 150;
+        camera.position.y = 50;
+        camera.lookAt(0, 0, 0);
+        
+        // Renderer
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+        
+        // Create grid
+        const gridHelper = new THREE.GridHelper(100, 10, 0x666666, 0x444444);
+        scene.add(gridHelper);
+        
+        // Create axes
+        const axesHelper = new THREE.AxesHelper(60);
+        scene.add(axesHelper);
+        
+        // Create the current position dot (red sphere)
+        const dotGeometry = new THREE.SphereGeometry(2, 32, 32);
+        const dotMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+        const dot = new THREE.Mesh(dotGeometry, dotMaterial);
+        scene.add(dot);
+        
+        // Create the target position dot (green sphere)
+        const targetGeometry = new THREE.SphereGeometry(2, 32, 32);
+        const targetMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const targetDot = new THREE.Mesh(targetGeometry, targetMaterial);
+        scene.add(targetDot);
+        
+        // Create a line between current and target
+        const lineGeometry = new THREE.BufferGeometry();
+        const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffff00 });
+        const targetLine = new THREE.Line(lineGeometry, lineMaterial);
+        scene.add(targetLine);
+        
+        // Create a trail for the movement path
+        const trailPoints = [];
+        const trailGeometry = new THREE.BufferGeometry();
+        const trailMaterial = new THREE.LineBasicMaterial({ color: 0xff8800, opacity: 0.7, transparent: true });
+        const trail = new THREE.Line(trailGeometry, trailMaterial);
+        scene.add(trail);
+        
+        // Current and target positions
+        const position = { x: 0, y: 0, z: 0 };
+        const target = { x: 50, y: 50, z: 50 }; // Default to the values in your Python code
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+        
+        // Track mouse for camera rotation
+        let mouseDown = false;
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        document.addEventListener('mousedown', (e) => {
+            mouseDown = true;
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        document.addEventListener('mouseup', () => {
+            mouseDown = false;
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (mouseDown) {
+                const deltaX = e.clientX - mouseX;
+                const deltaY = e.clientY - mouseY;
+                
+                camera.position.x += deltaY * 0.1;
+                camera.position.z += deltaX * 0.1;
+                
+                camera.lookAt(0, 0, 0);
+                
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            }
+        });
+        
+        // Server URLs
+        const serverBaseUrl = 'http://localhost:5000';
+        const currentUrl = `${serverBaseUrl}/current`;
+        const targetUrl = `${serverBaseUrl}/target`;
+        
+        // UI elements
+        const statusElement = document.getElementById('status');
+        const positionElement = document.getElementById('position');
+        const targetElement = document.getElementById('target');
+        
+        // Last position for tracking movement
+        let lastPosition = { x: 0, y: 0, z: 0 };
+        let hasMovedSignificantly = false;
+        
+        // Fetch current position from server
+        async function fetchCurrentPosition() {
+            try {
+                const response = await fetch(currentUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                // Store last position before updating
+                lastPosition = { x: position.x, y: position.y, z: position.z };
+                
+                // Update position
+                position.x = data.x;
+                position.y = data.y;
+                position.z = data.z;
+                
+                // Update info display
+                positionElement.textContent = `x=${position.x} y=${position.y} z=${position.z}`;
+                statusElement.textContent = 'Connected';
+                statusElement.style.color = '#00ff00';
+                
+                // Check if position has changed significantly
+                const distance = Math.sqrt(
+                    Math.pow(position.x - lastPosition.x, 2) +
+                    Math.pow(position.y - lastPosition.y, 2) +
+                    Math.pow(position.z - lastPosition.z, 2)
+                );
+                
+                hasMovedSignificantly = distance > 0.1;
+                
+                // Add point to trail if position has changed significantly
+                if (hasMovedSignificantly) {
+                    trailPoints.push(new THREE.Vector3(position.x, position.y, position.z));
+                    
+                    // Keep trail at manageable length
+                    if (trailPoints.length > 200) {
+                        trailPoints.shift();
+                    }
+                    
+                    // Update trail geometry
+                    trailGeometry.setFromPoints(trailPoints);
+                }
+                
+                // Update line between current and target
+                updateTargetLine();
+                
+            } catch (error) {
+                console.error('Error fetching current position:', error);
+                statusElement.textContent = 'Connection Error';
+                statusElement.style.color = '#ff0000';
+            }
+        }
+        
+        // Fetch target position from server
+        async function fetchTargetPosition() {
+            try {
+                const response = await fetch(targetUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                // Update target
+                target.x = data.x;
+                target.y = data.y;
+                target.z = data.z;
+                
+                // Update info display
+                targetElement.textContent = `x=${target.x} y=${target.y} z=${target.z}`;
+                
+                // Update line between current and target
+                updateTargetLine();
+                
+            } catch (error) {
+                console.error('Error fetching target position:', error);
+                // We don't update status here to avoid conflicting with current position status
+            }
+        }
+        
+        // Update the line between current position and target
+        function updateTargetLine() {
+            const points = [
+                new THREE.Vector3(position.x, position.y, position.z),
+                new THREE.Vector3(target.x, target.y, target.z)
+            ];
+            lineGeometry.setFromPoints(points);
+        }
+        
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Move dot towards current position with some easing
+            dot.position.x += (position.x - dot.position.x) * 0.1;
+            dot.position.y += (position.y - dot.position.y) * 0.1;
+            dot.position.z += (position.z - dot.position.z) * 0.1;
+            
+            // Update target dot position
+            targetDot.position.x = target.x;
+            targetDot.position.y = target.y;
+            targetDot.position.z = target.z;
+            
+            renderer.render(scene, camera);
+        }
+        
+        // Start the animation
+        animate();
+        
+        // Poll for position updates
+        setInterval(fetchCurrentPosition, 1000);
+        setInterval(fetchTargetPosition, 1000);
+    </script>
+</body>
+</html>

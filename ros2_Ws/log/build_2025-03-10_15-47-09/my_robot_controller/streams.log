@@ -1,0 +1,26 @@
+[1.713s] Invoking command in '/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_controller': PYTHONPATH=/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_robot_controller build --build-base /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/build install --record /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/install.log --single-version-externally-managed install_data
+[2.445s] running egg_info
+[2.450s] writing ../../build/my_robot_controller/my_robot_controller.egg-info/PKG-INFO
+[2.456s] writing dependency_links to ../../build/my_robot_controller/my_robot_controller.egg-info/dependency_links.txt
+[2.461s] writing entry points to ../../build/my_robot_controller/my_robot_controller.egg-info/entry_points.txt
+[2.465s] writing requirements to ../../build/my_robot_controller/my_robot_controller.egg-info/requires.txt
+[2.469s] writing top-level names to ../../build/my_robot_controller/my_robot_controller.egg-info/top_level.txt
+[2.500s] reading manifest file '../../build/my_robot_controller/my_robot_controller.egg-info/SOURCES.txt'
+[2.570s] writing manifest file '../../build/my_robot_controller/my_robot_controller.egg-info/SOURCES.txt'
+[2.573s] running build
+[2.574s] running build_py
+[2.596s] copying my_robot_controller/path_planner_server.py -> /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller
+[2.645s] running install
+[2.646s] running install_lib
+[2.696s] copying /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller/path_planner_server.py -> /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[2.777s] byte-compiling /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/path_planner_server.py to path_planner_server.cpython-310.pyc
+[2.824s] running install_data
+[2.842s] running install_egg_info
+[2.851s] removing '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller-0.0.0-py3.10.egg-info' (and everything under it)
+[2.930s] Copying ../../build/my_robot_controller/my_robot_controller.egg-info to /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller-0.0.0-py3.10.egg-info
+[3.104s] running install_scripts
+[3.171s] Installing path_planner_node script to /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[3.182s] Installing path_planner_server_node script to /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[3.193s] Installing position_node script to /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[3.202s] writing list of installed files to '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/install.log'
+[3.227s] Invoked command in '/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_controller' returned '0': PYTHONPATH=/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_robot_controller build --build-base /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/build install --record /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/install.log --single-version-externally-managed install_data
