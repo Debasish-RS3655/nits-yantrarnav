@@ -10,6 +10,7 @@ setup.py
 ../../build/my_robot_controller/my_robot_controller.egg-info/zip-safe
 my_robot_controller/__init__.py
 my_robot_controller/path_planner.py
+my_robot_controller/path_planner_server.py
 my_robot_controller/position_publisher.py
 my_robot_controller.egg-info/PKG-INFO
 my_robot_controller.egg-info/SOURCES.txt

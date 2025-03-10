@@ -1,8 +1,5 @@
 [console_scripts]
-controller_node = my_robot_controller.controller:main
 path_planner_node = my_robot_controller.path_planner:main
+path_planner_server = my_robot_controller.path_planner_server:main
 postion_node = my_robot_controller.position_publisher:main
-publish_node = my_robot_controller.publisher:main
-subscribe_node = my_robot_controller.subscriber:main
-test_node = my_robot_controller.myfirstnode:main
 

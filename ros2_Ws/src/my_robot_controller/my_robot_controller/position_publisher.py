@@ -24,8 +24,7 @@ class PosePublisher(Node):
         self.target_y = self.y_
         self.target_z = self.z_
         
-        self.timer_ = self.create_timer(0.5, self.send_pos)
-        
+        self.timer_ = self.create_timer(0.5, self.send_pos)        
         self.target_pos_subscriber = self.create_subscription(String, 'position/target', self.update_pos, 10)
 
         self.get_logger().info('Position publisher node has been started.')
