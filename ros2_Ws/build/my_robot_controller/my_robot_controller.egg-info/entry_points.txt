@@ -1,4 +1,5 @@
 [console_scripts]
 publish_node = my_robot_controller.publisher:main
+subscribe_node = my_robot_controller.subscriber:main
 test_node = my_robot_controller.myfirstnode:main
 

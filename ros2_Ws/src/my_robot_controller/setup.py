@@ -21,7 +21,8 @@ setup(
     entry_points={
         'console_scripts': [
             "test_node = my_robot_controller.myfirstnode:main",
-            "publish_node = my_robot_controller.publisher:main"
+            "publish_node = my_robot_controller.publisher:main",
+            "subscribe_node = my_robot_controller.subscriber:main"
         ],
     },
 )
