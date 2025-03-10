@@ -9,9 +9,8 @@ setup.py
 ../../build/my_robot_controller/my_robot_controller.egg-info/top_level.txt
 ../../build/my_robot_controller/my_robot_controller.egg-info/zip-safe
 my_robot_controller/__init__.py
-my_robot_controller/myfirstnode.py
-my_robot_controller/publisher.py
-my_robot_controller/subscriber.py
+my_robot_controller/path_planner.py
+my_robot_controller/position_publisher.py
 my_robot_controller.egg-info/PKG-INFO
 my_robot_controller.egg-info/SOURCES.txt
 my_robot_controller.egg-info/dependency_links.txt

@@ -22,7 +22,10 @@ setup(
         'console_scripts': [
             "test_node = my_robot_controller.myfirstnode:main",
             "publish_node = my_robot_controller.publisher:main",
-            "subscribe_node = my_robot_controller.subscriber:main"
+            "subscribe_node = my_robot_controller.subscriber:main",
+            "controller_node = my_robot_controller.controller:main",
+            "postion_node = my_robot_controller.position_publisher:main",
+            "path_planner_node = my_robot_controller.path_planner:main"
         ],
     },
 )
