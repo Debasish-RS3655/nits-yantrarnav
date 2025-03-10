@@ -11,6 +11,8 @@ setup.py
 my_robot_controller/__init__.py
 my_robot_controller/path_planner.py
 my_robot_controller/path_planner_server.py
+my_robot_controller/path_planner_simulation.py
+my_robot_controller/path_planner_simulation_server.py
 my_robot_controller/position_publisher.py
 resource/my_robot_controller
 test/test_copyright.py

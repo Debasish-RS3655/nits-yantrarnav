@@ -22,7 +22,9 @@ setup(
         'console_scripts': [
             "position_node = my_robot_controller.position_publisher:main",
             "path_planner_node = my_robot_controller.path_planner:main",
-            "path_planner_server_node = my_robot_controller.path_planner_server:main"
+            "path_planner_server_node = my_robot_controller.path_planner_server:main",
+            "path_planner_simulation_node = my_robot_controller.path_planner_simulation:main",
+            "path_planner_simulation_server_node = my_robot_controller.path_planner_simulation_server:main"
         ],
     },
 )

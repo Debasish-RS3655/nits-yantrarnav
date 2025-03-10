@@ -1,9 +1,13 @@
 /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/path_planner.py
 /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/path_planner_server.py
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/path_planner_simulation.py
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/path_planner_simulation_server.py
 /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/position_publisher.py
 /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/__init__.py
 /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/__pycache__/path_planner.cpython-310.pyc
 /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/__pycache__/path_planner_server.cpython-310.pyc
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/__pycache__/path_planner_simulation.cpython-310.pyc
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/__pycache__/path_planner_simulation_server.cpython-310.pyc
 /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/__pycache__/position_publisher.cpython-310.pyc
 /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/__pycache__/__init__.cpython-310.pyc
 /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/share/ament_index/resource_index/packages/my_robot_controller
@@ -17,4 +21,6 @@
 /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller-0.0.0-py3.10.egg-info/zip-safe
 /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/my_robot_controller/path_planner_node
 /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/my_robot_controller/path_planner_server_node
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/my_robot_controller/path_planner_simulation_node
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/my_robot_controller/path_planner_simulation_server_node
 /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/my_robot_controller/position_node
