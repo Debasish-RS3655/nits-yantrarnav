@@ -1,3 +1,4 @@
 [console_scripts]
+publish_node = my_robot_controller.publisher:main
 test_node = my_robot_controller.myfirstnode:main
 
