@@ -1,0 +1,18 @@
+-- Install configuration: ""
+-- Execute custom install script
+-- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/launch/robot.launch.py
+-- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/ament_index/resource_index/package_run_dependencies/my_robot_launcher
+-- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/ament_index/resource_index/parent_prefix_path/my_robot_launcher
+-- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/environment/path.sh
+-- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/environment/path.dsv
+-- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/local_setup.bash
+-- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/local_setup.sh
+-- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/local_setup.zsh
+-- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/local_setup.dsv
+-- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/package.dsv
+-- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/ament_index/resource_index/packages/my_robot_launcher
+-- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/cmake/my_robot_launcherConfig.cmake
+-- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/cmake/my_robot_launcherConfig-version.cmake
+-- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/package.xml

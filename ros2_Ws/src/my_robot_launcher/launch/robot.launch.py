@@ -6,7 +6,9 @@ def generate_launch_description():
     # add nodes
     bridge_server = Node(
         package="my_robot_controller",
-        executable="bridge_server"
+        executable="bridge_server",
+        sigterm_timeout='2',  # give the node 2 seconds to shut down gracefully
+        sigkill_timeout='5'   # force kill if it does not exit within 5 seconds
     )
     
     flat_area = Node(

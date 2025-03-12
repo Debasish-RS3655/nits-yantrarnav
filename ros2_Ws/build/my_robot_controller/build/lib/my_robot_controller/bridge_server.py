@@ -5,6 +5,8 @@ from std_msgs.msg import String
 from flask import Flask, jsonify
 from flask_cors import CORS
 import threading
+import time
+
 
 # bridge server that subscribes to all topics and responds the current topic value over HTTP
 
@@ -69,10 +71,10 @@ class BridgeServer(Node):
             self.get_logger().error('Failed to parse Bridge phase: ' + str(e))
                 
         
-bridge_server_node = None
-
 app = Flask(__name__)
 CORS(app)
+bridge_server_node = None
+shutdown_flag = threading.Event() # signal to stop threads
 
 # api endpoints
 @app.route('/current', methods=['GET'])
@@ -108,20 +110,35 @@ def target_position():
     return jsonify(pos)
 
 
+def ros_spin(node):
+    try:
+        while not shutdown_flag.is_set():
+            rclpy.spin_once(node, timeout_sec=0.1)
+    finally:
+        node.destroy_node()
+
+
 def main(args=None):
     global bridge_server_node
     rclpy.init(args=args)
     node = BridgeServer()
     bridge_server_node = node
-    # run the ROS2 node in a separate thread
-    ros_thread = threading.Thread(target=rclpy.spin, args=(node,))
-    ros_thread.daemon = True
+    
+    # start ROS 2 spinning in a non-daemon thread
+    ros_thread = threading.Thread(target=ros_spin, args=(node,))
+    # ros_thread.daemon = True
     ros_thread.start()    
-    # start the Flask server
-    app.run(host='0.0.0.0', port=5000)    
-    # cleanup if flask server stops
-    node.destroy_node()
-    rclpy.shutdown()
+    
+    try:        
+        # start the Flask server by disabling the auto reloader to avoid a child process lingering
+        app.run(host='0.0.0.0', port=5000, use_reloader=False)    
+    except KeyboardInterrupt: 
+        print('Keyboard interrupt caught. Bridge server shutting down gracefully.')
+    finally: 
+        # signal shutdown to ROS thread
+        shutdown_flag.set()
+        ros_thread.join(timeout=5) # wait for ros thread to finish
+        rclpy.shutdown()
     
 if __name__ == '__main__':
     main()
