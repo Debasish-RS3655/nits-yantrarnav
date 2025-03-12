@@ -30,6 +30,9 @@ class Flat_Area_Detector(Node):
         self.origin_x = self.x_
         self.origin_y = self.y_
         self.origin_z = self.z_
+        
+        # display the starting log to the screen
+        self.get_logger().info('Flat Area node has been started.')
 
     def update_current_pos(self, msg: String):
         # Expect message format: "x=<value> y=<value> z=<value>"
