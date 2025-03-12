@@ -1,22 +1,21 @@
 #!usr/bin/env python3
+
+# Debashish Buragohain
+# dummy implementation for the mover code which moves to the target position sending commands to Pixhawk
+
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 
-# dummy implementation of the slam output
-
-# this dummy code assumes incremental changes in the robot's position and udpates the current position
-# given the velocity
-
-class PosePublisher(Node):    
+class PathMover(Node):    
     def __init__(self):
-        super().__init__('pose_publisher')
+        super().__init__('path_mover')
 
-        # publishing the current positions                
+        # publishing the current positions
         self.data_pub_ = self.create_publisher(String, 'position/current', 10)
         
         # positions to be actually read using the VINS-slam
-        self.velocity_step = 1        
+        self.velocity_step = 4        
         # initial position values
         self.x_ = 0.0
         self.y_ = 0.0
@@ -29,7 +28,7 @@ class PosePublisher(Node):
         
         self.timer_ = self.create_timer(0.5, self.send_pos)        
         self.target_pos_subscriber = self.create_subscription(String, 'position/target', self.update_pos, 10)
-
+        
         self.get_logger().info('Position publisher node has been started.')
 
     # publish the current positions regularly
@@ -41,7 +40,7 @@ class PosePublisher(Node):
         self.get_logger().info(f'Current postion Published: {msg.data}')        
         
     # !! dummy implementation
-    # in the actual implementation 
+    # in the actual implementation we 
     def update_current_position(self):
         # update X coord
         if abs(self.x_ - self.target_x) < self.velocity_step:
@@ -89,7 +88,7 @@ class PosePublisher(Node):
         
 def main(args=None):
     rclpy.init(args=args)
-    node = PosePublisher()
+    node = PathMover()
     rclpy.spin(node)
     node.destroy_node() # clean up
     rclpy.shutdown()

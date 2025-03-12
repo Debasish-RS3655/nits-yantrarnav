@@ -20,11 +20,18 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "position_node = my_robot_controller.position_publisher:main",
-            "path_planner_node = my_robot_controller.path_planner:main",
-            "path_planner_server_node = my_robot_controller.path_planner_server:main",
-            "path_planner_simulation_node = my_robot_controller.path_planner_simulation:main",
-            "path_planner_simulation_server_node = my_robot_controller.path_planner_simulation_server:main"
+            # "position_node = my_robot_controller.position_publisher:main",
+            
+            # "path_planner_node = my_robot_controller.path_planner:main",
+            # "path_planner_server_node = my_robot_controller.path_planner_server:main",
+            # "path_planner_simulation_node = my_robot_controller.path_planner_simulation:main",
+            
+            # "path_planner_simulation_server_node = my_robot_controller.path_planner_simulation_server:main"
+            
+            "bridge_server = my_robot_controller.bridge_server:main",
+            "flat_area = my_robot_controller.flat_area:main",
+            "path_mover = my_robot_cotnroller.path_mover:main",
+            "path_planner = my_robot_controller.path_planner:main"
         ],
     },
 )

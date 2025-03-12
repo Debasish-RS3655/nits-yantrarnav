@@ -14,6 +14,9 @@ class PathPlanner(Node):
         # Publisher for target position and subscriber for current position
         self.pos_target_pub = self.create_publisher(String, 'position/target', 10)
         self.pos_current_sub = self.create_subscription(String, 'position/current', self.update_pos, 10)
+        # subscriber for the flat area scanner
+        self.flat_area_sub = self.create_subscription(String, 'position/flat_area', self.update_flat_area, 10)
+        self.flat_areas = None
 
         # Current position
         self.x_ = 0.0
@@ -30,12 +33,17 @@ class PathPlanner(Node):
         self.lawn_gap = 2.0   # Gap between lines in lawnmower pattern
         self.threshold = 0.5  # Distance threshold to switch to the next target
 
+
+        # we create a publisher for the phase
         # State machine phases:
         # Phase 1: Square path
         # Phase 2: Lawnmower pattern inside the square
         # Phase 3: Random point inside the square
-        # Phase 4: Return to origin
+        # Phase 4: Return to origin        
         self.phase = 1
+
+        self.phase_pub = self.create_publisher(String, 'position/phase', 10)
+        
         self.target_list = []
         self.target_index = 0
         self.current_target = None
@@ -67,6 +75,7 @@ class PathPlanner(Node):
     def setup_phase(self, phase):
         """Set up the target list for the given phase."""
         if phase == 1:
+            # this will be replaced with the line following code
             self.get_logger().info("Setting up Phase 1: Square Path")
             x0, y0, z0 = self.origin_x, self.origin_y, self.origin_z
             # Define square vertices (clockwise)
@@ -76,6 +85,7 @@ class PathPlanner(Node):
                 (x0, y0 + self.side, z0),
                 (x0, y0, z0)
             ]
+            
         elif phase == 2:
             self.get_logger().info("Setting up Phase 2: Lawnmower Pattern")
             x0, y0, z0 = self.origin_x, self.origin_y, self.origin_z
@@ -86,22 +96,26 @@ class PathPlanner(Node):
                 if y > y0 + self.side:
                     y = y0 + self.side
                 # Alternate direction for each row
-                if i % 2 == 0:
+                if i % 2 == 0:                    
                     points.append((x0, y, z0))
                     points.append((x0 + self.side, y, z0))
                 else:
                     points.append((x0 + self.side, y, z0))
                     points.append((x0, y, z0))
             self.target_list = points
+            
+                        
         elif phase == 3:
-            self.get_logger().info("Setting up Phase 3: Random Point in Square")
+            self.get_logger().info("Setting up Phase 3: Flat area determination")
             x0, y0, z0 = self.origin_x, self.origin_y, self.origin_z
             rx = random.uniform(x0, x0 + self.side)
             ry = random.uniform(y0, y0 + self.side)
-            self.target_list = [(rx, ry, z0)]
+            self.target_list = [(rx, ry, z0)]            
+            
         elif phase == 4:
             self.get_logger().info("Setting up Phase 4: Return to Origin")
             self.target_list = [(self.origin_x, self.origin_y, self.origin_z)]
+            
         else:
             self.get_logger().error("Unknown phase specified.")
         
@@ -130,7 +144,14 @@ class PathPlanner(Node):
                 if self.phase < 4:
                     self.phase += 1
                     self.get_logger().info(f'Moving to Phase {self.phase}')
+                    
+                    phase_msg = String()
+                    phase_msg.data = str(self.phase)
+                    
+                    # publish the new phase when it changes
+                    self.phase_pub.publish(phase_msg)                    
                     self.setup_phase(self.phase)
+                    
                 else:
                     self.get_logger().info('Completed all phases.')
                     self.timer_.cancel()

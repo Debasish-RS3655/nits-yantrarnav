@@ -23,7 +23,7 @@ class PathPlanner(Node):
 
         # Parameters for target generation
         self.side = 10.0   # side length for square and lawnmower area
-        self.lawn_gap = 2.0  # gap between lines in the lawnmower pattern
+        self.lawn_gap = 4.0  # gap between lines in the lawnmower pattern
         self.threshold = 0.5  # distance threshold to switch to the next target
 
         # Phase management: phase 1 = square, phase 2 = lawnmower, phase 3 = random, phase 4 = return
