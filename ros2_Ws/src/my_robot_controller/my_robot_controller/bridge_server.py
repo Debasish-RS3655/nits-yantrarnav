@@ -2,7 +2,7 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 import threading
 import time
@@ -28,6 +28,7 @@ class BridgeServer(Node):
         self.pos_current_sub = self.create_subscription(String, 'position/current', self.update_current_pos, 10)
         self.pos_target_sub = self.create_subscription(String, 'position/target', self.update_target_pos, 10)
         self.pos_phase_sub = self.create_subscription(String, 'position/phase', self.update_phase_pos, 10)                
+        self.mode_pub = self.create_publisher(String, 'position/mode', 10)       # mode i.e. manual or automatic
         
     def update_current_pos(self, msg: String):
         # Expect message format: "x=<value> y=<value> z=<value>"
@@ -73,7 +74,7 @@ class BridgeServer(Node):
         
 app = Flask(__name__)
 CORS(app)
-bridge_server_node = None
+bridge_server_node = None         # setting the initial global variable
 shutdown_flag = threading.Event() # signal to stop threads
 
 # api endpoints
@@ -108,6 +109,33 @@ def target_position():
         'z': bridge_server_node.target_z
     }
     return jsonify(pos)
+
+# New endpoint for setting mode
+@app.route('/mode', methods=['POST'])
+def set_mode():
+    """
+    Sets the robot mode to either 'automatic' or 'manual' and publishes it over ROS.
+    Expected JSON payload: {"mode": "automatic"} or {"mode": "manual"}
+    """
+    global bridge_server_node
+    if bridge_server_node is None:
+        return jsonify({'error': 'BridgeServer node not available'}), 500
+
+    data = request.get_json()
+    if not data or 'mode' not in data:
+        return jsonify({'error': 'Please provide a mode (automatic or manual)'}), 400
+
+    mode = data['mode']
+    if mode not in ['automatic', 'manual']:
+        return jsonify({'error': 'Mode must be either "automatic" or "manual"'}), 400
+
+    # Publish the mode over ROS
+    msg = String()
+    msg.data = mode
+    bridge_server_node.mode_pub.publish(msg)    # can directly access the bridge server node since it is a global variable
+    bridge_server_node.get_logger().info(f'Published mode from Bridge server: {mode}')
+    
+    return jsonify({'mode': mode, 'status': 'published'}), 200
 
 
 def ros_spin(node):

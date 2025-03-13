@@ -3,14 +3,15 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 import math
-import random
 
 class PathPlanner(Node):
     def __init__(self):
         super().__init__('path_planner_server')
+        
         # Publisher for target position and subscriber for current position
         self.pos_target_pub = self.create_publisher(String, 'position/target', 10)
         self.pos_current_sub = self.create_subscription(String, 'position/current', self.update_pos, 10)
+        
         # Subscriber for the flat area scanner
         self.flat_area_sub = self.create_subscription(String, 'position/flat_areas', self.update_flat_areas, 10)
         self.flat_areas = []  # List to store multiple (x, y, z) flat area coordinates
@@ -122,9 +123,11 @@ class PathPlanner(Node):
                 self.get_logger().warning("No flat areas available. Waiting 5 seconds before fallback to origin.")
                 self.fallback_timer_ = self.create_timer(5.0, self.fallback_to_origin_once)
                 return
+        
         elif phase == 4:
             self.get_logger().info("Setting up Phase 4: Return to Origin")
             self.target_list = [(self.origin_x, self.origin_y, self.origin_z)]
+        
         else:
             self.get_logger().error("Unknown phase specified.")
         

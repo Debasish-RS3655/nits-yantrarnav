@@ -8,6 +8,9 @@ import random
 # Dummy implementation for the flat area detector
 # We assume a dummy area in the square in this implementation
 
+# the flat area detector will be publish the flat areas when the phase is set to 3
+# so for the manual mode to trigger flat area we publish the phase 3
+
 class Flat_Area_Detector(Node):
     def __init__(self):
         super().__init__('flat_area')
@@ -55,12 +58,13 @@ class Flat_Area_Detector(Node):
         self.phase = int(phase_msg.data)
         
         if self.phase == 3:
+            # flat area detection logic goes here
             for _ in range(2):
-                flat_area = self.determine_flat_area()
+                flat_area = self.determine_random_area()
                 self.publish_flat_area(flat_area)
 
     # Dummy implementation, we assume random areas inside the square as flat landing areas
-    def determine_flat_area(self):
+    def determine_random_area(self):
         x0, y0, z0 = self.origin_x, self.origin_y, self.origin_z
         rx = random.uniform(x0, x0 + self.side)
         ry = random.uniform(y0, y0 + self.side)

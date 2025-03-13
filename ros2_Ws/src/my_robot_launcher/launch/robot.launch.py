@@ -21,9 +21,10 @@ def generate_launch_description():
         executable="path_mover"
     )        
 
+    # in the latest version we launch the mode controller and the path planner and manual mode are set from there
     path_planner = Node(
         package="my_robot_controller",
-        executable="path_planner"
+        executable="mode_controller"
     )
     
     ld.add_action(bridge_server)
