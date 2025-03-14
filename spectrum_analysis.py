@@ -9,10 +9,10 @@ input_dir = "/Users/champakjyotikonwar/CODING/PROJECTS/MARS/calibrated"
 output_dir = "/Users/champakjyotikonwar/CODING/PROJECTS/MARS/Result"
 csv_output_path = "/Users/champakjyotikonwar/CODING/PROJECTS/MARS/spectrum_analysis_results.csv"
 
-# Ensure output directory exists
+
 os.makedirs(output_dir, exist_ok=True)
 
-# List to store results
+
 results = []
 
 
@@ -54,7 +54,7 @@ def extract_multiscale_features(image, window_sizes=[5, 10]):
 
     full_vector = np.concatenate(feature_vectors)  # Full feature vector
 
-    # **Reduce to 10 values using simple feature selection**
+
     if len(full_vector) > 10:
         reduced_vector = np.sort(full_vector)[-10:]  # Top 10 highest values
     else:

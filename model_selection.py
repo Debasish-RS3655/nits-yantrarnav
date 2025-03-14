@@ -10,7 +10,7 @@ df = pd.read_csv(file_path)
 if "Filename" in df.columns:
     df.drop(columns=["Filename"], inplace=True)
 
-# Manually map the class column
+
 class_mapping = {"hard": 0, "sandy": 1, "rocky": 2}  # Updated third category
 df["Class"] = df["Class"].map(class_mapping)
 

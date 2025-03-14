@@ -12,7 +12,7 @@ class PreprocessImage:
         """Load, convert to grayscale, and resize image."""
         img = cv2.imread(image_path)
         if img is None:
-            print(f"⚠️ Error: Unable to load image {image_path}")
+            print(f"Error: Unable to load image {image_path}")
             return None
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         return cv2.resize(gray, target_size)
