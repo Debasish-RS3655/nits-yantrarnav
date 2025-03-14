@@ -74,7 +74,7 @@ class PreprocessImage:
                     window = edges[u:u+window_size, v:v+window_size]
                     edge_strength = np.sum(window) / (window_size * window_size)
                     features.append(edge_strength)
-
+ 
             feature_vectors.append(np.mean(features))
 
         return np.array(feature_vectors)
@@ -88,7 +88,7 @@ class PreprocessImage:
 
         for image_path, label in zip(image_paths, labels):
             print(f"Processing: {image_path}")
-            grayscale_image = prepare_image(image_path)
+            grayscale_image = self.prepare_image(image_path)
             if grayscale_image is None:
                 continue
 
