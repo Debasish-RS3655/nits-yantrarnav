@@ -79,19 +79,22 @@ class ModeExecutor(Node):
                 rclpy.spin_once(node, timeout_sec=0.1)
         finally:
             node.destroy_node()
-            
+
 def main(args=None):
     rclpy.init(args=args)
     mode_executor = ModeExecutor()
-    try :        
-        rclpy.spin(mode_executor)    
+    executor = rclpy.executors.MultiThreadedExecutor()
+    executor.add_node(mode_executor)
+    try:
+        executor.spin()
     except KeyboardInterrupt:
         mode_executor.get_logger().info("KeyboardInterrupt received. Shutting down ModeExecutor.")
     finally:
-        # shutdown any nodes form the current mode 
+        executor.shutdown()
         mode_executor.shutdown_running_nodes()
         mode_executor.destroy_node()
         rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()

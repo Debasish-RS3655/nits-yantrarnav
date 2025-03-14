@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Position Tracker</title>
+    <title>3D Position & Target Tracker</title>
     <style>
         body { margin: 0; overflow: hidden; }
         canvas { display: block; }
@@ -17,13 +17,62 @@
             font-family: monospace;
             border-radius: 5px;
         }
+        #controls {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: 1px solid #666;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: rgba(30,30,80,0.8);
+        }
+        button.active {
+            background: rgba(30,80,30,0.8);
+            border-color: #4a4;
+        }
+        #mode-btn {
+            min-width: 180px;
+        }
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        .status-dot.connected {
+            background-color: #4f4;
+        }
+        .status-dot.disconnected {
+            background-color: #f44;
+        }
     </style>
 </head>
 <body>
     <div id="info">
-        <h3>Position Tracker</h3>
+        <h3>Position & Target Tracker</h3>
         <p>Current Position: <span id="position">x=0 y=0 z=0</span></p>
-        <p>Connection Status: <span id="status">Connecting...</span></p>
+        <p>Target Position: <span id="target">x=0 y=0 z=0</span></p>
+        <p>Connection Status: <span class="status-dot disconnected"></span><span id="status">Connecting...</span></p>
+        <p>Current Axes: <span id="axes-info">Z-Up, X-Left</span></p>
+        <p>Current Mode: <span id="mode-info">automatic</span></p>
+    </div>
+    
+    <div id="controls">
+        <button id="rotate-axes">Rotate Axes</button>
+        <button id="reset-orientation">Reset Orientation</button>
+        <button id="mode-btn">Mode: Automatic</button>
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -32,10 +81,11 @@
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x111133);
         
-        // Camera
+        // Camera - adjusted for z-up orientation
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 150;
-        camera.position.y = 50;
+        camera.position.x = -100;
+        camera.position.y = 100;
+        camera.position.z = 100;
         camera.lookAt(0, 0, 0);
         
         // Renderer
@@ -43,29 +93,178 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
         
-        // Create grid
-        const gridHelper = new THREE.GridHelper(100, 10, 0x666666, 0x444444);
+        // Create grid - rotated for z-up
+        let gridHelper = new THREE.GridHelper(100, 10, 0x666666, 0x444444);
+        gridHelper.rotation.x = Math.PI / 2; // Rotate for z-up
         scene.add(gridHelper);
         
-        // Create axes
-        const axesHelper = new THREE.AxesHelper(60);
+        // Create axes helper with default orientation
+        let axesHelper = new THREE.AxesHelper(60);
+        // Scale x negatively to point left
+        axesHelper.scale.x = -1;
         scene.add(axesHelper);
         
-        // Create the dot (sphere)
-        const geometry = new THREE.SphereGeometry(2, 32, 32);
-        const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-        const dot = new THREE.Mesh(geometry, material);
+        // Create the current position dot (red sphere)
+        const dotGeometry = new THREE.SphereGeometry(2, 32, 32);
+        const dotMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+        const dot = new THREE.Mesh(dotGeometry, dotMaterial);
         scene.add(dot);
         
-        // Create a trail
+        // Create the target position dot (green sphere)
+        const targetGeometry = new THREE.SphereGeometry(2, 32, 32);
+        const targetMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const targetDot = new THREE.Mesh(targetGeometry, targetMaterial);
+        scene.add(targetDot);
+        
+        // Create a line between current and target
+        const lineGeometry = new THREE.BufferGeometry();
+        const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffff00 });
+        const targetLine = new THREE.Line(lineGeometry, lineMaterial);
+        scene.add(targetLine);
+        
+        // Create a trail for the movement path
         const trailPoints = [];
         const trailGeometry = new THREE.BufferGeometry();
         const trailMaterial = new THREE.LineBasicMaterial({ color: 0xff8800, opacity: 0.7, transparent: true });
         const trail = new THREE.Line(trailGeometry, trailMaterial);
         scene.add(trail);
         
-        // Current position
+        // Current and target positions
         const position = { x: 0, y: 0, z: 0 };
+        const target = { x: 50, y: 50, z: 50 }; // Default to the values in your Python code
+        
+        // Current mode
+        let currentMode = "automatic";
+        
+        // Axis rotation configuration
+        let currentAxisConfig = 0;
+        const axisConfigs = [
+            { name: "Z-Up, X-Left", transform: (x, y, z) => ({ x: -x, y: y, z: z }) },
+            { name: "Z-Up, X-Right", transform: (x, y, z) => ({ x: x, y: y, z: z }) },
+            { name: "Y-Up, X-Left", transform: (x, y, z) => ({ x: -x, y: z, z: y }) },
+            { name: "Y-Up, X-Right", transform: (x, y, z) => ({ x: x, y: z, z: y }) },
+            { name: "X-Up, Z-Left", transform: (x, y, z) => ({ x: -z, y: y, z: x }) },
+            { name: "X-Up, Z-Right", transform: (x, y, z) => ({ x: z, y: y, z: x }) }
+        ];
+        
+        // Get UI elements
+        const axesInfoElement = document.getElementById('axes-info');
+        const modeInfoElement = document.getElementById('mode-info');
+        const rotateAxesButton = document.getElementById('rotate-axes');
+        const resetOrientationButton = document.getElementById('reset-orientation');
+        const modeButton = document.getElementById('mode-btn');
+        const statusElement = document.getElementById('status');
+        const statusDot = document.querySelector('.status-dot');
+        const positionElement = document.getElementById('position');
+        const targetElement = document.getElementById('target');
+        
+        // Set up button to rotate axes
+        rotateAxesButton.addEventListener('click', () => {
+            currentAxisConfig = (currentAxisConfig + 1) % axisConfigs.length;
+            updateAxisOrientation();
+        });
+        
+        // Set up button to reset orientation
+        resetOrientationButton.addEventListener('click', () => {
+            currentAxisConfig = 0; // Reset to default (Z-Up, X-Left)
+            updateAxisOrientation();
+        });
+        
+        // Set up button to toggle mode
+        modeButton.addEventListener('click', toggleMode);
+        
+        // Function to toggle between automatic and manual modes
+        async function toggleMode() {
+            const newMode = currentMode === "automatic" ? "manual" : "automatic";
+            
+            try {
+                // Send POST request to server
+                const response = await fetch('http://127.0.0.1:5000/mode', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ mode: newMode }),
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // Update mode only if server responded successfully
+                if (data.status === "published") {
+                    currentMode = data.mode;
+                    modeInfoElement.textContent = currentMode;
+                    modeButton.textContent = `Mode: ${currentMode.charAt(0).toUpperCase() + currentMode.slice(1)}`;
+                    
+                    // Update button style
+                    if (currentMode === "automatic") {
+                        modeButton.classList.add('active');
+                    } else {
+                        modeButton.classList.remove('active');
+                    }
+                }
+            } catch (error) {
+                console.error('Error changing mode:', error);
+                statusElement.textContent = 'Mode Change Error';
+                statusDot.classList.remove('connected');
+                statusDot.classList.add('disconnected');
+            }
+        }
+        
+        // Function to update axis orientation
+        function updateAxisOrientation() {
+            const config = axisConfigs[currentAxisConfig];
+            
+            // Update UI
+            axesInfoElement.textContent = config.name;
+            
+            // Clear the trail as the coordinate system has changed
+            trailPoints.length = 0;
+            trailGeometry.setFromPoints([]);
+            
+            // Reset the grid rotation based on the new axis configuration
+            scene.remove(gridHelper);
+            scene.remove(axesHelper);
+            
+            // Create a new grid and axes with the appropriate rotation
+            gridHelper = new THREE.GridHelper(100, 10, 0x666666, 0x444444);
+            axesHelper = new THREE.AxesHelper(60);
+            
+            // Apply transformations based on the axis configuration
+            if (currentAxisConfig === 0) { // Z-Up, X-Left
+                gridHelper.rotation.x = Math.PI / 2;
+                axesHelper.scale.x = -1;
+            } else if (currentAxisConfig === 1) { // Z-Up, X-Right
+                gridHelper.rotation.x = Math.PI / 2;
+            } else if (currentAxisConfig === 2) { // Y-Up, X-Left
+                axesHelper.scale.x = -1;
+            } else if (currentAxisConfig === 3) { // Y-Up, X-Right
+                // Default orientation, no change needed
+            } else if (currentAxisConfig === 4) { // X-Up, Z-Left
+                gridHelper.rotation.z = Math.PI / 2;
+                axesHelper.rotation.z = Math.PI / 2;
+                axesHelper.scale.x = -1;
+            } else if (currentAxisConfig === 5) { // X-Up, Z-Right
+                gridHelper.rotation.z = Math.PI / 2;
+                axesHelper.rotation.z = Math.PI / 2;
+            }
+            
+            scene.add(gridHelper);
+            scene.add(axesHelper);
+            
+            // Adjust camera position based on the new configuration
+            if (currentAxisConfig === 0 || currentAxisConfig === 1) { // Z-Up
+                camera.position.set(currentAxisConfig === 0 ? 100 : -100, 100, 100);
+            } else if (currentAxisConfig === 2 || currentAxisConfig === 3) { // Y-Up
+                camera.position.set(currentAxisConfig === 2 ? 100 : -100, 100, -100);
+            } else { // X-Up
+                camera.position.set(100, currentAxisConfig === 4 ? 100 : -100, 100);
+            }
+            camera.lookAt(0, 0, 0);
+        }
         
         // Handle window resize
         window.addEventListener('resize', () => {
@@ -94,8 +293,23 @@
                 const deltaX = e.clientX - mouseX;
                 const deltaY = e.clientY - mouseY;
                 
-                camera.position.x += deltaY * 0.1;
-                camera.position.z += deltaX * 0.1;
+                // Adjust camera rotation based on mouse movement
+                const cameraDistance = Math.sqrt(
+                    camera.position.x * camera.position.x +
+                    camera.position.y * camera.position.y +
+                    camera.position.z * camera.position.z
+                );
+                
+                // Rotate camera around the origin
+                const theta = Math.atan2(camera.position.y, camera.position.x) + deltaX * 0.01;
+                const phi = Math.acos(camera.position.z / cameraDistance) + deltaY * 0.01;
+                
+                // Clamp phi to avoid camera flipping
+                const phiClamped = Math.max(0.1, Math.min(Math.PI - 0.1, phi));
+                
+                camera.position.x = cameraDistance * Math.sin(phiClamped) * Math.cos(theta);
+                camera.position.y = cameraDistance * Math.sin(phiClamped) * Math.sin(theta);
+                camera.position.z = cameraDistance * Math.cos(phiClamped);
                 
                 camera.lookAt(0, 0, 0);
                 
@@ -104,64 +318,37 @@
             }
         });
         
-        // Fetch position from server
-        const serverUrl = 'http://localhost:5000/current';
-        const statusElement = document.getElementById('status');
-        const positionElement = document.getElementById('position');
+        // Server URLs
+        const serverBaseUrl = 'http://127.0.0.1:5000';
+        const currentUrl = `${serverBaseUrl}/current`;
+        const targetUrl = `${serverBaseUrl}/target`;
+        const modeUrl = `${serverBaseUrl}/mode`;
         
-        async function fetchPosition() {
+        // Last position for tracking movement
+        let lastPosition = { x: 0, y: 0, z: 0 };
+        let hasMovedSignificantly = false;
+        
+        // Transform coordinates based on current axis configuration
+        function transformCoordinates(rawX, rawY, rawZ) {
+            return axisConfigs[currentAxisConfig].transform(rawX, rawY, rawZ);
+        }
+        
+        // Get current mode from server
+        async function fetchCurrentMode() {
             try {
-                const response = await fetch(serverUrl);
+                const response = await fetch(`${modeUrl}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error: ${response.status}`);
                 }
                 const data = await response.json();
                 
-                // Update position
-                position.x = data.x;
-                position.y = data.y;
-                position.z = data.z;
+                // Update mode
+                currentMode = data.mode;
+                modeInfoElement.textContent = currentMode;
+                modeButton.textContent = `Mode: ${currentMode.charAt(0).toUpperCase() + currentMode.slice(1)}`;
                 
-                // Update info display
-                positionElement.textContent = `x=${position.x} y=${position.y} z=${position.z}`;
-                statusElement.textContent = 'Connected';
-                statusElement.style.color = '#00ff00';
-                
-                // Add point to trail
-                trailPoints.push(new THREE.Vector3(position.x, position.y, position.z));
-                
-                // Keep trail at manageable length
-                if (trailPoints.length > 100) {
-                    trailPoints.shift();
-                }
-                
-                // Update trail geometry
-                trailGeometry.setFromPoints(trailPoints);
-                
-            } catch (error) {
-                console.error('Error fetching position:', error);
-                statusElement.textContent = 'Connection Error';
-                statusElement.style.color = '#ff0000';
-            }
-        }
-        
-        // Animation loop
-        function animate() {
-            requestAnimationFrame(animate);
-            
-            // Move dot towards target position with some easing
-            dot.position.x += (position.x - dot.position.x) * 0.1;
-            dot.position.y += (position.y - dot.position.y) * 0.1;
-            dot.position.z += (position.z - dot.position.z) * 0.1;
-            
-            renderer.render(scene, camera);
-        }
-        
-        // Start the animation
-        animate();
-        
-        // Poll for position updates
-        setInterval(fetchPosition, 1000);
-    </script>
-</body>
-</html>
+                // Update button style
+                if (currentMode === "automatic") {
+                    modeButton.classList.add('active');
+                } else {
+                    modeButton.classList.

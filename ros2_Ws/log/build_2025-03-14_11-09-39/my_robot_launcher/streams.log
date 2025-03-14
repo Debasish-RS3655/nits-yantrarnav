@@ -1,0 +1,22 @@
+[0.335s] Invoking command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher': AMENT_PREFIX_PATH=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/opt/ros/humble CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble /usr/bin/cmake --build /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher -- -j8 -l8
+[0.500s] Invoked command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher' returned '0': AMENT_PREFIX_PATH=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/opt/ros/humble CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble /usr/bin/cmake --build /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher -- -j8 -l8
+[0.543s] Invoking command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher': AMENT_PREFIX_PATH=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/opt/ros/humble CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble /usr/bin/cmake --install /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher
+[0.560s] -- Install configuration: ""
+[0.581s] -- Execute custom install script
+[0.615s] -- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/launch/robot.launch.py
+[0.664s] -- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/ament_index/resource_index/package_run_dependencies/my_robot_launcher
+[0.700s] -- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/ament_index/resource_index/parent_prefix_path/my_robot_launcher
+[0.718s] -- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/environment/ament_prefix_path.sh
+[0.738s] -- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/environment/ament_prefix_path.dsv
+[0.757s] -- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/environment/path.sh
+[0.776s] -- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/environment/path.dsv
+[0.792s] -- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/local_setup.bash
+[0.808s] -- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/local_setup.sh
+[0.829s] -- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/local_setup.zsh
+[0.848s] -- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/local_setup.dsv
+[0.860s] -- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/package.dsv
+[0.930s] -- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/ament_index/resource_index/packages/my_robot_launcher
+[0.955s] -- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/cmake/my_robot_launcherConfig.cmake
+[0.974s] -- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/cmake/my_robot_launcherConfig-version.cmake
+[0.998s] -- Up-to-date symlink: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/package.xml
+[1.004s] Invoked command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher' returned '0': AMENT_PREFIX_PATH=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/opt/ros/humble CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble /usr/bin/cmake --install /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher
