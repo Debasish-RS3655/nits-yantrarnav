@@ -106,7 +106,7 @@ def process_images_and_save_to_csv(image_paths, labels, output_csv):
     # Save to CSV
     feature_df = pd.DataFrame(feature_data, columns=column_names)
     feature_df.to_csv(output_csv, index=False)
-    print(f"\n✅ Features saved to: {output_csv}")
+    print(f"\Features saved to: {output_csv}")
 
 # ---------------------- Run Extraction ----------------------
 if __name__ == '__main__':
@@ -136,7 +136,7 @@ if __name__ == '__main__':
                     labels.append(class_label)
 
     if not image_files:
-        print("⚠️ No images found! Please check your dataset folder.")
+        print("No images found! Please check your dataset folder.")
     else:
-        print(f"✅ Found {len(image_files)} images. Starting extraction...")
+        print(f"Found {len(image_files)} images. Starting extraction...")
         process_images_and_save_to_csv(image_files, labels, output_csv)
