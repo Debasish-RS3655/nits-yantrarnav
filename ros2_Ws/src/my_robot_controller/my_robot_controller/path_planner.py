@@ -139,7 +139,7 @@ class PathPlanner(Node):
             # when in simulation we follow a random direction in a random length until we reach the boundary
             self.get_logger().info("Setting up Phase 0: Move straight until yellow boundary reached")            
             # we do not have any target coordinates in phase 0            
-            
+                        
             # Assume the yellow boundary is reached by moving in the positive x-direction
             self.get_logger().info("Simulating moving towards the boundary.")
             # gotta move this 
