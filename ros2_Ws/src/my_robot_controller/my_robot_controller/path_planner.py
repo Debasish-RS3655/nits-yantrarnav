@@ -60,12 +60,6 @@ class PathPlanner(Node):
         self.get_logger().info('Path planner node started. Waiting for origin...')
 
 
-
-
-
-
-
-
     # !work on this update origin method
     def update_origin(self, msg: String):
         """Receive the origin from the 'position/origin' topic.
