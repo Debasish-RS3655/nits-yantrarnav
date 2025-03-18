@@ -35,8 +35,8 @@ setup(
             "mode_controller = my_robot_controller.mode_controller:main",
             "launch_checker = my_robot_controller.launch_checker_topic:main",
             
-            "delayed_launch_node1 = my_robot_controller.demo.delayed_launch_node1:main",
-            "delayed_launch_node2 = my_robot_controller.demo.delayed_launch_node2:main",
+            # "delayed_launch_node1 = my_robot_controller.demo.delayed_launch_node1:main",
+            # "delayed_launch_node2 = my_robot_controller.demo.delayed_launch_node2:main",
         ],
     },
 )

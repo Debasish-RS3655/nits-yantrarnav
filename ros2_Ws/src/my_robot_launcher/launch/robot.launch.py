@@ -32,16 +32,16 @@ def generate_launch_description():
         executable="mode_controller"
     )
     
-    # demo packages
-    demo_launch_node1 = Node(
-        package="my_robot_controller",
-        executable="delayed_launch_node1"
-    )
+    # # demo packages
+    # demo_launch_node1 = Node(
+    #     package="my_robot_controller",
+    #     executable="delayed_launch_node1"
+    # )
     
-    demo_launch_node2 = Node(
-        package="my_robot_controller",
-        executable="delayed_launch_node2"
-    )    
+    # demo_launch_node2 = Node(
+    #     package="my_robot_controller",
+    #     executable="delayed_launch_node2"
+    # )    
     
     ld.add_action(bridge_server)
     ld.add_action(flat_area)
@@ -49,8 +49,8 @@ def generate_launch_description():
     ld.add_action(system_launch_checker)
     ld.add_action(path_planner)
     
-    ld.add_action(demo_launch_node1)
-    ld.add_action(demo_launch_node2)
+    # ld.add_action(demo_launch_node1)
+    # ld.add_action(demo_launch_node2)
         
     return ld
 

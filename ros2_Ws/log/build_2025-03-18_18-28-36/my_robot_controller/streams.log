@@ -1,0 +1,67 @@
+[1.844s] Invoking command in '/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_controller': PYTHONPATH=/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_robot_controller build --build-base /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build install --record /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/install.log --single-version-externally-managed install_data
+[2.191s] /home/nits/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[2.192s]   warnings.warn(msg)
+[2.421s] running egg_info
+[2.459s] creating ../../build/my_robot_controller/my_robot_controller.egg-info
+[2.459s] writing ../../build/my_robot_controller/my_robot_controller.egg-info/PKG-INFO
+[2.460s] writing dependency_links to ../../build/my_robot_controller/my_robot_controller.egg-info/dependency_links.txt
+[2.461s] writing entry points to ../../build/my_robot_controller/my_robot_controller.egg-info/entry_points.txt
+[2.461s] writing requirements to ../../build/my_robot_controller/my_robot_controller.egg-info/requires.txt
+[2.462s] writing top-level names to ../../build/my_robot_controller/my_robot_controller.egg-info/top_level.txt
+[2.462s] writing manifest file '../../build/my_robot_controller/my_robot_controller.egg-info/SOURCES.txt'
+[2.540s] reading manifest file '../../build/my_robot_controller/my_robot_controller.egg-info/SOURCES.txt'
+[2.542s] writing manifest file '../../build/my_robot_controller/my_robot_controller.egg-info/SOURCES.txt'
+[2.543s] running build
+[2.543s] running build_py
+[2.544s] creating /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller
+[2.544s] copying my_robot_controller/line_follower.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller
+[2.544s] copying my_robot_controller/launch_checker_topic.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller
+[2.545s] copying my_robot_controller/flat_area.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller
+[2.545s] copying my_robot_controller/mode_controller.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller
+[2.545s] copying my_robot_controller/bridge_server.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller
+[2.546s] copying my_robot_controller/launch_checker.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller
+[2.546s] copying my_robot_controller/path_mover.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller
+[2.546s] copying my_robot_controller/__init__.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller
+[2.547s] copying my_robot_controller/path_planner.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller
+[2.547s] copying my_robot_controller/path_manual.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller
+[2.548s] running install
+[2.559s] running install_lib
+[2.598s] creating /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[2.599s] copying /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller/line_follower.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[2.599s] copying /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller/launch_checker_topic.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[2.600s] copying /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller/flat_area.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[2.600s] copying /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller/mode_controller.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[2.600s] copying /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller/bridge_server.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[2.601s] copying /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller/launch_checker.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[2.601s] copying /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller/path_mover.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[2.601s] copying /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller/__init__.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[2.601s] copying /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller/path_planner.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[2.601s] copying /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build/lib/my_robot_controller/path_manual.py -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[2.602s] byte-compiling /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/line_follower.py to line_follower.cpython-310.pyc
+[2.603s] byte-compiling /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/launch_checker_topic.py to launch_checker_topic.cpython-310.pyc
+[2.604s] byte-compiling /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/flat_area.py to flat_area.cpython-310.pyc
+[2.605s] byte-compiling /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/mode_controller.py to mode_controller.cpython-310.pyc
+[2.607s] byte-compiling /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/bridge_server.py to bridge_server.cpython-310.pyc
+[2.609s] byte-compiling /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/launch_checker.py to launch_checker.cpython-310.pyc
+[2.611s] byte-compiling /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/path_mover.py to path_mover.cpython-310.pyc
+[2.612s] byte-compiling /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/__init__.py to __init__.cpython-310.pyc
+[2.612s] byte-compiling /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/path_planner.py to path_planner.cpython-310.pyc
+[2.615s] byte-compiling /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/path_manual.py to path_manual.cpython-310.pyc
+[2.616s] running install_data
+[2.617s] creating /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/share/ament_index/resource_index/packages
+[2.617s] copying resource/my_robot_controller -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/share/ament_index/resource_index/packages
+[2.618s] copying package.xml -> /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/share/my_robot_controller
+[2.618s] running install_egg_info
+[2.660s] Copying ../../build/my_robot_controller/my_robot_controller.egg-info to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller-0.0.0-py3.10.egg-info
+[2.662s] running install_scripts
+[2.973s] Installing bridge_server script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[2.974s] Installing delayed_launch_node1 script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[2.974s] Installing delayed_launch_node2 script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[2.975s] Installing flat_area script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[2.975s] Installing launch_checker script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[2.975s] Installing mode_controller script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[2.975s] Installing path_manual script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[2.976s] Installing path_mover script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[2.976s] Installing path_planner script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[2.976s] writing list of installed files to '/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/install.log'
+[3.053s] Invoked command in '/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_controller' returned '0': PYTHONPATH=/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_robot_controller build --build-base /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build install --record /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/install.log --single-version-externally-managed install_data
