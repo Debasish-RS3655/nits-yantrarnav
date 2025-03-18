@@ -32,7 +32,11 @@ setup(
             "path_mover = my_robot_controller.path_mover:main",
             "path_planner = my_robot_controller.path_planner:main",
             "path_manual = my_robot_controller.path_manual:main",
-            "mode_controller = my_robot_controller.mode_controller:main"            
+            "mode_controller = my_robot_controller.mode_controller:main",
+            "launch_checker = my_robot_controller.launch_checker_topic:main",
+            
+            "delayed_launch_node1 = my_robot_controller.demo.delayed_launch_node1:main",
+            "delayed_launch_node2 = my_robot_controller.demo.delayed_launch_node2:main",
         ],
     },
 )

@@ -1,0 +1,195 @@
+[1.083s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[1.083s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=8, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7f0380f4ab00>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7f0380f4a620>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7f0380f4a620>>)
+[1.824s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[1.824s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[1.825s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[1.825s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[1.825s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[1.825s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[1.826s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/mnt/f/NITS/ANAV/main/ros2_Ws'
+[1.828s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[1.829s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[1.830s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[1.830s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[1.830s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[1.831s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[1.831s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[1.832s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[1.832s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[1.857s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[1.857s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[1.857s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[1.858s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[1.858s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[1.861s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[1.862s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[1.864s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[1.867s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[1.867s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[1.868s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[1.882s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[1.882s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[1.883s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[1.887s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[1.887s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[1.888s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[1.890s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[1.890s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[1.891s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[1.891s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[1.892s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[1.892s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[1.895s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[1.895s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[1.896s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[1.897s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[1.897s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[1.900s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_controller) by extensions ['ignore', 'ignore_ament_install']
+[1.901s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_controller) by extension 'ignore'
+[1.902s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_controller) by extension 'ignore_ament_install'
+[1.905s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_controller) by extensions ['colcon_pkg']
+[1.905s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_controller) by extension 'colcon_pkg'
+[1.906s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_controller) by extensions ['colcon_meta']
+[1.906s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_controller) by extension 'colcon_meta'
+[1.908s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_controller) by extensions ['ros']
+[1.908s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_controller) by extension 'ros'
+[2.045s] DEBUG:colcon.colcon_core.package_identification:Package 'src/my_robot_controller' with type 'ros.ament_python' and name 'my_robot_controller'
+[2.050s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_launcher) by extensions ['ignore', 'ignore_ament_install']
+[2.051s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_launcher) by extension 'ignore'
+[2.052s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_launcher) by extension 'ignore_ament_install'
+[2.054s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_launcher) by extensions ['colcon_pkg']
+[2.054s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_launcher) by extension 'colcon_pkg'
+[2.056s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_launcher) by extensions ['colcon_meta']
+[2.056s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_launcher) by extension 'colcon_meta'
+[2.058s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_launcher) by extensions ['ros']
+[2.058s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_launcher) by extension 'ros'
+[2.076s] DEBUG:colcon.colcon_core.package_identification:Package 'src/my_robot_launcher' with type 'ros.ament_cmake' and name 'my_robot_launcher'
+[2.077s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[2.077s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[2.077s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[2.077s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[2.078s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[2.285s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[2.286s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[2.334s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 2 installed packages in /mnt/f/NITS/ANAV/main/ros2_Ws/install
+[2.335s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 226 installed packages in /opt/ros/humble
+[2.347s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[2.419s] Level 5:colcon.colcon_core.verb:set package 'my_robot_controller' build argument 'cmake_args' from command line to 'None'
+[2.419s] Level 5:colcon.colcon_core.verb:set package 'my_robot_controller' build argument 'cmake_target' from command line to 'None'
+[2.419s] Level 5:colcon.colcon_core.verb:set package 'my_robot_controller' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[2.420s] Level 5:colcon.colcon_core.verb:set package 'my_robot_controller' build argument 'cmake_clean_cache' from command line to 'False'
+[2.420s] Level 5:colcon.colcon_core.verb:set package 'my_robot_controller' build argument 'cmake_clean_first' from command line to 'False'
+[2.420s] Level 5:colcon.colcon_core.verb:set package 'my_robot_controller' build argument 'cmake_force_configure' from command line to 'False'
+[2.421s] Level 5:colcon.colcon_core.verb:set package 'my_robot_controller' build argument 'ament_cmake_args' from command line to 'None'
+[2.421s] Level 5:colcon.colcon_core.verb:set package 'my_robot_controller' build argument 'catkin_cmake_args' from command line to 'None'
+[2.421s] Level 5:colcon.colcon_core.verb:set package 'my_robot_controller' build argument 'catkin_skip_building_tests' from command line to 'False'
+[2.422s] DEBUG:colcon.colcon_core.verb:Building package 'my_robot_controller' with the following arguments: {'ament_cmake_args': None, 'build_base': '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller', 'merge_install': False, 'path': '/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_controller', 'symlink_install': True, 'test_result_base': None}
+[2.422s] Level 5:colcon.colcon_core.verb:set package 'my_robot_launcher' build argument 'cmake_args' from command line to 'None'
+[2.422s] Level 5:colcon.colcon_core.verb:set package 'my_robot_launcher' build argument 'cmake_target' from command line to 'None'
+[2.423s] Level 5:colcon.colcon_core.verb:set package 'my_robot_launcher' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[2.423s] Level 5:colcon.colcon_core.verb:set package 'my_robot_launcher' build argument 'cmake_clean_cache' from command line to 'False'
+[2.423s] Level 5:colcon.colcon_core.verb:set package 'my_robot_launcher' build argument 'cmake_clean_first' from command line to 'False'
+[2.423s] Level 5:colcon.colcon_core.verb:set package 'my_robot_launcher' build argument 'cmake_force_configure' from command line to 'False'
+[2.423s] Level 5:colcon.colcon_core.verb:set package 'my_robot_launcher' build argument 'ament_cmake_args' from command line to 'None'
+[2.423s] Level 5:colcon.colcon_core.verb:set package 'my_robot_launcher' build argument 'catkin_cmake_args' from command line to 'None'
+[2.424s] Level 5:colcon.colcon_core.verb:set package 'my_robot_launcher' build argument 'catkin_skip_building_tests' from command line to 'False'
+[2.424s] DEBUG:colcon.colcon_core.verb:Building package 'my_robot_launcher' with the following arguments: {'ament_cmake_args': None, 'build_base': '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher', 'merge_install': False, 'path': '/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher', 'symlink_install': True, 'test_result_base': None}
+[2.424s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[2.426s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[2.427s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_controller' with build type 'ament_python'
+[2.428s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_robot_controller', 'ament_prefix_path')
+[2.441s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[2.442s] INFO:colcon.colcon_core.shell:Creating environment hook '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/share/my_robot_controller/hook/ament_prefix_path.ps1'
+[2.456s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/share/my_robot_controller/hook/ament_prefix_path.dsv'
+[2.473s] INFO:colcon.colcon_core.shell:Creating environment hook '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/share/my_robot_controller/hook/ament_prefix_path.sh'
+[2.490s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.491s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.293s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_controller'
+[3.293s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.294s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[4.850s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller': PYTHONPATH=/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/build --no-deps symlink_data
+[6.475s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_robot_controller', 'pythonpath_develop')
+[6.476s] INFO:colcon.colcon_core.shell:Creating environment hook '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/share/my_robot_controller/hook/pythonpath_develop.ps1'
+[6.477s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller' returned '0': PYTHONPATH=/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/build --no-deps symlink_data
+[6.488s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/share/my_robot_controller/hook/pythonpath_develop.dsv'
+[6.500s] INFO:colcon.colcon_core.shell:Creating environment hook '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller/share/my_robot_controller/hook/pythonpath_develop.sh'
+[6.543s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller' for CMake module files
+[6.629s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller' for CMake config files
+[6.708s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib'
+[6.715s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/bin'
+[6.717s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/pkgconfig/my_robot_controller.pc'
+[6.718s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages'
+[6.721s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_robot_controller', 'pythonpath')
+[6.721s] INFO:colcon.colcon_core.shell:Creating environment hook '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/share/my_robot_controller/hook/pythonpath.ps1'
+[6.732s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/share/my_robot_controller/hook/pythonpath.dsv'
+[6.745s] INFO:colcon.colcon_core.shell:Creating environment hook '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/share/my_robot_controller/hook/pythonpath.sh'
+[6.759s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/bin'
+[6.761s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(my_robot_controller)
+[6.761s] INFO:colcon.colcon_core.shell:Creating package script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/share/my_robot_controller/package.ps1'
+[6.782s] INFO:colcon.colcon_core.shell:Creating package descriptor '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/share/my_robot_controller/package.dsv'
+[6.792s] INFO:colcon.colcon_core.shell:Creating package script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/share/my_robot_controller/package.sh'
+[6.803s] INFO:colcon.colcon_core.shell:Creating package script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/share/my_robot_controller/package.bash'
+[6.813s] INFO:colcon.colcon_core.shell:Creating package script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/share/my_robot_controller/package.zsh'
+[6.824s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/share/colcon-core/packages/my_robot_controller)
+[6.832s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher' with build type 'ament_cmake'
+[6.833s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher'
+[6.833s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[6.833s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[7.203s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher': AMENT_PREFIX_PATH=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/opt/ros/humble CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble /usr/bin/cmake --build /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher -- -j8 -l8
+[10.227s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher' returned '0': AMENT_PREFIX_PATH=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/opt/ros/humble CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble /usr/bin/cmake --build /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher -- -j8 -l8
+[10.269s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher': AMENT_PREFIX_PATH=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/opt/ros/humble CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble /usr/bin/cmake --install /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher
+[10.815s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(my_robot_launcher)
+[10.815s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher' for CMake module files
+[10.816s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher' returned '0': AMENT_PREFIX_PATH=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/opt/ros/humble CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble /usr/bin/cmake --install /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher
+[10.905s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher' for CMake config files
+[10.991s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_robot_launcher', 'cmake_prefix_path')
+[10.992s] INFO:colcon.colcon_core.shell:Creating environment hook '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/hook/cmake_prefix_path.ps1'
+[11.009s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/hook/cmake_prefix_path.dsv'
+[11.026s] INFO:colcon.colcon_core.shell:Creating environment hook '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/hook/cmake_prefix_path.sh'
+[11.046s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/bin'
+[11.047s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/lib/pkgconfig/my_robot_launcher.pc'
+[11.049s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/lib/python3.10/site-packages'
+[11.052s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/bin'
+[11.054s] INFO:colcon.colcon_core.shell:Creating package script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/package.ps1'
+[11.068s] INFO:colcon.colcon_core.shell:Creating package descriptor '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/package.dsv'
+[11.089s] INFO:colcon.colcon_core.shell:Creating package script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/package.sh'
+[11.104s] INFO:colcon.colcon_core.shell:Creating package script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/package.bash'
+[11.117s] INFO:colcon.colcon_core.shell:Creating package script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/package.zsh'
+[11.132s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/colcon-core/packages/my_robot_launcher)
+[11.158s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(my_robot_launcher)
+[11.158s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher' for CMake module files
+[11.243s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher' for CMake config files
+[11.327s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_robot_launcher', 'cmake_prefix_path')
+[11.328s] INFO:colcon.colcon_core.shell:Creating environment hook '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/hook/cmake_prefix_path.ps1'
+[11.340s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/hook/cmake_prefix_path.dsv'
+[11.352s] INFO:colcon.colcon_core.shell:Creating environment hook '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/hook/cmake_prefix_path.sh'
+[11.368s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/bin'
+[11.369s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/lib/pkgconfig/my_robot_launcher.pc'
+[11.370s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/lib/python3.10/site-packages'
+[11.372s] Level 1:colcon.colcon_core.environment:checking '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/bin'
+[11.373s] INFO:colcon.colcon_core.shell:Creating package script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/package.ps1'
+[11.386s] INFO:colcon.colcon_core.shell:Creating package descriptor '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/package.dsv'
+[11.401s] INFO:colcon.colcon_core.shell:Creating package script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/package.sh'
+[11.415s] INFO:colcon.colcon_core.shell:Creating package script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/package.bash'
+[11.429s] INFO:colcon.colcon_core.shell:Creating package script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/package.zsh'
+[11.440s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/colcon-core/packages/my_robot_launcher)
+[11.449s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[11.449s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[11.450s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[11.450s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[11.660s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.notify_send': Could not find 'notify-send'
+[11.661s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[11.661s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[11.662s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[11.694s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.FileNotFound: Failed to connect to socket /run/user/1000/bus: No such file or directory
+[11.694s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[11.695s] INFO:colcon.colcon_core.shell:Creating prefix script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/local_setup.ps1'
+[11.706s] INFO:colcon.colcon_core.shell:Creating prefix util module '/mnt/f/NITS/ANAV/main/ros2_Ws/install/_local_setup_util_ps1.py'
+[11.714s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/setup.ps1'
+[11.735s] INFO:colcon.colcon_core.shell:Creating prefix script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/local_setup.sh'
+[11.740s] INFO:colcon.colcon_core.shell:Creating prefix util module '/mnt/f/NITS/ANAV/main/ros2_Ws/install/_local_setup_util_sh.py'
+[11.748s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/setup.sh'
+[11.770s] INFO:colcon.colcon_core.shell:Creating prefix script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/local_setup.bash'
+[11.776s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/setup.bash'
+[11.802s] INFO:colcon.colcon_core.shell:Creating prefix script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/local_setup.zsh'
+[11.810s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/mnt/f/NITS/ANAV/main/ros2_Ws/install/setup.zsh'

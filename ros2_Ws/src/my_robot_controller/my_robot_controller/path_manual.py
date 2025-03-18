@@ -6,7 +6,7 @@ from std_msgs.msg import String
 # Debashish Buragohain
 # In manual mode we keep the target coordinates as the current coordinates itself
 
-class ManualMode(Node):
+class PathManual(Node):
     def __init__(self):
         super().__init__('manual_mode')
         # Publisher for target position
@@ -60,7 +60,7 @@ class ManualMode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = ManualMode()
+    node = PathManual()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:

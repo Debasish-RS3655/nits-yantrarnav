@@ -1,1 +1,1 @@
-flask:flask_cors:rclpy:std_msgs
+base64:cv2:cv_bridge:flask:flask_cors:rclpy:std_msgs

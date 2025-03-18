@@ -50,7 +50,7 @@ class Flat_Area_Detector(Node):
                     self.y_ = value
                 elif key == 'z':
                     self.z_ = value
-            self.get_logger().info(f'Updated position: x={self.x_}, y={self.y_}, z={self.z_}')
+            # self.get_logger().info(f'Updated position: x={self.x_}, y={self.y_}, z={self.z_}')
         except Exception as e:
             self.get_logger().error('Failed to parse current position: ' + str(e))
             

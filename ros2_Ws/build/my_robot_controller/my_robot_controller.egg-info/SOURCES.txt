@@ -11,6 +11,9 @@ setup.py
 my_robot_controller/__init__.py
 my_robot_controller/bridge_server.py
 my_robot_controller/flat_area.py
+my_robot_controller/launch_checker.py
+my_robot_controller/launch_checker_topic.py
+my_robot_controller/line_follower.py
 my_robot_controller/mode_controller.py
 my_robot_controller/path_manual.py
 my_robot_controller/path_mover.py

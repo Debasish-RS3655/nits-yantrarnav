@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String
+from std_msgs.msg import String, Bool
 import threading
 import time
 
 # manual mode nodes
-from .path_manual import ManualMode
+from .path_manual import PathManual
 # auto mode nodes
 from .path_planner import PathPlanner
 
@@ -16,17 +16,31 @@ from .path_planner import PathPlanner
 class ModeExecutor(Node):
     def __init__(self):
         super().__init__('mode_executor')
+        self.system_status_sub = self.create_subscription(String, 'system_launch_status', self.update_launch, 10)
+        self.system_ready = False
+        
         self.publisher_ = self.create_subscription(String, 'position/mode', self.update_mode,  10)
         # Set initial mode here, and you can update it based on user input or service calls.
         self.mode = "manual"
+
         # list to hold currently ruunning nodes and their threads
         # each entry will be a tuple: (node_instance, thread, shutdown_event)
         self.running_nodes = []
         self.get_logger().info(f"Initialized ModeExecutor in {self.mode} mode.")
 
+    def update_launch(self, msg:Bool):
+        if msg.data == True:
+            if not self.system_ready == True:
+                self.system_ready = True
+                self.get_logger().info("System state is ready in mode controller.")                
+
     # update mode if a new mode is provided
     def update_mode(self, msg: String):        
-        new_mode = msg.data                
+        new_mode = msg.data        
+        # return if the system is not ready
+        if self.system_ready == False:
+            return
+        
         self.get_logger().info("Received mode update: " + str(self.mode))        
         if new_mode not in ['automatic', 'manual']:
             self.get_logger().error("Invalid mode received: " + new_mode)
@@ -59,7 +73,7 @@ class ModeExecutor(Node):
         if mode == "automatic":
             node_classes = [PathPlanner]
         elif mode == "manual":
-            node_classes = [ManualMode]
+            node_classes = [PathManual]
         else:
             self.get_logger().error(f"Unsupported mode: {mode}")
             return

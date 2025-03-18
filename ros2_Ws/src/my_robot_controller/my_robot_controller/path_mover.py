@@ -1,7 +1,7 @@
 #!usr/bin/env python3
 
 # Debashish Buragohain
-# dummy implementation for the mover code which moves to the target position sending commands to Pixhawk
+# dummy implementation for the mover MAVROS code which moves to the target position sending commands to Pixhawk
 
 import rclpy
 from rclpy.node import Node
@@ -37,7 +37,7 @@ class PathMover(Node):
         msg = String()
         msg.data = f'x={self.x_} y={self.y_} z={self.z_}'
         self.data_pub_.publish(msg)        
-        self.get_logger().info(f'Current postion Published: {msg.data}')        
+        # self.get_logger().info(f'Current postion Published: {msg.data}')        
         
     # !! dummy implementation
     # in the actual implementation we 
