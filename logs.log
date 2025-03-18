@@ -1,0 +1,401 @@
+Launching robot launcher..
+./run.sh: line 7: unite_imu_method:=1: command not found
+[WARN] [1742310705.464394025] []: Old-style arguments are deprecated; see --help for new-style arguments
+[INFO] [1742310705.500538904] [static_transform_publisher_seu6CdebqBjSww3b]: Spinning until stopped - publishing transform
+translation: ('0.000000', '0.000000', '0.000000')
+rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+from 'base_link' to 'camera_link'
+[INFO] [launch]: All log files can be found below /home/nits/.ros/log/2025-03-18-20-41-45-680758-ubuntu-26123
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [launch]: All log files can be found below /home/nits/.ros/log/2025-03-18-20-41-45-688517-ubuntu-26125
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [launch]: All log files can be found below /home/nits/.ros/log/2025-03-18-20-41-45-694032-ubuntu-26119
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [bridge_server-1]: process started with pid [26152]
+[INFO] [flat_area-2]: process started with pid [26154]
+[INFO] [path_mover-3]: process started with pid [26156]
+[INFO] [launch_checker-4]: process started with pid [26158]
+[INFO] [mode_controller-5]: process started with pid [26161]
+[INFO] [realsense2_camera_node-1]: process started with pid [26160]
+[INFO] [rgbd_odometry-1]: process started with pid [26165]
+[INFO] [rtabmap-2]: process started with pid [26167]
+[INFO] [rtabmap_viz-3]: process started with pid [26169]
+[realsense2_camera_node-1] [INFO] [1742310706.312014979] [camera.camera]: RealSense ROS v4.56.1
+[realsense2_camera_node-1] [INFO] [1742310706.312285993] [camera.camera]: Built with LibRealSense v2.55.1
+[realsense2_camera_node-1] [INFO] [1742310706.312327466] [camera.camera]: Running with LibRealSense v2.56.1
+[realsense2_camera_node-1] [WARN] [1742310706.312352842] [camera.camera]: ***************************************************
+[realsense2_camera_node-1] [WARN] [1742310706.312373099] [camera.camera]: ** running with a different librealsense version **
+[realsense2_camera_node-1] [WARN] [1742310706.312389771] [camera.camera]: ** than the one the wrapper was compiled with!   **
+[realsense2_camera_node-1] [WARN] [1742310706.312407948] [camera.camera]: ***************************************************
+[mode_controller-5] [INFO] [1742310706.465166941] [mode_executor]: Initialized ModeExecutor in manual mode.
+[path_mover-3] [INFO] [1742310706.516767496] [path_mover]: Position publisher node has been started.
+[flat_area-2] [INFO] [1742310706.929637950] [flat_area]: Flat Area node has been started.
+[rgbd_odometry-1] [INFO] [1742310707.002584937] [rtabmap.rgbd_odometry]: Odometry: frame_id               = base_link
+[rgbd_odometry-1] [INFO] [1742310707.003094389] [rtabmap.rgbd_odometry]: Odometry: odom_frame_id          = odom
+[rgbd_odometry-1] [INFO] [1742310707.003286841] [rtabmap.rgbd_odometry]: Odometry: publish_tf             = true
+[rgbd_odometry-1] [INFO] [1742310707.003331194] [rtabmap.rgbd_odometry]: Odometry: wait_for_transform     = 0.200000
+[rgbd_odometry-1] [INFO] [1742310707.003373979] [rtabmap.rgbd_odometry]: Odometry: log_to_rosout_level    = 4
+[rgbd_odometry-1] [INFO] [1742310707.003475453] [rtabmap.rgbd_odometry]: Odometry: initial_pose           = xyz=0.000000,0.000000,0.000000 rpy=0.000000,-0.000000,0.000000
+[rgbd_odometry-1] [INFO] [1742310707.003518430] [rtabmap.rgbd_odometry]: Odometry: ground_truth_frame_id  = 
+[rgbd_odometry-1] [INFO] [1742310707.003545919] [rtabmap.rgbd_odometry]: Odometry: ground_truth_base_frame_id = 
+[rgbd_odometry-1] [INFO] [1742310707.003570752] [rtabmap.rgbd_odometry]: Odometry: config_path            = 
+[rgbd_odometry-1] [INFO] [1742310707.003599232] [rtabmap.rgbd_odometry]: Odometry: publish_null_when_lost = true
+[rgbd_odometry-1] [INFO] [1742310707.003619201] [rtabmap.rgbd_odometry]: Odometry: publish_compressed_sensor_data = false
+[rgbd_odometry-1] [INFO] [1742310707.003791461] [rtabmap.rgbd_odometry]: Odometry: guess_frame_id         = 
+[rgbd_odometry-1] [INFO] [1742310707.003829989] [rtabmap.rgbd_odometry]: Odometry: guess_min_translation  = 0.000000
+[rgbd_odometry-1] [INFO] [1742310707.003864646] [rtabmap.rgbd_odometry]: Odometry: guess_min_rotation     = 0.000000
+[rgbd_odometry-1] [INFO] [1742310707.003897063] [rtabmap.rgbd_odometry]: Odometry: guess_min_time         = 0.000000
+[rgbd_odometry-1] [INFO] [1742310707.003928232] [rtabmap.rgbd_odometry]: Odometry: expected_update_rate   = 0.000000 Hz
+[rgbd_odometry-1] [INFO] [1742310707.003960904] [rtabmap.rgbd_odometry]: Odometry: max_update_rate        = 0.000000 Hz
+[rgbd_odometry-1] [INFO] [1742310707.003993385] [rtabmap.rgbd_odometry]: Odometry: min_update_rate        = 0.000000 Hz
+[rgbd_odometry-1] [INFO] [1742310707.004026122] [rtabmap.rgbd_odometry]: Odometry: wait_imu_to_init       = false
+[rgbd_odometry-1] [INFO] [1742310707.004053162] [rtabmap.rgbd_odometry]: Odometry: always_check_imu_tf    = true
+[rgbd_odometry-1] [INFO] [1742310707.004078827] [rtabmap.rgbd_odometry]: Odometry: sensor_data_compression_format = .jpg
+[rgbd_odometry-1] [INFO] [1742310707.004104108] [rtabmap.rgbd_odometry]: Odometry: sensor_data_parallel_compression = true
+[rgbd_odometry-1] [INFO] [1742310707.004146253] [rtabmap.rgbd_odometry]: Odometry: stereoParams_=0 visParams_=1 icpParams_=0
+[rgbd_odometry-1] [INFO] [1742310707.012647052] [rtabmap.rgbd_odometry]: Odometry: Update parameter "Vis/DepthAsMask"="false" from arguments
+[rgbd_odometry-1] [INFO] [1742310707.045831128] [rtabmap.rgbd_odometry]: RGBDOdometry: approx_sync    = true
+[rgbd_odometry-1] [INFO] [1742310707.045946842] [rtabmap.rgbd_odometry]: RGBDOdometry: approx_sync_max_interval = 0.020000
+[rgbd_odometry-1] [INFO] [1742310707.045989019] [rtabmap.rgbd_odometry]: RGBDOdometry: topic_queue_size = 10
+[rgbd_odometry-1] [INFO] [1742310707.046011580] [rtabmap.rgbd_odometry]: RGBDOdometry: sync_queue_size  = 10
+[rgbd_odometry-1] [INFO] [1742310707.046031068] [rtabmap.rgbd_odometry]: RGBDOdometry: qos             = 0
+[rgbd_odometry-1] [INFO] [1742310707.046049981] [rtabmap.rgbd_odometry]: RGBDOdometry: qos_camera_info = 0
+[rgbd_odometry-1] [INFO] [1742310707.046069917] [rtabmap.rgbd_odometry]: RGBDOdometry: subscribe_rgbd = false
+[rgbd_odometry-1] [INFO] [1742310707.046089885] [rtabmap.rgbd_odometry]: RGBDOdometry: rgbd_cameras   = 1
+[rgbd_odometry-1] [INFO] [1742310707.046109726] [rtabmap.rgbd_odometry]: RGBDOdometry: keep_color     = false
+[rgbd_odometry-1] [INFO] [1742310707.059505772] [rtabmap.rgbd_odometry]: 
+[rgbd_odometry-1] rgbd_odometry subscribed to (approx sync, max interval=0.020000s, topic_queue_size=10, sync_queue_size=10):
+[rgbd_odometry-1]    /camera/camera/color/image_raw,
+[rgbd_odometry-1]    /camera/camera/depth/image_rect_raw,
+[rgbd_odometry-1]    /camera/camera/color/camera_info
+[realsense2_camera_node-1] [INFO] [1742310707.142837153] [camera.camera]: Device with serial number 246322304823 was found.
+[realsense2_camera_node-1] 
+[realsense2_camera_node-1] [INFO] [1742310707.145170774] [camera.camera]: Device with physical ID 2-1.3-3 was found.
+[realsense2_camera_node-1] [INFO] [1742310707.145259128] [camera.camera]: Device with name Intel RealSense D455 was found.
+[realsense2_camera_node-1] [INFO] [1742310707.145673441] [camera.camera]: Device with port number 2-1.3 was found.
+[realsense2_camera_node-1] [INFO] [1742310707.145723266] [camera.camera]: Device USB type: 3.2
+[realsense2_camera_node-1] [INFO] [1742310707.145918023] [camera.camera]: getParameters...
+[realsense2_camera_node-1] [INFO] [1742310707.147006271] [camera.camera]: JSON file is not provided
+[realsense2_camera_node-1] [INFO] [1742310707.147066816] [camera.camera]: Device Name: Intel RealSense D455
+[realsense2_camera_node-1] [INFO] [1742310707.147102721] [camera.camera]: Device Serial No: 246322304823
+[realsense2_camera_node-1] [INFO] [1742310707.147132610] [camera.camera]: Device physical port: 2-1.3-3
+[realsense2_camera_node-1] [INFO] [1742310707.147160323] [camera.camera]: Device FW version: 5.16.0.1
+[realsense2_camera_node-1] [INFO] [1742310707.147202020] [camera.camera]: Device Product ID: 0x0B5C
+[realsense2_camera_node-1] [INFO] [1742310707.147230340] [camera.camera]: Sync Mode: Off
+[rtabmap-2] [INFO] [1742310707.301274803] [rtabmap.rtabmap]: rtabmap(maps): latch                      = true
+[rtabmap-2] [INFO] [1742310707.301766142] [rtabmap.rtabmap]: rtabmap(maps): map_filter_radius          = 0.000000
+[rtabmap-2] [INFO] [1742310707.301818207] [rtabmap.rtabmap]: rtabmap(maps): map_filter_angle           = 30.000000
+[rtabmap-2] [INFO] [1742310707.301850688] [rtabmap.rtabmap]: rtabmap(maps): map_cleanup                = true
+[rtabmap-2] [INFO] [1742310707.301874240] [rtabmap.rtabmap]: rtabmap(maps): map_always_update          = false
+[rtabmap-2] [INFO] [1742310707.301897953] [rtabmap.rtabmap]: rtabmap(maps): map_empty_ray_tracing      = true
+[rtabmap-2] [INFO] [1742310707.301919585] [rtabmap.rtabmap]: rtabmap(maps): cloud_output_voxelized     = true
+[rtabmap-2] [INFO] [1742310707.301940514] [rtabmap.rtabmap]: rtabmap(maps): cloud_subtract_filtering   = false
+[rtabmap-2] [INFO] [1742310707.301961442] [rtabmap.rtabmap]: rtabmap(maps): cloud_subtract_filtering_min_neighbors = 2
+[rtabmap-2] [INFO] [1742310707.302024196] [rtabmap.rtabmap]: rtabmap(maps): octomap_tree_depth         = 16
+[rtabmap-2] [INFO] [1742310707.338785312] [rtabmap.rtabmap]: rtabmap: frame_id      = base_link
+[rtabmap-2] [INFO] [1742310707.338990724] [rtabmap.rtabmap]: rtabmap: map_frame_id  = map
+[rtabmap-2] [INFO] [1742310707.339049542] [rtabmap.rtabmap]: rtabmap: log_to_rosout_level  = 4
+[rtabmap-2] [INFO] [1742310707.339081767] [rtabmap.rtabmap]: rtabmap: initial_pose  = 
+[rtabmap-2] [INFO] [1742310707.339140328] [rtabmap.rtabmap]: rtabmap: use_action_for_goal  = false
+[rtabmap-2] [INFO] [1742310707.339170953] [rtabmap.rtabmap]: rtabmap: tf_delay      = 0.050000
+[rtabmap-2] [INFO] [1742310707.339206729] [rtabmap.rtabmap]: rtabmap: tf_tolerance  = 0.100000
+[rtabmap-2] [INFO] [1742310707.339232778] [rtabmap.rtabmap]: rtabmap: odom_sensor_sync   = false
+[rtabmap-2] [INFO] [1742310707.339254922] [rtabmap.rtabmap]: rtabmap: pub_loc_pose_only_when_localizing = false
+[rtabmap-2] [INFO] [1742310707.339341292] [rtabmap.rtabmap]: rtabmap: wait_for_transform = 0.200000
+[rtabmap-2] [INFO] [1742310707.339379309] [rtabmap.rtabmap]: rtabmap: gen_scan  = false
+[rtabmap-2] [INFO] [1742310707.339408462] [rtabmap.rtabmap]: rtabmap: gen_depth  = false
+[rtabmap-2] [INFO] [1742310707.392399256] [rtabmap.rtabmap]: Setting RTAB-Map parameter "Mem/IncrementalMemory"="true"
+[rtabmap-2] [INFO] [1742310707.392597180] [rtabmap.rtabmap]: Setting RTAB-Map parameter "Mem/InitWMWithAllNodes"="false"
+[rtabmap-2] [INFO] [1742310707.412635168] [rtabmap.rtabmap]: Update RTAB-Map parameter "Vis/DepthAsMask"="false" from arguments
+[rtabmap-2] [INFO] [1742310707.521519381] [rtabmap.rtabmap]: RTAB-Map detection rate = 1.000000 Hz
+[rtabmap-2] [INFO] [1742310707.523099064] [rtabmap.rtabmap]: rtabmap: Using database from "/home/nits/.ros/rtabmap.db" (0 MB).
+[rtabmap-2] [INFO] [1742310707.559298984] [rtabmap.rtabmap]: rtabmap: Database version = "0.21.10".
+[rtabmap-2] [INFO] [1742310707.559456396] [rtabmap.rtabmap]: rtabmap: SLAM mode (Mem/IncrementalMemory=true)
+[rtabmap-2] [INFO] [1742310707.733185974] [rtabmap.rtabmap]: Setup callbacks
+[rtabmap-2] [INFO] [1742310707.736301180] [rtabmap.rtabmap]: rtabmap: subscribe_depth = true
+[rtabmap-2] [INFO] [1742310707.736415166] [rtabmap.rtabmap]: rtabmap: subscribe_rgb = true
+[rtabmap-2] [INFO] [1742310707.736446879] [rtabmap.rtabmap]: rtabmap: subscribe_stereo = false
+[rtabmap-2] [INFO] [1742310707.736482912] [rtabmap.rtabmap]: rtabmap: subscribe_rgbd = false (rgbd_cameras=1)
+[rtabmap-2] [INFO] [1742310707.736512801] [rtabmap.rtabmap]: rtabmap: subscribe_sensor_data = false
+[rtabmap-2] [INFO] [1742310707.736538977] [rtabmap.rtabmap]: rtabmap: subscribe_odom_info = true
+[rtabmap-2] [INFO] [1742310707.736567042] [rtabmap.rtabmap]: rtabmap: subscribe_user_data = false
+[rtabmap-2] [INFO] [1742310707.736591106] [rtabmap.rtabmap]: rtabmap: subscribe_scan = false
+[rtabmap-2] [INFO] [1742310707.736614115] [rtabmap.rtabmap]: rtabmap: subscribe_scan_cloud = false
+[rtabmap-2] [INFO] [1742310707.736639875] [rtabmap.rtabmap]: rtabmap: subscribe_scan_descriptor = false
+[rtabmap-2] [INFO] [1742310707.736668580] [rtabmap.rtabmap]: rtabmap: topic_queue_size = 10
+[rtabmap-2] [INFO] [1742310707.736696229] [rtabmap.rtabmap]: rtabmap: sync_queue_size  = 10
+[rtabmap-2] [INFO] [1742310707.736722533] [rtabmap.rtabmap]: rtabmap: qos_image       = 0
+[rtabmap-2] [INFO] [1742310707.736748710] [rtabmap.rtabmap]: rtabmap: qos_camera_info = 0
+[rtabmap-2] [INFO] [1742310707.736775750] [rtabmap.rtabmap]: rtabmap: qos_scan        = 0
+[rtabmap-2] [INFO] [1742310707.736799047] [rtabmap.rtabmap]: rtabmap: qos_odom        = 0
+[rtabmap-2] [INFO] [1742310707.736920490] [rtabmap.rtabmap]: rtabmap: qos_user_data   = 0
+[rtabmap-2] [INFO] [1742310707.736952362] [rtabmap.rtabmap]: rtabmap: approx_sync     = true
+[rtabmap-2] [INFO] [1742310707.737023084] [rtabmap.rtabmap]: Setup depth callback
+[rtabmap-2] [INFO] [1742310707.772824403] [rtabmap.rtabmap]: 
+[rtabmap-2] rtabmap subscribed to (approx sync):
+[rtabmap-2]    /rtabmap/odom \
+[rtabmap-2]    /camera/camera/color/image_raw \
+[rtabmap-2]    /camera/camera/depth/image_rect_raw \
+[rtabmap-2]    /camera/camera/color/camera_info \
+[rtabmap-2]    /rtabmap/odom_info
+[bridge_server-1] WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+[bridge_server-1]  * Running on all addresses (0.0.0.0)
+[bridge_server-1]  * Running on http://127.0.0.1:5000
+[bridge_server-1]  * Running on http://192.168.31.119:5000
+[bridge_server-1] Press CTRL+C to quit
+[rtabmap_viz-3] [INFO] [1742310708.011794715] [rtabmap.rtabmap_viz]: rtabmap_viz: Using configuration from "/home/nits/.ros/rtabmapGUI.ini"
+[rtabmap_viz-3] libpng warning: iCCP: known incorrect sRGB profile
+[rtabmap_viz-3] libpng warning: iCCP: known incorrect sRGB profile
+[rtabmap_viz-3] libpng warning: iCCP: known incorrect sRGB profile
+[rtabmap_viz-3] [WARN] [1742310709.430335249] [rcl.logging_rosout]: Publisher already registered for provided node name. If this is due to multiple nodes with the same name then all logs for that logger name will go out over the existing publisher. As soon as any node with that name is destructed it will unregister the publisher, preventing any further logs for that name from being published on the rosout topic.
+[rtabmap_viz-3] [INFO] [1742310709.444634995] [rtabmap.rtabmap_viz]: Reading parameters from the ROS server...
+[rtabmap_viz-3] [INFO] [1742310709.553418214] [rtabmap.rtabmap_viz]: Parameters read = 386
+[rtabmap_viz-3] [INFO] [1742310709.553572682] [rtabmap.rtabmap_viz]: Parameters successfully read.
+[rtabmap_viz-3] [INFO] [1742310710.108405917] [rtabmap.rtabmap_viz]: rtabmap_viz: subscribe_depth = true
+[rtabmap_viz-3] [INFO] [1742310710.108489983] [rtabmap.rtabmap_viz]: rtabmap_viz: subscribe_rgb = true
+[rtabmap_viz-3] [INFO] [1742310710.108504415] [rtabmap.rtabmap_viz]: rtabmap_viz: subscribe_stereo = false
+[rtabmap_viz-3] [INFO] [1742310710.108516832] [rtabmap.rtabmap_viz]: rtabmap_viz: subscribe_rgbd = false (rgbd_cameras=1)
+[rtabmap_viz-3] [INFO] [1742310710.108527072] [rtabmap.rtabmap_viz]: rtabmap_viz: subscribe_sensor_data = false
+[rtabmap_viz-3] [INFO] [1742310710.108536416] [rtabmap.rtabmap_viz]: rtabmap_viz: subscribe_odom_info = true
+[rtabmap_viz-3] [INFO] [1742310710.108545088] [rtabmap.rtabmap_viz]: rtabmap_viz: subscribe_user_data = false
+[rtabmap_viz-3] [INFO] [1742310710.108551489] [rtabmap.rtabmap_viz]: rtabmap_viz: subscribe_scan = false
+[rtabmap_viz-3] [INFO] [1742310710.108562337] [rtabmap.rtabmap_viz]: rtabmap_viz: subscribe_scan_cloud = false
+[rtabmap_viz-3] [INFO] [1742310710.108571777] [rtabmap.rtabmap_viz]: rtabmap_viz: subscribe_scan_descriptor = false
+[rtabmap_viz-3] [INFO] [1742310710.108580641] [rtabmap.rtabmap_viz]: rtabmap_viz: topic_queue_size = 10
+[rtabmap_viz-3] [INFO] [1742310710.108589281] [rtabmap.rtabmap_viz]: rtabmap_viz: sync_queue_size  = 10
+[rtabmap_viz-3] [INFO] [1742310710.108597858] [rtabmap.rtabmap_viz]: rtabmap_viz: qos_image       = 0
+[rtabmap_viz-3] [INFO] [1742310710.108607202] [rtabmap.rtabmap_viz]: rtabmap_viz: qos_camera_info = 0
+[rtabmap_viz-3] [INFO] [1742310710.108616066] [rtabmap.rtabmap_viz]: rtabmap_viz: qos_scan        = 0
+[rtabmap_viz-3] [INFO] [1742310710.108625026] [rtabmap.rtabmap_viz]: rtabmap_viz: qos_odom        = 0
+[rtabmap_viz-3] [INFO] [1742310710.108633218] [rtabmap.rtabmap_viz]: rtabmap_viz: qos_user_data   = 0
+[rtabmap_viz-3] [INFO] [1742310710.108641923] [rtabmap.rtabmap_viz]: rtabmap_viz: approx_sync     = true
+[rtabmap_viz-3] [INFO] [1742310710.108670211] [rtabmap.rtabmap_viz]: Setup depth callback
+[rtabmap_viz-3] [INFO] [1742310710.129337077] [rtabmap.rtabmap_viz]: 
+[rtabmap_viz-3] rtabmap_viz subscribed to (approx sync):
+[rtabmap_viz-3]    /rtabmap/odom \
+[rtabmap_viz-3]    /camera/camera/color/image_raw \
+[rtabmap_viz-3]    /camera/camera/depth/image_rect_raw \
+[rtabmap_viz-3]    /camera/camera/color/camera_info \
+[rtabmap_viz-3]    /rtabmap/odom_info
+[rtabmap_viz-3] [INFO] [1742310710.135868168] [rtabmap.rtabmap_viz]: rtabmap_viz started.
+[realsense2_camera_node-1] [INFO] [1742310711.627353161] [camera.camera]: Set ROS param depth_module.depth_profile to default: 848x480x30
+[realsense2_camera_node-1] [INFO] [1742310711.629373590] [camera.camera]: Set ROS param depth_module.infra_profile to default: 848x480x30
+[rgbd_odometry-1] [WARN] [1742310712.066139974] [rtabmap.rgbd_odometry]: rgbd_odometry: Did not receive data since 5 seconds! Make sure the input topics are published ("$ rostopic hz my_topic") and the timestamps in their header are set. 
+[rgbd_odometry-1] rgbd_odometry subscribed to (approx sync, max interval=0.020000s, topic_queue_size=10, sync_queue_size=10):
+[rgbd_odometry-1]    /camera/camera/color/image_raw,
+[rgbd_odometry-1]    /camera/camera/depth/image_rect_raw,
+[rgbd_odometry-1]    /camera/camera/color/camera_info
+[realsense2_camera_node-1] [INFO] [1742310712.466987180] [camera.camera]: Set ROS param rgb_camera.color_profile to default: 1280x720x30
+[realsense2_camera_node-1] [INFO] [1742310712.469313952] [camera.camera]: Set ROS param gyro_fps to default: 200
+[realsense2_camera_node-1] [INFO] [1742310712.470045553] [camera.camera]: Set ROS param accel_fps to default: 100
+[realsense2_camera_node-1] [INFO] [1742310712.493616036] [camera.camera]: Stopping Sensor: Depth Module
+[realsense2_camera_node-1] [INFO] [1742310712.493843593] [camera.camera]: Stopping Sensor: RGB Camera
+[realsense2_camera_node-1] [INFO] [1742310712.615578623] [camera.camera]: Starting Sensor: Depth Module
+[realsense2_camera_node-1] [INFO] [1742310712.717441398] [camera.camera]: Open profile: stream_type: Depth(0), Format: Z16, Width: 848, Height: 480, FPS: 30
+[realsense2_camera_node-1]  18/03 20:41:52,719 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:52,730 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:52,742 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:52,753 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:52,763 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:52,775 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:52,785 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[rtabmap-2] [WARN] [1742310712.794940904] [rtabmap.rtabmap]: rtabmap: Did not receive data since 5 seconds! Make sure the input topics are published ("$ ros2 topic hz my_topic") and the timestamps in their header are set. If topics are coming from different computers, make sure the clocks of the computers are synchronized ("ntpdate"). Ajusting topic_queue_size (10) and sync_queue_size (10) can also help for better synchronization if framerates and/or delays are different. If topics are not published at the same rate, you could increase "sync_queue_size" and/or "topic_queue_size" parameters (current=10 and 10 respectively).
+[rtabmap-2] rtabmap subscribed to (approx sync):
+[rtabmap-2]    /rtabmap/odom \
+[rtabmap-2]    /camera/camera/color/image_raw \
+[rtabmap-2]    /camera/camera/depth/image_rect_raw \
+[rtabmap-2]    /camera/camera/color/camera_info \
+[rtabmap-2]    /rtabmap/odom_info
+[realsense2_camera_node-1]  18/03 20:41:52,797 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:52,808 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:52,819 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:52,832 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1] [INFO] [1742310712.843745459] [camera.camera]: Starting Sensor: RGB Camera
+[realsense2_camera_node-1] [INFO] [1742310712.871908430] [camera.camera]: Open profile: stream_type: Color(0), Format: RGB8, Width: 1280, Height: 720, FPS: 30
+[realsense2_camera_node-1] [INFO] [1742310712.889895459] [camera.camera]: RealSense Node Is Up!
+[realsense2_camera_node-1]  18/03 20:41:53,034 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:53,045 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:53,056 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:53,170 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:53,181 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:53,192 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:53,203 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:53,316 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:53,327 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:53,338 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:53,349 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:53,360 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:53,371 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:53,382 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:53,393 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:53,404 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  18/03 20:41:53,415 WARNING [281472829221088] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[rgbd_odometry-1] [INFO] [1742310713.699080215] [rtabmap.rgbd_odometry]: Odom: quality=0, std dev=99.995000m|99.995000rad, update time=0.062873s delay=0.050168s
+[rtabmap-2] [ WARN] (2025-03-18 20:41:53.720) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rgbd_odometry-1] [INFO] [1742310713.848005714] [rtabmap.rgbd_odometry]: Odom: quality=398, std dev=0.003808m|0.014170rad, update time=0.143339s delay=0.124756s
+[rtabmap-2] [INFO] [1742310713.885798470] [rtabmap.rtabmap]: rtabmap (1): Rate=1.00s, Limit=0.000s, Conversion=0.0081s, RTAB-Map=0.1683s, Maps update=0.0002s pub=0.0043s delay=0.2369s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310714.112980483] [rtabmap.rgbd_odometry]: Odom: quality=375, std dev=0.004030m|0.016851rad, update time=0.080548s delay=0.031334s
+[rgbd_odometry-1] [INFO] [1742310714.252562476] [rtabmap.rgbd_odometry]: Odom: quality=379, std dev=0.003708m|0.015492rad, update time=0.086747s delay=0.067004s
+[rgbd_odometry-1] [INFO] [1742310714.380947800] [rtabmap.rgbd_odometry]: Odom: quality=362, std dev=0.002946m|0.013634rad, update time=0.079564s delay=0.025004s
+[rgbd_odometry-1] [INFO] [1742310714.580327939] [rtabmap.rgbd_odometry]: Odom: quality=367, std dev=0.003589m|0.014651rad, update time=0.081189s delay=0.023610s
+[rgbd_odometry-1] [INFO] [1742310714.847736587] [rtabmap.rgbd_odometry]: Odom: quality=327, std dev=0.005052m|0.017689rad, update time=0.082169s delay=0.030247s
+[rtabmap-2] [ WARN] (2025-03-18 20:41:54.853) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rtabmap-2] [INFO] [1742310715.001623286] [rtabmap.rtabmap]: rtabmap (2): Rate=1.00s, Limit=0.000s, Conversion=0.0029s, RTAB-Map=0.1456s, Maps update=0.0002s pub=0.0036s delay=0.1841s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310715.085825694] [rtabmap.rgbd_odometry]: Odom: quality=334, std dev=0.003645m|0.015492rad, update time=0.086129s delay=0.048436s
+[rgbd_odometry-1] [INFO] [1742310715.185908109] [rtabmap.rgbd_odometry]: Odom: quality=348, std dev=0.004308m|0.014651rad, update time=0.081821s delay=0.056638s
+[rgbd_odometry-1] [INFO] [1742310715.346898071] [rtabmap.rgbd_odometry]: Odom: quality=330, std dev=0.003567m|0.015089rad, update time=0.082166s delay=0.067645s
+[rgbd_odometry-1] [INFO] [1742310715.550063064] [rtabmap.rgbd_odometry]: Odom: quality=334, std dev=0.003455m|0.015089rad, update time=0.083324s delay=0.095946s
+[rgbd_odometry-1] [INFO] [1742310715.714111783] [rtabmap.rgbd_odometry]: Odom: quality=355, std dev=0.003190m|0.015492rad, update time=0.081714s delay=0.125792s
+[rgbd_odometry-1] [INFO] [1742310715.881929548] [rtabmap.rgbd_odometry]: Odom: quality=345, std dev=0.003579m|0.016214rad, update time=0.083449s delay=0.092879s
+[rgbd_odometry-1] [INFO] [1742310715.983985095] [rtabmap.rgbd_odometry]: Odom: quality=349, std dev=0.003987m|0.015089rad, update time=0.082163s delay=0.094831s
+[rtabmap-2] [ WARN] (2025-03-18 20:41:56.070) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rgbd_odometry-1] [INFO] [1742310716.079256713] [rtabmap.rgbd_odometry]: Odom: quality=340, std dev=0.003377m|0.015865rad, update time=0.080231s delay=0.090172s
+[rgbd_odometry-1] [INFO] [1742310716.188178430] [rtabmap.rgbd_odometry]: Odom: quality=346, std dev=0.003735m|0.016214rad, update time=0.088587s delay=0.099343s
+[rtabmap-2] [INFO] [1742310716.254383122] [rtabmap.rtabmap]: rtabmap (3): Rate=1.00s, Limit=0.000s, Conversion=0.0042s, RTAB-Map=0.1832s, Maps update=0.0001s pub=0.0024s delay=0.3652s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310716.324612511] [rtabmap.rgbd_odometry]: Odom: quality=353, std dev=0.003651m|0.015492rad, update time=0.126171s delay=0.136195s
+[rgbd_odometry-1] [INFO] [1742310716.486790437] [rtabmap.rgbd_odometry]: Odom: quality=335, std dev=0.004468m|0.015492rad, update time=0.086608s delay=0.132792s
+[rgbd_odometry-1] [INFO] [1742310716.585492564] [rtabmap.rgbd_odometry]: Odom: quality=316, std dev=0.004846m|0.017144rad, update time=0.087078s delay=0.132367s
+[rgbd_odometry-1] [INFO] [1742310716.780514013] [rtabmap.rgbd_odometry]: Odom: quality=328, std dev=0.004121m|0.014651rad, update time=0.081012s delay=0.099285s
+[rgbd_odometry-1] [INFO] [1742310716.890862451] [rtabmap.rgbd_odometry]: Odom: quality=333, std dev=0.004192m|0.014170rad, update time=0.087371s delay=0.144767s
+[rgbd_odometry-1] [INFO] [1742310716.995485767] [rtabmap.rgbd_odometry]: Odom: quality=317, std dev=0.004528m|0.016851rad, update time=0.090092s delay=0.120095s
+[rgbd_odometry-1] [INFO] [1742310717.091427097] [rtabmap.rgbd_odometry]: Odom: quality=339, std dev=0.003858m|0.015089rad, update time=0.092452s delay=0.119426s
+[rtabmap-2] [ WARN] (2025-03-18 20:41:57.097) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rtabmap-2] [INFO] [1742310717.279797900] [rtabmap.rtabmap]: rtabmap (4): Rate=1.00s, Limit=0.000s, Conversion=0.0023s, RTAB-Map=0.1783s, Maps update=0.0001s pub=0.0055s delay=0.3400s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310717.287808288] [rtabmap.rgbd_odometry]: Odom: quality=310, std dev=0.004805m|0.017944rad, update time=0.086414s delay=0.155496s
+[rgbd_odometry-1] [INFO] [1742310717.424118463] [rtabmap.rgbd_odometry]: Odom: quality=317, std dev=0.004673m|0.016542rad, update time=0.090803s delay=0.227929s
+[rgbd_odometry-1] [INFO] [1742310717.515548298] [rtabmap.rgbd_odometry]: Odom: quality=305, std dev=0.005587m|0.016214rad, update time=0.083214s delay=0.128554s
+[rgbd_odometry-1] [INFO] [1742310717.618510649] [rtabmap.rgbd_odometry]: Odom: quality=331, std dev=0.003960m|0.016542rad, update time=0.083149s delay=0.133113s
+[rgbd_odometry-1] [INFO] [1742310717.779435106] [rtabmap.rgbd_odometry]: Odom: quality=315, std dev=0.004710m|0.013634rad, update time=0.080318s delay=0.127292s
+[rgbd_odometry-1] [INFO] [1742310717.988386629] [rtabmap.rgbd_odometry]: Odom: quality=322, std dev=0.004514m|0.015492rad, update time=0.088209s delay=0.136132s
+[rgbd_odometry-1] [INFO] [1742310718.181996206] [rtabmap.rgbd_odometry]: Odom: quality=322, std dev=0.004049m|0.015089rad, update time=0.081563s delay=0.129623s
+[rtabmap-2] [ WARN] (2025-03-18 20:41:58.192) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rtabmap-2] [INFO] [1742310718.370257503] [rtabmap.rtabmap]: rtabmap (5): Rate=1.00s, Limit=0.000s, Conversion=0.0049s, RTAB-Map=0.1773s, Maps update=0.0001s pub=0.0025s delay=0.3179s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310718.484717009] [rtabmap.rgbd_odometry]: Odom: quality=328, std dev=0.004474m|0.017689rad, update time=0.084411s delay=0.132131s
+[rgbd_odometry-1] [INFO] [1742310718.649905626] [rtabmap.rgbd_odometry]: Odom: quality=313, std dev=0.004224m|0.016214rad, update time=0.082008s delay=0.197246s
+[rgbd_odometry-1] [INFO] [1742310718.747536945] [rtabmap.rgbd_odometry]: Odom: quality=306, std dev=0.005085m|0.014651rad, update time=0.080837s delay=0.161443s
+[rgbd_odometry-1] [INFO] [1742310718.916567184] [rtabmap.rgbd_odometry]: Odom: quality=312, std dev=0.005053m|0.014651rad, update time=0.082255s delay=0.130304s
+[rgbd_odometry-1] [INFO] [1742310719.047947872] [rtabmap.rgbd_odometry]: Odom: quality=304, std dev=0.004839m|0.014651rad, update time=0.081138s delay=0.128228s
+[rgbd_odometry-1] [INFO] [1742310719.185607804] [rtabmap.rgbd_odometry]: Odom: quality=329, std dev=0.004857m|0.014170rad, update time=0.084863s delay=0.132423s
+[rtabmap-2] [ WARN] (2025-03-18 20:41:59.191) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rtabmap-2] [INFO] [1742310719.331261517] [rtabmap.rtabmap]: rtabmap (6): Rate=1.00s, Limit=0.000s, Conversion=0.0023s, RTAB-Map=0.1382s, Maps update=0.0001s pub=0.0032s delay=0.2781s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310719.423560748] [rtabmap.rgbd_odometry]: Odom: quality=316, std dev=0.005523m|0.014170rad, update time=0.086830s delay=0.136790s
+[rgbd_odometry-1] [INFO] [1742310719.517865080] [rtabmap.rgbd_odometry]: Odom: quality=293, std dev=0.005516m|0.015492rad, update time=0.084181s delay=0.130982s
+[rgbd_odometry-1] [INFO] [1742310719.621651098] [rtabmap.rgbd_odometry]: Odom: quality=311, std dev=0.004673m|0.014651rad, update time=0.083547s delay=0.134647s
+[rgbd_odometry-1] [INFO] [1742310719.753513364] [rtabmap.rgbd_odometry]: Odom: quality=296, std dev=0.005924m|0.014651rad, update time=0.083923s delay=0.133005s
+[rgbd_odometry-1] [INFO] [1742310719.860323866] [rtabmap.rgbd_odometry]: Odom: quality=317, std dev=0.005083m|0.014170rad, update time=0.090699s delay=0.173062s
+[rgbd_odometry-1] [INFO] [1742310719.955445945] [rtabmap.rgbd_odometry]: Odom: quality=311, std dev=0.005429m|0.014651rad, update time=0.087565s delay=0.201423s
+[rgbd_odometry-1] [INFO] [1742310720.060553304] [rtabmap.rgbd_odometry]: Odom: quality=319, std dev=0.005486m|0.014651rad, update time=0.089837s delay=0.173005s
+[rgbd_odometry-1] [INFO] [1742310720.184378301] [rtabmap.rgbd_odometry]: Odom: quality=328, std dev=0.005072m|0.015089rad, update time=0.083256s delay=0.163285s
+[rgbd_odometry-1] [INFO] [1742310720.418728540] [rtabmap.rgbd_odometry]: Odom: quality=306, std dev=0.005676m|0.016214rad, update time=0.082784s delay=0.130515s
+[rtabmap-2] [ WARN] (2025-03-18 20:42:00.425) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rtabmap-2] [INFO] [1742310720.594930365] [rtabmap.rtabmap]: rtabmap (7): Rate=1.00s, Limit=0.000s, Conversion=0.0015s, RTAB-Map=0.1700s, Maps update=0.0001s pub=0.0024s delay=0.3067s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310720.630547295] [rtabmap.rgbd_odometry]: Odom: quality=310, std dev=0.005043m|0.016214rad, update time=0.095312s delay=0.142021s
+[rgbd_odometry-1] [INFO] [1742310720.771134045] [rtabmap.rgbd_odometry]: Odom: quality=318, std dev=0.004861m|0.014651rad, update time=0.087054s delay=0.215871s
+[rgbd_odometry-1] [INFO] [1742310720.946247014] [rtabmap.rgbd_odometry]: Odom: quality=304, std dev=0.005095m|0.015089rad, update time=0.078057s delay=0.157393s
+[rgbd_odometry-1] [INFO] [1742310721.214678404] [rtabmap.rgbd_odometry]: Odom: quality=326, std dev=0.005699m|0.014651rad, update time=0.079039s delay=0.125471s
+[rgbd_odometry-1] [INFO] [1742310721.379927022] [rtabmap.rgbd_odometry]: Odom: quality=294, std dev=0.005928m|0.016851rad, update time=0.077772s delay=0.123847s
+[rgbd_odometry-1] [INFO] [1742310721.554344678] [rtabmap.rgbd_odometry]: Odom: quality=322, std dev=0.005503m|0.016214rad, update time=0.086793s delay=0.164761s
+[rgbd_odometry-1] [INFO] [1742310721.653357469] [rtabmap.rgbd_odometry]: Odom: quality=297, std dev=0.004810m|0.016542rad, update time=0.085696s delay=0.163700s
+[rtabmap-2] [ WARN] (2025-03-18 20:42:01.658) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rtabmap-2] [INFO] [1742310721.802474875] [rtabmap.rtabmap]: rtabmap (8): Rate=1.00s, Limit=0.000s, Conversion=0.0015s, RTAB-Map=0.1434s, Maps update=0.0001s pub=0.0024s delay=0.3462s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310721.851317927] [rtabmap.rgbd_odometry]: Odom: quality=299, std dev=0.005186m|0.015089rad, update time=0.083856s delay=0.261608s
+[rgbd_odometry-1] [INFO] [1742310721.962300811] [rtabmap.rgbd_odometry]: Odom: quality=321, std dev=0.005057m|0.013027rad, update time=0.094320s delay=0.172494s
+[rgbd_odometry-1] [INFO] [1742310722.055121494] [rtabmap.rgbd_odometry]: Odom: quality=313, std dev=0.005409m|0.016542rad, update time=0.086572s delay=0.165264s
+[rgbd_odometry-1] [INFO] [1742310722.147896191] [rtabmap.rgbd_odometry]: Odom: quality=295, std dev=0.007654m|0.017944rad, update time=0.079768s delay=0.157990s
+[rgbd_odometry-1] [INFO] [1742310722.347445198] [rtabmap.rgbd_odometry]: Odom: quality=313, std dev=0.006158m|0.014651rad, update time=0.077612s delay=0.124089s
+[rgbd_odometry-1] [INFO] [1742310722.585206713] [rtabmap.rgbd_odometry]: Odom: quality=320, std dev=0.006714m|0.014170rad, update time=0.082509s delay=0.128406s
+[rtabmap-2] [ WARN] (2025-03-18 20:42:02.592) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rtabmap-2] [INFO] [1742310722.752056039] [rtabmap.rtabmap]: rtabmap (9): Rate=1.00s, Limit=0.000s, Conversion=0.0038s, RTAB-Map=0.1589s, Maps update=0.0001s pub=0.0025s delay=0.2953s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310722.893248339] [rtabmap.rgbd_odometry]: Odom: quality=322, std dev=0.005102m|0.014651rad, update time=0.091412s delay=0.136344s
+[rgbd_odometry-1] [INFO] [1742310723.019326891] [rtabmap.rgbd_odometry]: Odom: quality=315, std dev=0.006156m|0.018188rad, update time=0.084359s delay=0.162396s
+[rgbd_odometry-1] [INFO] [1742310723.149306747] [rtabmap.rgbd_odometry]: Odom: quality=307, std dev=0.004621m|0.015089rad, update time=0.081389s delay=0.159002s
+[rgbd_odometry-1] [INFO] [1742310723.250274941] [rtabmap.rgbd_odometry]: Odom: quality=336, std dev=0.004458m|0.013634rad, update time=0.081056s delay=0.126595s
+[rgbd_odometry-1] [INFO] [1742310723.388931760] [rtabmap.rgbd_odometry]: Odom: quality=347, std dev=0.004274m|0.017423rad, update time=0.084386s delay=0.131878s
+[rgbd_odometry-1] [INFO] [1742310723.587415142] [rtabmap.rgbd_odometry]: Odom: quality=327, std dev=0.004259m|0.014651rad, update time=0.085064s delay=0.130297s
+[rtabmap-2] [ WARN] (2025-03-18 20:42:03.597) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rtabmap-2] [INFO] [1742310723.778964192] [rtabmap.rtabmap]: rtabmap (10): Rate=1.00s, Limit=0.000s, Conversion=0.0050s, RTAB-Map=0.1796s, Maps update=0.0001s pub=0.0041s delay=0.3219s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310723.783100509] [rtabmap.rgbd_odometry]: Odom: quality=300, std dev=0.004885m|0.018423rad, update time=0.081248s delay=0.125876s
+[rgbd_odometry-1] [INFO] [1742310723.918792846] [rtabmap.rgbd_odometry]: Odom: quality=339, std dev=0.005514m|0.015492rad, update time=0.082134s delay=0.128161s
+[rgbd_odometry-1] [INFO] [1742310724.016630729] [rtabmap.rgbd_odometry]: Odom: quality=313, std dev=0.005703m|0.014651rad, update time=0.081291s delay=0.125946s
+[rgbd_odometry-1] [INFO] [1742310724.120781939] [rtabmap.rgbd_odometry]: Odom: quality=327, std dev=0.004583m|0.014170rad, update time=0.083947s delay=0.130042s
+[rgbd_odometry-1] [INFO] [1742310724.225959796] [rtabmap.rgbd_odometry]: Odom: quality=330, std dev=0.004475m|0.018423rad, update time=0.089564s delay=0.135163s
+[rgbd_odometry-1] [INFO] [1742310724.327216476] [rtabmap.rgbd_odometry]: Odom: quality=337, std dev=0.004707m|0.014651rad, update time=0.090978s delay=0.136369s
+[rgbd_odometry-1] [INFO] [1742310724.454236681] [rtabmap.rgbd_odometry]: Odom: quality=325, std dev=0.004712m|0.015089rad, update time=0.084153s delay=0.163329s
+[rgbd_odometry-1] [INFO] [1742310724.618832612] [rtabmap.rgbd_odometry]: Odom: quality=320, std dev=0.004629m|0.016214rad, update time=0.081841s delay=0.127818s
+[rtabmap-2] [ WARN] (2025-03-18 20:42:04.623) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rtabmap-2] [INFO] [1742310724.800534913] [rtabmap.rtabmap]: rtabmap (11): Rate=1.00s, Limit=0.000s, Conversion=0.0018s, RTAB-Map=0.1751s, Maps update=0.0001s pub=0.0029s delay=0.3095s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310725.049241954] [rtabmap.rgbd_odometry]: Odom: quality=339, std dev=0.003992m|0.014651rad, update time=0.079199s delay=0.124727s
+[rgbd_odometry-1] [INFO] [1742310725.218142686] [rtabmap.rgbd_odometry]: Odom: quality=341, std dev=0.005679m|0.015492rad, update time=0.081800s delay=0.126901s
+[rgbd_odometry-1] [INFO] [1742310725.327188182] [rtabmap.rgbd_odometry]: Odom: quality=336, std dev=0.004383m|0.015865rad, update time=0.090950s delay=0.135904s
+[rgbd_odometry-1] [INFO] [1742310725.429687835] [rtabmap.rgbd_odometry]: Odom: quality=326, std dev=0.005142m|0.017423rad, update time=0.090259s delay=0.138374s
+[rgbd_odometry-1] [INFO] [1742310725.558068006] [rtabmap.rgbd_odometry]: Odom: quality=327, std dev=0.003902m|0.016851rad, update time=0.084820s delay=0.133368s
+[rgbd_odometry-1] [INFO] [1742310725.690709041] [rtabmap.rgbd_odometry]: Odom: quality=340, std dev=0.004201m|0.015492rad, update time=0.086106s delay=0.132626s
+[rtabmap-2] [ WARN] (2025-03-18 20:42:05.701) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rgbd_odometry-1] [INFO] [1742310725.857403804] [rtabmap.rgbd_odometry]: Odom: quality=316, std dev=0.004857m|0.016542rad, update time=0.087219s delay=0.199283s
+[rtabmap-2] [INFO] [1742310725.861557817] [rtabmap.rtabmap]: rtabmap (12): Rate=1.00s, Limit=0.000s, Conversion=0.0035s, RTAB-Map=0.1618s, Maps update=0.0001s pub=0.0025s delay=0.3035s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310726.211129626] [rtabmap.rgbd_odometry]: Odom: quality=312, std dev=0.003935m|0.017944rad, update time=0.106581s delay=0.219558s
+[rgbd_odometry-1] [INFO] [1742310726.355765236] [rtabmap.rgbd_odometry]: Odom: quality=349, std dev=0.004379m|0.016542rad, update time=0.115769s delay=0.164119s
+[rgbd_odometry-1] [INFO] [1742310726.490815061] [rtabmap.rgbd_odometry]: Odom: quality=342, std dev=0.005188m|0.019672rad, update time=0.085994s delay=0.165790s
+[rgbd_odometry-1] [INFO] [1742310726.726033735] [rtabmap.rgbd_odometry]: Odom: quality=334, std dev=0.005358m|0.016214rad, update time=0.081845s delay=0.167592s
+[rtabmap-2] [ WARN] (2025-03-18 20:42:06.731) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rtabmap-2] [INFO] [1742310726.911571833] [rtabmap.rtabmap]: rtabmap (13): Rate=1.00s, Limit=0.000s, Conversion=0.0017s, RTAB-Map=0.1733s, Maps update=0.0001s pub=0.0085s delay=0.3531s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310727.154608251] [rtabmap.rgbd_odometry]: Odom: quality=328, std dev=0.005516m|0.014170rad, update time=0.084732s delay=0.129327s
+[rgbd_odometry-1] [INFO] [1742310727.322143576] [rtabmap.rgbd_odometry]: Odom: quality=313, std dev=0.004422m|0.013634rad, update time=0.082506s delay=0.130137s
+[rgbd_odometry-1] [INFO] [1742310727.756608433] [rtabmap.rgbd_odometry]: Odom: quality=318, std dev=0.005106m|0.015089rad, update time=0.085414s delay=0.131115s
+[rtabmap-2] [ WARN] (2025-03-18 20:42:07.763) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rtabmap-2] [INFO] [1742310727.927380823] [rtabmap.rtabmap]: rtabmap (14): Rate=1.00s, Limit=0.000s, Conversion=0.0026s, RTAB-Map=0.1636s, Maps update=0.0001s pub=0.0025s delay=0.3019s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310728.487842533] [rtabmap.rgbd_odometry]: Odom: quality=307, std dev=0.006125m|0.015089rad, update time=0.083345s delay=0.128778s
+[rgbd_odometry-1] [INFO] [1742310728.617247975] [rtabmap.rgbd_odometry]: Odom: quality=285, std dev=0.006860m|0.016214rad, update time=0.108201s delay=0.158151s
+[rgbd_odometry-1] [INFO] [1742310728.928362726] [rtabmap.rgbd_odometry]: Odom: quality=317, std dev=0.006173m|0.016214rad, update time=0.089226s delay=0.135812s
+[rtabmap-2] [ WARN] (2025-03-18 20:42:09.044) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rgbd_odometry-1] [INFO] [1742310729.077605031] [rtabmap.rgbd_odometry]: Odom: quality=290, std dev=0.005491m|0.015089rad, update time=0.105222s delay=0.185018s
+[rtabmap-2] [INFO] [1742310729.207088459] [rtabmap.rtabmap]: rtabmap (15): Rate=1.00s, Limit=0.000s, Conversion=0.0054s, RTAB-Map=0.1615s, Maps update=0.0001s pub=0.0028s delay=0.5146s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310729.248854712] [rtabmap.rgbd_odometry]: Odom: quality=293, std dev=0.006118m|0.016214rad, update time=0.108263s delay=0.222886s
+[rgbd_odometry-1] [INFO] [1742310729.421879792] [rtabmap.rgbd_odometry]: Odom: quality=296, std dev=0.005153m|0.015492rad, update time=0.083688s delay=0.129153s
+[rgbd_odometry-1] [INFO] [1742310729.619791865] [rtabmap.rgbd_odometry]: Odom: quality=281, std dev=0.006779m|0.014651rad, update time=0.081240s delay=0.126994s
+[rgbd_odometry-1] [INFO] [1742310729.784924160] [rtabmap.rgbd_odometry]: Odom: quality=554, std dev=0.004617m|0.010360rad, update time=0.112855s delay=0.158746s
+[rgbd_odometry-1] [INFO] [1742310729.920080004] [rtabmap.rgbd_odometry]: Odom: quality=533, std dev=0.004658m|0.011465rad, update time=0.115224s delay=0.193864s
+[rgbd_odometry-1] [INFO] [1742310730.054195344] [rtabmap.rgbd_odometry]: Odom: quality=519, std dev=0.004827m|0.013634rad, update time=0.115613s delay=0.194595s
+[rtabmap-2] [ WARN] (2025-03-18 20:42:10.062) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rtabmap-2] [INFO] [1742310730.255247872] [rtabmap.rtabmap]: rtabmap (16): Rate=1.00s, Limit=0.000s, Conversion=0.0038s, RTAB-Map=0.1897s, Maps update=0.0001s pub=0.0056s delay=0.3957s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310730.289910637] [rtabmap.rgbd_odometry]: Odom: quality=492, std dev=0.005254m|0.012320rad, update time=0.118688s delay=0.163544s
+[rgbd_odometry-1] [INFO] [1742310730.589539080] [rtabmap.rgbd_odometry]: Odom: quality=511, std dev=0.004588m|0.011465rad, update time=0.116850s delay=0.196406s
+[rgbd_odometry-1] [INFO] [1742310730.715485725] [rtabmap.rgbd_odometry]: Odom: quality=492, std dev=0.006371m|0.015089rad, update time=0.110622s delay=0.155626s
+[rgbd_odometry-1] [INFO] [1742310730.984090270] [rtabmap.rgbd_odometry]: Odom: quality=482, std dev=0.004420m|0.015089rad, update time=0.111868s delay=0.190814s
+[rgbd_odometry-1] [INFO] [1742310731.185580119] [rtabmap.rgbd_odometry]: Odom: quality=485, std dev=0.004889m|0.010360rad, update time=0.113300s delay=0.158885s
+[rtabmap-2] [ WARN] (2025-03-18 20:42:11.190) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rtabmap-2] [INFO] [1742310731.348270503] [rtabmap.rtabmap]: rtabmap (17): Rate=1.00s, Limit=0.000s, Conversion=0.0023s, RTAB-Map=0.1561s, Maps update=0.0001s pub=0.0026s delay=0.3216s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310731.464484416] [rtabmap.rgbd_odometry]: Odom: quality=495, std dev=0.004705m|0.011465rad, update time=0.125676s delay=0.204370s
+[rgbd_odometry-1] [INFO] [1742310731.721196245] [rtabmap.rgbd_odometry]: Odom: quality=458, std dev=0.004266m|0.011465rad, update time=0.115017s delay=0.361047s
+[rgbd_odometry-1] [INFO] [1742310731.883556861] [rtabmap.rgbd_odometry]: Odom: quality=462, std dev=0.004152m|0.013027rad, update time=0.111625s delay=0.156618s
+[rgbd_odometry-1] [INFO] [1742310732.025756864] [rtabmap.rgbd_odometry]: Odom: quality=496, std dev=0.004219m|0.016214rad, update time=0.118612s delay=0.165440s
+[rgbd_odometry-1] [INFO] [1742310732.154814618] [rtabmap.rgbd_odometry]: Odom: quality=473, std dev=0.004566m|0.015865rad, update time=0.115517s delay=0.227810s
+[rgbd_odometry-1] [INFO] [1742310732.317134977] [rtabmap.rgbd_odometry]: Odom: quality=458, std dev=0.005392m|0.016851rad, update time=0.110039s delay=0.156722s
+[rtabmap-2] [ WARN] (2025-03-18 20:42:12.322) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rtabmap-2] [INFO] [1742310732.468752312] [rtabmap.rtabmap]: rtabmap (18): Rate=1.00s, Limit=0.000s, Conversion=0.0017s, RTAB-Map=0.1447s, Maps update=0.0001s pub=0.0027s delay=0.3750s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310732.603695478] [rtabmap.rgbd_odometry]: Odom: quality=473, std dev=0.005255m|0.012320rad, update time=0.128910s delay=0.176529s
+[rgbd_odometry-1] [INFO] [1742310732.782712310] [rtabmap.rgbd_odometry]: Odom: quality=440, std dev=0.004324m|0.016214rad, update time=0.109335s delay=0.155447s
+[rgbd_odometry-1] [INFO] [1742310732.981298734] [rtabmap.rgbd_odometry]: Odom: quality=430, std dev=0.005019m|0.013027rad, update time=0.107722s delay=0.153924s
+[rgbd_odometry-1] [INFO] [1742310733.184626129] [rtabmap.rgbd_odometry]: Odom: quality=431, std dev=0.005375m|0.016542rad, update time=0.111368s delay=0.190490s
+[rgbd_odometry-1] [INFO] [1742310733.448890416] [rtabmap.rgbd_odometry]: Odom: quality=452, std dev=0.005594m|0.014651rad, update time=0.108849s delay=0.154586s
+[rtabmap-2] [ WARN] (2025-03-18 20:42:13.456) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rgbd_odometry-1] [INFO] [1742310733.600253088] [rtabmap.rgbd_odometry]: Odom: quality=423, std dev=0.006391m|0.016542rad, update time=0.124513s delay=0.172539s
+[rtabmap-2] [INFO] [1742310733.658064758] [rtabmap.rtabmap]: rtabmap (19): Rate=1.00s, Limit=0.000s, Conversion=0.0023s, RTAB-Map=0.2004s, Maps update=0.0001s pub=0.0032s delay=0.3638s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310733.764060905] [rtabmap.rgbd_odometry]: Odom: quality=426, std dev=0.005701m|0.014651rad, update time=0.156240s delay=0.202935s
+[rgbd_odometry-1] [INFO] [1742310734.284759318] [rtabmap.rgbd_odometry]: Odom: quality=438, std dev=0.005544m|0.015492rad, update time=0.111410s delay=0.156634s
+[rgbd_odometry-1] [INFO] [1742310734.486222127] [rtabmap.rgbd_odometry]: Odom: quality=445, std dev=0.004884m|0.013027rad, update time=0.111034s delay=0.258045s
+[rgbd_odometry-1] [INFO] [1742310734.618216843] [rtabmap.rgbd_odometry]: Odom: quality=428, std dev=0.005889m|0.016851rad, update time=0.111221s delay=0.189919s
+[rtabmap-2] [ WARN] (2025-03-18 20:42:14.624) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rtabmap-2] [INFO] [1742310734.781782350] [rtabmap.rtabmap]: rtabmap (20): Rate=1.00s, Limit=0.000s, Conversion=0.0023s, RTAB-Map=0.1570s, Maps update=0.0001s pub=0.0027s delay=0.3535s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310735.020020579] [rtabmap.rgbd_odometry]: Odom: quality=439, std dev=0.005367m|0.012320rad, update time=0.112148s delay=0.191573s
+[rgbd_odometry-1] [INFO] [1742310735.152329863] [rtabmap.rgbd_odometry]: Odom: quality=441, std dev=0.006515m|0.015492rad, update time=0.111681s delay=0.157157s
+[rgbd_odometry-1] [INFO] [1742310735.315614755] [rtabmap.rgbd_odometry]: Odom: quality=420, std dev=0.005239m|0.017423rad, update time=0.106761s delay=0.287095s
+[rgbd_odometry-1] [INFO] [1742310735.482265804] [rtabmap.rgbd_odometry]: Odom: quality=431, std dev=0.005632m|0.017944rad, update time=0.107051s delay=0.153643s
+[rgbd_odometry-1] [INFO] [1742310735.783296263] [rtabmap.rgbd_odometry]: Odom: quality=442, std dev=0.005066m|0.014170rad, update time=0.108221s delay=0.154577s
+[rtabmap-2] [ WARN] (2025-03-18 20:42:15.788) Memory.cpp:4914::createSignature() Mem/DepthAsMask is true, but RGB size (1280x720) modulo depth size (848x480) is not 0. Ignoring depth mask for feature detection (Mem/ImagePreDecimation=1).
+[rtabmap-2] [INFO] [1742310735.970947144] [rtabmap.rtabmap]: rtabmap (21): Rate=1.00s, Limit=0.000s, Conversion=0.0024s, RTAB-Map=0.1816s, Maps update=0.0001s pub=0.0025s delay=0.3422s (local map=1, WM=1)
+[rgbd_odometry-1] [INFO] [1742310735.988024777] [rtabmap.rgbd_odometry]: Odom: quality=442, std dev=0.006017m|0.013634rad, update time=0.114149s delay=0.192586s
+[rgbd_odometry-1] [INFO] [1742310736.222731438] [rtabmap.rgbd_odometry]: Odom: quality=432, std dev=0.006465m|0.015492rad, update time=0.115788s delay=0.160547s
+[rgbd_odometry-1] [INFO] [1742310736.456479389] [rtabmap.rgbd_odometry]: Odom: quality=460, std dev=0.006711m|0.015865rad, update time=0.115530s delay=0.160890s
+[rgbd_odometry-1] [INFO] [1742310736.688610153] [rtabmap.rgbd_odometry]: Odom: quality=459, std dev=0.005593m|0.013634rad, update time=0.112653s delay=0.159604s
+[rgbd_odometry-1] [INFO] [1742310736.839848182] [rta

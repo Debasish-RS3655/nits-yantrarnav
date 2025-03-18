@@ -249,9 +249,8 @@ topic_list = [
 '/tf_static',
 '/uas1/mavlink_sink',
 '/uas1/mavlink_source',
-'/user_data_async',
-'/visualization_marker',
-'/visualization_marker_array',
+# '/visualization_marker',
+# '/visualization_marker_array',
 ]
 
 class LaunchTopicMonitor(Node):
