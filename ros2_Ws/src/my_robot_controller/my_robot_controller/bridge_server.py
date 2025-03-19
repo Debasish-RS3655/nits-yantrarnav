@@ -34,17 +34,12 @@ class BridgeServer(Node):
         self.phase = 0
         
         # Subscribers for position topics
-        self.pos_current_sub = self.create_subscription(
-            String, 'position/current', self.update_current_pos, 10)
-        self.pos_target_sub = self.create_subscription(
-            String, 'position/target', self.update_target_pos, 10)
-        self.pos_phase_sub = self.create_subscription(
-            String, 'position/phase', self.update_phase_pos, 10)
+        self.pos_current_sub = self.create_subscription(String, 'position/current', self.update_current_pos, 10)
+        self.pos_target_sub = self.create_subscription(String, 'position/target', self.update_target_pos, 10)
+        self.pos_phase_sub = self.create_subscription(String, 'position/phase', self.update_phase_pos, 10)
         self.mode_pub = self.create_publisher(String, 'position/mode', 10)
-
         # Subscriber for the camera image topic
-        self.camera_sub = self.create_subscription(
-            Image, '/camera/camera/color/image_raw', self.camera_callback, 10)
+        self.camera_sub = self.create_subscription(Image, '/camera/camera/color/image_raw', self.camera_callback, 10)        
         
         # Initialize CvBridge for image conversion
         self.bridge = CvBridge()

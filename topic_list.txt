@@ -1,0 +1,34 @@
+position/current
+    publisher --> path_mover.py
+    subscriber --> path_planner.py,
+                bridge_server.py
+
+position/target
+    timer --> 0.5s
+    publisher --> path_planner.py
+    subscriber --> path_mover.py,
+                bridge_server.py
+
+position/phase
+    publisher --> path_planner.py
+    subscriber --> bridge_server.py,
+
+position/mode
+    publisher --> bridge_server.py
+    subscriber --> path_planner.py
+
+position/flat_area
+    publisher --> flat_area.py
+    subscriber --> path_planner.py
+
+system_launch_status
+    publisher --> launch_checker_topic.py
+    subscriber --> path_planner.py
+
+/camera/camera/color/image_raw
+    publisher --> realsense
+    subscriber --> bridge server.py
+
+
+
+

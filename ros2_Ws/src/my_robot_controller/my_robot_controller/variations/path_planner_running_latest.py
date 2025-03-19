@@ -57,10 +57,11 @@ class PathPlanner(Node):
         
         self.fallback_timer_ = None
 
-        # Timer to call the main loop function (changed from send_target_pos to main_loop)
-        self.timer_ = self.create_timer(0.5, self.main_loop)  # ## CHANGED: Renamed callback
-                        
+        # Timer to call the send target coordinate function .. faster means smoother
+        self.timer_ = self.create_timer(0.5, self.send_target_pos)
+        
         self.get_logger().info('Path planner node started. Waiting for origin...')
+
 
     # !work on this update origin method
     def update_origin(self, msg: String):
@@ -84,13 +85,13 @@ class PathPlanner(Node):
             self.get_logger().info(f'Origin received: x={self.origin_x}, y={self.origin_y}, z={self.origin_z}')
             # Initialize the state machine starting with Phase 0
             self.phase = 0
-            self.configure_phase(self.phase)  # ## CHANGED: Renamed setup_phase to configure_phase
+            self.setup_phase(self.phase)
         except Exception as e:
             self.get_logger().error('Failed to parse origin: ' + str(e))
                         
     def update_simulation(self, msg: String):
         """Update the simulation status from the 'position/simulation' topic.
-        Expected message format: "True" or "False"."""  
+        Expected message format: "True" or "False"."""
         try:
             self.simulation = msg.data.strip().lower() == "true"
             self.get_logger().info(f'Simulation mode updated: {self.simulation}')
@@ -133,17 +134,27 @@ class PathPlanner(Node):
         except Exception as e:
             self.get_logger().error(f"Failed to parse flat areas: {e}")
     
-    def configure_phase(self, phase):
-        """(Renamed from setup_phase) Set up the target list for the given phase based on the current origin.
-        Also publishes the new target coordinate only once."""
+    def setup_phase(self, phase):
+        """Set up the target list for the given phase based on the current origin."""
         if phase == 0:
+            
+            # leave this to shwetangshu's line follower
+            
+            # when in simulation we follow a random direction in a random length until we reach the boundary
             self.get_logger().info("Setting up Phase 0: Move straight until yellow boundary reached")            
-            # In simulation, move in a random positive x-direction until yellow boundary reached
-            self.get_logger().info("Simulating moving towards the boundary.")
-            self.target_list = [(self.origin_x + random.uniform(0, self.side), self.origin_y, self.origin_z)]
+            # we do not have any target coordinates in phase 0            
                         
+            # Assume the yellow boundary is reached by moving in the positive x-direction
+            self.get_logger().info("Simulating moving towards the boundary.")
+            # gotta move this 
+            self.target_list = [(self.origin_x + random.uniform(0, self.side), self.origin_y, self.origin_z)]
+            
+                
         elif phase == 1:
             self.get_logger().info("Setting up Phase 1: Follow yellow boundary for three consecutive edges")
+                        
+            # gotta remove this in the actual implementation
+                        
             # Starting from the endpoint of Phase 0:
             x0 = self.origin_x + self.side
             y0 = self.origin_y
@@ -154,7 +165,10 @@ class PathPlanner(Node):
                 (self.origin_x, self.origin_y, z0)   # Edge 3: move downward (completes the square boundary)
             ]
             
+            
         elif phase == 2:
+            
+            
             self.get_logger().info("Setting up Phase 2: Lawnmower Pattern inside the square")            
             x0, y0, z0 = self.origin_x, self.origin_y, self.origin_z
             points = []
@@ -173,6 +187,7 @@ class PathPlanner(Node):
                     points.append((x0, y, z0))
             self.target_list = points
         
+        
         elif phase == 3:
             self.get_logger().info("Setting up Phase 3: Flat area lander - obtaining target from flat area publisher")
             if self.flat_areas:
@@ -185,6 +200,7 @@ class PathPlanner(Node):
         
         elif phase == 4:
             self.get_logger().info("Setting up Phase 4: Return to Origin")
+            # append the origin as the target to the target list now
             self.target_list = [(self.origin_x, self.origin_y, self.origin_z)]
         
         else:
@@ -193,17 +209,13 @@ class PathPlanner(Node):
         self.target_index = 0
         if self.target_list:
             self.current_target = self.target_list[self.target_index]
-            # ## CHANGED: Publish the new target only once when the phase is configured.
-            msg = String()
-            msg.data = f'x={self.current_target[0]} y={self.current_target[1]} z={self.current_target[2]}'
-            self.pos_target_pub.publish(msg)
-            self.get_logger().info(f'Target published: {msg.data}')
         else:
             self.get_logger().error("Target list is empty!")
             
-    def main_loop(self):
-        """(Renamed from send_target_pos) Main loop to check if the current target is reached.
-        It does not continuously publish the same target. New targets are published only when updated."""
+                        
+    def send_target_pos(self):
+        """Publish the current target position. When the current position overlaps the target within a threshold,
+        update to the next target or phase."""
         if self.current_target is None:
             return
 
@@ -222,7 +234,7 @@ class PathPlanner(Node):
                     phase_msg = String()
                     phase_msg.data = str(self.phase)
                     self.phase_pub.publish(phase_msg)
-                    self.configure_phase(self.phase)  # ## CHANGED: Renamed call from setup_phase to configure_phase
+                    self.setup_phase(self.phase)
                 else:
                     self.get_logger().info('Completed all phases.')
                     self.timer_.cancel()
@@ -230,13 +242,15 @@ class PathPlanner(Node):
             else:
                 self.current_target = self.target_list[self.target_index]
                 self.get_logger().info(f'Switching to next target: {self.current_target}')
-                # Publish the new target only once when updated.
-                msg = String()
-                msg.data = f'x={self.current_target[0]} y={self.current_target[1]} z={self.current_target[2]}'
-                self.pos_target_pub.publish(msg)
-                self.get_logger().info(f'Target published: {msg.data}')
-        # ## CHANGED: Removed continuous publishing when target is not updated.
+
+        msg = String()
+        msg.data = f'x={self.current_target[0]} y={self.current_target[1]} z={self.current_target[2]}'
+        self.pos_target_pub.publish(msg)
+        self.get_logger().info(f'Target published: {msg.data}')
+        
+        
                 
+        
     def fallback_to_origin_once(self):
         """Fallback method if no flat areas are received after a waiting period."""
         if self.fallback_timer_:
@@ -253,11 +267,6 @@ class PathPlanner(Node):
         self.target_index = 0
         if self.target_list:
             self.current_target = self.target_list[0]
-            # Publish fallback target once.
-            msg = String()
-            msg.data = f'x={self.current_target[0]} y={self.current_target[1]} z={self.current_target[2]}'
-            self.pos_target_pub.publish(msg)
-            self.get_logger().info(f'Fallback target published: {msg.data}')
 
 def main(args=None):
     rclpy.init(args=args)

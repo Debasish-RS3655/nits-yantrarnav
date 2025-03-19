@@ -8,8 +8,6 @@ from flask_cors import CORS
 import threading
 
 # does not include the camera feed
-
-
 # bridge server that subscribes to all topics and responds the current topic value over HTTP
 
 class BridgeServer(Node):
@@ -24,14 +22,12 @@ class BridgeServer(Node):
         self.target_y = 0
         self.target_z = 0
         
-        self.phase = 0
-        
+        self.phase = 0        
         # subscriber list
         self.pos_current_sub = self.create_subscription(String, 'position/current', self.update_current_pos, 10)
         self.pos_target_sub = self.create_subscription(String, 'position/target', self.update_target_pos, 10)
         self.pos_phase_sub = self.create_subscription(String, 'position/phase', self.update_phase_pos, 10)                
         self.mode_pub = self.create_publisher(String, 'position/mode', 10)       # mode i.e. manual or automatic
-        self.simulation_pub = self.create_publisher(String, 'position/simulation', 10)
         
     def update_current_pos(self, msg: String):
         # Expect message format: "x=<value> y=<value> z=<value>"
@@ -141,30 +137,31 @@ def set_mode():
     return jsonify({'mode': mode, 'status': 'published'}), 200
 
 
-@app.route('/simulation', methods=['POST'])
-def set_simulation():
-    """
-    Sets the simulation mode by publishing a message over ROS.
-    Expected JSON payload: {"simulation": true}
-    """
-    global bridge_server_node
-    if bridge_server_node is None:
-        return jsonify({'error': 'BridgeServer node not available'}), 500
+# no simulation mode in the latest version
+# @app.route('/simulation', methods=['POST'])
+# def set_simulation():
+#     """
+#     Sets the simulation mode by publishing a message over ROS.
+#     Expected JSON payload: {"simulation": true}
+#     """
+#     global bridge_server_node
+#     if bridge_server_node is None:
+#         return jsonify({'error': 'BridgeServer node not available'}), 500
 
-    data = request.get_json()
-    if not data or 'simulation' not in data:
-        return jsonify({'error': 'Please provide a simulation flag'}), 400
+#     data = request.get_json()
+#     if not data or 'simulation' not in data:
+#         return jsonify({'error': 'Please provide a simulation flag'}), 400
 
-    if not isinstance(data['simulation'], bool):
-        return jsonify({'error': 'Simulation must be a boolean (true or false)'}), 400
+#     if not isinstance(data['simulation'], bool):
+#         return jsonify({'error': 'Simulation must be a boolean (true or false)'}), 400
 
     # Publish the simulation mode over ROS
-    msg = String()
-    msg.data = str(data['simulation'])
-    bridge_server_node.simulation_pub.publish(msg)
-    bridge_server_node.get_logger().info(f'Published simulation state: {msg.data}')
+    # msg = String()
+    # msg.data = str(data['simulation'])
+    # bridge_server_node.simulation_pub.publish(msg)
+    # bridge_server_node.get_logger().info(f'Published simulation state: {msg.data}')
     
-    return jsonify({'simulation': data['simulation'], 'status': 'published'}), 200
+    # return jsonify({'simulation': data['simulation'], 'status': 'published'}), 200
 
 
 

@@ -16,6 +16,7 @@ class Flat_Area_Detector(Node):
         super().__init__('flat_area')
         self.pos_current_sub = self.create_subscription(String, 'position/current', self.update_current_pos, 10)
         self.phase_sub = self.create_subscription(String, 'position/phase', self.phase_change, 10)
+        
         self.flat_area_pub = self.create_publisher(String, 'position/flat_area', 10)
         
         # Updated by subscription
