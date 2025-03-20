@@ -8,7 +8,7 @@ import time
 # manual mode nodes
 from .path_manual import PathManual
 # auto mode nodes
-from .path_planner import PathPlanner
+from .variations.path_planner_running_latest import PathPlanner
 
 # Debashish Buragohain
 # this code subscribes to the mode topic and launches the automatic or manual nodes depending on that

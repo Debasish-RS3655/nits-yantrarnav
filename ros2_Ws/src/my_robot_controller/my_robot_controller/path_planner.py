@@ -203,19 +203,24 @@ class PathPlanner(Node):
             
     def main_loop(self):
         """(Renamed from send_target_pos) Main loop to check if the current target is reached.
+        
         It does not continuously publish the same target. New targets are published only when updated."""
         if self.current_target is None:
             return
 
+        # this section calculates that the current coordinate has reached the target coordinate
+
         dx = self.x_ - self.current_target[0]
         dy = self.y_ - self.current_target[1]
         dz = self.z_ - self.current_target[2]
+        
         distance = math.sqrt(dx**2 + dy**2 + dz**2)
 
         if distance < self.threshold:
             self.get_logger().info(f'Target reached: {self.current_target}')
             self.target_index += 1
             if self.target_index >= len(self.target_list):
+                
                 if self.phase < 4:
                     self.phase += 1
                     self.get_logger().info(f'Moving to Phase {self.phase}')
@@ -225,9 +230,11 @@ class PathPlanner(Node):
                     self.configure_phase(self.phase)  # ## CHANGED: Renamed call from setup_phase to configure_phase
                 else:
                     self.get_logger().info('Completed all phases.')
-                    self.timer_.cancel()
+                    self.timer_.cancel()                
                     return
+                
             else:
+                
                 self.current_target = self.target_list[self.target_index]
                 self.get_logger().info(f'Switching to next target: {self.current_target}')
                 # Publish the new target only once when updated.
@@ -235,6 +242,7 @@ class PathPlanner(Node):
                 msg.data = f'x={self.current_target[0]} y={self.current_target[1]} z={self.current_target[2]}'
                 self.pos_target_pub.publish(msg)
                 self.get_logger().info(f'Target published: {msg.data}')
+        
         # ## CHANGED: Removed continuous publishing when target is not updated.
                 
     def fallback_to_origin_once(self):
