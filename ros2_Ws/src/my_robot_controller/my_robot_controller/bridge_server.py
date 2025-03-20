@@ -133,7 +133,7 @@ def target_position():
     }
     return jsonify(pos)
 
-# Endpoint: Set mode (automatic or manual)
+# Endpoint: Set mode (automatic, manual, or hover)
 @app.route('/mode', methods=['POST'])
 def set_mode():
     global bridge_server_node
@@ -142,11 +142,11 @@ def set_mode():
 
     data = request.get_json()
     if not data or 'mode' not in data:
-        return jsonify({'error': 'Please provide a mode (automatic or manual)'}), 400
+        return jsonify({'error': 'Please provide a mode (automatic, manual, or hover)'}), 400
 
     mode = data['mode']
-    if mode not in ['automatic', 'manual']:
-        return jsonify({'error': 'Mode must be either "automatic" or "manual"'}), 400
+    if mode not in ['automatic', 'manual', 'hover']:
+        return jsonify({'error': 'Mode must be either "automatic", "manual", or "hover"'}), 400
 
     msg = String()
     msg.data = mode
@@ -155,7 +155,7 @@ def set_mode():
     return jsonify({'mode': mode, 'status': 'published'}), 200
 
 # Endpoint: Return the latest camera image (from ROS) in base64
-@app.route('/depth_cam', methods=['GET'])
+@app.route('/latest_image', methods=['GET'])
 def get_latest_image():
     global latest_image_base64
     with lock:
