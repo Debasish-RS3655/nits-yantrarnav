@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String
-from sensor_msgs.msg import Image
+from std_msgs.msg import String, Bool
+from sensor_msgs.msg import Image, BatteryState
 
 from flask import Flask, jsonify, request
 from flask_cors import CORS
@@ -19,7 +19,7 @@ perpendicular_image_base64 = None   # From the new POST endpoint
 # Lock to ensure thread-safe access to global image variables
 lock = threading.Lock()
 
-# ROS2 BridgeServer node: subscribes to position topics and camera images
+# ROS2 BridgeServer node: subscribes to position topics, camera images, and battery status
 class BridgeServer(Node):
     def __init__(self):
         super().__init__('bridge_server_node')
@@ -42,6 +42,12 @@ class BridgeServer(Node):
 
         # Subscriber for the camera image topic
         self.camera_sub = self.create_subscription(Image, '/camera/camera/color/image_raw', self.camera_callback, 10)
+        
+        # Battery status subscriber: subscribe to /mavros/battery using BatteryState messages
+        self.battery_sub = self.create_subscription(BatteryState, '/mavros/battery', self.battery_callback, 10)
+        # Initialize battery status attributes
+        self.battery_percent = None  # 0.0 to 1.0
+        self.battery_voltage = None
 
         # Initialize CvBridge for image conversion
         self.bridge = CvBridge()
@@ -101,6 +107,12 @@ class BridgeServer(Node):
                     latest_image_base64 = jpg_as_text
         except CvBridgeError as e:
             self.get_logger().error('CvBridge Error: ' + str(e))
+
+    def battery_callback(self, msg: BatteryState):
+        # Update battery attributes (battery percentage is a float between 0 and 1)
+        self.battery_percent = msg.percentage
+        self.battery_voltage = msg.voltage
+        self.get_logger().info(f"Battery: {self.battery_percent*100:.1f}% | Voltage: {self.battery_voltage:.2f}V")
 
 # Set up the Flask app and endpoints
 app = Flask(__name__)
@@ -191,6 +203,19 @@ def perpendicular_cam():
 
     print("Perpendicular camera image received and stored in memory")
     return jsonify({'status': 'success'}), 200
+
+# New Endpoint: Return battery status (from ROS node)
+@app.route('/battery_status', methods=['GET'])
+def battery_status():
+    global bridge_server_node
+    if bridge_server_node is None:
+        return jsonify({'error': 'BridgeServer node not available'}), 500
+    # Battery percentage is assumed to be a value between 0 and 1. Multiply by 100 for percentage.
+    battery = {
+        'percentage': bridge_server_node.battery_percent * 100 if bridge_server_node.battery_percent is not None else None,
+        'voltage': bridge_server_node.battery_voltage
+    }
+    return jsonify(battery)
 
 # Function to spin the ROS node in a separate thread
 def ros_spin(node):
