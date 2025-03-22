@@ -10,7 +10,11 @@ import math
 class PathPlanner(Node):
     def __init__(self):
         super().__init__('path_planner_server')
-            
+                        
+        # publisher for the drone commands
+        self.drone_commands_pub = self.create_pub(String, '/drone_commands', 10)
+        # Subscriber for the current mode
+        self.pos_mode = self.create_subscription(String, '/position/mode', self.update_mode, 10)
         # Subscriber for the current position
         self.pos_current_sub = self.create_subscription(String, 'position/current', self.update_pos, 10)            
         # Publisher for the target position
@@ -20,6 +24,13 @@ class PathPlanner(Node):
         self.y_ = 0.0
         self.z_ = 0.0
     
+        # By default the mode is set to manual
+        self.mode = 'manual'
+        
+        # for the hovering mode
+        self.hovering_status_sub = self.create_subscription(String, '/hovering_mode', self.update_hovering_mode, 10)
+        self.hovering_status = None
+        
         # Subscriber for the edge coordinates    
         self.edge_sub = self.create_subscription(String, '/edge_coordinates', self.update_edges, 10)            
         self.edge_coordinates = []      # Expect four edges: [(x1,y1,z1), (x2,y2,z2), ...]
@@ -47,7 +58,7 @@ class PathPlanner(Node):
 
         # State machine phases:
         # Phase 0: Move straight until yellow boundary reached.
-        # Phase 1: Waiting till Line Follower Node has publihed the edge coordinates
+        # Phase 1: Waiting till Line Follower Node has published the edge coordinates.
         # Phase 2: Lawnmower pattern inside the rectangle.
         # Phase 3: Flat area lander (using flat areas from flat_area_sub).
         # Phase 4: Return to origin.
@@ -60,16 +71,23 @@ class PathPlanner(Node):
         
         self.fallback_to_origin_timer = None
 
-        # Main loop timer
+        # Main loop timer (runs every 0.5 sec)
         self.main_timer_ = self.create_timer(0.5, self.main_loop) 
                         
         self.get_logger().info('Path planner node started. Waiting for origin...')
 
-        
+    # Update the current mode of the drone
+    def update_mode(self, msg: String):
+        new_mode = msg.data
+        if new_mode not in ['manual', 'auto', 'hover']:
+            self.get_logger().info("Invalid mode received: " + str(new_mode))
+            return
+        self.mode = new_mode
+        self.get_logger().info(f"Mode updated to: {self.mode}")
+
     def update_yellow_boundary_found(self, msg: Bool):
         if not self.yellow_boundary_found_status and msg.data:
             self.yellow_boundary_found_status = True
-
         
     def update_pos(self, msg: String):
         """Update the current position from the 'position/current' topic.
@@ -109,7 +127,25 @@ class PathPlanner(Node):
     
     def configure_phase(self, phase):
         """Set up the target list for the given phase based on the current origin.
-        Also publishes the new target coordinate only once."""
+        Also publishes the new target coordinate only once.
+        Only operates when mode is automatic."""
+                
+        if self.mode != 'auto':
+            self.get_logger().info(f"Mode is set to {self.mode}. Path planner not executed.")
+            # hovering mode included
+            if self.mode == 'hover':
+                # check for the status of the hovering mode
+                if self.hovering_status == 'ongoing':
+                    self.get_logger().info('Drone is hovering.')
+                elif self.hovering_status == 'completed':
+                    # publish to the drone commands to land the drone now
+                    msg = String()
+                    msg.data = str('land')
+                    self.drone_commands_pub.publish(msg)
+                else:
+                    self.get_logger('Invalid hovering status in hovering mode: ', str(self.hovering_status))
+            return
+        
         if phase == 0:
             self.get_logger().info("Setting up Phase 0: Move straight until yellow boundary reached")            
             # Phase 0 implementation (if needed)
@@ -119,7 +155,7 @@ class PathPlanner(Node):
                 self.get_logger().info("Critical error: Phase 1 reached without finding yellow boundary.")
                 return
             
-            self.get_logger().info("Waiting for edge coordinates from Line Follower Node..")
+            self.get_logger().info("Waiting for edge coordinates from Line Follower Node...")
             return
             
         elif phase == 2:
@@ -175,7 +211,12 @@ class PathPlanner(Node):
             
     def main_loop(self):
         """Main loop to check if the current target is reached.
-        New targets are published only when the current target is reached."""
+        New targets are published only when the current target is reached.
+        Runs only in automatic mode."""
+        if self.mode != 'auto':
+            self.get_logger().info(f"Mode is set to {self.mode}. Automatic path planning is paused.")
+            return
+
         if self.current_target is None:
             return
 
@@ -207,8 +248,7 @@ class PathPlanner(Node):
                 msg.data = f'x={self.current_target[0]} y={self.current_target[1]} z={self.current_target[2]}'
                 self.pos_target_pub.publish(msg)
                 self.get_logger().info(f'Target published: {msg.data}')
-                                                
-                
+                                                            
     def fallback_to_origin_once(self):
         """Fallback method if no flat areas are received after a waiting period."""
         if self.fallback_to_origin_timer:
@@ -292,7 +332,6 @@ class PathPlanner(Node):
                 elif key == 'z':
                     self.origin_z = value
             self.get_logger().info(f'Origin updated: x={self.origin_x}, y={self.origin_y}, z={self.origin_z}')
-            
         except Exception as e:
             self.get_logger().error('Failed to parse origin position: ' + str(e))
     
