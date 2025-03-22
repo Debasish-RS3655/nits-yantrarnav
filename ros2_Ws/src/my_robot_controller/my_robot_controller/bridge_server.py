@@ -3,6 +3,7 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String, Bool
 from sensor_msgs.msg import Image, BatteryState
+from geometry_msgs.msg import Point
 
 from flask import Flask, jsonify, request
 from flask_cors import CORS
@@ -10,8 +11,8 @@ import threading
 import base64
 import cv2
 from cv_bridge import CvBridge, CvBridgeError
-from urllib.parse import urljoin
 import numpy as np
+import math
 
 # Global variables to hold the latest images (in base64)
 latest_image_base64 = None          # From the ROS camera subscriber
@@ -19,7 +20,8 @@ perpendicular_image_base64 = None   # From the new POST endpoint
 # Lock to ensure thread-safe access to global image variables
 lock = threading.Lock()
 
-# ROS2 BridgeServer node: subscribes to position topics, camera images, and battery status
+# ROS2 BridgeServer node: subscribes to position topics, camera images, battery status, system ready status,
+# flat area points, and launch status.
 class BridgeServer(Node):
     def __init__(self):
         super().__init__('bridge_server_node')
@@ -33,27 +35,46 @@ class BridgeServer(Node):
         self.target_z = 0
 
         self.phase = 0
+        self.drone_launch_status = None
 
         # Subscribers for position topics
         self.pos_current_sub = self.create_subscription(String, 'position/current', self.update_current_pos, 10)
         self.pos_target_sub = self.create_subscription(String, 'position/target', self.update_target_pos, 10)
         self.pos_phase_sub = self.create_subscription(String, 'position/phase', self.update_phase_pos, 10)
         self.mode_pub = self.create_publisher(String, 'position/mode', 10)
+        
+        # Subscriber for launch/land status (String)
+        self.drone_launch_land_sub = self.create_subscription(String, '/launch_land_status', self.update_launch_status, 10)
+        
+        # Subscriber for system ready status (Bool)
+        self.system_ready_sub = self.create_subscription(Bool, '/system_launch_status', self.system_ready_status_callback, 10)
+        self.system_ready_status = False
 
         # Subscriber for the camera image topic
         self.camera_sub = self.create_subscription(Image, '/camera/camera/color/image_raw', self.camera_callback, 10)
         
-        # Battery status subscriber: subscribe to /mavros/battery using BatteryState messages
+        # Battery status subscriber
         self.battery_sub = self.create_subscription(BatteryState, '/mavros/battery', self.battery_callback, 10)
-        # Initialize battery status attributes
-        self.battery_percent = None  # 0.0 to 1.0
+        self.battery_percent = None
         self.battery_voltage = None
+
+        # Subscriber for flat area points (assumed type Point published on /landing_spots)
+        self.flat_area_point_sub = self.create_subscription(Point, '/landing_spots', self.flat_area_point_callback, 10)
+        self.flat_area_points = []
+        self.flat_area_gap_threshold = 0.5
+
+        # This array holds pairs of {coordinate, image} when current coordinate is near a flat area
+        self.ml_check_area_array = []
+        self.ml_predicted_area_pub = self.create_publisher(String, '/ml_predicted_area', 10)
 
         # Initialize CvBridge for image conversion
         self.bridge = CvBridge()
+        
+    def system_ready_status_callback(self, msg: Bool):
+        self.system_ready_status = msg.data
+        self.get_logger().info(f"System ready status updated to: {self.system_ready_status}")
 
     def update_current_pos(self, msg: String):
-        # Expected format: "x=<value> y=<value> z=<value>"
         try:
             parts = msg.data.split()
             for part in parts:
@@ -69,7 +90,6 @@ class BridgeServer(Node):
             self.get_logger().error('Failed to parse current position: ' + str(e))
 
     def update_target_pos(self, msg: String):
-        # Expected format: "x=<value> y=<value> z=<value>"
         try:
             parts = msg.data.split()
             for part in parts:
@@ -91,36 +111,55 @@ class BridgeServer(Node):
         except Exception as e:
             self.get_logger().error('Failed to parse Bridge phase: ' + str(e))
 
+    def update_launch_status(self, msg: String):
+        new_status = msg.data
+        if new_status not in ['launched', 'landed', 'launching', 'landing']:
+            self.get_logger().info("Invalid launch status received: " + new_status)
+            return
+        self.drone_launch_status = new_status        
+        self.get_logger().info(f"Launch status updated to: {self.drone_launch_status}")
+
     def camera_callback(self, msg: Image):
         global latest_image_base64
         try:
-            # Convert ROS Image to OpenCV image (BGR format)
             cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
-            # Resize the image to 256x256 (as needed)
             cv_image = cv2.resize(cv_image, (256, 256))
-            # Encode the image as JPEG
             ret, buffer = cv2.imencode('.jpg', cv_image)
             if ret:
                 jpg_as_text = base64.b64encode(buffer).decode('utf-8')
-                # Safely update the global variable for latest image
                 with lock:
                     latest_image_base64 = jpg_as_text
         except CvBridgeError as e:
             self.get_logger().error('CvBridge Error: ' + str(e))
 
     def battery_callback(self, msg: BatteryState):
-        # Update battery attributes (battery percentage is a float between 0 and 1)
         self.battery_percent = msg.percentage
         self.battery_voltage = msg.voltage
         self.get_logger().info(f"Battery: {self.battery_percent*100:.1f}% | Voltage: {self.battery_voltage:.2f}V")
 
+    def flat_area_point_callback(self, msg: Point):
+        new_point = {'x': msg.x, 'y': msg.y, 'z': msg.z}
+        unique = True
+        for p in self.flat_area_points:
+            dx = new_point['x'] - p['x']
+            dy = new_point['y'] - p['y']
+            dz = new_point['z'] - p['z']
+            if math.sqrt(dx**2 + dy**2 + dz**2) < self.flat_area_gap_threshold:
+                unique = False
+                break
+        if unique:
+            self.flat_area_points.append(new_point)
+            self.get_logger().info(f"Added new flat area point: {new_point}")
+        else:
+            self.get_logger().info("Received flat area point is not unique; ignoring.")
+
 # Set up the Flask app and endpoints
 app = Flask(__name__)
 CORS(app)
-bridge_server_node = None         # Global variable for the ROS node
-shutdown_flag = threading.Event() # Signal to stop threads
+bridge_server_node = None  # Global variable for the ROS node
+shutdown_flag = threading.Event()  # Signal to stop threads
 
-# Endpoint: Return current position (from ROS node)
+# Endpoint: Return current position
 @app.route('/current_position', methods=['GET'])
 def current_position():
     global bridge_server_node
@@ -133,7 +172,7 @@ def current_position():
     }
     return jsonify(pos)
 
-# Endpoint: Return target position (from ROS node)
+# Endpoint: Return target position
 @app.route('/target_position', methods=['GET'])
 def target_position():
     global bridge_server_node
@@ -146,29 +185,26 @@ def target_position():
     }
     return jsonify(pos)
 
-# Endpoint: Set mode (automatic, manual, or hover)
+# Endpoint: Set mode
 @app.route('/mode', methods=['POST'])
 def set_mode():
     global bridge_server_node
     if bridge_server_node is None:
         return jsonify({'error': 'BridgeServer node not available'}), 500
-
     data = request.get_json()
     if not data or 'mode' not in data:
         return jsonify({'error': 'Please provide a mode (automatic, manual, or hover)'}), 400
-
     mode = data['mode']
     if mode not in ['automatic', 'manual', 'hover']:
         return jsonify({'error': 'Mode must be either "automatic", "manual", or "hover"'}), 400
-
     msg = String()
     msg.data = mode
     bridge_server_node.mode_pub.publish(msg)
     bridge_server_node.get_logger().info(f'Published mode from Bridge server: {mode}')
     return jsonify({'mode': mode, 'status': 'published'}), 200
 
-# Endpoint: Return the latest camera image (from ROS) in base64
-@app.route('/latest_image', methods=['GET'])
+# Endpoint: Return the latest camera image in base64
+@app.route('/depth_cam', methods=['GET'])
 def get_latest_image():
     global latest_image_base64
     with lock:
@@ -177,17 +213,14 @@ def get_latest_image():
         else:
             return jsonify({'error': 'No image received yet'}), 404
 
-# New Endpoint: Receive a perpendicular camera image via POST (without saving)
+# Endpoint: Receive a perpendicular camera image via POST (without saving)
 @app.route('/perpendicular_cam', methods=['POST'])
 def perpendicular_cam():
     global perpendicular_image_base64
     data = request.get_json(force=True)
     if 'image' not in data:
         return jsonify({'error': 'No image provided'}), 400
-
     image_b64 = data['image']
-
-    # Validate that the base64 string decodes to an image (without saving)
     try:
         im_bytes = base64.b64decode(image_b64)
         np_arr = np.frombuffer(im_bytes, np.uint8)
@@ -197,25 +230,114 @@ def perpendicular_cam():
     except Exception as e:
         print("Error decoding image:", e)
         return jsonify({'error': 'Invalid image data'}), 400
-
     with lock:
         perpendicular_image_base64 = image_b64
-
     print("Perpendicular camera image received and stored in memory")
     return jsonify({'status': 'success'}), 200
 
-# New Endpoint: Return battery status (from ROS node)
+# Endpoint: Return battery status
 @app.route('/battery_status', methods=['GET'])
 def battery_status():
     global bridge_server_node
     if bridge_server_node is None:
         return jsonify({'error': 'BridgeServer node not available'}), 500
-    # Battery percentage is assumed to be a value between 0 and 1. Multiply by 100 for percentage.
     battery = {
         'percentage': bridge_server_node.battery_percent * 100 if bridge_server_node.battery_percent is not None else None,
         'voltage': bridge_server_node.battery_voltage
     }
     return jsonify(battery)
+
+# Endpoint: Return system ready status
+@app.route('/system_ready', methods=['GET'])
+def system_ready():
+    global bridge_server_node
+    if bridge_server_node is None:
+        return jsonify({'error': 'BridgeServer node not available'}), 500
+    return jsonify({'system_ready': bridge_server_node.system_ready_status})
+
+# New Endpoint: /ml_check_area
+@app.route('/ml_check_area', methods=['GET'])
+def ml_check_area():
+    global bridge_server_node, perpendicular_image_base64
+    if bridge_server_node is None:
+        return jsonify({'error': 'BridgeServer node not available'}), 500
+    near_threshold = 1.0  # meters
+    current_coord = {'x': bridge_server_node.x_, 'y': bridge_server_node.y_, 'z': bridge_server_node.z_}
+    found = None
+    for point in bridge_server_node.flat_area_points:
+        dx = current_coord['x'] - point['x']
+        dy = current_coord['y'] - point['y']
+        dz = current_coord['z'] - point['z']
+        if math.sqrt(dx**2 + dy**2 + dz**2) < near_threshold:
+            found = point
+            break
+    if found and perpendicular_image_base64 is not None:
+        entry = {'coordinate': current_coord, 'image': perpendicular_image_base64}
+        exists = False
+        for e in bridge_server_node.ml_check_area_array:
+            ec = e['coordinate']
+            if (abs(ec['x'] - current_coord['x']) < 0.1 and 
+                abs(ec['y'] - current_coord['y']) < 0.1 and 
+                abs(ec['z'] - current_coord['z']) < 0.1):
+                exists = True
+                break
+        if not exists:
+            bridge_server_node.ml_check_area_array.append(entry)
+            bridge_server_node.get_logger().info(f"Added ml_check_area entry: {entry}")
+        return jsonify(entry)
+    else:
+        return jsonify({'error': 'No flat area nearby or no perpendicular image available'}), 404
+
+# Endpoint: /predicted_area
+@app.route('/predicted_area', methods=['POST'])
+def predicted_area():
+    global bridge_server_node
+    if bridge_server_node is None:
+        return jsonify({'error': 'BridgeServer node not available'}), 500
+    data = request.get_json(force=True)
+    required_keys = ['status', 'class', 'accuracy', 'coordinate']
+    if not all(k in data for k in required_keys):
+        return jsonify({'error': 'Missing keys in JSON body'}), 400
+    msg = String()
+    msg.data = str(data)
+    bridge_server_node.ml_predicted_area_pub.publish(msg)
+    bridge_server_node.get_logger().info(f"Published predicted area: {msg.data}")
+    coord_str = data['coordinate']
+    try:
+        parts = coord_str.split()
+        coord = {}
+        for part in parts:
+            key, value = part.split('=')
+            coord[key] = float(value)
+    except Exception as e:
+        return jsonify({'error': 'Failed to parse coordinate in request'}), 400
+    new_array = []
+    removed = False
+    for entry in bridge_server_node.ml_check_area_array:
+        ec = entry['coordinate']
+        if (abs(ec['x'] - coord['x']) < 0.1 and 
+            abs(ec['y'] - coord['y']) < 0.1 and 
+            abs(ec['z'] - coord['z']) < 0.1):
+            removed = True
+            continue
+        new_array.append(entry)
+    bridge_server_node.ml_check_area_array = new_array
+    if removed:
+        return jsonify({'status': 'Entry removed and published'}), 200
+    else:
+        return jsonify({'error': 'No matching entry found'}), 404
+
+# New Endpoint: /drone_status - returns the current phase and launch_land_status
+@app.route('/drone_status', methods=['GET'])
+def drone_status():
+    global bridge_server_node
+    if bridge_server_node is None:
+        return jsonify({'error': 'BridgeServer node not available'}), 500
+    status = {
+        'phase': bridge_server_node.phase,
+        'launch_land_status': bridge_server_node.drone_launch_status
+    }
+    return jsonify(status)
 
 # Function to spin the ROS node in a separate thread
 def ros_spin(node):
@@ -229,20 +351,22 @@ def main(args=None):
     global bridge_server_node
     rclpy.init(args=args)
     node = BridgeServer()
+    # Initialize arrays and publishers that need to be set up
+    node.ml_check_area_array = []
+    node.flat_area_points = []
+    node.ml_predicted_area_pub = node.create_publisher(String, '/ml_predicted_area', 10)
     bridge_server_node = node
 
-    # Start ROS 2 spinning in a separate thread
     ros_thread = threading.Thread(target=ros_spin, args=(node,))
     ros_thread.start()
 
     try:
-        # Start the Flask server (disable auto reloader to avoid lingering processes)
         app.run(host='0.0.0.0', port=5000, use_reloader=False)
     except KeyboardInterrupt:
         print('Keyboard interrupt caught. Bridge server shutting down gracefully.')
     finally:
         shutdown_flag.set()
-        ros_thread.join(timeout=5)  # wait for ROS thread to finish
+        ros_thread.join(timeout=5)
         rclpy.shutdown()
 
 if __name__ == '__main__':

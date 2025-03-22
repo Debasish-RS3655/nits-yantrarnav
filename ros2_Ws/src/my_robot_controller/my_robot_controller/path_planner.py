@@ -175,7 +175,8 @@ class PathPlanner(Node):
                 if self.hovering_status == 'ongoing':
                     self.get_logger().info('Drone is hovering.')
                 elif self.hovering_status == 'completed':
-                    self.phase = 5  # Ready to land.
+                    self.get_logger().info('Hovering completed. Drone will be landing.')
+                    self.phase = 5  # Ready to land.                    
                 else:
                     self.get_logger().info("Invalid hovering status: " + str(self.hovering_status))
             elif self.mode == 'manual':

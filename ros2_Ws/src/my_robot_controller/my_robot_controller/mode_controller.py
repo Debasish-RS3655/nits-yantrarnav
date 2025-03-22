@@ -5,13 +5,12 @@ from std_msgs.msg import String, Bool
 import threading
 import time
 
-# manual mode nodes
-from .path_manual import PathManual
 # auto mode nodes
 from .variations.path_planner_running_latest import PathPlanner
 
 # Debashish Buragohain
 # this code subscribes to the mode topic and launches the automatic or manual nodes depending on that
+# in the latest version, this code does not create any difference though because the path planner is now modified to support for all three modes
 
 class ModeExecutor(Node):
     def __init__(self):
@@ -65,7 +64,6 @@ class ModeExecutor(Node):
             node_inst.destroy_node()
         self.running_nodes.clear()
         self.get_logger().info("All nodes shut down.")
-
         
     def start_nodes_for_mode(self, mode):
         self.get_logger().info(f"Start")
@@ -73,7 +71,9 @@ class ModeExecutor(Node):
         if mode == "automatic":
             node_classes = [PathPlanner]
         elif mode == "manual":
-            node_classes = [PathManual]
+            node_classes = [PathPlanner]
+        elif mode == "hover":
+            node_classes = [PathPlanner]
         else:
             self.get_logger().error(f"Unsupported mode: {mode}")
             return
