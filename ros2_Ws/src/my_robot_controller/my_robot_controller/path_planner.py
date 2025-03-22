@@ -10,7 +10,11 @@ import math
 class PathPlanner(Node):
     def __init__(self):
         super().__init__('path_planner_server')
-                        
+                                                
+        # subscriber for the the launch land status
+        self.drone_launch_land_sub = self.create_sub(String, '/launch_land_status', self.update_launch_status, 10)
+        self.drone_launch_status = None
+        
         # publisher for the drone commands
         self.drone_commands_pub = self.create_pub(String, '/drone_commands', 10)
         # Subscriber for the current mode
@@ -62,6 +66,7 @@ class PathPlanner(Node):
         # Phase 2: Lawnmower pattern inside the rectangle.
         # Phase 3: Flat area lander (using flat areas from flat_area_sub).
         # Phase 4: Return to origin.
+        
         self.phase = None  # Will be set after receiving origin.
         self.phase_pub = self.create_publisher(String, 'position/phase', 10)
 
@@ -70,11 +75,47 @@ class PathPlanner(Node):
         self.current_target = None
         
         self.fallback_to_origin_timer = None
-
         # Main loop timer (runs every 0.5 sec)
-        self.main_timer_ = self.create_timer(0.5, self.main_loop) 
-                        
-        self.get_logger().info('Path planner node started. Waiting for origin...')
+        self.main_timer_ = self.create_timer(0.5, self.main_loop)                         
+        self.get_logger().info('Path planner node started.')
+        
+        # launch the drone from here. May be some changes required        
+        self.launch_drone()
+                
+    # publishes launch to the drone commands topic
+    def launch_drone(self):
+        # does a bit of prechecks and launches the drone                
+        # some prechecks to be done here
+        msg = String()
+        msg.data = 'launch'
+        self.drone_commands_pub.publish(msg)        
+        self.get_logger().info('Launch command published to drone commands.')
+        
+    def land_drone(self):
+        # does a bit of prechecks and lands the drone                
+        # some prechecks to be done here
+        msg = String()
+        msg.data = 'land'
+        self.drone_commands_pub.publish(msg)        
+        self.get_logger().info('Land command published to drone commands.')
+
+    # update the launch status of the drone
+    def update_launch_status(self, msg: String):
+        new_launch_status = msg.data
+        if new_launch_status not in ['launched', 'landed', 'launching', 'landing']:
+            self.get_logger().info("Invalid launch status received: " + str(new_launch_status))
+            return
+        self.drone_launch_status = new_launch_status        
+        self.get_logger().info(f"Launch status updated to: {self.drone_launch_status}")        
+    
+    # update the hovering status of the drone
+    def update_hovering_mode(self, msg: String):
+        new_hovering_mode = msg.data
+        if new_hovering_mode not in ['ongoing', 'completed']:
+            self.get_logger().info("Invalid hovering status received: " + str(new_hovering_mode))
+            return
+        self.hovering_status = new_hovering_mode        
+        self.get_logger().info(f"Hovering status updated to: {self.hovering_status}")        
 
     # Update the current mode of the drone
     def update_mode(self, msg: String):
@@ -138,13 +179,16 @@ class PathPlanner(Node):
                 if self.hovering_status == 'ongoing':
                     self.get_logger().info('Drone is hovering.')
                 elif self.hovering_status == 'completed':
-                    # publish to the drone commands to land the drone now
-                    msg = String()
-                    msg.data = str('land')
-                    self.drone_commands_pub.publish(msg)
+                    # means we can actually land now since we have completed the hovering mode
+                    # phase 5 means that we are ready to land 
+                    self.phase = 5
+                    
                 else:
                     self.get_logger('Invalid hovering status in hovering mode: ', str(self.hovering_status))
+            elif self.mode == 'manual':
+                self.get_logger().info('Drone in manual mode')                
             return
+            
         
         if phase == 0:
             self.get_logger().info("Setting up Phase 0: Move straight until yellow boundary reached")            
@@ -230,15 +274,18 @@ class PathPlanner(Node):
             self.get_logger().info(f'Target reached: {self.current_target}')
             self.target_index += 1
             if self.target_index >= len(self.target_list):
-                if self.phase < 4:
+                if self.phase < 5:
                     self.phase += 1
                     self.get_logger().info(f'Moving to Phase {self.phase}')
                     phase_msg = String()
                     phase_msg.data = str(self.phase)
                     self.phase_pub.publish(phase_msg)
                     self.configure_phase(self.phase)
+                # if phase is 5 means that we are ready to land
                 else:
-                    self.get_logger().info('Completed all phases.')
+                    self.get_logger().info('Completed all phases.')                                        
+                    # this is the ending point of the path planner
+                    self.land_drone()
                     self.main_timer_.cancel()                
                     return
             else:
