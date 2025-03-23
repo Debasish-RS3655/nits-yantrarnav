@@ -16,12 +16,11 @@ import math
 
 # Global variables to hold the latest images (in base64)
 latest_image_base64 = None          # From the ROS camera subscriber
-perpendicular_image_base64 = None   # From the new POST endpoint
+perpendicular_image_base64 = None   # From the perpendicular webcam publisher
 # Lock to ensure thread-safe access to global image variables
 lock = threading.Lock()
 
-# ROS2 BridgeServer node: subscribes to position topics, camera images, battery status, system ready status,
-# flat area points, and launch status.
+# ROS2 BridgeServer node: subscribes to various topics
 class BridgeServer(Node):
     def __init__(self):
         super().__init__('bridge_server_node')
@@ -63,9 +62,12 @@ class BridgeServer(Node):
         self.flat_area_points = []
         self.flat_area_gap_threshold = 0.5
 
-        # This array holds pairs of {coordinate, image} when current coordinate is near a flat area
+        # Array to hold {coordinate, image} pairs when near a flat area
         self.ml_check_area_array = []
         self.ml_predicted_area_pub = self.create_publisher(String, '/ml_predicted_area', 10)
+
+        # NEW: Subscriber for perpendicular webcam image (String message)
+        self.perpendicular_cam_sub = self.create_subscription(String, '/perpendicular_cam', self.perpendicular_cam_callback, 10)
 
         # Initialize CvBridge for image conversion
         self.bridge = CvBridge()
@@ -153,6 +155,13 @@ class BridgeServer(Node):
         else:
             self.get_logger().info("Received flat area point is not unique; ignoring.")
 
+    def perpendicular_cam_callback(self, msg: String):
+        global perpendicular_image_base64
+        # Simply update the global variable with the latest perpendicular webcam image
+        with lock:
+            perpendicular_image_base64 = msg.data
+        self.get_logger().info("Updated perpendicular webcam image.")
+
 # Set up the Flask app and endpoints
 app = Flask(__name__)
 CORS(app)
@@ -204,7 +213,7 @@ def set_mode():
     return jsonify({'mode': mode, 'status': 'published'}), 200
 
 # Endpoint: Return the latest camera image in base64
-@app.route('/depth_cam', methods=['GET'])
+@app.route('/depth_cam_rgb', methods=['GET'])
 def get_latest_image():
     global latest_image_base64
     with lock:
@@ -213,27 +222,15 @@ def get_latest_image():
         else:
             return jsonify({'error': 'No image received yet'}), 404
 
-# Endpoint: Receive a perpendicular camera image via POST (without saving)
-@app.route('/perpendicular_cam', methods=['POST'])
-def perpendicular_cam():
+# Modified Endpoint: Return the latest perpendicular webcam image as base64
+@app.route('/perpendicular_cam_rgb', methods=['GET'])
+def get_perpendicular_cam():
     global perpendicular_image_base64
-    data = request.get_json(force=True)
-    if 'image' not in data:
-        return jsonify({'error': 'No image provided'}), 400
-    image_b64 = data['image']
-    try:
-        im_bytes = base64.b64decode(image_b64)
-        np_arr = np.frombuffer(im_bytes, np.uint8)
-        img = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
-        if img is None:
-            raise ValueError("Decoded image is None")
-    except Exception as e:
-        print("Error decoding image:", e)
-        return jsonify({'error': 'Invalid image data'}), 400
     with lock:
-        perpendicular_image_base64 = image_b64
-    print("Perpendicular camera image received and stored in memory")
-    return jsonify({'status': 'success'}), 200
+        if perpendicular_image_base64 is not None:
+            return jsonify({'image': perpendicular_image_base64})
+        else:
+            return jsonify({'error': 'No perpendicular webcam image received yet'}), 404
 
 # Endpoint: Return battery status
 @app.route('/battery_status', methods=['GET'])
@@ -255,7 +252,7 @@ def system_ready():
         return jsonify({'error': 'BridgeServer node not available'}), 500
     return jsonify({'system_ready': bridge_server_node.system_ready_status})
 
-# New Endpoint: /ml_check_area
+# Endpoint: /ml_check_area (unchanged)
 @app.route('/ml_check_area', methods=['GET'])
 def ml_check_area():
     global bridge_server_node, perpendicular_image_base64
@@ -288,7 +285,7 @@ def ml_check_area():
     else:
         return jsonify({'error': 'No flat area nearby or no perpendicular image available'}), 404
 
-# Endpoint: /predicted_area
+# Endpoint: /predicted_area (unchanged)
 @app.route('/predicted_area', methods=['POST'])
 def predicted_area():
     global bridge_server_node
@@ -327,7 +324,7 @@ def predicted_area():
     else:
         return jsonify({'error': 'No matching entry found'}), 404
 
-# New Endpoint: /drone_status - returns the current phase and launch_land_status
+# Endpoint: /drone_status - returns current phase and launch_land_status
 @app.route('/drone_status', methods=['GET'])
 def drone_status():
     global bridge_server_node

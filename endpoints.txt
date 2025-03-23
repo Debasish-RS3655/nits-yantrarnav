@@ -1,0 +1,103 @@
+1. GET /current_position
+   - **Description:** Returns the current position of the robot.
+   - **Response:**
+     - Success (HTTP 200):
+       {
+         "x": 1.23,
+         "y": 4.56,
+         "z": 0.78
+       }
+     - Error (HTTP 500):
+       {
+         "error": "BridgeServer node not available"
+       }
+
+2. GET /target_position
+   - **Description:** Returns the current target position.
+   - **Response:** Same format as /current_position.
+
+3. POST /mode
+   - **Description:** Sets the operating mode of the robot.
+   - **Expected Request Body (JSON):**
+     {
+       "mode": "automatic"
+     }
+     (Allowed values: "automatic", "manual", "hover")
+   - **Response:**
+     - Success (HTTP 200):
+       {
+         "mode": "automatic",
+         "status": "published"
+       }
+     - Error (HTTP 400): Appropriate error message if missing or invalid mode.
+
+4. GET /depth_cam_rgb
+   - **Description:** Returns the latest camera image (from the ROS camera subscriber) as a base64 encoded string.
+   - **Response:**
+     - Success (HTTP 200):
+       {
+         "image": "base64_encoded_image_string"
+       }
+     - Error (HTTP 404):
+       {
+         "error": "No image received yet"
+       }
+
+5. GET /perpendicular_cam_rgb
+   - **Description:** Returns the latest perpendicular webcam image (subscribed from `/perpendicular_cam`) as a base64 encoded string.
+   - **Response:** Similar to /depth_cam_rgb.
+
+6. GET /battery_status
+   - **Description:** Returns battery status (percentage and voltage).
+   - **Response (HTTP 200):**
+       {
+         "percentage": 95.0,
+         "voltage": 12.34
+       }
+
+7. GET /system_ready
+   - **Description:** Returns the system ready status.
+   - **Response (HTTP 200):**
+       {
+         "system_ready": true
+       }
+
+8. GET /ml_check_area
+   - **Description:** Checks if the current robot coordinates are near any stored flat area point. If so and a perpendicular image is available, it returns an entry containing the current coordinates and image.
+   - **Response:**
+     - Success (HTTP 200):
+       {
+         "coordinate": {"x": 1.23, "y": 4.56, "z": 0.78},
+         "image": "base64_encoded_image_string"
+       }
+     - Error (HTTP 404):
+       {
+         "error": "No flat area nearby or no perpendicular image available"
+       }
+
+9. POST /predicted_area
+   - **Description:** Accepts a JSON body with predicted area details, publishes it to `/ml_predicted_area`, and removes the associated entry from internal storage.
+   - **Expected Request Body (JSON):**
+       {
+         "status": "success",
+         "class": "sandy_terrain",
+         "accuracy": "0.95",
+         "coordinate": "x=1.23 y=4.56 z=0.78"
+       }
+   - **Response:**
+     - Success (HTTP 200):
+       {
+         "status": "Entry removed and published"
+       }
+     - Error (HTTP 404):
+       {
+         "error": "No matching entry found"
+       }
+
+10. GET /drone_status
+    - **Description:** Returns the current phase and the drone's launch/land status.
+    - **Response (HTTP 200):**
+        {
+          "phase": 2,
+          "launch_land_status": "launched"
+        }

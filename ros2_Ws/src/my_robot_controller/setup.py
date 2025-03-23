@@ -36,7 +36,8 @@ setup(
             "launch_checker = my_robot_controller.launch_checker_topic:main",
             "coordinate = my_robot_controller.coordinate:main",
             "hover = my_robot_controller.coordinate:main",
-            "boundary_mapper = my_robot_controller.boundary_mapper:main"
+            "boundary_mapper = my_robot_controller.boundary_mapper:main",
+            "perpendicular_webcam = my_robot_controller.perpendicular_webcam:main"
             
             # "delayed_launch_node1 = my_robot_controller.demo.delayed_launch_node1:main",
             # "delayed_launch_node2 = my_robot_controller.demo.delayed_launch_node2:main",
