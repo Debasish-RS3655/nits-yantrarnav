@@ -12,7 +12,7 @@ from .variations.path_planner_running_latest import PathPlanner
 # this code subscribes to the mode topic and launches the automatic or manual nodes depending on that
 # in the latest version, this code does not create any difference though because the path planner is now modified to support for all three modes
 
-class ModeExecutor(Node):
+class ModeLauncher(Node):
     def __init__(self):
         super().__init__('mode_executor')
         self.system_status_sub = self.create_subscription(String, 'system_launch_status', self.update_launch, 10)
@@ -25,7 +25,7 @@ class ModeExecutor(Node):
         # list to hold currently ruunning nodes and their threads
         # each entry will be a tuple: (node_instance, thread, shutdown_event)
         self.running_nodes = []
-        self.get_logger().info(f"Initialized ModeExecutor in {self.mode} mode.")
+        self.get_logger().info(f"Initialized ModeLauncher in {self.mode} mode.")
 
     def update_launch(self, msg:Bool):
         if msg.data == True:
@@ -96,13 +96,13 @@ class ModeExecutor(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    mode_executor = ModeExecutor()
+    mode_executor = ModeLauncher()
     executor = rclpy.executors.MultiThreadedExecutor()
     executor.add_node(mode_executor)
     try:
         executor.spin()
     except KeyboardInterrupt:
-        mode_executor.get_logger().info("KeyboardInterrupt received. Shutting down ModeExecutor.")
+        mode_executor.get_logger().info("KeyboardInterrupt received. Shutting down ModeLauncher.")
     finally:
         executor.shutdown()
         mode_executor.shutdown_running_nodes()

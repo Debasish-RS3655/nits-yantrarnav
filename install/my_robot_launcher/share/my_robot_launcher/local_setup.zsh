@@ -1,0 +1,1 @@
+/mnt/f/NITS/ANAV/main/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.zsh

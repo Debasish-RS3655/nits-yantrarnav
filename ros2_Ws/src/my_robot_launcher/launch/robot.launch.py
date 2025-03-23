@@ -11,11 +11,6 @@ def generate_launch_description():
         sigkill_timeout='5'   # force kill if it does not exit within 5 seconds
     )
     
-    flat_area = Node(
-        package="my_robot_controller",
-        executable="flat_area"
-    )
-    
     path_mover = Node(
         package="my_robot_controller",
         executable="path_mover"
@@ -26,31 +21,36 @@ def generate_launch_description():
         executable="launch_checker"
     )
 
-    # in the latest version we launch the mode controller and the path planner and manual mode are set from there
-    path_planner = Node(
+    # dummy nodes for testing
+    flat_area = Node(
         package="my_robot_controller",
-        executable="mode_controller"
+        executable="flat_area_dummy"
     )
     
-    # # demo packages
-    # demo_launch_node1 = Node(
-    #     package="my_robot_controller",
-    #     executable="delayed_launch_node1"
-    # )
+    boundary_mapper = Node(
+        package="my_robot_controller",
+        executable="boundary_mapper_dummy"
+    )
     
-    # demo_launch_node2 = Node(
-    #     package="my_robot_controller",
-    #     executable="delayed_launch_node2"
-    # )    
+    odom = Node(
+        package="my_robot_controller",
+        executable="odom_dummy"        
+    )
+    
+    path_planner = Node(
+        package="my_robot_controller",
+        executable="path_planner"        
+    )
     
     ld.add_action(bridge_server)
-    ld.add_action(flat_area)
     ld.add_action(path_mover)
     ld.add_action(system_launch_checker)
     ld.add_action(path_planner)
+
+    ld.add_action(flat_area)    
+    ld.add_action(boundary_mapper)
+    ld.add_action(odom)
     
-    # ld.add_action(demo_launch_node1)
-    # ld.add_action(demo_launch_node2)
         
     return ld
 
