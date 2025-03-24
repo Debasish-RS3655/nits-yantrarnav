@@ -63,7 +63,7 @@ class LineFollowerNode(Node):
         """
         Process the frame to detect yellow tape and compute the following:
          - status_message: a string such as "Tape centered", "Error: Tape off center!" or "Corner reached!"
-         - command_message: a simple string command (e.g. "Forward Command")
+         - command_message: a simple string command (e.g. "Forward Command" or "No Command")
          - detailed_info: a string with computed details (centroid, deviation, angle)
         Returns a tuple: (status_message, command_message, detailed_info)
         """
@@ -87,12 +87,14 @@ class LineFollowerNode(Node):
 
         if not contours:
             status_message = "Error: No yellow tape detected"
+            command_message = "No Command"
         else:
             # Select the largest contour
             main_contour = max(contours, key=cv2.contourArea)
             area = cv2.contourArea(main_contour)
             if area < self.min_area:
                 status_message = "Error: Yellow tape too small"
+                command_message = "No Command"
             else:
                 # Calculate bounding box and centroid
                 x, y, w, h = cv2.boundingRect(main_contour)
@@ -171,7 +173,7 @@ class LineFollowerNode(Node):
             if "Corner reached!" in status_msg:
                 self.edge_count += 1
                 edge_msg = String()
-                edge_msg.data = "x=0.0 y=0.0 z=0.0"  # dummy coordinate; replace with actual if needed
+                edge_msg.data = "x=0.0 y=0.0 z=0.0"  # Dummy coordinate; replace with actual if needed.
                 self.edge_coordinates_pub.publish(edge_msg)
                 self.get_logger().info("Edge %d detected; published coordinates on /edge_coordinates.", self.edge_count)
                 # After the third edge, publish mapping as completed and immediately publish the fourth edge.
