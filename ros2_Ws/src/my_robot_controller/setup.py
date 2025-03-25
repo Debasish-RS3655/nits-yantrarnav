@@ -27,20 +27,21 @@ setup(
             # "path_planner_simulation_node = my_robot_controller.path_planner_simulation:main",
             
             # "path_planner_simulation_server_node = my_robot_controller.path_planner_simulation_server:main"            
+            
             "bridge_server = my_robot_controller.bridge_server:main",
             "path_mover = my_robot_controller.path_mover:main",
             "path_planner = my_robot_controller.path_planner:main",
             "path_manual = my_robot_controller.path_manual:main",
             "mode_controller = my_robot_controller.mode_controller:main",
-            "launch_checker = my_robot_controller.launch_checker_topic:main",
+            "launch_checker = my_robot_controller.launch_monitor:main",
             "coordinate = my_robot_controller.coordinate:main",
             "hover = my_robot_controller.coordinate:main",
-            "perpendicular_webcam = my_robot_controller.perpendicular_webcam:main"
+            "perpendicular_webcam = my_robot_controller.perpendicular_webcam:main",
 
             # replace with Shwetangshu and Mimansa's modules  
-            "flat_area_dummy = my_robot_controller.dummy.flat_area:main",
-            "boundary_mapper_dummy = my_robot_controller.dummy.boundary_mapper:main",
-            "odom_dummy = my_robot_controller.dummy.odom:main"
+            "flat_area = my_robot_controller.flat_area:main",
+            "boundary_mapper = my_robot_controller.boundary_mapper:main",
+            "odom = my_robot_controller.odom:main"
             
         ],
     },

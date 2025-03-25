@@ -19,28 +19,29 @@ def generate_launch_description():
     system_launch_checker = Node(
         package="my_robot_controller",
         executable="launch_checker"
+    )    
+        
+    path_planner = Node(
+        package="my_robot_controller",
+        executable="path_planner"        
     )
 
     # dummy nodes for testing
     flat_area = Node(
         package="my_robot_controller",
-        executable="flat_area_dummy"
+        executable="flat_area"
     )
     
     boundary_mapper = Node(
         package="my_robot_controller",
-        executable="boundary_mapper_dummy"
+        executable="boundary_mapper"
     )
     
     odom = Node(
         package="my_robot_controller",
-        executable="odom_dummy"        
+        executable="odom"        
     )
-    
-    path_planner = Node(
-        package="my_robot_controller",
-        executable="path_planner"        
-    )
+
     
     ld.add_action(bridge_server)
     ld.add_action(path_mover)

@@ -1,1 +1,0 @@
-/mnt/f/NITS/ANAV/main/build/my_robot_launcher/ament_cmake_core/my_robot_launcherConfig.cmake
