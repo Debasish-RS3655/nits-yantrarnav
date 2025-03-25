@@ -13,9 +13,9 @@ class DummyBoundaryMapper(Node):
         self.edge_pub = self.create_publisher(String, '/edge_coordinates', 10)
         
         # Create a one-shot timer to simulate Phase 0 completion after 5 seconds
-        self.yellow_timer = self.create_timer(5.0, self.publish_yellow_boundary)
+        self.yellow_timer = self.create_timer(5.0, self.publish_yellow_boundary_once)
         # Create a one-shot timer to simulate Phase 1 after 10 seconds (from startup)
-        self.edge_timer = self.create_timer(10.0, self.publish_edge_coordinates)
+        self.edge_timer = self.create_timer(10.0, self.publish_edge_coordinates_once)
         
         self.yellow_timer.cancel()  # Cancel immediately; we'll use a one-shot approach below
         self.edge_timer.cancel()
