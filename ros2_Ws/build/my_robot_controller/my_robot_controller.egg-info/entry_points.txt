@@ -1,5 +1,5 @@
 [console_scripts]
-boundary_mapper = my_robot_controller.boundary_mapper:main
+boundary_mapper = my_robot_controller.boundary_mapper_actualv1:main
 bridge_server = my_robot_controller.bridge_server:main
 coordinate = my_robot_controller.coordinate:main
 flat_area = my_robot_controller.flat_area:main
