@@ -4,6 +4,7 @@ setup.py
 my_robot_controller/__init__.py
 my_robot_controller/boundary_mapper.py
 my_robot_controller/boundary_mapper_actualv1.py
+my_robot_controller/boundary_mapper_actualv2.py
 my_robot_controller/bridge_server.py
 my_robot_controller/coordinate.py
 my_robot_controller/flat_area.py

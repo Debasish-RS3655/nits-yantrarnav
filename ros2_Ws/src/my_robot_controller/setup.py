@@ -42,7 +42,7 @@ setup(
             "flat_area = my_robot_controller.flat_area:main",
             # "boundary_mapper = my_robot_controller.boundary_mapper:main",
             "odom = my_robot_controller.odom:main",
-            "boundary_mapper = my_robot_controller.boundary_mapper_actualv1:main"
+            "boundary_mapper = my_robot_controller.boundary_mapper_actualv2:main"
             
         ],
     },
