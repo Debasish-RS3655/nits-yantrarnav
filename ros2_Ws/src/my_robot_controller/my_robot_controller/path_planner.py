@@ -9,7 +9,7 @@ import math
 
 class PathPlanner(Node):
     def __init__(self):
-        super().__init__('path_planner_server')
+        super().__init__('path_planner')
                                                             
         # Subscriber for the launch land status
         self.drone_launch_land_sub = self.create_subscription(

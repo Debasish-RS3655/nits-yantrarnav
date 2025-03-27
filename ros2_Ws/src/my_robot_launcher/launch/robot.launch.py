@@ -27,19 +27,24 @@ def generate_launch_description():
     )
 
     # dummy nodes for testing
-    flat_area = Node(
-        package="my_robot_controller",
-        executable="flat_area"
-    )
+    # flat_area = Node(
+    #     package="my_robot_controller",
+    #     executable="flat_area"
+    # )
     
-    boundary_mapper = Node(
-        package="my_robot_controller",
-        executable="boundary_mapper"
-    )
+    # boundary_mapper = Node(
+    #     package="my_robot_controller",
+    #     executable="boundary_mapper"
+    # )
     
-    odom = Node(
+    # odom = Node(
+    #     package="my_robot_controller",
+    #     executable="odom"        
+    # )
+
+    coordinate = Node(
         package="my_robot_controller",
-        executable="odom"        
+        executable="coordinate"
     )
 
     
@@ -47,10 +52,11 @@ def generate_launch_description():
     ld.add_action(path_mover)
     ld.add_action(system_launch_checker)
     ld.add_action(path_planner)
+    ld.add_action(coordinate)
 
-    ld.add_action(flat_area)    
-    ld.add_action(boundary_mapper)
-    ld.add_action(odom)
+    # ld.add_action(flat_area)    
+    # ld.add_action(boundary_mapper)
+    # ld.add_action(odom)
     
         
     return ld

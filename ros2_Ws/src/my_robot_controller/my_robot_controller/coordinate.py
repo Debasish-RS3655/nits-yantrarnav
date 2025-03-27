@@ -59,7 +59,7 @@ class CoordinatePublisher(Node):
                 self.x_origin = self.x_
                 self.y_origin = self.y_
                 self.z_origin = self.z_
-                origin_position_str = f"{self.x_origin}, {self.y_origin}, {self.z_origin}"
+                origin_position_str = f"x={self.x_origin} y={self.y_origin} z={self.z_origin}"
                 self.origin_pub.publish(String(data=origin_position_str))
                 self.get_logger().info(f"Origin set on launch transition: {origin_position_str}")
                 
@@ -73,9 +73,9 @@ class CoordinatePublisher(Node):
         self.z_ = msg.pose.pose.position.z
         
         # Publish the current position as a string.
-        current_position_str = f"{self.x_}, {self.y_}, {self.z_}"
+        current_position_str = f"x={self.x_} y={self.y_} z={self.z_}"
         self.current_pub.publish(String(data=current_position_str))
-        self.get_logger().info(f"Current position: {current_position_str}")
+        self.get_logger().info(f"Published Rtab coordinates: {current_position_str}")
         
         # Set the origin to the first received position if not already set AND if launch status is already "launched"
         # (in case the status transition happened before any odometry messages were received)
@@ -83,14 +83,14 @@ class CoordinatePublisher(Node):
             self.x_origin = self.x_
             self.y_origin = self.y_
             self.z_origin = self.z_
-            origin_position_str = f"{self.x_origin}, {self.y_origin}, {self.z_origin}"
+            origin_position_str = f"x={self.x_origin} y={self.y_origin} z={self.z_origin}"
             self.origin_pub.publish(String(data=origin_position_str))
             self.get_logger().info(f"Origin set on receiving odometry: {origin_position_str}")
 
     def publish_origin(self):
         # Publish the origin coordinates every 0.1 second if they have been set.
         if self.x_origin is not None:
-            origin_position_str = f"{self.x_origin}, {self.y_origin}, {self.z_origin}"
+            origin_position_str = f"x={self.x_origin} y={self.y_origin} z={self.z_origin}"
             self.origin_pub.publish(String(data=origin_position_str))
             self.get_logger().debug(f"Published origin: {origin_position_str}")
 

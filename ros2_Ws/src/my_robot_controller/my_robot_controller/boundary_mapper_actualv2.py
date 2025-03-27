@@ -133,9 +133,12 @@ class LineFollowerNode(Node):
     def timer_callback(self):
         # Get the current image from the server.
         frame = self.get_image_from_server()
-        if frame is None:
-            self.get_logger().error("No frame received, skipping iteration.")
-            return
+        if frame is not None:
+            self.get_logger().info("Received frame with shape: {} and dtype: {}".format(frame.shape, frame.dtype))
+            # Optionally, print a summary of the first few pixel values:
+            self.get_logger().info("Sample pixel data (top-left 5x5):\n{}".format(frame[:5, :5]))
+        else:
+            self.get_logger().error("No frame received!")
 
         status_msg, command_msg, details = self.process_image(frame)
         self.get_logger().info("[STATUS] " + status_msg)
