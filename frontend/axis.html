@@ -271,7 +271,7 @@
       }
       async function fetchCurrentPosition() {
         try {
-          const e = await fetch(currentUrl);
+          const e = await fetch(`http://192.168.137.163:5000/current_position`);
           if (!e.ok) throw new Error(`HTTP error: ${e.status}`);
           const t = await e.json();
           lastPosition = { x: position.x, y: position.y, z: position.z };

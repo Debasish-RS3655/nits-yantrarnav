@@ -10,12 +10,14 @@
         margin: 0;
         overflow: hidden;
       }
+
+   
     </style>
   </head>
 
   <body>
     <div class="flex">
-      <div class="flex flex-col gap-2 w-[26vw] bg-[#255F38]">
+      <div class="flex flex-col gap-2 w-[30vw] bg-[#255F38]">
         <div
           id="info"
           class="bg-[#253D2C] bg-opacity-100 text-white p-2.5 font-mono"
@@ -31,6 +33,31 @@
           <p class="text-[1.1rem] pt-[0.5rem]">
             Mode: <span id="mode-display">Automatic</span>
           </p>
+          
+<div class="status-box">
+    <p class="label">Drone Phase:<span id="drone-phase">Loading...</span></p>
+    
+</div>
+
+<div class="status-box">
+    <p class="label">Launch Status: <span id="launch-status">Loading...</span></p>
+  
+</div>
+
+<div class="status-box">
+    <p class="label">Battery Percentage:<span id="battery-percentage">Loading...</span></p>
+    
+</div>
+
+<div class="status-box">
+    <p class="label">Battery Voltage: <span id="battery-voltage">Loading...</span></p>
+   
+</div>
+
+<div class="status-box">
+    <p class="label">System Ready:<span id="system-ready">Loading...</span></p>
+    
+</div>
         </div>
         <div>
           <div
@@ -40,13 +67,13 @@
             <div id="coordinates" class="flex justify-center gap-4">
               <!-- X Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[6rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
               >
                 <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
                   X
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
-                  <p id="x-value" class="text-center font-tusker2 text-[3rem]">
+                  <p id="x-value" class="text-center font-tusker2 text-[1.87rem]">
                     0
                   </p>
                 </div>
@@ -54,13 +81,13 @@
 
               <!-- Y Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[6rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
               >
                 <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
                   Y
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
-                  <p id="y-value" class="text-center font-tusker2 text-[3rem]">
+                  <p id="y-value" class="text-center font-tusker2 text-[1.87rem]">
                     0
                   </p>
                 </div>
@@ -68,13 +95,13 @@
 
               <!-- Z Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[6rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
               >
                 <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
                   Z
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
-                  <p id="z-value" class="text-center font-tusker2 text-[3rem]">
+                  <p id="z-value" class="text-center font-tusker2 text-[1.87rem]">
                     0
                   </p>
                 </div>
@@ -88,13 +115,13 @@
             <div id="coordinates" class="flex justify-center gap-4">
               <!-- X Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[6rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
               >
                 <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
                   X
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
-                  <p id="x1-value" class="text-center font-tusker2 text-[3rem]">
+                  <p id="x1-value" class="text-center font-tusker2 text-[1.87rem]">
                     0
                   </p>
                 </div>
@@ -102,13 +129,13 @@
 
               <!-- Y Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[6rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
               >
                 <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
                   Y
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
-                  <p id="y1-value" class="text-center font-tusker2 text-[3rem]">
+                  <p id="y1-value" class="text-center font-tusker2 text-[1.87rem]">
                     0
                   </p>
                 </div>
@@ -116,13 +143,13 @@
 
               <!-- Z Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[6rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
               >
                 <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
                   Z
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
-                  <p id="z1-value" class="text-center font-tusker2 text-[3rem]">
+                  <p id="z1-value" class="text-center font-tusker2 text-[1.87rem]">
                     0
                   </p>
                 </div>
@@ -155,13 +182,13 @@
       <div>
         <!-- Camera Feed Section -->
         <div
-          class="flex-grow p-[0.5rem] border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
+          class="flex-grow p-[0.5rem] h-[400px] w-[400px] flex-col justify-center items-center border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
         >
           <p class="text-center pb-[0.5rem]">Live Camera Feed</p>
-          <div class="flex justify-center h-full">
+          <div class="flex justify-center justify-center items-center h-[500px] w-[500px] ">
             <img
               id="camera-feed"
-              class="border border-gray-500 w-full h-full object-contain"
+              class="border  border-gray-500 w-full h-full object-contain"
               alt="Camera Feed"
             />
           </div>
@@ -177,10 +204,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
+    
       async function fetchCameraFeed() {
         const imgElement = document.getElementById("camera-feed");
         try {
-          const response = await fetch("http://localhost:5000/depth_cam_rgb");
+          const response = await fetch("http://192.168.137.163:5000/depth_cam_rgb");
           if (response.ok) {
             const data = await response.json();
             imgElement.src = `data:image/jpeg;base64,${data.image}`;
@@ -196,6 +224,9 @@
           // On network or server error, a placeholder
           imgElement.src = "/896653.jpg";
           console.log("Script is running!");
+   
+          
+
 
           imgElement.alt = "No Camera Feed Available";
         }
@@ -203,6 +234,46 @@
 
       // Poll the camera feed every 100ms
       setInterval(fetchCameraFeed, 100);
+
+
+      async function fetchDroneStatus() {
+        try {
+            const response = await fetch('http://localhost:5000/drone_status');
+            const data = await response.json();
+            document.getElementById('drone-phase').innerText = data.phase;
+            document.getElementById('launch-status').innerText = data.launch_land_status;
+        } catch (error) {
+            console.error('Failed to fetch drone status:', error);
+        }
+    }
+
+    async function fetchBatteryStatus() {
+        try {
+            const response = await fetch('http://192.168.137.163:5000/battery_status');
+            const data = await response.json();
+            document.getElementById('battery-percentage').innerText = `${data.percentage.toFixed(1)}%`;
+            document.getElementById('battery-voltage').innerText = `${data.voltage.toFixed(2)}V`;
+        } catch (error) {
+            console.error('Failed to fetch battery status:', error);
+        }
+    }
+
+    async function fetchSystemReady() {
+        try {
+            const response = await fetch('http://localhost:5000/system_ready');
+            const data = await response.json();
+            document.getElementById('system-ready').innerText = data.system_ready ? 'Ready' : 'Not Ready';
+        } catch (error) {
+            console.error('Failed to fetch system ready status:', error);
+        }
+    }
+   
+    // Fetch status every 1 second
+    setInterval(() => {
+        fetchDroneStatus();
+        fetchBatteryStatus();
+        fetchSystemReady();
+    }, 100);
 
       const scene = new THREE.Scene();
       scene.background = new THREE.Color(18483);
@@ -288,6 +359,7 @@
       function resetOrientation() {
         (currentAxisConfig = 0), updateOrientation();
       }
+    
       function updateOrientation() {
         const e = axisConfigs[currentAxisConfig];
         (axesInfoElement.textContent = e.name),
@@ -390,7 +462,8 @@
               (mouseY = e.clientY);
           }
         });
-      const serverBaseUrl = "http://localhost:5000",
+  
+      const serverBaseUrl = "http://http://192.168.137.163:5000",
         currentUrl = `${serverBaseUrl}/current_position`,
         targetUrl = `${serverBaseUrl}/target_position`,
         modeUrl = `${serverBaseUrl}/mode`,
@@ -404,12 +477,13 @@
       }
 
       const xValueElement = document.getElementById("x-value");
+     
 const yValueElement = document.getElementById("y-value");
 const zValueElement = document.getElementById("z-value");
-
+yValueElement.textContent = -4000.57;
       async function fetchCurrentPosition() {
         try {
-          const e = await fetch(currentUrl);
+          const e = await fetch(`http://192.168.137.163:5000/current_position`);
           if (!e.ok) throw new Error(`HTTP error: ${e.status}`);
           const t = await e.json();
           const { x, y, z } = transformCoordinates(t.x, t.y, t.z);
@@ -422,10 +496,11 @@ const zValueElement = document.getElementById("z-value");
             (position.x = s.x),
             (position.y = s.y),
             (position.z = s.z);
-            positionElement.textContent = `x=${x.toFixed(2)} y=${y.toFixed(2)} z=${z.toFixed(2)}`;
-        xValueElement.textContent = x.toFixed(2);
-        yValueElement.textContent = y.toFixed(2);
-        zValueElement.textContent = z.toFixed(2);
+         //   positionElement.textContent = `x=${x.toFixed(2)} y=${y.toFixed(2)} z=${z.toFixed(2)}`;
+        xValueElement.textContent = (x*100).toFixed(2);
+        yValueElement.textContent = (y*100).toFixed(2);
+        zValueElement.textContent = (z*100).toFixed(2);
+        console.log(xValueElement);
     statusElement.textContent = "Connected";
     statusElement.style.color = "#00ff00";
           const a = Math.sqrt(
@@ -447,14 +522,16 @@ const zValueElement = document.getElementById("z-value");
             (statusElement.style.color = "#ff0000");
         }
       }
-
       const x1ValueElement = document.getElementById("x1-value");
+   
+     
 const y1ValueElement = document.getElementById("y1-value");
 const z1ValueElement = document.getElementById("z1-value");
 
 
       async function fetchTargetPosition() {
         try {
+            
           const e = await fetch(targetUrl);
           if (!e.ok) throw new Error(`HTTP error: ${e.status}`);
           const t = await e.json(),
@@ -465,8 +542,9 @@ const z1ValueElement = document.getElementById("z1-value");
             const { x1, y1, z1 } = transformCoordinates(t.x, t.y, t.z);
 
     // Update the display
-    targetElement.textContent = `x=${x.toFixed(2)} y=${y.toFixed(2)} z=${z.toFixed(2)}`;
+   // targetElement.textContent = `x=${x.toFixed(2)} y=${y.toFixed(2)} z=${z.toFixed(2)}`;
     x1ValueElement.textContent = x.toFixed(2);
+    console.log("print");
     y1ValueElement.textContent = y.toFixed(2);
     z1ValueElement.textContent = z.toFixed(2);
           
