@@ -69,6 +69,10 @@ class BridgeServer(Node):
         # NEW: Subscriber for perpendicular webcam image (String message)
         self.perpendicular_cam_sub = self.create_subscription(String, '/perpendicular_cam', self.perpendicular_cam_callback, 10)
 
+        # NEW: Subscriber for current height (String message published by the range_to_height node)
+        self.height_sub = self.create_subscription(String, '/current_height', self.update_current_height, 10)
+        self.current_height = None
+
         # Initialize CvBridge for image conversion
         self.bridge = CvBridge()
         
@@ -120,6 +124,14 @@ class BridgeServer(Node):
             return
         self.drone_launch_status = new_status        
         self.get_logger().info(f"Launch status updated to: {self.drone_launch_status}")
+
+    def update_current_height(self, msg: String):
+        try:
+            # Convert height string to a float value
+            self.current_height = float(msg.data)
+            self.get_logger().info(f"Updated current height: {self.current_height}")
+        except Exception as e:
+            self.get_logger().error("Failed to parse current height: " + str(e))
 
     def camera_callback(self, msg: Image):
         global latest_image_base64
@@ -231,6 +243,16 @@ def get_perpendicular_cam():
             return jsonify({'image': perpendicular_image_base64})
         else:
             return jsonify({'error': 'No perpendicular webcam image received yet'}), 404
+
+# New Endpoint: Return the current height from the rangefinder
+@app.route('/current_height', methods=['GET'])
+def current_height_endpoint():
+    global bridge_server_node
+    if bridge_server_node is None:
+        return jsonify({'error': 'BridgeServer node not available'}), 500
+    if bridge_server_node.current_height is None:
+        return jsonify({'error': 'Current height not available'}), 404
+    return jsonify({'current_height': bridge_server_node.current_height})
 
 # Endpoint: Return battery status
 @app.route('/battery_status', methods=['GET'])
