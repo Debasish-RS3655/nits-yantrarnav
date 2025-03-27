@@ -49,6 +49,25 @@ class HoverController(Node):
             self.hover_pub.publish(String(data="ongoing"))
             self.hover_active = True
 
+    # def update_pos(self, msg: String):
+    #     """Update the current position from the 'position/current' topic.
+    #     Expected format: "x=<value> y=<value> z=<value>"."""
+    #     try:      
+    #         parts = msg.data.split()
+    #         for part in parts:
+    #             key, value = part.split('=')
+    #             value = float(value)
+    #             if key == 'x':
+    #                 self.x_ = value
+    #             elif key == 'y':
+    #                 self.y_ = value
+    #             elif key == 'z':
+    #                 self.z_ = value
+    #         self.get_logger().info(f'Updated position: x={self.x_}, y={self.y_}, z={self.z_}')
+    #     except Exception as e:
+    #         self.get_logger().error('Failed to parse current position: ' + str(e))
+
+
     def current_callback(self, msg):
         try:
             # Parse current position message
