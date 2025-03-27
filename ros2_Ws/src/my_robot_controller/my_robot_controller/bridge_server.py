@@ -125,7 +125,7 @@ class BridgeServer(Node):
         global latest_image_base64
         try:
             cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
-            cv_image = cv2.resize(cv_image, (256, 256))
+            cv_image = cv2.resize(cv_image, (512, 512))
             ret, buffer = cv2.imencode('.jpg', cv_image)
             if ret:
                 jpg_as_text = base64.b64encode(buffer).decode('utf-8')

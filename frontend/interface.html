@@ -423,8 +423,8 @@ const zValueElement = document.getElementById("z-value");
             (position.y = s.y),
             (position.z = s.z);
             positionElement.textContent = `x=${x.toFixed(2)} y=${y.toFixed(2)} z=${z.toFixed(2)}`;
-        xValueElement.textContent = x.toFixed(2);
-        yValueElement.textContent = y.toFixed(2);
+        xValueElement.textContent = t.x.toFixed(5);
+        yValueElement.textContent = t.y;
         zValueElement.textContent = z.toFixed(2);
     statusElement.textContent = "Connected";
     statusElement.style.color = "#00ff00";

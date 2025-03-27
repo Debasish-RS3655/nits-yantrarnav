@@ -9,6 +9,7 @@ my_robot_controller/boundary_mapper_test1.py
 my_robot_controller/bridge_server.py
 my_robot_controller/coordinate.py
 my_robot_controller/flat_area.py
+my_robot_controller/height.py
 my_robot_controller/hover.py
 my_robot_controller/launch_monitor.py
 my_robot_controller/mode_launcher.py

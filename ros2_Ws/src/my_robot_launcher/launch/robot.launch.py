@@ -26,6 +26,11 @@ def generate_launch_description():
         executable="path_planner"        
     )
 
+    height_publisher = Node(
+        package="my_robot_controller",
+        executable="height_publisher"
+    )
+
     # dummy nodes for testing
     # flat_area = Node(
     #     package="my_robot_controller",
@@ -53,6 +58,8 @@ def generate_launch_description():
     ld.add_action(system_launch_checker)
     ld.add_action(path_planner)
     ld.add_action(coordinate)
+
+    ld.add_action(height_publisher)
 
     # ld.add_action(flat_area)    
     # ld.add_action(boundary_mapper)
