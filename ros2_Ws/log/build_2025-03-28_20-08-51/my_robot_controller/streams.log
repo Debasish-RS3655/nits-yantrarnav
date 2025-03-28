@@ -1,0 +1,30 @@
+[3.945s] Invoking command in '/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller': PYTHONPATH=/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build --no-deps symlink_data
+[4.622s] /home/nits/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[4.622s]   warnings.warn(msg)
+[5.131s] running develop
+[5.826s] running egg_info
+[5.873s] writing my_robot_controller.egg-info/PKG-INFO
+[5.880s] writing dependency_links to my_robot_controller.egg-info/dependency_links.txt
+[5.883s] writing entry points to my_robot_controller.egg-info/entry_points.txt
+[5.885s] writing requirements to my_robot_controller.egg-info/requires.txt
+[5.886s] writing top-level names to my_robot_controller.egg-info/top_level.txt
+[5.988s] reading manifest file 'my_robot_controller.egg-info/SOURCES.txt'
+[5.992s] writing manifest file 'my_robot_controller.egg-info/SOURCES.txt'
+[6.183s] running build_ext
+[6.186s] Creating /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages/my-robot-controller.egg-link (link to .)
+[6.189s] Installing boundary_mapper script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[6.189s] Installing bridge_server script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[6.198s] Installing coordinate script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[6.198s] Installing flat_area script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[6.199s] Installing height_publisher script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[6.199s] Installing hover script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[6.199s] Installing launch_checker script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[6.199s] Installing mode_controller script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[6.199s] Installing odom script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[6.199s] Installing path_manual script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[6.200s] Installing path_planner script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[6.200s] Installing perpendicular_webcam script to /home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/my_robot_controller
+[6.200s] 
+[6.201s] Installed /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller
+[6.201s] running symlink_data
+[6.373s] Invoked command in '/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller' returned '0': PYTHONPATH=/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller/build --no-deps symlink_data

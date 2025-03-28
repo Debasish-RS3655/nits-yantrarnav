@@ -236,7 +236,7 @@
         // Server URLs
         const serverBaseUrl = 'http://localhost:5000';
         const currentUrl = `${serverBaseUrl}/current`;
-        const targetUrl = `${serverBaseUrl}/target`;
+        // const "http://localhost:5000/target_position" = `${serverBaseUrl}/target`;
         
         // UI elements
         const statusElement = document.getElementById('status');
@@ -255,7 +255,7 @@
         // Fetch current position from server
         async function fetchCurrentPosition() {
             try {
-                const response = await fetch(currentUrl);
+                const response = await fetch("http://localhost:5000/current_position");
                 if (!response.ok) {
                     throw new Error(`HTTP error: ${response.status}`);
                 }
@@ -265,9 +265,9 @@
                 lastPosition = { x: position.x, y: position.y, z: position.z };
                 
                 // Get raw position data
-                const rawX = data.x;
-                const rawY = data.y;
-                const rawZ = data.z;
+                const rawX = data.x*100;
+                const rawY = data.y*100;
+                const rawZ = -data.z*100;
                 
                 // Transform coordinates based on current axis configuration
                 const transformed = transformCoordinates(rawX, rawY, rawZ);
@@ -317,7 +317,7 @@
         // Fetch target position from server
         async function fetchTargetPosition() {
             try {
-                const response = await fetch(targetUrl);
+                const response = await fetch("http://localhost:5000/target_position");
                 if (!response.ok) {
                     throw new Error(`HTTP error: ${response.status}`);
                 }

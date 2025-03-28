@@ -11,10 +11,10 @@ def generate_launch_description():
         sigkill_timeout='5'   # force kill if it does not exit within 5 seconds
     )
     
-    path_mover = Node(
-        package="my_robot_controller",
-        executable="path_mover"
-    )        
+    # path_mover = Node(
+    #     package="my_robot_controller",
+    #     executable="path_mover"
+    # )        
 
     system_launch_checker = Node(
         package="my_robot_controller",
@@ -54,7 +54,7 @@ def generate_launch_description():
 
     
     ld.add_action(bridge_server)
-    ld.add_action(path_mover)
+    # ld.add_action(path_mover)
     ld.add_action(system_launch_checker)
     ld.add_action(path_planner)
     ld.add_action(coordinate)
