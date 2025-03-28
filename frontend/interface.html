@@ -12,16 +12,14 @@
       }
     </style>
   </head>
-
   <body>
     <div class="flex">
-      <div class="flex flex-col gap-2 w-[26vw] bg-[#255F38]">
+      <div class="flex flex-col gap-2 w-[37vw] h-[100vh] bg-[#255F38]">
         <div
           id="info"
           class="bg-[#253D2C] bg-opacity-100 text-white p-2.5 font-mono"
         >
           <h3 class="text-[1.5rem] text-center">Co-Ordinates And Control</h3>
-
           <p class="text-[1.1rem] pt-[1rem]">
             Connection Status: <span id="status">Connecting...</span>
           </p>
@@ -31,6 +29,37 @@
           <p class="text-[1.1rem] pt-[0.5rem]">
             Mode: <span id="mode-display">Automatic</span>
           </p>
+          <div class="status-box">
+            <p class="label">
+              Drone Phase:<span id="drone-phase">Loading...</span>
+            </p>
+          </div>
+          <div class="status-box">
+            <p class="label">
+              Launch Status: <span id="launch-status">Loading...</span>
+            </p>
+          </div>
+          <div class="status-box">
+            <p class="label">
+              Drone Height: <span id="drone-height">Loading...</span>
+            </p>
+            <div id="error" class="error"></div>
+          </div>
+          <div class="status-box">
+            <p class="label">
+              Battery Percentage:<span id="battery-percentage">Loading...</span>
+            </p>
+          </div>
+          <div class="status-box">
+            <p class="label">
+              Battery Voltage: <span id="battery-voltage">Loading...</span>
+            </p>
+          </div>
+          <div class="status-box">
+            <p class="label">
+              System Ready:<span id="system-ready">Loading...</span>
+            </p>
+          </div>
         </div>
         <div>
           <div
@@ -40,41 +69,48 @@
             <div id="coordinates" class="flex justify-center gap-4">
               <!-- X Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[6rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
               >
                 <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
                   X
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
-                  <p id="x-value" class="text-center font-tusker2 text-[3rem]">
+                  <p
+                    id="x-value"
+                    class="text-center font-tusker2 text-[1.87rem]"
+                  >
                     0
                   </p>
                 </div>
               </div>
-
               <!-- Y Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[6rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
               >
                 <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
                   Y
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
-                  <p id="y-value" class="text-center font-tusker2 text-[3rem]">
+                  <p
+                    id="y-value"
+                    class="text-center font-tusker2 text-[1.87rem]"
+                  >
                     0
                   </p>
                 </div>
               </div>
-
               <!-- Z Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[6rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
               >
                 <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
                   Z
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
-                  <p id="z-value" class="text-center font-tusker2 text-[3rem]">
+                  <p
+                    id="z-value"
+                    class="text-center font-tusker2 text-[1.87rem]"
+                  >
                     0
                   </p>
                 </div>
@@ -88,41 +124,48 @@
             <div id="coordinates" class="flex justify-center gap-4">
               <!-- X Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[6rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
               >
                 <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
                   X
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
-                  <p id="x1-value" class="text-center font-tusker2 text-[3rem]">
+                  <p
+                    id="x1-value"
+                    class="text-center font-tusker2 text-[1.87rem]"
+                  >
                     0
                   </p>
                 </div>
               </div>
-
               <!-- Y Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[6rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
               >
                 <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
                   Y
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
-                  <p id="y1-value" class="text-center font-tusker2 text-[3rem]">
+                  <p
+                    id="y1-value"
+                    class="text-center font-tusker2 text-[1.87rem]"
+                  >
                     0
                   </p>
                 </div>
               </div>
-
               <!-- Z Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[6rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
               >
                 <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
                   Z
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
-                  <p id="z1-value" class="text-center font-tusker2 text-[3rem]">
+                  <p
+                    id="z1-value"
+                    class="text-center font-tusker2 text-[1.87rem]"
+                  >
                     0
                   </p>
                 </div>
@@ -130,7 +173,35 @@
             </div>
           </div>
         </div>
-
+      </div>
+      <div class="flex flex-col bg-[#000000]">
+        <div class="flex justify-evenly">
+          <!-- Camera Feed Section -->
+          <div
+            class="flex-grow flex p-[0.5rem] h-[450px] w-[450px] flex-col justify-center items-center border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
+          >
+            <p class="text-center pb-[0.5rem]">Depth Camera Feed</p>
+            <div class="flex justify-center items-center h-[400px] w-[400px]">
+              <img
+                id="camera-feed"
+                class="border border-gray-500 w-full h-full object-contain"
+                alt="Camera Feed"
+              />
+            </div>
+          </div>
+          <div
+            class="flex-grow p-[0.5rem] flex h-[450px] w-[450px] flex-col justify-center items-center border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
+          >
+            <p class="text-center pb-[0.5rem]">Perpendicular Camera Feed</p>
+            <div class="flex justify-center items-center h-[400px] w-[400px]">
+              <img
+                id="camera-feed1"
+                class="border border-gray-500 w-full h-full object-contain"
+                alt="Camera Feed"
+              />
+            </div>
+          </div>
+        </div>
         <div id="controls" class="pl-[0.5rem] pr-[0.5rem] flex gap-2.5">
           <button
             id="rotate-axes"
@@ -146,41 +217,126 @@
           </button>
           <button
             id="toggle-mode"
+            class="bg-black hidden bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
+          >
+            <a href="./axis.html" target="_blank"> Axis</a>
+          </button>
+          <button
+            id="toggle-mode"
             class="bg-black bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
           >
-            Mode: Automatic
+            <a href="./axis.html" target="_blank"> Axis</a>
           </button>
         </div>
-      </div>
-      <div>
-        <!-- Camera Feed Section -->
         <div
-          class="flex-grow p-[0.5rem] border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
+          class="border m-[1rem] border-green-500 p-4 rounded-lg bg-white shadow"
         >
-          <p class="text-center pb-[0.5rem]">Live Camera Feed</p>
-          <div class="flex justify-center h-full">
-            <img
-              id="camera-feed"
-              class="border border-gray-500 w-full h-full object-contain"
-              alt="Camera Feed"
-            />
+          <div class="font-semibold text-gray-600 mb-2">Set Mode:</div>
+          <div class="flex gap-2">
+            <button
+              onclick="setMode('automatic')"
+              class="px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition"
+            >
+              Automatic
+            </button>
+            <button
+              onclick="setMode('manual')"
+              class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition"
+            >
+              Manual
+            </button>
+            <button
+              onclick="setMode('hover')"
+              class="px-4 py-2 bg-yellow-500 text-white rounded-lg shadow hover:bg-yellow-600 transition"
+            >
+              Hover
+            </button>
           </div>
         </div>
+        <a href="./axis.html" target="_blank">
+          <div
+            class="relative w-[15.2rem] h-[15.2rem] bg-[#000000] top-[-15rem] right-[-74rem] axis border border-black"
+          ></div>
+        </a>
       </div>
-    </div> 
-    <a href="./axis.html" target="_blank">
-      <div class="relative w-[15.2rem] h-[15.2rem] bg-[#000000] top-[-15rem] right-[-74rem] axis border border-black">
-      </div>
-    </a>
-    
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
+      let currentMode = null;
+      async function fetchCurrentMode() {
+        try {
+          const response = await fetch("http://192.168.137.163:5000/mode");
+          if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+          const data = await response.json();
+          currentMode = data.mode;
+          updateModeUI(currentMode);
+        } catch (error) {
+          console.error("Error fetching current mode:", error);
+          document.getElementById("mode-display").innerText =
+            "Error fetching mode";
+        }
+      }
+
+      async function setMode(mode) {
+        try {
+          const response = await fetch("http://192.168.137.163:5000/mode", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ mode: mode }),
+          });
+          const data = await response.json();
+          if (data.status === "published") {
+            alert(`Mode set to ${data.mode}`);
+            currentMode = data.mode;
+            updateModeUI(currentMode);
+            console.log(`Mode set to: ${currentMode}`);
+          } else {
+            alert(`Failed to set mode to ${mode}`);
+          }
+        } catch (error) {
+          console.error(`Failed to set mode to ${mode}:`, error);
+          alert(`Error setting mode to ${mode}`);
+        }
+      }
+
+      function updateModeUI(mode) {
+        const modeDisplay = document.getElementById("mode-display");
+        modeDisplay.innerText = `Mode: ${
+          mode.charAt(0).toUpperCase() + mode.slice(1)
+        }`;
+      }
+
+      async function fetchHeight() {
+        const heightElement = document.getElementById("drone-height");
+        const errorElement = document.getElementById("error");
+
+        try {
+          const response = await fetch(
+            "http://192.168.137.163:5000/current_height"
+          );
+          const data = await response.json();
+
+          if (response.ok) {
+            heightElement.textContent = `${data.current_height.toFixed(2)} m`;
+            errorElement.textContent = "";
+          } else {
+            heightElement.textContent = "--";
+            errorElement.textContent = data.error || "Failed to fetch data";
+          }
+        } catch (error) {
+          heightElement.textContent = "--";
+          errorElement.textContent = "Error connecting to server";
+        }
+      }
+
       async function fetchCameraFeed() {
         const imgElement = document.getElementById("camera-feed");
         try {
-          const response = await fetch("http://localhost:5000/depth_cam_rgb");
+          const response = await fetch(
+            "http://192.168.137.163:5000/depth_cam_rgb"
+          );
           if (response.ok) {
             const data = await response.json();
             imgElement.src = `data:image/jpeg;base64,${data.image}`;
@@ -196,13 +352,102 @@
           // On network or server error, a placeholder
           imgElement.src = "/896653.jpg";
           console.log("Script is running!");
-
           imgElement.alt = "No Camera Feed Available";
         }
       }
 
-      // Poll the camera feed every 100ms
-      setInterval(fetchCameraFeed, 100);
+      async function fetchCameraFeed1() {
+        const imgElement = document.getElementById("camera-feed1");
+        try {
+          const response = await fetch(
+            "http://192.168.137.163:5000/perpendicular_cam_rgb"
+          );
+          if (response.ok) {
+            const data = await response.json();
+            imgElement.src = `data:image/jpeg;base64,${data.image}`;
+            imgElement.alt = "Live Camera Feed";
+          } else {
+            // If no feed is available, placeholder
+            imgElement.src = "./896653.jpg";
+
+            imgElement.alt = "No Camera Feed Available";
+          }
+        } catch (error) {
+          console.error("Failed to fetch camera feed:", error);
+          // On network or server error, a placeholder
+          imgElement.src = "/896653.jpg";
+          console.log("Script is running!");
+          imgElement.alt = "No Camera Feed Available";
+        }
+      }
+
+      async function fetchDroneStatus() {
+        try {
+          const response = await fetch(
+            "http://192.168.137.163:5000/drone_status"
+          );
+          const data = await response.json();
+          document.getElementById("drone-phase").innerText = data.phase;
+          document.getElementById("launch-status").innerText =
+            data.launch_land_status;
+        } catch (error) {
+          console.error("Failed to fetch drone status:", error);
+        }
+      }
+
+      async function fetchBatteryStatus() {
+        try {
+          const response = await fetch(
+            "http://192.168.137.163:5000/battery_status"
+          );
+          const data = await response.json();
+          document.getElementById(
+            "battery-percentage"
+          ).innerText = `${data.percentage.toFixed(1)}%`;
+          document.getElementById(
+            "battery-voltage"
+          ).innerText = `${data.voltage.toFixed(2)}V`;
+        } catch (error) {
+          console.error("Failed to fetch battery status:", error);
+        }
+      }
+
+      async function fetchSystemReady() {
+        try {
+          const response = await fetch(
+            "http://192.168.137.163:5000/system_ready"
+          );
+          const data = await response.json();
+          document.getElementById("system-ready").innerText = data.system_ready
+            ? "Ready"
+            : "Not Ready";
+        } catch (error) {
+          console.error("Failed to fetch system ready status:", error);
+        }
+      }
+
+      // Fetch status
+   
+      function initialize() {
+        fetchHeight();
+        fetchCurrentMode();
+        fetchDroneStatus();
+        fetchBatteryStatus();
+        fetchSystemReady();
+        fetchCameraFeed();
+        fetchCameraFeed1();
+
+        setInterval(fetchHeight, 500);
+        setInterval(fetchCurrentMode, 1000);
+        setInterval(fetchDroneStatus, 500);
+        setInterval(fetchBatteryStatus, 1000);
+        setInterval(fetchSystemReady, 500);
+        setInterval(fetchCameraFeed, 200);
+        setInterval(fetchCameraFeed1, 200);
+        
+      }
+
+      initialize();
 
       const scene = new THREE.Scene();
       scene.background = new THREE.Color(18483);
@@ -217,7 +462,7 @@
       camera.position.z = 100;
       camera.lookAt(0, 0, 0);
       const renderer = new THREE.WebGLRenderer({ antialias: !0 });
-      renderer.setSize(240,240);
+      renderer.setSize(240, 240);
       document.querySelector(".axis").appendChild(renderer.domElement);
       let gridHelper = new THREE.GridHelper(100, 10, 6710886, 4473924);
       gridHelper.rotation.x = Math.PI / 2;
@@ -275,7 +520,7 @@
           transform: (e, t, n) => ({ x: n, y: t, z: e }),
         },
       ];
-      let currentMode = "automatic";
+      // let currentMode = "automatic";
       const axesInfoElement = document.getElementById("axes-info"),
         rotateAxesButton = document.getElementById("rotate-axes"),
         resetOrientationButton = document.getElementById("reset-orientation"),
@@ -288,6 +533,7 @@
       function resetOrientation() {
         (currentAxisConfig = 0), updateOrientation();
       }
+
       function updateOrientation() {
         const e = axisConfigs[currentAxisConfig];
         (axesInfoElement.textContent = e.name),
@@ -331,36 +577,16 @@
               ),
           camera.lookAt(0, 0, 0);
       }
-      async function toggleMode() {
-        const e = "automatic" === currentMode ? "manual" : "automatic";
-        try {
-          const t = await fetch("http://127.0.0.1:5000/mode", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ mode: e }),
-          });
-          if (!t.ok) throw new Error(`HTTP error: ${t.status}`);
-          const n = await t.json();
-          "published" === n.status &&
-            ((currentMode = n.mode),
-            (toggleModeButton.textContent = `Mode: ${
-              currentMode.charAt(0).toUpperCase() + currentMode.slice(1)
-            }`),
-            (modeDisplayElement.textContent = currentMode),
-            console.log(`Mode changed to: ${currentMode}`));
-        } catch (t) {
-          console.error("Error changing mode:", t),
-            alert(`Failed to change mode: ${t.message}`);
-        }
-      }
+
       rotateAxesButton.addEventListener("click", rotateAxes),
         resetOrientationButton.addEventListener("click", resetOrientation),
-        toggleModeButton.addEventListener("click", toggleMode),
+        // toggleModeButton.addEventListener("click", toggleMode),
         window.addEventListener("resize", () => {
           (camera.aspect = window.innerWidth / window.innerHeight),
             camera.updateProjectionMatrix(),
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
+      console.log("get");
       let mouseDown = !1,
         mouseX = 0,
         mouseY = 0;
@@ -390,7 +616,8 @@
               (mouseY = e.clientY);
           }
         });
-      const serverBaseUrl = "http://localhost:5000",
+
+      const serverBaseUrl = "http://http://192.168.137.163:5000",
         currentUrl = `${serverBaseUrl}/current_position`,
         targetUrl = `${serverBaseUrl}/target_position`,
         modeUrl = `${serverBaseUrl}/mode`,
@@ -404,30 +631,30 @@
       }
 
       const xValueElement = document.getElementById("x-value");
-const yValueElement = document.getElementById("y-value");
-const zValueElement = document.getElementById("z-value");
+
+      const yValueElement = document.getElementById("y-value");
+      const zValueElement = document.getElementById("z-value");
 
       async function fetchCurrentPosition() {
         try {
-          const e = await fetch(currentUrl);
+          const e = await fetch(`http://192.168.137.163:5000/current_position`);
           if (!e.ok) throw new Error(`HTTP error: ${e.status}`);
           const t = await e.json();
           const { x, y, z } = transformCoordinates(t.x, t.y, t.z);
-          
+
           lastPosition = { x: position.x, y: position.y, z: position.z };
           const n = t.x,
             i = t.y,
             o = t.z,
             s = transformCoordinates(n, i, o);
-            (position.x = s.x),
-            (position.y = s.y),
-            (position.z = s.z);
-            positionElement.textContent = `x=${x.toFixed(2)} y=${y.toFixed(2)} z=${z.toFixed(2)}`;
-        xValueElement.textContent = t.x.toFixed(5);
-        yValueElement.textContent = t.y;
-        zValueElement.textContent = z.toFixed(2);
-    statusElement.textContent = "Connected";
-    statusElement.style.color = "#00ff00";
+          (position.x = s.x), (position.y = s.y), (position.z = s.z);
+          //   positionElement.textContent = `x=${x.toFixed(2)} y=${y.toFixed(2)} z=${z.toFixed(2)}`;
+          xValueElement.textContent = (x * 100).toFixed(2);
+          yValueElement.textContent = (y * 100).toFixed(2);
+          zValueElement.textContent = (z * 100).toFixed(2);
+          console.log(xValueElement);
+          statusElement.textContent = "Connected";
+          statusElement.style.color = "#00ff00";
           const a = Math.sqrt(
             Math.pow(position.x - lastPosition.x, 2) +
               Math.pow(position.y - lastPosition.y, 2) +
@@ -444,14 +671,13 @@ const zValueElement = document.getElementById("z-value");
         } catch (e) {
           console.error("Error fetching current position:", e),
             (statusElement.textContent = "Connection Error"),
-            (statusElement.style.color = "#ff0000");
+            console.log("get")((statusElement.style.color = "#ff0000"));
         }
       }
-
       const x1ValueElement = document.getElementById("x1-value");
-const y1ValueElement = document.getElementById("y1-value");
-const z1ValueElement = document.getElementById("z1-value");
 
+      const y1ValueElement = document.getElementById("y1-value");
+      const z1ValueElement = document.getElementById("z1-value");
 
       async function fetchTargetPosition() {
         try {
@@ -462,15 +688,16 @@ const z1ValueElement = document.getElementById("z1-value");
             i = t.y,
             o = t.z,
             s = transformCoordinates(n, i, o);
-            const { x1, y1, z1 } = transformCoordinates(t.x, t.y, t.z);
+          const { x1, y1, z1 } = transformCoordinates(t.x, t.y, t.z);
 
-    // Update the display
-    targetElement.textContent = `x=${x.toFixed(2)} y=${y.toFixed(2)} z=${z.toFixed(2)}`;
-    x1ValueElement.textContent = x.toFixed(2);
-    y1ValueElement.textContent = y.toFixed(2);
-    z1ValueElement.textContent = z.toFixed(2);
-          
-            updateTargetLine();
+          // Update the display
+          // targetElement.textContent = `x=${x.toFixed(2)} y=${y.toFixed(2)} z=${z.toFixed(2)}`;
+          x1ValueElement.textContent = x.toFixed(2);
+          console.log("print");
+          y1ValueElement.textContent = y.toFixed(2);
+          z1ValueElement.textContent = z.toFixed(2);
+
+          updateTargetLine();
         } catch (e) {
           console.error("Error fetching target position:", e);
         }
@@ -484,21 +711,6 @@ const z1ValueElement = document.getElementById("z1-value");
         lineGeometry.setFromPoints(e);
       }
 
-      async function fetchCurrentMode() {
-        try {
-          const e = await fetch(modeUrl);
-          if (!e.ok) throw new Error(`HTTP error: ${e.status}`);
-          const t = await e.json();
-          (currentMode = t.mode),
-            (toggleModeButton.textContent = `Mode: ${
-              currentMode.charAt(0).toUpperCase() + currentMode.slice(1)
-            }`),
-            (modeDisplayElement.textContent = currentMode);
-        } catch (e) {
-          console.error("Error fetching current mode:", e);
-        }
-      }
-
       function animate() {
         requestAnimationFrame(animate),
           (dot.position.x += 0.1 * (position.x - dot.position.x)),
@@ -510,11 +722,11 @@ const z1ValueElement = document.getElementById("z1-value");
           renderer.render(scene, camera);
       }
       animate(),
-        setInterval(fetchCurrentPosition, 1e3),
-        setInterval(fetchTargetPosition, 1e3),
-        setInterval(fetchCurrentMode, 2e3),
-        resetOrientation(),
-        fetchCurrentMode();
+        setInterval(fetchCurrentPosition, 1000),
+        setInterval(fetchTargetPosition, 1000),
+        //setInterval(fetchCurrentMode, 1000),
+        resetOrientation();
+       // fetchCurrentMode();
     </script>
   </body>
 </html>
