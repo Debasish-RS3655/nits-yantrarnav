@@ -327,7 +327,7 @@
           }
         } catch (error) {
           heightElement.textContent = "--";
-          errorElement.textContent = "Error connecting to server";
+         
         }
       }
 
@@ -365,7 +365,7 @@
           if (response.ok) {
             const data = await response.json();
             imgElement.src = `data:image/jpeg;base64,${data.image}`;
-            imgElement.alt = "Live Camera Feed";
+            imgElement.alt = "Live Perpendicular Camera Feed";
           } else {
             // If no feed is available, placeholder
             imgElement.src = "./896653.jpg";
@@ -376,7 +376,7 @@
           console.error("Failed to fetch camera feed:", error);
           // On network or server error, a placeholder
           imgElement.src = "/896653.jpg";
-          console.log("Script is running!");
+          console.log("Script <> is running!");
           imgElement.alt = "No Camera Feed Available";
         }
       }
@@ -392,6 +392,8 @@
             data.launch_land_status;
         } catch (error) {
           console.error("Failed to fetch drone status:", error);
+          document.getElementById("drone-phase").innerText = "Error";
+          document.getElementById("launch-status").innerText = "Error";
         }
       }
 
@@ -409,6 +411,12 @@
           ).innerText = `${data.voltage.toFixed(2)}V`;
         } catch (error) {
           console.error("Failed to fetch battery status:", error);
+          document.getElementById(
+            "battery-percentage"
+          ).innerText = "Error";
+          document.getElementById(
+            "battery-voltage"
+          ).innerText = "Error";
         }
       }
 
@@ -423,6 +431,8 @@
             : "Not Ready";
         } catch (error) {
           console.error("Failed to fetch system ready status:", error);
+          document.getElementById("system-ready").innerText ="Error";
+          
         }
       }
 

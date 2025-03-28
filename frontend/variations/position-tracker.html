@@ -383,13 +383,10 @@
 
       async function fetchDroneStatus() {
         try {
-          const response = await fetch(
-            "http://192.168.137.163:5000/drone_status"
-          );
+          const response = await fetch("http://192.168.137.163:5000/drone_status");
           const data = await response.json();
           document.getElementById("drone-phase").innerText = data.phase;
-          document.getElementById("launch-status").innerText =
-            data.launch_land_status;
+          document.getElementById("launch-status").innerText = data.launch_land_status;
         } catch (error) {
           console.error("Failed to fetch drone status:", error);
         }
@@ -414,9 +411,7 @@
 
       async function fetchSystemReady() {
         try {
-          const response = await fetch(
-            "http://192.168.137.163:5000/system_ready"
-          );
+          const response = await fetch("http://192.168.137.163:5000/system_ready");
           const data = await response.json();
           document.getElementById("system-ready").innerText = data.system_ready
             ? "Ready"
@@ -427,27 +422,20 @@
       }
 
       // Fetch status
-   
-      function initialize() {
-        fetchHeight();
-        fetchCurrentMode();
+      setInterval(() => {
         fetchDroneStatus();
         fetchBatteryStatus();
         fetchSystemReady();
-        fetchCameraFeed();
-        fetchCameraFeed1();
+      }, 1000);
 
-        setInterval(fetchHeight, 500);
-        setInterval(fetchCurrentMode, 1000);
-        setInterval(fetchDroneStatus, 500);
-        setInterval(fetchBatteryStatus, 1000);
-        setInterval(fetchSystemReady, 500);
-        setInterval(fetchCameraFeed, 200);
-        setInterval(fetchCameraFeed1, 200);
-        
-      }
+      fetchHeight();
+      fetchCurrentMode();
+      fetchDroneStatus();
+      fetchBatteryStatus();
+      fetchSystemReady();
+      fetchCameraFeed();
 
-      initialize();
+      
 
       const scene = new THREE.Scene();
       scene.background = new THREE.Color(18483);
@@ -724,9 +712,9 @@
       animate(),
         setInterval(fetchCurrentPosition, 1000),
         setInterval(fetchTargetPosition, 1000),
-        //setInterval(fetchCurrentMode, 1000),
-        resetOrientation();
-       // fetchCurrentMode();
+        setInterval(fetchCurrentMode, 1000),
+        resetOrientation(),
+        fetchCurrentMode();
     </script>
   </body>
 </html>
