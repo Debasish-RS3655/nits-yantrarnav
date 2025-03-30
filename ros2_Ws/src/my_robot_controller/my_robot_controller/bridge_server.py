@@ -307,20 +307,23 @@ def ml_check_area():
     else:
         return jsonify({'error': 'No flat area nearby or no perpendicular image available'}), 404
 
-# Endpoint: /predicted_area (unchanged)
+# Endpoint: /predicted_area (modified publisher format)
 @app.route('/predicted_area', methods=['POST'])
 def predicted_area():
     global bridge_server_node
     if bridge_server_node is None:
         return jsonify({'error': 'BridgeServer node not available'}), 500
+
     data = request.get_json(force=True)
     required_keys = ['status', 'class', 'accuracy', 'coordinate']
     if not all(k in data for k in required_keys):
         return jsonify({'error': 'Missing keys in JSON body'}), 400
-    msg = String()
-    msg.data = str(data)
-    bridge_server_node.ml_predicted_area_pub.publish(msg)
-    bridge_server_node.get_logger().info(f"Published predicted area: {msg.data}")
+
+    # Ensure that 'class' is present (already checked above) and not empty
+    if not data['class']:
+        return jsonify({'error': 'Missing terrain class in request'}), 400
+
+    # Extract and parse the coordinate string into individual values
     coord_str = data['coordinate']
     try:
         parts = coord_str.split()
@@ -330,6 +333,19 @@ def predicted_area():
             coord[key] = float(value)
     except Exception as e:
         return jsonify({'error': 'Failed to parse coordinate in request'}), 400
+
+    # Check that the required coordinate keys exist
+    if not all(k in coord for k in ['x', 'y', 'z']):
+        return jsonify({'error': 'Missing one or more coordinate values (x, y, z)'}), 400
+
+    # Build the publisher message in the desired format:
+    # "class <terrain> coordinate x=<x_val> y=<y_val> z=<z_val>"
+    msg_data = f"class {data['class']} coordinate x={coord['x']} y={coord['y']} z={coord['z']}"
+    msg = String()
+    msg.data = msg_data
+    bridge_server_node.ml_predicted_area_pub.publish(msg)
+    bridge_server_node.get_logger().info(f"Published predicted area: {msg.data}")
+
     new_array = []
     removed = False
     for entry in bridge_server_node.ml_check_area_array:
@@ -345,6 +361,7 @@ def predicted_area():
         return jsonify({'status': 'Entry removed and published'}), 200
     else:
         return jsonify({'error': 'No matching entry found'}), 404
+    
 
 # Endpoint: /drone_status - returns current phase and launch_land_status
 @app.route('/drone_status', methods=['GET'])
@@ -370,10 +387,9 @@ def main(args=None):
     global bridge_server_node
     rclpy.init(args=args)
     node = BridgeServer()
-    # Initialize arrays and publishers that need to be set up
+    # Initialize arrays that need to be set up (do not recreate the publisher; it's already created in __init__)
     node.ml_check_area_array = []
     node.flat_area_points = []
-    node.ml_predicted_area_pub = node.create_publisher(String, '/ml_predicted_area', 10)
     bridge_server_node = node
 
     ros_thread = threading.Thread(target=ros_spin, args=(node,))
