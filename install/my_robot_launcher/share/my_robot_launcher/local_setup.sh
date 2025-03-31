@@ -1,0 +1,1 @@
+/home/nits/master_controller/nits-yantrarnav/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.sh

@@ -77,7 +77,7 @@ def predict_terrain(image):
 
 def send_prediction(coordinates, terrain_class, accuracy):
     """Sends the predicted area to the server."""
-    url = "http://localhost:5000/predicted_area"
+    url = "http://192.168.31.119:5000/predicted_area"
     data = {
         "status": "success",
         "class": terrain_class,
@@ -85,6 +85,7 @@ def send_prediction(coordinates, terrain_class, accuracy):
         "coordinate": coordinates
     }
     response = requests.post(url, json=data)
+    
     if response.status_code == 200:
         print(f"Prediction sent: {data}")
     else:
@@ -94,7 +95,7 @@ def main():
     while True:
         try:
             # Check if the rover is near a flat area
-            check_url = "http://localhost:5000/ml_check_area_temp"
+            check_url = "http://192.168.31.119:5000/ml_check_area_temp"
             check_response = requests.get(check_url).json()
 
             if "coordinate" in check_response and "image" in check_response:

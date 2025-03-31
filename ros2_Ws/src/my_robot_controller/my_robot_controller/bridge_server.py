@@ -41,9 +41,7 @@ class BridgeServer(Node):
         self.pos_target_sub = self.create_subscription(String, 'position/target', self.update_target_pos, 10)
         self.pos_phase_sub = self.create_subscription(String, 'position/phase', self.update_phase_pos, 10)
         self.mode_pub = self.create_publisher(String, 'position/mode', 10)
-
-        # Publisher for the drone commands (only launch)
-        self.drone_commands_pub = self.create_publisher(String, '/drone_commands', 10)
+        self.land_launch_pub = self.create_publisher(String, '/launch_commands', 10)
         
         # Subscriber for launch/land status (String)
         self.drone_launch_land_sub = self.create_subscription(String, '/launch_land_status', self.update_launch_status, 10)
@@ -397,22 +395,22 @@ def predicted_area():
     if removed:
         return jsonify({'status': 'Entry removed and published'}), 200
     else:
-        return jsonify({'status': 'Entry published but not in array'}), 200
-
-
-
-
-# New Endpoint: /launch (GET) - publishes "launch" to the /drone_commands topic
+        return jsonify({'error': 'No matching entry found'}), 404
+        
 @app.route('/launch', methods=['GET'])
 def launch():
     global bridge_server_node
     if bridge_server_node is None:
         return jsonify({'error': 'BridgeServer node not available'}), 500
+
+    # Create and publish a "launch" command message.
     msg = String()
     msg.data = "launch"
-    bridge_server_node.drone_commands_pub.publish(msg)
-    bridge_server_node.get_logger().info("Published 'launch' command to /drone_commands")
+    bridge_server_node.land_launch_pub.publish(msg)
+    bridge_server_node.get_logger().info("Published launch command.")
     return jsonify({'status': 'launch command published'}), 200
+
+
 
 # Endpoint: /drone_status - returns current phase and launch_land_status
 @app.route('/drone_status', methods=['GET'])
@@ -448,7 +446,7 @@ def main(args=None):
 
     try:
         app.run(host='0.0.0.0', port=5000, use_reloader=False)
-    except KeyboardInterrupt:
+    except KeyboardInterrupt:                                                  
         print('Keyboard interrupt caught. Bridge server shutting down gracefully.')
     finally:
         shutdown_flag.set()
