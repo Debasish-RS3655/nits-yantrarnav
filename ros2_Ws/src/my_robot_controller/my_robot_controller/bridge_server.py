@@ -5,6 +5,9 @@ from std_msgs.msg import String, Bool
 from sensor_msgs.msg import Image, BatteryState
 from geometry_msgs.msg import Point
 
+# NEW: Import QoS-related classes
+from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
+
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import threading
@@ -14,9 +17,13 @@ from cv_bridge import CvBridge, CvBridgeError
 import numpy as np
 import math
 
+from geometry_msgs.msg import TwistStamped
+
 # Global variables to hold the latest images (in base64)
 latest_image_base64 = None          # From the ROS camera subscriber
 perpendicular_image_base64 = None   # From the perpendicular webcam publisher
+latest_velocity = None  # Will hold a dictionary with linear and angular velocities.
+
 # Lock to ensure thread-safe access to global image variables
 lock = threading.Lock()
 
@@ -42,6 +49,12 @@ class BridgeServer(Node):
         self.pos_phase_sub = self.create_subscription(String, 'position/phase', self.update_phase_pos, 10)
         self.mode_pub = self.create_publisher(String, 'position/mode', 10)
         self.land_launch_pub = self.create_publisher(String, '/launch_commands', 10)
+        self.vel_sub = self.create_subscription(
+            TwistStamped,
+            '/mavros/local_position/velocity_local',
+            self.velocity_callback,
+            10  # QoS depth
+        )        
         
         # Subscriber for launch/land status (String)
         self.drone_launch_land_sub = self.create_subscription(String, '/launch_land_status', self.update_launch_status, 10)
@@ -53,8 +66,17 @@ class BridgeServer(Node):
         # Subscriber for the camera image topic
         self.camera_sub = self.create_subscription(Image, '/camera/camera/color/image_raw', self.camera_callback, 10)
         
-        # Battery status subscriber
-        self.battery_sub = self.create_subscription(BatteryState, '/mavros/battery', self.battery_callback, 10)
+        # ---------------------------
+        # Modified Battery subscriber:
+        # Create a QoS profile for the battery topic with BEST_EFFORT reliability.
+        qos_profile_battery = QoSProfile(
+            reliability=ReliabilityPolicy.BEST_EFFORT,
+            history=HistoryPolicy.KEEP_LAST,
+            depth=10
+        )
+        self.battery_sub = self.create_subscription(BatteryState, '/mavros/battery', self.battery_callback, qos_profile_battery)
+        # ---------------------------
+        
         self.battery_percent = None
         self.battery_voltage = None
 
@@ -75,8 +97,35 @@ class BridgeServer(Node):
         self.current_height = None
 
         # Initialize CvBridge for image conversion
-        self.bridge = CvBridge()
+        self.bridge = CvBridge()        
+
+    def velocity_callback(self, msg: TwistStamped):
+        global latest_velocity, lock
+        # Extract linear and angular velocity components.
+        linear = msg.twist.linear
+        angular = msg.twist.angular
         
+        # Build a dictionary to store the data.
+        velocity_data = {
+            'header': {
+                'stamp': msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9,
+                'frame_id': msg.header.frame_id
+            },
+            'linear': {
+                'x': linear.x,
+                'y': linear.y,
+                'z': linear.z
+            },
+            'angular': {
+                'x': angular.x,
+                'y': angular.y,
+                'z': angular.z
+            }
+        }
+        with lock:
+            latest_velocity = velocity_data
+        self.get_logger().info("Updated velocity data: " + str(velocity_data))
+    
     def system_ready_status_callback(self, msg: Bool):
         self.system_ready_status = msg.data
         self.get_logger().info(f"System ready status updated to: {self.system_ready_status}")
@@ -261,6 +310,11 @@ def home():
     # Serve the index.html file from the static directory
     return send_from_directory(app.static_folder, 'interface.html')
 
+# NEW: Endpoint to serve any file from the static directory
+@app.route('/<path:filename>', methods=['GET'])
+def serve_static(filename):
+    return send_from_directory(app.static_folder, filename)
+
 # Endpoint: Return battery status
 @app.route('/battery_status', methods=['GET'])
 def battery_status():
@@ -280,7 +334,6 @@ def system_ready():
     if bridge_server_node is None:
         return jsonify({'error': 'BridgeServer node not available'}), 500
     return jsonify({'system_ready': bridge_server_node.system_ready_status})
-
 
 # Endpoint: /ml_check_area (unchanged)
 @app.route('/ml_check_area', methods=['GET'])
@@ -315,8 +368,6 @@ def ml_check_area():
     else:
         return jsonify({'error': 'No flat area nearby or no perpendicular image available'}), 404
 
-
-
 # New Endpoint: /ml_check_area_temp
 # Always returns the current coordinates and the latest depth camera RGB image
 @app.route('/ml_check_area_temp', methods=['GET'])
@@ -337,10 +388,6 @@ def ml_check_area_temp():
             return jsonify(response)
         else:
             return jsonify({'error': 'No image received yet'}), 404
-
-
-
-
 
 # Endpoint: /predicted_area (modified publisher format)
 @app.route('/predicted_area', methods=['POST'])
@@ -410,8 +457,6 @@ def launch():
     bridge_server_node.get_logger().info("Published launch command.")
     return jsonify({'status': 'launch command published'}), 200
 
-
-
 # Endpoint: /drone_status - returns current phase and launch_land_status
 @app.route('/drone_status', methods=['GET'])
 def drone_status():
@@ -423,6 +468,14 @@ def drone_status():
         'launch_land_status': bridge_server_node.drone_launch_status
     }
     return jsonify(status)
+
+@app.route('/velocities', methods=['GET'])
+def get_velocities():
+    global latest_velocity
+    with lock:
+        if latest_velocity is None:
+            return jsonify({'error': 'No velocity data received yet'}), 404
+        return jsonify(latest_velocity)
 
 # Function to spin the ROS node in a separate thread
 def ros_spin(node):
@@ -446,7 +499,7 @@ def main(args=None):
 
     try:
         app.run(host='0.0.0.0', port=5000, use_reloader=False)
-    except KeyboardInterrupt:                                                  
+    except KeyboardInterrupt:
         print('Keyboard interrupt caught. Bridge server shutting down gracefully.')
     finally:
         shutdown_flag.set()

@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>3D Position & Target Tracker</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+     <script src="./tailwindcss.js"></script>
     <link href="./src/output.css" rel="stylesheet">
 
     <style>
@@ -60,6 +61,22 @@
           <div class="status-box">
             <p class="label">
               System Ready:<span id="system-ready">Loading...</span>
+            </p>
+          </div>
+          <!-- New velocity fields -->
+          <div class="status-box">
+            <p class="label">
+              X Velocity: <span id="x-velocity">Loading...</span>
+            </p>
+          </div>
+          <div class="status-box">
+            <p class="label">
+              Y Velocity: <span id="y-velocity">Loading...</span>
+            </p>
+          </div>
+          <div class="status-box">
+            <p class="label">
+              Z Velocity: <span id="z-velocity">Loading...</span>
             </p>
           </div>
         </div>
@@ -239,13 +256,13 @@
             id="Land"
             class="bg-black bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
           >
-            ZombieLand
+            Button 1
           </button>
           <button
             id="dk"
             class="bg-black bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
           >
-            Don't Know
+            Button 2
           </button>
         </div>
         <div
@@ -281,8 +298,9 @@
       </div>
     </div>
     <script src="./three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> -->
     <script>
+      // Existing functions remain unchanged.
 
       document.getElementById("Launch").addEventListener("click", function () {
         fetch("/launch", { method: "GET" })
@@ -381,12 +399,10 @@
           } else {
             // If no feed is available, placeholder
             imgElement.src = "./896653.jpg";
-
             imgElement.alt = "No Camera Feed Available";
           }
         } catch (error) {
           console.error("Failed to fetch camera feed:", error);
-          // On network or server error, a placeholder
           imgElement.src = "/896653.jpg";
           console.log("Script is running!");
           imgElement.alt = "No Camera Feed Available";
@@ -404,14 +420,11 @@
             imgElement.src = `data:image/jpeg;base64,${data.image}`;
             imgElement.alt = "Live Perpendicular Camera Feed";
           } else {
-            // If no feed is available, placeholder
             imgElement.src = "./896653.jpg";
-
             imgElement.alt = "No Camera Feed Available";
           }
         } catch (error) {
           console.error("Failed to fetch camera feed:", error);
-          // On network or server error, a placeholder
           imgElement.src = "/896653.jpg";
           console.log("Script <> is running!");
           imgElement.alt = "No Camera Feed Available";
@@ -468,8 +481,25 @@
         }
       }
 
-      // Fetch status
+      // New function to fetch velocity data from the /velocities endpoint
+      async function fetchVelocities() {
+        try {
+          const response = await fetch("http://192.168.31.119:5000/velocities");
+          if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+          const data = await response.json();
+          // Update the new velocity fields using the linear component values
+          document.getElementById("x-velocity").innerText = data.linear.x.toFixed(2);
+          document.getElementById("y-velocity").innerText = data.linear.y.toFixed(2);
+          document.getElementById("z-velocity").innerText = data.linear.z.toFixed(2);
+        } catch (error) {
+          console.error("Failed to fetch velocities:", error);
+          document.getElementById("x-velocity").innerText = "Error";
+          document.getElementById("y-velocity").innerText = "Error";
+          document.getElementById("z-velocity").innerText = "Error";
+        }
+      }
 
+      // Fetch status
       function initialize() {
         fetchHeight();
         fetchCurrentMode();
@@ -478,6 +508,8 @@
         fetchSystemReady();
         fetchCameraFeed();
         fetchCameraFeed1();
+        // New polling for velocities
+        setInterval(fetchVelocities, 200);
 
         setInterval(fetchHeight, 200);
         setInterval(fetchCurrentMode, 200);
@@ -568,97 +600,91 @@
         toggleModeButton = document.getElementById("toggle-mode"),
         modeDisplayElement = document.getElementById("mode-display");
       function rotateAxes() {
-        (currentAxisConfig = (currentAxisConfig + 1) % axisConfigs.length),
-          updateOrientation();
+        currentAxisConfig = (currentAxisConfig + 1) % axisConfigs.length;
+        updateOrientation();
       }
       function resetOrientation() {
-        (currentAxisConfig = 0), updateOrientation();
+        currentAxisConfig = 0;
+        updateOrientation();
       }
 
       function updateOrientation() {
         const e = axisConfigs[currentAxisConfig];
-        (axesInfoElement.textContent = e.name),
-          (trailPoints.length = 0),
-          trailGeometry.setFromPoints([]),
-          scene.remove(gridHelper),
-          scene.remove(axesHelper),
-          (gridHelper = new THREE.GridHelper(100, 10, 6710886, 4473924)),
-          (axesHelper = new THREE.AxesHelper(60)),
-          0 === currentAxisConfig
-            ? ((gridHelper.rotation.x = Math.PI / 2), (axesHelper.scale.x = -1))
-            : 1 === currentAxisConfig
-            ? (gridHelper.rotation.x = Math.PI / 2)
-            : 2 === currentAxisConfig
-            ? (axesHelper.scale.x = -1)
-            : 4 === currentAxisConfig
-            ? ((gridHelper.rotation.z = Math.PI / 2),
-              (axesHelper.rotation.z = Math.PI / 2),
-              (axesHelper.scale.x = -1))
-            : 5 === currentAxisConfig &&
-              ((gridHelper.rotation.z = Math.PI / 2),
-              (axesHelper.rotation.z = Math.PI / 2)),
-          scene.add(gridHelper),
-          scene.add(axesHelper),
-          0 === currentAxisConfig || 1 === currentAxisConfig
-            ? camera.position.set(
-                0 === currentAxisConfig ? 100 : -100,
-                100,
-                100
-              )
-            : 2 === currentAxisConfig || 3 === currentAxisConfig
-            ? camera.position.set(
-                2 === currentAxisConfig ? 100 : -100,
-                100,
-                -100
-              )
-            : camera.position.set(
-                100,
-                4 === currentAxisConfig ? 100 : -100,
-                100
-              ),
-          camera.lookAt(0, 0, 0);
+        axesInfoElement.textContent = e.name;
+        trailPoints.length = 0;
+        trailGeometry.setFromPoints([]);
+        scene.remove(gridHelper);
+        scene.remove(axesHelper);
+        gridHelper = new THREE.GridHelper(100, 10, 6710886, 4473924);
+        axesHelper = new THREE.AxesHelper(60);
+        if (currentAxisConfig === 0) {
+          gridHelper.rotation.x = Math.PI / 2;
+          axesHelper.scale.x = -1;
+        } else if (currentAxisConfig === 1) {
+          gridHelper.rotation.x = Math.PI / 2;
+        } else if (currentAxisConfig === 2) {
+          axesHelper.scale.x = -1;
+        } else if (currentAxisConfig === 4) {
+          gridHelper.rotation.z = Math.PI / 2;
+          axesHelper.rotation.z = Math.PI / 2;
+          axesHelper.scale.x = -1;
+        } else if (currentAxisConfig === 5) {
+          gridHelper.rotation.z = Math.PI / 2;
+          axesHelper.rotation.z = Math.PI / 2;
+        }
+        scene.add(gridHelper);
+        scene.add(axesHelper);
+        if (currentAxisConfig === 0 || currentAxisConfig === 1) {
+          camera.position.set(currentAxisConfig === 0 ? 100 : -100, 100, 100);
+        } else if (currentAxisConfig === 2 || currentAxisConfig === 3) {
+          camera.position.set(currentAxisConfig === 2 ? 100 : -100, 100, -100);
+        } else {
+          camera.position.set(100, currentAxisConfig === 4 ? 100 : -100, 100);
+        }
+        camera.lookAt(0, 0, 0);
       }
 
-      rotateAxesButton.addEventListener("click", rotateAxes),
-        resetOrientationButton.addEventListener("click", resetOrientation),
-        // toggleModeButton.addEventListener("click", toggleMode),
-        window.addEventListener("resize", () => {
-          (camera.aspect = window.innerWidth / window.innerHeight),
-            camera.updateProjectionMatrix(),
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
+      rotateAxesButton.addEventListener("click", rotateAxes);
+      resetOrientationButton.addEventListener("click", resetOrientation);
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
       console.log("get");
-      let mouseDown = !1,
+      let mouseDown = false,
         mouseX = 0,
         mouseY = 0;
       document.addEventListener("mousedown", (e) => {
-        (mouseDown = !0), (mouseX = e.clientX), (mouseY = e.clientY);
-      }),
-        document.addEventListener("mouseup", () => {
-          mouseDown = !1;
-        }),
-        document.addEventListener("mousemove", (e) => {
-          if (mouseDown) {
-            const t = e.clientX - mouseX,
-              n = e.clientY - mouseY,
-              i = Math.sqrt(
-                camera.position.x * camera.position.x +
-                  camera.position.y * camera.position.y +
-                  camera.position.z * camera.position.z
-              ),
-              o = Math.atan2(camera.position.y, camera.position.x) + 0.01 * t,
-              s = Math.acos(camera.position.z / i) + 0.01 * n,
-              a = Math.max(0.1, Math.min(Math.PI - 0.1, s));
-            (camera.position.x = i * Math.sin(a) * Math.cos(o)),
-              (camera.position.y = i * Math.sin(a) * Math.sin(o)),
-              (camera.position.z = i * Math.cos(a)),
-              camera.lookAt(0, 0, 0),
-              (mouseX = e.clientX),
-              (mouseY = e.clientY);
-          }
-        });
+        mouseDown = true;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+      document.addEventListener("mouseup", () => {
+        mouseDown = false;
+      });
+      document.addEventListener("mousemove", (e) => {
+        if (mouseDown) {
+          const t = e.clientX - mouseX,
+            n = e.clientY - mouseY,
+            i = Math.sqrt(
+              camera.position.x * camera.position.x +
+              camera.position.y * camera.position.y +
+              camera.position.z * camera.position.z
+            ),
+            o = Math.atan2(camera.position.y, camera.position.x) + 0.01 * t,
+            s = Math.acos(camera.position.z / i) + 0.01 * n,
+            a = Math.max(0.1, Math.min(Math.PI - 0.1, s));
+          camera.position.x = i * Math.sin(a) * Math.cos(o);
+          camera.position.y = i * Math.sin(a) * Math.sin(o);
+          camera.position.z = i * Math.cos(a);
+          camera.lookAt(0, 0, 0);
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        }
+      });
 
-      const serverBaseUrl = "http://http://192.168.31.119:5000",
+      const serverBaseUrl = "http://192.168.31.119:5000",
         currentUrl = `${serverBaseUrl}/current_position`,
         targetUrl = `${serverBaseUrl}/target_position`,
         modeUrl = `${serverBaseUrl}/mode`,
@@ -666,30 +692,26 @@
         positionElement = document.getElementById("position"),
         targetElement = document.getElementById("target");
       let lastPosition = { x: 0, y: 0, z: 0 },
-        hasMovedSignificantly = !1;
+        hasMovedSignificantly = false;
       function transformCoordinates(e, t, n) {
         return axisConfigs[currentAxisConfig].transform(e, t, n);
       }
 
       const xValueElement = document.getElementById("x-value");
-
       const yValueElement = document.getElementById("y-value");
       const zValueElement = document.getElementById("z-value");
 
       async function fetchCurrentPosition() {
         try {
-          const e = await fetch(`http://192.168.31.119:5000/current_position`);
+          const e = await fetch("http://192.168.31.119:5000/current_position");
           if (!e.ok) throw new Error(`HTTP error: ${e.status}`);
           const t = await e.json();
           const { x, y, z } = transformCoordinates(t.x, t.y, t.z);
-
           lastPosition = { x: position.x, y: position.y, z: position.z };
-          const n = t.x,
-            i = t.y,
-            o = t.z,
-            s = transformCoordinates(n, i, o);
-          (position.x = s.x), (position.y = s.y), (position.z = s.z);
-          //   positionElement.textContent = `x=${x.toFixed(2)} y=${y.toFixed(2)} z=${z.toFixed(2)}`;
+          const s = transformCoordinates(t.x, t.y, t.z);
+          position.x = s.x;
+          position.y = s.y;
+          position.z = s.z;
           xValueElement.textContent = (x * 100).toFixed(2);
           yValueElement.textContent = (y * 100).toFixed(2);
           zValueElement.textContent = (z * 100).toFixed(2);
@@ -698,25 +720,24 @@
           statusElement.style.color = "#00ff00";
           const a = Math.sqrt(
             Math.pow(position.x - lastPosition.x, 2) +
-              Math.pow(position.y - lastPosition.y, 2) +
-              Math.pow(position.z - lastPosition.z, 2)
+            Math.pow(position.y - lastPosition.y, 2) +
+            Math.pow(position.z - lastPosition.z, 2)
           );
-          (hasMovedSignificantly = a > 0.1),
-            hasMovedSignificantly &&
-              (trailPoints.push(
-                new THREE.Vector3(position.x, position.y, position.z)
-              ),
-              trailPoints.length > 200 && trailPoints.shift(),
-              trailGeometry.setFromPoints(trailPoints)),
-            updateTargetLine();
+          hasMovedSignificantly = a > 0.1;
+          if (hasMovedSignificantly) {
+            trailPoints.push(new THREE.Vector3(position.x, position.y, position.z));
+            if (trailPoints.length > 200) trailPoints.shift();
+            trailGeometry.setFromPoints(trailPoints);
+          }
+          updateTargetLine();
         } catch (e) {
-          console.error("Error fetching current position:", e),
-            (statusElement.textContent = "Connection Error"),
-            console.log("get")((statusElement.style.color = "#ff0000"));
+          console.error("Error fetching current position:", e);
+          statusElement.textContent = "Connection Error";
+          statusElement.style.color = "#ff0000";
         }
       }
-      const x1ValueElement = document.getElementById("x1-value");
 
+      const x1ValueElement = document.getElementById("x1-value");
       const y1ValueElement = document.getElementById("y1-value");
       const z1ValueElement = document.getElementById("z1-value");
 
@@ -725,19 +746,10 @@
           const e = await fetch(targetUrl);
           if (!e.ok) throw new Error(`HTTP error: ${e.status}`);
           const t = await e.json(),
-            n = t.x,
-            i = t.y,
-            o = t.z,
-            s = transformCoordinates(n, i, o);
-          const { x1, y1, z1 } = transformCoordinates(t.x, t.y, t.z);
-
-          // Update the display
-          // targetElement.textContent = `x=${x.toFixed(2)} y=${y.toFixed(2)} z=${z.toFixed(2)}`;
-          x1ValueElement.textContent = x.toFixed(2);
-          console.log("print");
-          y1ValueElement.textContent = y.toFixed(2);
-          z1ValueElement.textContent = z.toFixed(2);
-
+            s = transformCoordinates(t.x, t.y, t.z);
+          x1ValueElement.textContent = s.x.toFixed(2);
+          y1ValueElement.textContent = s.y.toFixed(2);
+          z1ValueElement.textContent = s.z.toFixed(2);
           updateTargetLine();
         } catch (e) {
           console.error("Error fetching target position:", e);
@@ -747,27 +759,27 @@
       function updateTargetLine() {
         const e = [
           new THREE.Vector3(position.x, position.y, position.z),
-          new THREE.Vector3(target.x, target.y, target.z),
+          new THREE.Vector3(target.x, target.y, target.z)
         ];
         lineGeometry.setFromPoints(e);
       }
 
       function animate() {
-        requestAnimationFrame(animate),
-          (dot.position.x += 0.1 * (position.x - dot.position.x)),
-          (dot.position.y += 0.1 * (position.y - dot.position.y)),
-          (dot.position.z += 0.1 * (position.z - dot.position.z)),
-          (targetDot.position.x = target.x),
-          (targetDot.position.y = target.y),
-          (targetDot.position.z = target.z),
-          renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+        dot.position.x += 0.1 * (position.x - dot.position.x);
+        dot.position.y += 0.1 * (position.y - dot.position.y);
+        dot.position.z += 0.1 * (position.z - dot.position.z);
+        targetDot.position.x = target.x;
+        targetDot.position.y = target.y;
+        targetDot.position.z = target.z;
+        renderer.render(scene, camera);
       }
-      animate(),
-        setInterval(fetchCurrentPosition, 200),
-        setInterval(fetchTargetPosition, 200),
-        //setInterval(fetchCurrentMode, 1000),
-        resetOrientation();
-      // fetchCurrentMode();
+      animate();
+
+      setInterval(fetchCurrentPosition, 200);
+      setInterval(fetchTargetPosition, 200);
+      resetOrientation();
+
     </script>
   </body>
 </html>
