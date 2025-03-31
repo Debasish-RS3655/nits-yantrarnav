@@ -161,8 +161,8 @@ class LineFollowerNode(Node):
                 cmd_msg.data = command_msg
                 self.drone_commands_pub.publish(cmd_msg)
 
-        if self.current_phase == "2":
-            # In phase 2: mapping phase.
+        if self.current_phase == "1":
+            # In phase 1: mapping phase.
             # Publish "mapping" status continuously.
             map_msg = String()
             map_msg.data = "mapping"

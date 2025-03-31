@@ -1,1 +1,1 @@
-/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.bash
+/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.bash
