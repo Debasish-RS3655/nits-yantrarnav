@@ -23,7 +23,7 @@ function(ament_cmake_symlink_install_directory cmake_current_source_dir)
 
   # make destination absolute path and ensure that it exists
   if(NOT IS_ABSOLUTE "${ARG_DESTINATION}")
-    set(ARG_DESTINATION "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_launcher/${ARG_DESTINATION}")
+    set(ARG_DESTINATION "/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/${ARG_DESTINATION}")
   endif()
   if(NOT EXISTS "${ARG_DESTINATION}")
     file(MAKE_DIRECTORY "${ARG_DESTINATION}")
@@ -123,7 +123,7 @@ function(ament_cmake_symlink_install_files cmake_current_source_dir)
 
   # make destination an absolute path and ensure that it exists
   if(NOT IS_ABSOLUTE "${ARG_DESTINATION}")
-    set(ARG_DESTINATION "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_launcher/${ARG_DESTINATION}")
+    set(ARG_DESTINATION "/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/${ARG_DESTINATION}")
   endif()
   if(NOT EXISTS "${ARG_DESTINATION}")
     file(MAKE_DIRECTORY "${ARG_DESTINATION}")
@@ -181,7 +181,7 @@ function(ament_cmake_symlink_install_programs cmake_current_source_dir)
 
   # make destination an absolute path and ensure that it exists
   if(NOT IS_ABSOLUTE "${ARG_DESTINATION}")
-    set(ARG_DESTINATION "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_launcher/${ARG_DESTINATION}")
+    set(ARG_DESTINATION "/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/${ARG_DESTINATION}")
   endif()
   if(NOT EXISTS "${ARG_DESTINATION}")
     file(MAKE_DIRECTORY "${ARG_DESTINATION}")
@@ -251,7 +251,7 @@ function(ament_cmake_symlink_install_targets)
 
     # make destination an absolute path and ensure that it exists
     if(NOT IS_ABSOLUTE "${destination}")
-      set(destination "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_launcher/${destination}")
+      set(destination "/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/${destination}")
     endif()
     if(NOT EXISTS "${destination}")
       file(MAKE_DIRECTORY "${destination}")
@@ -311,46 +311,46 @@ message(STATUS "Execute custom install script")
 # begin of custom install code
 
 # install(DIRECTORY "launch" "DESTINATION" "share/my_robot_launcher")
-ament_cmake_symlink_install_directory("/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher" DIRECTORY "launch" "DESTINATION" "share/my_robot_launcher")
+ament_cmake_symlink_install_directory("/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher" DIRECTORY "launch" "DESTINATION" "share/my_robot_launcher")
 
-# install(FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/my_robot_launcher" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
-ament_cmake_symlink_install_files("/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher" FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/my_robot_launcher" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
+# install(FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/my_robot_launcher" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
+ament_cmake_symlink_install_files("/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher" FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/my_robot_launcher" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 
-# install(FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/my_robot_launcher" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
-ament_cmake_symlink_install_files("/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher" FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/my_robot_launcher" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
+# install(FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/my_robot_launcher" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
+ament_cmake_symlink_install_files("/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher" FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/my_robot_launcher" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
 
 # install(FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/ament_prefix_path.sh" "DESTINATION" "share/my_robot_launcher/environment")
-ament_cmake_symlink_install_files("/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher" FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/ament_prefix_path.sh" "DESTINATION" "share/my_robot_launcher/environment")
+ament_cmake_symlink_install_files("/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher" FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/ament_prefix_path.sh" "DESTINATION" "share/my_robot_launcher/environment")
 
-# install(FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/my_robot_launcher/environment")
-ament_cmake_symlink_install_files("/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher" FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/my_robot_launcher/environment")
+# install(FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/my_robot_launcher/environment")
+ament_cmake_symlink_install_files("/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher" FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/my_robot_launcher/environment")
 
 # install(FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh" "DESTINATION" "share/my_robot_launcher/environment")
-ament_cmake_symlink_install_files("/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher" FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh" "DESTINATION" "share/my_robot_launcher/environment")
+ament_cmake_symlink_install_files("/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher" FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh" "DESTINATION" "share/my_robot_launcher/environment")
 
-# install(FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/my_robot_launcher/environment")
-ament_cmake_symlink_install_files("/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher" FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/my_robot_launcher/environment")
+# install(FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/my_robot_launcher/environment")
+ament_cmake_symlink_install_files("/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher" FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/my_robot_launcher/environment")
 
-# install(FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/my_robot_launcher")
-ament_cmake_symlink_install_files("/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher" FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/my_robot_launcher")
+# install(FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/my_robot_launcher")
+ament_cmake_symlink_install_files("/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher" FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/my_robot_launcher")
 
-# install(FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/my_robot_launcher")
-ament_cmake_symlink_install_files("/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher" FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/my_robot_launcher")
+# install(FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/my_robot_launcher")
+ament_cmake_symlink_install_files("/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher" FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/my_robot_launcher")
 
-# install(FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/my_robot_launcher")
-ament_cmake_symlink_install_files("/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher" FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/my_robot_launcher")
+# install(FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/my_robot_launcher")
+ament_cmake_symlink_install_files("/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher" FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/my_robot_launcher")
 
-# install(FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/my_robot_launcher")
-ament_cmake_symlink_install_files("/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher" FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/my_robot_launcher")
+# install(FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/my_robot_launcher")
+ament_cmake_symlink_install_files("/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher" FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/my_robot_launcher")
 
-# install(FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/my_robot_launcher")
-ament_cmake_symlink_install_files("/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher" FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/my_robot_launcher")
+# install(FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/my_robot_launcher")
+ament_cmake_symlink_install_files("/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher" FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/my_robot_launcher")
 
-# install(FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_index/share/ament_index/resource_index/packages/my_robot_launcher" "DESTINATION" "share/ament_index/resource_index/packages")
-ament_cmake_symlink_install_files("/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher" FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_index/share/ament_index/resource_index/packages/my_robot_launcher" "DESTINATION" "share/ament_index/resource_index/packages")
+# install(FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_index/share/ament_index/resource_index/packages/my_robot_launcher" "DESTINATION" "share/ament_index/resource_index/packages")
+ament_cmake_symlink_install_files("/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher" FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_index/share/ament_index/resource_index/packages/my_robot_launcher" "DESTINATION" "share/ament_index/resource_index/packages")
 
-# install(FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_core/my_robot_launcherConfig.cmake" "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_core/my_robot_launcherConfig-version.cmake" "DESTINATION" "share/my_robot_launcher/cmake")
-ament_cmake_symlink_install_files("/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher" FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_core/my_robot_launcherConfig.cmake" "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_core/my_robot_launcherConfig-version.cmake" "DESTINATION" "share/my_robot_launcher/cmake")
+# install(FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_core/my_robot_launcherConfig.cmake" "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_core/my_robot_launcherConfig-version.cmake" "DESTINATION" "share/my_robot_launcher/cmake")
+ament_cmake_symlink_install_files("/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher" FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_core/my_robot_launcherConfig.cmake" "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_core/my_robot_launcherConfig-version.cmake" "DESTINATION" "share/my_robot_launcher/cmake")
 
-# install(FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher/package.xml" "DESTINATION" "share/my_robot_launcher")
-ament_cmake_symlink_install_files("/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher" FILES "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher/package.xml" "DESTINATION" "share/my_robot_launcher")
+# install(FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher/package.xml" "DESTINATION" "share/my_robot_launcher")
+ament_cmake_symlink_install_files("/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher" FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher/package.xml" "DESTINATION" "share/my_robot_launcher")
