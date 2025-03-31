@@ -98,13 +98,13 @@
 		{
 			"backtrace" : 9,
 			"isGenerated" : true,
-			"path" : "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/CMakeFiles/my_robot_launcher_uninstall",
+			"path" : "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/CMakeFiles/my_robot_launcher_uninstall",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/CMakeFiles/my_robot_launcher_uninstall.rule",
+			"path" : "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/CMakeFiles/my_robot_launcher_uninstall.rule",
 			"sourceGroupIndex" : 1
 		}
 	],
