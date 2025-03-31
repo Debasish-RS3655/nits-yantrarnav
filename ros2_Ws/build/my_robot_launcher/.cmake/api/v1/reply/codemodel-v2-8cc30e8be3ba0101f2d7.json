@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-017b9ab2f88f881d1f50.json",
+					"jsonFile" : "directory-.-524c7a592d0bf410401c.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.12"
@@ -42,7 +42,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "my_robot_launcher_uninstall::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-my_robot_launcher_uninstall-21c2c220732dba93facb.json",
+					"jsonFile" : "target-my_robot_launcher_uninstall-1402a9359b88817515a9.json",
 					"name" : "my_robot_launcher_uninstall",
 					"projectIndex" : 0
 				},
@@ -59,8 +59,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher",
-		"source" : "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher"
+		"build" : "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher",
+		"source" : "/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher"
 	},
 	"version" : 
 	{
