@@ -402,8 +402,6 @@ def predicted_area():
 
 
 
-
-
 # New Endpoint: /launch (GET) - publishes "launch" to the /drone_commands topic
 @app.route('/launch', methods=['GET'])
 def launch():
