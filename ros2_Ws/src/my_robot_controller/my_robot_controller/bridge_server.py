@@ -41,6 +41,9 @@ class BridgeServer(Node):
         self.pos_target_sub = self.create_subscription(String, 'position/target', self.update_target_pos, 10)
         self.pos_phase_sub = self.create_subscription(String, 'position/phase', self.update_phase_pos, 10)
         self.mode_pub = self.create_publisher(String, 'position/mode', 10)
+
+        # Publisher for the drone commands (only launch)
+        self.drone_commands_pub = self.create_publisher(String, '/drone_commands', 10)
         
         # Subscriber for launch/land status (String)
         self.drone_launch_land_sub = self.create_subscription(String, '/launch_land_status', self.update_launch_status, 10)
@@ -394,8 +397,22 @@ def predicted_area():
     if removed:
         return jsonify({'status': 'Entry removed and published'}), 200
     else:
-        return jsonify({'error': 'No matching entry found'}), 404
-    
+        return jsonify({'status': 'Entry published but not in array'}), 200
+
+
+
+
+# New Endpoint: /launch (GET) - publishes "launch" to the /drone_commands topic
+@app.route('/launch', methods=['GET'])
+def launch():
+    global bridge_server_node
+    if bridge_server_node is None:
+        return jsonify({'error': 'BridgeServer node not available'}), 500
+    msg = String()
+    msg.data = "launch"
+    bridge_server_node.drone_commands_pub.publish(msg)
+    bridge_server_node.get_logger().info("Published 'launch' command to /drone_commands")
+    return jsonify({'status': 'launch command published'}), 200
 
 # Endpoint: /drone_status - returns current phase and launch_land_status
 @app.route('/drone_status', methods=['GET'])
