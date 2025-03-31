@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>3D Position & Target Tracker</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./tailwind.min.css">
+
     <style>
       body {
         margin: 0;
@@ -227,6 +229,24 @@
           >
             <a href="./position-tracker-tilted.html" target="_blank"> Axis</a>
           </button>
+          <button
+            id="Launch"
+            class="bg-black bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
+          >
+            Launch
+          </button>
+          <button
+            id="Land"
+            class="bg-black bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
+          >
+            ZombieLand
+          </button>
+          <button
+            id="dk"
+            class="bg-black bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
+          >
+            Don't Know
+          </button>
         </div>
         <div
           class="border m-[1rem] border-green-500 p-4 rounded-lg bg-white shadow"
@@ -260,8 +280,26 @@
         </a>
       </div>
     </div>
+    <script src="./three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
+
+      document.getElementById("Launch").addEventListener("click", function () {
+        fetch("/launch", { method: "GET" })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status) {
+              alert("Launch command sent successfully!");
+            } else {
+              alert("Error: " + data.error);
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Failed to send launch command.");
+          });
+      });
+
       let currentMode = null;
       async function fetchCurrentMode() {
         try {
@@ -327,7 +365,6 @@
           }
         } catch (error) {
           heightElement.textContent = "--";
-         
         }
       }
 
@@ -411,12 +448,8 @@
           ).innerText = `${data.voltage.toFixed(2)}V`;
         } catch (error) {
           console.error("Failed to fetch battery status:", error);
-          document.getElementById(
-            "battery-percentage"
-          ).innerText = "Error";
-          document.getElementById(
-            "battery-voltage"
-          ).innerText = "Error";
+          document.getElementById("battery-percentage").innerText = "Error";
+          document.getElementById("battery-voltage").innerText = "Error";
         }
       }
 
@@ -431,13 +464,12 @@
             : "Not Ready";
         } catch (error) {
           console.error("Failed to fetch system ready status:", error);
-          document.getElementById("system-ready").innerText ="Error";
-          
+          document.getElementById("system-ready").innerText = "Error";
         }
       }
 
       // Fetch status
-   
+
       function initialize() {
         fetchHeight();
         fetchCurrentMode();
@@ -448,13 +480,12 @@
         fetchCameraFeed1();
 
         setInterval(fetchHeight, 200);
-        setInterval(fetchCurrentMode, 1000);
+        setInterval(fetchCurrentMode, 200);
         setInterval(fetchDroneStatus, 500);
         setInterval(fetchBatteryStatus, 1000);
         setInterval(fetchSystemReady, 500);
         setInterval(fetchCameraFeed, 200);
         setInterval(fetchCameraFeed1, 200);
-        
       }
 
       initialize();
@@ -736,7 +767,7 @@
         setInterval(fetchTargetPosition, 200),
         //setInterval(fetchCurrentMode, 1000),
         resetOrientation();
-       // fetchCurrentMode();
+      // fetchCurrentMode();
     </script>
   </body>
 </html>

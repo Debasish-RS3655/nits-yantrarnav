@@ -1,0 +1,15 @@
+{
+  "name": "nits-yantrarnav-master_controller",
+  "version": "1.0.0",
+  "description": "blueprint uploaded. Work in progress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "file:tailwindcss-4.0.17.tgz"
+  }
+}
