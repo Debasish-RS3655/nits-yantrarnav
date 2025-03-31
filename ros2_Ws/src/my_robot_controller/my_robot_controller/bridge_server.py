@@ -41,6 +41,7 @@ class BridgeServer(Node):
         self.pos_target_sub = self.create_subscription(String, 'position/target', self.update_target_pos, 10)
         self.pos_phase_sub = self.create_subscription(String, 'position/phase', self.update_phase_pos, 10)
         self.mode_pub = self.create_publisher(String, 'position/mode', 10)
+        self.land_launch_pub = self.create_publisher(String, '/launch_commands', 10)
         
         # Subscriber for launch/land status (String)
         self.drone_launch_land_sub = self.create_subscription(String, '/launch_land_status', self.update_launch_status, 10)
@@ -405,7 +406,7 @@ def launch():
     # Create and publish a "launch" command message.
     msg = String()
     msg.data = "launch"
-    bridge_server_node.drone_command_pub.publish(msg)
+    bridge_server_node.land_launch_pub.publish(msg)
     bridge_server_node.get_logger().info("Published launch command.")
     return jsonify({'status': 'launch command published'}), 200
 
