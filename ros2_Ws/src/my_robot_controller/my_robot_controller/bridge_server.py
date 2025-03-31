@@ -5,7 +5,7 @@ from std_msgs.msg import String, Bool
 from sensor_msgs.msg import Image, BatteryState
 from geometry_msgs.msg import Point
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import threading
 import base64
@@ -175,7 +175,7 @@ class BridgeServer(Node):
         self.get_logger().info("Updated perpendicular webcam image.")
 
 # Set up the Flask app and endpoints
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 CORS(app)
 bridge_server_node = None  # Global variable for the ROS node
 shutdown_flag = threading.Event()  # Signal to stop threads
@@ -254,6 +254,12 @@ def current_height_endpoint():
         return jsonify({'error': 'Current height not available'}), 404
     return jsonify({'current_height': bridge_server_node.current_height})
 
+# New Endpoint: Serve static HTML files from a directory via /home
+@app.route('/home', methods=['GET'])
+def home():
+    # Serve the index.html file from the static directory
+    return send_from_directory(app.static_folder, 'interface.html')
+
 # Endpoint: Return battery status
 @app.route('/battery_status', methods=['GET'])
 def battery_status():
@@ -273,6 +279,7 @@ def system_ready():
     if bridge_server_node is None:
         return jsonify({'error': 'BridgeServer node not available'}), 500
     return jsonify({'system_ready': bridge_server_node.system_ready_status})
+
 
 # Endpoint: /ml_check_area (unchanged)
 @app.route('/ml_check_area', methods=['GET'])
@@ -306,6 +313,33 @@ def ml_check_area():
         return jsonify(entry)
     else:
         return jsonify({'error': 'No flat area nearby or no perpendicular image available'}), 404
+
+
+
+# New Endpoint: /ml_check_area_temp
+# Always returns the current coordinates and the latest depth camera RGB image
+@app.route('/ml_check_area_temp', methods=['GET'])
+def ml_check_area_temp():
+    global bridge_server_node, latest_image_base64
+    if bridge_server_node is None:
+        return jsonify({'error': 'BridgeServer node not available'}), 500
+
+    current_coord = {
+        'x': bridge_server_node.x_,
+        'y': bridge_server_node.y_,
+        'z': bridge_server_node.z_
+    }
+
+    with lock:
+        if latest_image_base64 is not None:
+            response = {'coordinate': current_coord, 'image': latest_image_base64}
+            return jsonify(response)
+        else:
+            return jsonify({'error': 'No image received yet'}), 404
+
+
+
+
 
 # Endpoint: /predicted_area (modified publisher format)
 @app.route('/predicted_area', methods=['POST'])

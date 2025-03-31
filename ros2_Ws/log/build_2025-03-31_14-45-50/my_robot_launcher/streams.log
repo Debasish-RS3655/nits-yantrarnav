@@ -1,0 +1,42 @@
+[0.298s] Invoking command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble PYTHONPATH=/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake /mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher
+[1.138s] -- The C compiler identification is GNU 11.4.0
+[1.923s] -- The CXX compiler identification is GNU 11.4.0
+[2.417s] -- Detecting C compiler ABI info
+[3.018s] -- Detecting C compiler ABI info - done
+[3.042s] -- Check for working C compiler: /usr/bin/cc - skipped
+[3.057s] -- Detecting C compile features
+[3.061s] -- Detecting C compile features - done
+[3.113s] -- Detecting CXX compiler ABI info
+[3.616s] -- Detecting CXX compiler ABI info - done
+[3.643s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[3.644s] -- Detecting CXX compile features
+[3.645s] -- Detecting CXX compile features - done
+[3.724s] -- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+[4.441s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[4.800s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[6.165s] -- Configuring done
+[6.395s] -- Generating done
+[6.606s] -- Build files have been written to: /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher
+[6.610s] Invoked command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble PYTHONPATH=/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake /mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher
+[6.619s] Invoking command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble PYTHONPATH=/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --build /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher -- -j8 -l8
+[6.704s] Invoked command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble PYTHONPATH=/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --build /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher -- -j8 -l8
+[6.732s] Invoking command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble PYTHONPATH=/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --install /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher
+[6.743s] -- Install configuration: ""
+[6.750s] -- Execute custom install script
+[6.774s] -- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/launch/robot.launch.py
+[6.819s] -- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/ament_index/resource_index/package_run_dependencies/my_robot_launcher
+[6.867s] -- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/ament_index/resource_index/parent_prefix_path/my_robot_launcher
+[6.909s] -- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/environment/ament_prefix_path.sh
+[6.950s] -- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/environment/ament_prefix_path.dsv
+[6.982s] -- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/environment/path.sh
+[7.026s] -- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/environment/path.dsv
+[7.058s] -- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/local_setup.bash
+[7.088s] -- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/local_setup.sh
+[7.117s] -- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/local_setup.zsh
+[7.148s] -- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/local_setup.dsv
+[7.177s] -- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/package.dsv
+[7.221s] -- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/ament_index/resource_index/packages/my_robot_launcher
+[7.263s] -- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/cmake/my_robot_launcherConfig.cmake
+[7.294s] -- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/cmake/my_robot_launcherConfig-version.cmake
+[7.327s] -- Symlinking: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher/share/my_robot_launcher/package.xml
+[7.352s] Invoked command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble PYTHONPATH=/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_controller:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --install /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher

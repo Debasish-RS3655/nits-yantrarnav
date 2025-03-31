@@ -11,3 +11,4 @@ odom = my_robot_controller.odom:main
 path_manual = my_robot_controller.path_manual:main
 path_planner = my_robot_controller.path_planner:main
 perpendicular_webcam = my_robot_controller.perpendicular_webcam:main
+
