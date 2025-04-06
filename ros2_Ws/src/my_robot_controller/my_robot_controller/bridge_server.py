@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String, Bool
+from std_msgs.msg import String, Bool, Float32
 from sensor_msgs.msg import Image, BatteryState
 from geometry_msgs.msg import Point
 
@@ -23,9 +23,10 @@ from mavros_msgs.msg import OpticalFlow
 # Global variables to hold the latest images (in base64)
 latest_image_base64 = None          # From the ROS camera subscriber
 perpendicular_image_base64 = None   # From the perpendicular webcam publisher
-latest_velocity = None  # Will hold a dictionary with flow_rate data.
+latest_velocity = None  # Will hold a dictionary with flow_rate data from optical flow sensor.
+latest_z_velocity = None  # Will hold the latest z_velocity from the /z_velocity topic.
 
-# Lock to ensure thread-safe access to global image variables
+# Lock to ensure thread-safe access to global image and velocity variables
 lock = threading.Lock()
 
 # ROS2 BridgeServer node: subscribes to various topics
@@ -61,11 +62,19 @@ class BridgeServer(Node):
         # )
         # ---------------------------
         
-        # NEW: Subscribe to the optical flow sensor topic to update flow_rate as velocity
+        # NEW: Subscribe to the optical flow sensor topic to update flow_rate (x and y)
         self.flow_sub = self.create_subscription(
             OpticalFlow,
             '/mavros/optical_flow/raw/optical_flow',
             self.velocity_callback,
+            10
+        )
+        
+        # NEW: Subscribe to the /z_velocity topic to get the calculated vertical speed
+        self.z_velocity_sub = self.create_subscription(
+            Float32,
+            '/z_velocity',
+            self.z_velocity_callback,
             10
         )
         
@@ -112,13 +121,13 @@ class BridgeServer(Node):
         # Initialize CvBridge for image conversion
         self.bridge = CvBridge()        
 
-    # Updated velocity callback using optical flow sensor's flow_rate
+    # Updated velocity callback using optical flow sensor's flow_rate for x and y
     def velocity_callback(self, msg: OpticalFlow):
         global latest_velocity, lock
         # Extract the flow_rate from the optical flow message.
         flow_rate = msg.flow_rate
         
-        # Build a dictionary to store the flow rate data.
+        # Build a dictionary to store the flow rate data (x and y).
         velocity_data = {
             'header': {
                 'stamp': msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9,
@@ -127,12 +136,20 @@ class BridgeServer(Node):
             'flow_rate': {
                 'x': flow_rate.x,
                 'y': flow_rate.y,
-                'z': flow_rate.z
+                # The z component will be replaced from the /z_velocity topic.
+                'z': 0.0
             }
         }
         with lock:
             latest_velocity = velocity_data
-        self.get_logger().info("Updated optical flow rate: " + str(velocity_data))
+        self.get_logger().info("Updated optical flow rate (x,y): " + str(velocity_data))
+    
+    # New callback to update the z_velocity from the /z_velocity topic.
+    def z_velocity_callback(self, msg: Float32):
+        global latest_z_velocity, lock
+        with lock:
+            latest_z_velocity = msg.data
+        self.get_logger().info("Updated z velocity from /z_velocity: " + str(msg.data))
     
     def system_ready_status_callback(self, msg: Bool):
         self.system_ready_status = msg.data
@@ -478,14 +495,20 @@ def drone_status():
     }
     return jsonify(status)
 
-# Updated Endpoint: /velocities now returns the optical flow sensor's flow_rate data
+# Updated Endpoint: /velocities now returns optical flow x,y and replaces z with value from /z_velocity
 @app.route('/velocities', methods=['GET'])
 def get_velocities():
-    global latest_velocity
+    global latest_velocity, latest_z_velocity, lock
     with lock:
         if latest_velocity is None:
             return jsonify({'error': 'No velocity data received yet'}), 404
-        return jsonify(latest_velocity)
+        # Replace the z component with the latest value from /z_velocity if available
+        velocity_data = latest_velocity.copy()
+        if latest_z_velocity is not None:
+            velocity_data['flow_rate']['z'] = latest_z_velocity
+        else:
+            velocity_data['flow_rate']['z'] = 0.0
+        return jsonify(velocity_data)
 
 # Function to spin the ROS node in a separate thread
 def ros_spin(node):
