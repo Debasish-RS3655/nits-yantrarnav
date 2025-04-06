@@ -17,12 +17,13 @@ from cv_bridge import CvBridge, CvBridgeError
 import numpy as np
 import math
 
-from geometry_msgs.msg import TwistStamped
+# NEW: Import the OpticalFlow message type from mavros_msgs
+from mavros_msgs.msg import OpticalFlow
 
 # Global variables to hold the latest images (in base64)
 latest_image_base64 = None          # From the ROS camera subscriber
 perpendicular_image_base64 = None   # From the perpendicular webcam publisher
-latest_velocity = None  # Will hold a dictionary with linear and angular velocities.
+latest_velocity = None  # Will hold a dictionary with flow_rate data.
 
 # Lock to ensure thread-safe access to global image variables
 lock = threading.Lock()
@@ -49,12 +50,24 @@ class BridgeServer(Node):
         self.pos_phase_sub = self.create_subscription(String, 'position/phase', self.update_phase_pos, 10)
         self.mode_pub = self.create_publisher(String, 'position/mode', 10)
         self.land_launch_pub = self.create_publisher(String, '/launch_commands', 10)
-        self.vel_sub = self.create_subscription(
-            TwistStamped,
-            '/mavros/local_position/velocity_local',
+        
+        # ---------------------------
+        # OLD velocity subscriber removed:
+        # self.vel_sub = self.create_subscription(
+        #     TwistStamped,
+        #     '/mavros/local_position/velocity_local',
+        #     self.velocity_callback,
+        #     10  # QoS depth
+        # )
+        # ---------------------------
+        
+        # NEW: Subscribe to the optical flow sensor topic to update flow_rate as velocity
+        self.flow_sub = self.create_subscription(
+            OpticalFlow,
+            '/mavros/optical_flow/raw/optical_flow',
             self.velocity_callback,
-            10  # QoS depth
-        )        
+            10
+        )
         
         # Subscriber for launch/land status (String)
         self.drone_launch_land_sub = self.create_subscription(String, '/launch_land_status', self.update_launch_status, 10)
@@ -99,32 +112,27 @@ class BridgeServer(Node):
         # Initialize CvBridge for image conversion
         self.bridge = CvBridge()        
 
-    def velocity_callback(self, msg: TwistStamped):
+    # Updated velocity callback using optical flow sensor's flow_rate
+    def velocity_callback(self, msg: OpticalFlow):
         global latest_velocity, lock
-        # Extract linear and angular velocity components.
-        linear = msg.twist.linear
-        angular = msg.twist.angular
+        # Extract the flow_rate from the optical flow message.
+        flow_rate = msg.flow_rate
         
-        # Build a dictionary to store the data.
+        # Build a dictionary to store the flow rate data.
         velocity_data = {
             'header': {
                 'stamp': msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9,
                 'frame_id': msg.header.frame_id
             },
-            'linear': {
-                'x': linear.x,
-                'y': linear.y,
-                'z': linear.z
-            },
-            'angular': {
-                'x': angular.x,
-                'y': angular.y,
-                'z': angular.z
+            'flow_rate': {
+                'x': flow_rate.x,
+                'y': flow_rate.y,
+                'z': flow_rate.z
             }
         }
         with lock:
             latest_velocity = velocity_data
-        self.get_logger().info("Updated velocity data: " + str(velocity_data))
+        self.get_logger().info("Updated optical flow rate: " + str(velocity_data))
     
     def system_ready_status_callback(self, msg: Bool):
         self.system_ready_status = msg.data
@@ -239,7 +247,7 @@ def current_position():
     pos = {
         'x': bridge_server_node.x_,
         'y': bridge_server_node.y_,
-        'z': bridge_server_node.z_
+        'z': bridge_server_node.current_height          # changed to data from the height sensor
     }
     return jsonify(pos)
 
@@ -250,9 +258,10 @@ def target_position():
     if bridge_server_node is None:
         return jsonify({'error': 'BridgeServer node not available'}), 500
     pos = {
-        'x': bridge_server_node.target_x,
-        'y': bridge_server_node.target_y,
-        'z': bridge_server_node.target_z
+        'x': bridge_server_node.target_x * 100,
+        'y': bridge_server_node.target_y * 100,
+        # 'z': bridge_server_node.target_z
+        'z': 3 * 100
     }
     return jsonify(pos)
 
@@ -469,6 +478,7 @@ def drone_status():
     }
     return jsonify(status)
 
+# Updated Endpoint: /velocities now returns the optical flow sensor's flow_rate data
 @app.route('/velocities', methods=['GET'])
 def get_velocities():
     global latest_velocity

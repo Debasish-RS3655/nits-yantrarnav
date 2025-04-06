@@ -84,7 +84,7 @@
           <div
             class="p-[0.5rem] border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
           >
-            <p class="text-center pb-[0.5rem]">Current Position</p>
+            <p class="text-center pb-[0.5rem]">Current Position (cm)</p>
             <div id="coordinates" class="flex justify-center gap-4">
               <!-- X Coordinate -->
               <div
@@ -139,7 +139,7 @@
           <div
             class="p-[0.5rem] border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
           >
-            <p class="text-center pb-[0.5rem]">Target Position</p>
+            <p class="text-center pb-[0.5rem]">Target Position (cm)</p>
             <div id="coordinates" class="flex justify-center gap-4">
               <!-- X Coordinate -->
               <div
@@ -488,9 +488,9 @@
           if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
           const data = await response.json();
           // Update the new velocity fields using the linear component values
-          document.getElementById("x-velocity").innerText = data.linear.x.toFixed(2);
-          document.getElementById("y-velocity").innerText = data.linear.y.toFixed(2);
-          document.getElementById("z-velocity").innerText = data.linear.z.toFixed(2);
+          document.getElementById("x-velocity").innerText = data.flow_rate.x.toFixed(2);
+          document.getElementById("y-velocity").innerText = data.flow_rate.y.toFixed(2);
+          document.getElementById("z-velocity").innerText = data.flow_rate.z.toFixed(2);
         } catch (error) {
           console.error("Failed to fetch velocities:", error);
           document.getElementById("x-velocity").innerText = "Error";
