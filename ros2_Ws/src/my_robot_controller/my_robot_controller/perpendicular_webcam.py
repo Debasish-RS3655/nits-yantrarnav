@@ -26,7 +26,7 @@ class PerpendicularWebcamPublisher(Node):
         
         # define the resolution her
         # Optionally, you may resize the frame
-        frame = cv2.resize(frame, (640, 480))
+        frame = cv2.resize(frame, (256, 256))
         # Encode the frame as JPEG
         ret, buffer = cv2.imencode('.jpg', frame)
         if not ret:

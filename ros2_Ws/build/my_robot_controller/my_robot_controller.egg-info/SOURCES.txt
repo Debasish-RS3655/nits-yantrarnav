@@ -15,7 +15,6 @@ my_robot_controller/odom.py
 my_robot_controller/path_mover.py
 my_robot_controller/path_planner.py
 my_robot_controller/perpendicular_webcam.py
-my_robot_controller/velocity.py
 my_robot_controller.egg-info/PKG-INFO
 my_robot_controller.egg-info/SOURCES.txt
 my_robot_controller.egg-info/dependency_links.txt

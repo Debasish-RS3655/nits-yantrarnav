@@ -321,7 +321,7 @@
       let currentMode = null;
       async function fetchCurrentMode() {
         try {
-          const response = await fetch("http://192.168.10.3:5000/mode");
+          const response = await fetch("http://192.168.76.223:5000/mode");
           if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
           const data = await response.json();
           currentMode = data.mode;
@@ -335,7 +335,7 @@
 
       async function setMode(mode) {
         try {
-          const response = await fetch("http://192.168.10.3:5000/mode", {
+          const response = await fetch("http://192.168.76.223:5000/mode", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -370,7 +370,7 @@
 
         try {
           const response = await fetch(
-            "http://192.168.10.3:5000/current_height"
+            "http://192.168.76.223:5000/current_height"
           );
           const data = await response.json();
 
@@ -390,7 +390,7 @@
         const imgElement = document.getElementById("camera-feed");
         try {
           const response = await fetch(
-            "http://192.168.10.3:5000/depth_cam_rgb"
+            "http://192.168.76.223:5000/depth_cam_rgba"
           );
           if (response.ok) {
             const data = await response.json();
@@ -413,7 +413,7 @@
         const imgElement = document.getElementById("camera-feed1");
         try {
           const response = await fetch(
-            "http://192.168.10.3:5000/perpendicular_cam_rgb"
+            "http://192.168.76.223:5000/perpendicular_cam_rgb"
           );
           if (response.ok) {
             const data = await response.json();
@@ -434,7 +434,7 @@
       async function fetchDroneStatus() {
         try {
           const response = await fetch(
-            "http://192.168.10.3:5000/drone_status"
+            "http://192.168.76.223:5000/drone_status"
           );
           const data = await response.json();
           document.getElementById("drone-phase").innerText = data.phase;
@@ -450,7 +450,7 @@
       async function fetchBatteryStatus() {
         try {
           const response = await fetch(
-            "http://192.168.10.3:5000/battery_status"
+            "http://192.168.76.223:5000/battery_status"
           );
           const data = await response.json();
           document.getElementById(
@@ -469,7 +469,7 @@
       async function fetchSystemReady() {
         try {
           const response = await fetch(
-            "http://192.168.10.3:5000/system_ready"
+            "http://192.168.76.223:5000/system_ready"
           );
           const data = await response.json();
           document.getElementById("system-ready").innerText = data.system_ready
@@ -484,7 +484,7 @@
       // New function to fetch velocity data from the /velocities endpoint
       async function fetchVelocities() {
         try {
-          const response = await fetch("http://192.168.10.3:5000/velocities");
+          const response = await fetch("http://192.168.76.223:5000/velocities");
           if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
           const data = await response.json();
           // Update the new velocity fields using the linear component values
@@ -509,15 +509,15 @@
         fetchCameraFeed();
         fetchCameraFeed1();
         // New polling for velocities
-        setInterval(fetchVelocities, 200);
+        setInterval(fetchVelocities, 1000);
 
         setInterval(fetchHeight, 200);
-        setInterval(fetchCurrentMode, 200);
-        setInterval(fetchDroneStatus, 500);
+        setInterval(fetchCurrentMode, 1000);
+        setInterval(fetchDroneStatus, 1000);
         setInterval(fetchBatteryStatus, 1000);
-        setInterval(fetchSystemReady, 500);
-        setInterval(fetchCameraFeed, 200);
-        setInterval(fetchCameraFeed1, 200);
+        setInterval(fetchSystemReady, 1000);
+        // setInterval(fetchCameraFeed, 200);
+        // setInterval(fetchCameraFeed1, 200);
       }
 
       initialize();
@@ -684,7 +684,7 @@
         }
       });
 
-      const serverBaseUrl = "http://192.168.10.3:5000",
+      const serverBaseUrl = "http://192.168.76.223:5000",
         currentUrl = `${serverBaseUrl}/current_position`,
         targetUrl = `${serverBaseUrl}/target_position`,
         modeUrl = `${serverBaseUrl}/mode`,
@@ -703,7 +703,7 @@
 
       async function fetchCurrentPosition() {
         try {
-          const e = await fetch("http://192.168.10.3:5000/current_position");
+          const e = await fetch("http://192.168.76.223:5000/current_position");
           if (!e.ok) throw new Error(`HTTP error: ${e.status}`);
           const t = await e.json();
           const { x, y, z } = transformCoordinates(t.x, t.y, t.z);

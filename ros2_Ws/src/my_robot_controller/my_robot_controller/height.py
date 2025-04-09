@@ -5,6 +5,8 @@ from rclpy.node import Node
 from sensor_msgs.msg import Range
 from std_msgs.msg import String, Float32
 
+# the z velocity is also calculated in this node
+
 class RangeToHeightPublisher(Node):
     def __init__(self):
         super().__init__('range_to_height_publisher')
