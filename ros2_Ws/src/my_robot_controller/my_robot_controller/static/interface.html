@@ -522,48 +522,48 @@
 
       initialize();
 
-      // const scene = new THREE.Scene();
-      // scene.background = new THREE.Color(18483);
-      // const camera = new THREE.PerspectiveCamera(
-      //   75,
-      //   window.innerWidth / window.innerHeight,
-      //   0.1,
-      //   1e3
-      // );
-      // camera.position.x = -100;
-      // camera.position.y = 100;
-      // camera.position.z = 100;
-      // camera.lookAt(0, 0, 0);
-      // const renderer = new THREE.WebGLRenderer({ antialias: !0 });
-      // renderer.setSize(240, 240);
-      // document.querySelector(".axis").appendChild(renderer.domElement);
-      // let gridHelper = new THREE.GridHelper(100, 10, 6710886, 4473924);
-      // gridHelper.rotation.x = Math.PI / 2;
-      // scene.add(gridHelper);
-      // let axesHelper = new THREE.AxesHelper(60);
-      // axesHelper.scale.x = -1;
-      // scene.add(axesHelper);
-      // const dotGeometry = new THREE.SphereGeometry(2, 32, 32),
-      //   dotMaterial = new THREE.MeshBasicMaterial({ color: 16711680 }),
-      //   dot = new THREE.Mesh(dotGeometry, dotMaterial);
-      // scene.add(dot);
-      // const targetGeometry = new THREE.SphereGeometry(2, 32, 32),
-      //   targetMaterial = new THREE.MeshBasicMaterial({ color: 65280 }),
-      //   targetDot = new THREE.Mesh(targetGeometry, targetMaterial);
-      // scene.add(targetDot);
-      // const lineGeometry = new THREE.BufferGeometry(),
-      //   lineMaterial = new THREE.LineBasicMaterial({ color: 16776960 }),
-      //   targetLine = new THREE.Line(lineGeometry, lineMaterial);
-      // scene.add(targetLine);
-      // const trailPoints = [],
-      //   trailGeometry = new THREE.BufferGeometry(),
-      //   trailMaterial = new THREE.LineBasicMaterial({
-      //     color: 16744704,
-      //     opacity: 0.7,
-      //     transparent: !0,
-      //   }),
-      //   trail = new THREE.Line(trailGeometry, trailMaterial);
-      // scene.add(trail);
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(18483);
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1e3
+      );
+      camera.position.x = -100;
+      camera.position.y = 100;
+      camera.position.z = 100;
+      camera.lookAt(0, 0, 0);
+      const renderer = new THREE.WebGLRenderer({ antialias: !0 });
+      renderer.setSize(240, 240);
+      document.querySelector(".axis").appendChild(renderer.domElement);
+      let gridHelper = new THREE.GridHelper(100, 10, 6710886, 4473924);
+      gridHelper.rotation.x = Math.PI / 2;
+      scene.add(gridHelper);
+      let axesHelper = new THREE.AxesHelper(60);
+      axesHelper.scale.x = -1;
+      scene.add(axesHelper);
+      const dotGeometry = new THREE.SphereGeometry(2, 32, 32),
+        dotMaterial = new THREE.MeshBasicMaterial({ color: 16711680 }),
+        dot = new THREE.Mesh(dotGeometry, dotMaterial);
+      scene.add(dot);
+      const targetGeometry = new THREE.SphereGeometry(2, 32, 32),
+        targetMaterial = new THREE.MeshBasicMaterial({ color: 65280 }),
+        targetDot = new THREE.Mesh(targetGeometry, targetMaterial);
+      scene.add(targetDot);
+      const lineGeometry = new THREE.BufferGeometry(),
+        lineMaterial = new THREE.LineBasicMaterial({ color: 16776960 }),
+        targetLine = new THREE.Line(lineGeometry, lineMaterial);
+      scene.add(targetLine);
+      const trailPoints = [],
+        trailGeometry = new THREE.BufferGeometry(),
+        trailMaterial = new THREE.LineBasicMaterial({
+          color: 16744704,
+          opacity: 0.7,
+          transparent: !0,
+        }),
+        trail = new THREE.Line(trailGeometry, trailMaterial);
+      scene.add(trail);
       const position = { x: 0, y: 0, z: 0 },
         target = { x: 50, y: 50, z: 50 };
       let currentAxisConfig = 0;
@@ -594,95 +594,95 @@
         },
       ];
       // let currentMode = "automatic";
-      // const axesInfoElement = document.getElementById("axes-info"),
-      //   rotateAxesButton = document.getElementById("rotate-axes"),
-      //   resetOrientationButton = document.getElementById("reset-orientation"),
-      //   toggleModeButton = document.getElementById("toggle-mode"),
-      //   modeDisplayElement = document.getElementById("mode-display");
-      // function rotateAxes() {
-      //   currentAxisConfig = (currentAxisConfig + 1) % axisConfigs.length;
-      //   updateOrientation();
-      // }
-      // function resetOrientation() {
-      //   currentAxisConfig = 0;
-      //   updateOrientation();
-      // }
+      const axesInfoElement = document.getElementById("axes-info"),
+        rotateAxesButton = document.getElementById("rotate-axes"),
+        resetOrientationButton = document.getElementById("reset-orientation"),
+        toggleModeButton = document.getElementById("toggle-mode"),
+        modeDisplayElement = document.getElementById("mode-display");
+      function rotateAxes() {
+        currentAxisConfig = (currentAxisConfig + 1) % axisConfigs.length;
+        updateOrientation();
+      }
+      function resetOrientation() {
+        currentAxisConfig = 0;
+        updateOrientation();
+      }
 
-      // function updateOrientation() {
-      //   const e = axisConfigs[currentAxisConfig];
-      //   axesInfoElement.textContent = e.name;
-      //   trailPoints.length = 0;
-      //   trailGeometry.setFromPoints([]);
-      //   scene.remove(gridHelper);
-      //   scene.remove(axesHelper);
-      //   gridHelper = new THREE.GridHelper(100, 10, 6710886, 4473924);
-      //   axesHelper = new THREE.AxesHelper(60);
-      //   if (currentAxisConfig === 0) {
-      //     gridHelper.rotation.x = Math.PI / 2;
-      //     axesHelper.scale.x = -1;
-      //   } else if (currentAxisConfig === 1) {
-      //     gridHelper.rotation.x = Math.PI / 2;
-      //   } else if (currentAxisConfig === 2) {
-      //     axesHelper.scale.x = -1;
-      //   } else if (currentAxisConfig === 4) {
-      //     gridHelper.rotation.z = Math.PI / 2;
-      //     axesHelper.rotation.z = Math.PI / 2;
-      //     axesHelper.scale.x = -1;
-      //   } else if (currentAxisConfig === 5) {
-      //     gridHelper.rotation.z = Math.PI / 2;
-      //     axesHelper.rotation.z = Math.PI / 2;
-      //   }
-      //   scene.add(gridHelper);
-      //   scene.add(axesHelper);
-      //   if (currentAxisConfig === 0 || currentAxisConfig === 1) {
-      //     camera.position.set(currentAxisConfig === 0 ? 100 : -100, 100, 100);
-      //   } else if (currentAxisConfig === 2 || currentAxisConfig === 3) {
-      //     camera.position.set(currentAxisConfig === 2 ? 100 : -100, 100, -100);
-      //   } else {
-      //     camera.position.set(100, currentAxisConfig === 4 ? 100 : -100, 100);
-      //   }
-      //   camera.lookAt(0, 0, 0);
-      // }
+      function updateOrientation() {
+        const e = axisConfigs[currentAxisConfig];
+        axesInfoElement.textContent = e.name;
+        trailPoints.length = 0;
+        trailGeometry.setFromPoints([]);
+        scene.remove(gridHelper);
+        scene.remove(axesHelper);
+        gridHelper = new THREE.GridHelper(100, 10, 6710886, 4473924);
+        axesHelper = new THREE.AxesHelper(60);
+        if (currentAxisConfig === 0) {
+          gridHelper.rotation.x = Math.PI / 2;
+          axesHelper.scale.x = -1;
+        } else if (currentAxisConfig === 1) {
+          gridHelper.rotation.x = Math.PI / 2;
+        } else if (currentAxisConfig === 2) {
+          axesHelper.scale.x = -1;
+        } else if (currentAxisConfig === 4) {
+          gridHelper.rotation.z = Math.PI / 2;
+          axesHelper.rotation.z = Math.PI / 2;
+          axesHelper.scale.x = -1;
+        } else if (currentAxisConfig === 5) {
+          gridHelper.rotation.z = Math.PI / 2;
+          axesHelper.rotation.z = Math.PI / 2;
+        }
+        scene.add(gridHelper);
+        scene.add(axesHelper);
+        if (currentAxisConfig === 0 || currentAxisConfig === 1) {
+          camera.position.set(currentAxisConfig === 0 ? 100 : -100, 100, 100);
+        } else if (currentAxisConfig === 2 || currentAxisConfig === 3) {
+          camera.position.set(currentAxisConfig === 2 ? 100 : -100, 100, -100);
+        } else {
+          camera.position.set(100, currentAxisConfig === 4 ? 100 : -100, 100);
+        }
+        camera.lookAt(0, 0, 0);
+      }
 
-      // rotateAxesButton.addEventListener("click", rotateAxes);
-      // resetOrientationButton.addEventListener("click", resetOrientation);
-      // window.addEventListener("resize", () => {
-      //   camera.aspect = window.innerWidth / window.innerHeight;
-      //   camera.updateProjectionMatrix();
-      //   renderer.setSize(window.innerWidth, window.innerHeight);
-      // });
-      // console.log("get");
-      // let mouseDown = false,
-      //   mouseX = 0,
-      //   mouseY = 0;
-      // document.addEventListener("mousedown", (e) => {
-      //   mouseDown = true;
-      //   mouseX = e.clientX;
-      //   mouseY = e.clientY;
-      // });
-      // document.addEventListener("mouseup", () => {
-      //   mouseDown = false;
-      // });
-      // document.addEventListener("mousemove", (e) => {
-      //   if (mouseDown) {
-      //     const t = e.clientX - mouseX,
-      //       n = e.clientY - mouseY,
-      //       i = Math.sqrt(
-      //         camera.position.x * camera.position.x +
-      //         camera.position.y * camera.position.y +
-      //         camera.position.z * camera.position.z
-      //       ),
-      //       o = Math.atan2(camera.position.y, camera.position.x) + 0.01 * t,
-      //       s = Math.acos(camera.position.z / i) + 0.01 * n,
-      //       a = Math.max(0.1, Math.min(Math.PI - 0.1, s));
-      //     camera.position.x = i * Math.sin(a) * Math.cos(o);
-      //     camera.position.y = i * Math.sin(a) * Math.sin(o);
-      //     camera.position.z = i * Math.cos(a);
-      //     camera.lookAt(0, 0, 0);
-      //     mouseX = e.clientX;
-      //     mouseY = e.clientY;
-      //   }
-      // });
+      rotateAxesButton.addEventListener("click", rotateAxes);
+      resetOrientationButton.addEventListener("click", resetOrientation);
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+      console.log("get");
+      let mouseDown = false,
+        mouseX = 0,
+        mouseY = 0;
+      document.addEventListener("mousedown", (e) => {
+        mouseDown = true;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+      document.addEventListener("mouseup", () => {
+        mouseDown = false;
+      });
+      document.addEventListener("mousemove", (e) => {
+        if (mouseDown) {
+          const t = e.clientX - mouseX,
+            n = e.clientY - mouseY,
+            i = Math.sqrt(
+              camera.position.x * camera.position.x +
+              camera.position.y * camera.position.y +
+              camera.position.z * camera.position.z
+            ),
+            o = Math.atan2(camera.position.y, camera.position.x) + 0.01 * t,
+            s = Math.acos(camera.position.z / i) + 0.01 * n,
+            a = Math.max(0.1, Math.min(Math.PI - 0.1, s));
+          camera.position.x = i * Math.sin(a) * Math.cos(o);
+          camera.position.y = i * Math.sin(a) * Math.sin(o);
+          camera.position.z = i * Math.cos(a);
+          camera.lookAt(0, 0, 0);
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        }
+      });
 
       const serverBaseUrl = "http://192.168.76.223:5000",
         currentUrl = `${serverBaseUrl}/current_position`,
@@ -736,7 +736,6 @@
           statusElement.style.color = "#ff0000";
         }
       }
-      
 
       const x1ValueElement = document.getElementById("x1-value");
       const y1ValueElement = document.getElementById("y1-value");
@@ -751,32 +750,31 @@
           x1ValueElement.textContent = s.x.toFixed(2);
           y1ValueElement.textContent = s.y.toFixed(2);
           z1ValueElement.textContent = s.z.toFixed(2);
-         // updateTargetLine();
+          updateTargetLine();
         } catch (e) {
           console.error("Error fetching target position:", e);
         }
       }
 
-      // function updateTargetLine() {
-      //   const e = [
-      //     new THREE.Vector3(position.x, position.y, position.z),
-      //     new THREE.Vector3(target.x, target.y, target.z)
-      //   ];
-      //   lineGeometry.setFromPoints(e);
-      // }
+      function updateTargetLine() {
+        const e = [
+          new THREE.Vector3(position.x, position.y, position.z),
+          new THREE.Vector3(target.x, target.y, target.z)
+        ];
+        lineGeometry.setFromPoints(e);
+      }
 
-      // function animate() {
-      //   requestAnimationFrame(animate);
-      //   dot.position.x += 0.1 * (position.x - dot.position.x);
-      //   dot.position.y += 0.1 * (position.y - dot.position.y);
-      //   dot.position.z += 0.1 * (position.z - dot.position.z);
-      //   targetDot.position.x = target.x;
-      //   targetDot.position.y = target.y;
-      //   targetDot.position.z = target.z;
-      //   renderer.render(scene, camera);
-      // }
-      // animate();
-      console.log("check");
+      function animate() {
+        requestAnimationFrame(animate);
+        dot.position.x += 0.1 * (position.x - dot.position.x);
+        dot.position.y += 0.1 * (position.y - dot.position.y);
+        dot.position.z += 0.1 * (position.z - dot.position.z);
+        targetDot.position.x = target.x;
+        targetDot.position.y = target.y;
+        targetDot.position.z = target.z;
+        renderer.render(scene, camera);
+      }
+      animate();
 
       setInterval(fetchCurrentPosition, 200);
       setInterval(fetchTargetPosition, 200);

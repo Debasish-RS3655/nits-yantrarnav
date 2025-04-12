@@ -16,8 +16,10 @@
     </style>
   </head>
   <body>
-    <div class="flex  w-full min-h-screen ">
-      <div class="flex flex-col gap-2 w-[37vw]  bg-[#255F38]">
+    <div class="flex  md:flex-row flex-col min-h-screen">
+      <div
+        class="flex flex-col gap-2 w-full md:flex-col md:gap-2 md:w-[37vw] bg-[#255F38]"
+      >
         <div
           id="info"
           class="bg-[#253D2C] bg-opacity-100 text-white p-2.5 font-mono"
@@ -193,11 +195,11 @@
           </div>
         </div>
       </div>
-      <div class="flex flex-col bg-[#000000]">
-        <div class="flex justify-evenly">
+      <div class="flex lg:w-full flex-col bg-[#000000]">
+        <div class="flex md:flex-row flex-col md:justify-evenly items-center">
           <!-- Camera Feed Section -->
           <div
-            class="flex-grow flex p-[0.5rem] h-[450px] w-[450px] flex-col justify-center items-center border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
+            class="flex-grow md:flex md:p-[0.5rem] md:scale-[1] md:h-[450px] md:w-[450px] md:flex-col md:justify-center md:items-center md:pb-[1rem] flex p-[0.5rem] h-[450px] w-[450px] scale-[0.8] flex-col justify-center items-center border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
           >
             <p class="text-center pb-[0.5rem]">Depth Camera Feed</p>
             <div class="flex justify-center items-center h-[400px] w-[400px]">
@@ -209,7 +211,7 @@
             </div>
           </div>
           <div
-            class="flex-grow p-[0.5rem] flex h-[450px] w-[450px] flex-col justify-center items-center border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
+            class="flex-grow md:flex md:p-[0.5rem] md:scale-[1] md:h-[450px] md:w-[450px] md:flex-col md:justify-center md:items-center md:pb-[1rem] flex p-[0.5rem] h-[450px] w-[450px] scale-[0.8] flex-col justify-center items-center border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
           >
             <p class="text-center pb-[0.5rem]">Perpendicular Camera Feed</p>
             <div class="flex justify-center items-center h-[400px] w-[400px]">
@@ -221,7 +223,10 @@
             </div>
           </div>
         </div>
-        <div id="controls" class="pl-[0.5rem] pr-[0.5rem] flex gap-2.5">
+        <div
+          id="controls"
+          class="md:pl-[0.5rem] md:pr-[0.5rem] md:flex grid gap-2 p-2 grid-cols-2 md:gap-2.5"
+        >
           <button
             id="rotate-axes"
             class="bg-black bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
@@ -234,12 +239,7 @@
           >
             Reset Orientation
           </button>
-          <button
-            id="toggle-mode"
-            class="bg-black hidden bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
-          >
-            <a href="./position-tracker-tilted.html" target="_blank"> Axis</a>
-          </button>
+
           <button
             id="toggle-mode"
             class="bg-black bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
@@ -253,10 +253,10 @@
             Automatic
           </button>
           <button
-            id="Land"
+            id="Reset"
             class="bg-black bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
           >
-            Button 1
+            Reset
           </button>
           <button
             id="dk"
@@ -290,7 +290,6 @@
             </button>
           </div>
         </div>
-     
       </div>
     </div>
     <script src="./three.min.js"></script>
@@ -597,6 +596,24 @@
       }
 
       initializes();
+
+      document.getElementById("Reset").addEventListener("click", async () => {
+        try {
+          const response = await fetch("/reset_odom_services");
+          const data = await response.json();
+
+          if (response.ok) {
+            //  alert("Reset successful!");
+            console.log("Reset success:", data);
+          } else {
+            //  alert("Reset failed: " + data.error);
+            console.error("Reset failed:", data.error);
+          }
+        } catch (error) {
+          // alert("Error contacting server.");
+          console.error("Fetch error:", error);
+        }
+      });
 
       resetOrientation();
     </script>
