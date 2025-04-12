@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>3D Position & Target Tracker</title>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-     <script src="./tailwindcss.js"></script>
-    <link href="./src/output.css" rel="stylesheet">
-
+  
+    <script src="./tailwindcss.js"></script>
+    <link href="./src/output.css" rel="stylesheet" />
+   <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <style>
       body {
         margin: 0;
@@ -80,11 +80,11 @@
             </p>
           </div>
         </div>
-        <div>
+        <div class="scale-[0.88] relative top-[-1.6rem] " >
           <div
             class="p-[0.5rem] border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
           >
-            <p class="text-center pb-[0.5rem]">Current Position (cm)</p>
+            <p class="text-center pb-[0.5rem]">Current Position</p>
             <div id="coordinates" class="flex justify-center gap-4">
               <!-- X Coordinate -->
               <div
@@ -139,8 +139,8 @@
           <div
             class="p-[0.5rem] border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
           >
-            <p class="text-center pb-[0.5rem]">Target Position (cm)</p>
-            <div id="coordinates" class="flex justify-center gap-4">
+            <p class="text-center pb-[0.5rem]">Target Position</p>
+            <div id="coordinates" class="flex  justify-center gap-4">
               <!-- X Coordinate -->
               <div
                 class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
@@ -291,10 +291,10 @@
           </div>
         </div>
         <a href="./position-tracker-tilted.html" target="_blank">
-          <div
-            class="relative w-[15.2rem] h-[15.2rem] bg-[#000000] top-[-15rem] right-[-74rem] axis border border-black"
-          ></div>
-        </a>
+            <div
+              class="relative w-[15.2rem] h-[15.2rem] hidden bg-[#000000] top-[-15rem] right-[-74rem] axis border border-black"
+            ></div>
+          </a>
       </div>
     </div>
     <script src="./three.min.js"></script>
@@ -321,7 +321,7 @@
       let currentMode = null;
       async function fetchCurrentMode() {
         try {
-          const response = await fetch("http://192.168.76.223:5000/mode");
+          const response = await fetch("http://192.168.31.119:5000/mode");
           if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
           const data = await response.json();
           currentMode = data.mode;
@@ -335,7 +335,7 @@
 
       async function setMode(mode) {
         try {
-          const response = await fetch("http://192.168.76.223:5000/mode", {
+          const response = await fetch("http://192.168.31.119:5000/mode", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -364,206 +364,280 @@
         }`;
       }
 
-      async function fetchHeight() {
-        const heightElement = document.getElementById("drone-height");
-        const errorElement = document.getElementById("error");
+      // async function fetchHeight() {
+      //   const heightElement = document.getElementById("drone-height");
+      //   const errorElement = document.getElementById("error");
 
-        try {
-          const response = await fetch(
-            "http://192.168.76.223:5000/current_height"
-          );
-          const data = await response.json();
+      //   try {
+      //     const response = await fetch(
+      //       "http://192.168.31.119:5000/current_height"
+      //     );
+      //     const data = await response.json();
 
-          if (response.ok) {
-            heightElement.textContent = `${data.current_height.toFixed(2)} m`;
-            errorElement.textContent = "";
-          } else {
-            heightElement.textContent = "--";
-            errorElement.textContent = data.error || "Failed to fetch data";
-          }
-        } catch (error) {
-          heightElement.textContent = "--";
-        }
-      }
+      //     if (response.ok) {
+      //       heightElement.textContent = `${data.current_height.toFixed(2)} m`;
+      //       errorElement.textContent = "";
+      //     } else {
+      //       heightElement.textContent = "--";
+      //       errorElement.textContent = data.error || "Failed to fetch data";
+      //     }
+      //   } catch (error) {
+      //     heightElement.textContent = "--";
+      //   }
+      // }
 
-      async function fetchCameraFeed() {
-        const imgElement = document.getElementById("camera-feed");
-        try {
-          const response = await fetch(
-            "http://192.168.76.223:5000/depth_cam_rgba"
-          );
-          if (response.ok) {
-            const data = await response.json();
-            imgElement.src = `data:image/jpeg;base64,${data.image}`;
-            imgElement.alt = "Live Camera Feed";
-          } else {
-            // If no feed is available, placeholder
-            imgElement.src = "./896653.jpg";
-            imgElement.alt = "No Camera Feed Available";
-          }
-        } catch (error) {
-          console.error("Failed to fetch camera feed:", error);
-          imgElement.src = "/896653.jpg";
-          console.log("Script is running!");
-          imgElement.alt = "No Camera Feed Available";
-        }
-      }
+      // async function fetchCameraFeed() {
+      //   const imgElement = document.getElementById("camera-feed");
+      //   try {
+      //     const response = await fetch(
+      //       "http://192.168.31.119:5000/depth_cam_rgb"
+      //     );
+      //     if (response.ok) {
+      //       const data = await response.json();
+      //       imgElement.src = `data:image/jpeg;base64,${data.image}`;
+      //       imgElement.alt = "Live Camera Feed";
+      //     } else {
+      //       // If no feed is available, placeholder
+      //       imgElement.src = "./896653.jpg";
+      //       imgElement.alt = "No Camera Feed Available";
+      //     }
+      //   } catch (error) {
+      //     console.error("Failed to fetch camera feed:", error);
+      //     imgElement.src = "/896653.jpg";
+      //     console.log("Script is running!");
+      //     imgElement.alt = "No Camera Feed Available";
+      //   }
+      // }
 
-      async function fetchCameraFeed1() {
-        const imgElement = document.getElementById("camera-feed1");
-        try {
-          const response = await fetch(
-            "http://192.168.76.223:5000/perpendicular_cam_rgb"
-          );
-          if (response.ok) {
-            const data = await response.json();
-            imgElement.src = `data:image/jpeg;base64,${data.image}`;
-            imgElement.alt = "Live Perpendicular Camera Feed";
-          } else {
-            imgElement.src = "./896653.jpg";
-            imgElement.alt = "No Camera Feed Available";
-          }
-        } catch (error) {
-          console.error("Failed to fetch camera feed:", error);
-          imgElement.src = "/896653.jpg";
-          console.log("Script <> is running!");
-          imgElement.alt = "No Camera Feed Available";
-        }
-      }
+      // async function fetchCameraFeed1() {
+      //   const imgElement = document.getElementById("camera-feed1");
+      //   try {
+      //     const response = await fetch(
+      //       "http://192.168.31.119:5000/perpendicular_cam_rgb"
+      //     );
+      //     if (response.ok) {
+      //       const data = await response.json();
+      //       imgElement.src = `data:image/jpeg;base64,${data.image}`;
+      //       imgElement.alt = "Live Perpendicular Camera Feed";
+      //     } else {
+      //       imgElement.src = "./896653.jpg";
+      //       imgElement.alt = "No Camera Feed Available";
+      //     }
+      //   } catch (error) {
+      //     console.error("Failed to fetch camera feed:", error);
+      //     imgElement.src = "/896653.jpg";
+      //     console.log("Script <> is running!");
+      //     imgElement.alt = "No Camera Feed Available";
+      //   }
+      // }
 
-      async function fetchDroneStatus() {
-        try {
-          const response = await fetch(
-            "http://192.168.76.223:5000/drone_status"
-          );
-          const data = await response.json();
-          document.getElementById("drone-phase").innerText = data.phase;
-          document.getElementById("launch-status").innerText =
-            data.launch_land_status;
-        } catch (error) {
-          console.error("Failed to fetch drone status:", error);
-          document.getElementById("drone-phase").innerText = "Error";
-          document.getElementById("launch-status").innerText = "Error";
-        }
-      }
+      // async function fetchDroneStatus() {
+      //   try {
+      //     const response = await fetch(
+      //       "http://192.168.31.119:5000/drone_status"
+      //     );
+      //     const data = await response.json();
+      //     document.getElementById("drone-phase").innerText = data.phase;
+      //     document.getElementById("launch-status").innerText =
+      //       data.launch_land_status;
+      //   } catch (error) {
+      //     console.error("Failed to fetch drone status:", error);
+      //     document.getElementById("drone-phase").innerText = "Error";
+      //     document.getElementById("launch-status").innerText = "Error";
+      //   }
+      // }
 
-      async function fetchBatteryStatus() {
-        try {
-          const response = await fetch(
-            "http://192.168.76.223:5000/battery_status"
-          );
-          const data = await response.json();
-          document.getElementById(
-            "battery-percentage"
-          ).innerText = `${data.percentage.toFixed(1)}%`;
-          document.getElementById(
-            "battery-voltage"
-          ).innerText = `${data.voltage.toFixed(2)}V`;
-        } catch (error) {
-          console.error("Failed to fetch battery status:", error);
-          document.getElementById("battery-percentage").innerText = "Error";
-          document.getElementById("battery-voltage").innerText = "Error";
-        }
-      }
+      // async function fetchBatteryStatus() {
+      //   try {
+      //     const response = await fetch(
+      //       "http://192.168.31.119:5000/battery_status"
+      //     );
+      //     const data = await response.json();
+      //     document.getElementById(
+      //       "battery-percentage"
+      //     ).innerText = `${data.percentage.toFixed(1)}%`;
+      //     document.getElementById(
+      //       "battery-voltage"
+      //     ).innerText = `${data.voltage.toFixed(2)}V`;
+      //   } catch (error) {
+      //     console.error("Failed to fetch battery status:", error);
+      //     document.getElementById("battery-percentage").innerText = "Error";
+      //     document.getElementById("battery-voltage").innerText = "Error";
+      //   }
+      // }
 
-      async function fetchSystemReady() {
-        try {
-          const response = await fetch(
-            "http://192.168.76.223:5000/system_ready"
-          );
-          const data = await response.json();
-          document.getElementById("system-ready").innerText = data.system_ready
-            ? "Ready"
-            : "Not Ready";
-        } catch (error) {
-          console.error("Failed to fetch system ready status:", error);
-          document.getElementById("system-ready").innerText = "Error";
-        }
-      }
+      // async function fetchSystemReady() {
+      //   try {
+      //     const response = await fetch(
+      //       "http://192.168.31.119:5000/system_ready"
+      //     );
+      //     const data = await response.json();
+      //     document.getElementById("system-ready").innerText = data.system_ready
+      //       ? "Ready"
+      //       : "Not Ready";
+      //   } catch (error) {
+      //     console.error("Failed to fetch system ready status:", error);
+      //     document.getElementById("system-ready").innerText = "Error";
+      //   }
+      // }
 
-      // New function to fetch velocity data from the /velocities endpoint
-      async function fetchVelocities() {
-        try {
-          const response = await fetch("http://192.168.76.223:5000/velocities");
-          if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
-          const data = await response.json();
-          // Update the new velocity fields using the linear component values
-          document.getElementById("x-velocity").innerText = data.flow_rate.x.toFixed(2);
-          document.getElementById("y-velocity").innerText = data.flow_rate.y.toFixed(2);
-          document.getElementById("z-velocity").innerText = data.flow_rate.z.toFixed(2);
-        } catch (error) {
-          console.error("Failed to fetch velocities:", error);
-          document.getElementById("x-velocity").innerText = "Error";
-          document.getElementById("y-velocity").innerText = "Error";
-          document.getElementById("z-velocity").innerText = "Error";
-        }
-      }
+      // // New function to fetch velocity data from the /velocities endpoint
+      // async function fetchVelocities() {
+      //   try {
+      //     const response = await fetch("http://192.168.31.119:5000/velocities");
+      //     if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+      //     const data = await response.json();
+      //     // Update the new velocity fields using the linear component values
+      //     document.getElementById("x-velocity").innerText = data.linear.x.toFixed(2);
+      //     document.getElementById("y-velocity").innerText = data.linear.y.toFixed(2);
+      //     document.getElementById("z-velocity").innerText = data.linear.z.toFixed(2);
+      //   } catch (error) {
+      //     console.error("Failed to fetch velocities:", error);
+      //     document.getElementById("x-velocity").innerText = "Error";
+      //     document.getElementById("y-velocity").innerText = "Error";
+      //     document.getElementById("z-velocity").innerText = "Error";
+      //   }
+      // }
 
-      // Fetch status
+      // // Fetch status
       function initialize() {
-        fetchHeight();
+        // fetchHeight();
         fetchCurrentMode();
-        fetchDroneStatus();
-        fetchBatteryStatus();
-        fetchSystemReady();
-        fetchCameraFeed();
-        fetchCameraFeed1();
+        // fetchDroneStatus();
+        // fetchBatteryStatus();
+        // fetchSystemReady();
+        // fetchCameraFeed();
+        // fetchCameraFeed1();
         // New polling for velocities
-        setInterval(fetchVelocities, 1000);
+        // setInterval(fetchVelocities, 200);
 
-        setInterval(fetchHeight, 200);
-        setInterval(fetchCurrentMode, 1000);
-        setInterval(fetchDroneStatus, 1000);
-        setInterval(fetchBatteryStatus, 1000);
-        setInterval(fetchSystemReady, 1000);
+        // setInterval(fetchHeight, 200);
+        setInterval(fetchCurrentMode, 200);
+        // setInterval(fetchDroneStatus, 500);
+        // setInterval(fetchBatteryStatus, 1000);
+        // setInterval(fetchSystemReady, 500);
         // setInterval(fetchCameraFeed, 200);
         // setInterval(fetchCameraFeed1, 200);
       }
 
       initialize();
+      // 
 
-      // const scene = new THREE.Scene();
-      // scene.background = new THREE.Color(18483);
-      // const camera = new THREE.PerspectiveCamera(
-      //   75,
-      //   window.innerWidth / window.innerHeight,
-      //   0.1,
-      //   1e3
-      // );
-      // camera.position.x = -100;
-      // camera.position.y = 100;
-      // camera.position.z = 100;
-      // camera.lookAt(0, 0, 0);
-      // const renderer = new THREE.WebGLRenderer({ antialias: !0 });
-      // renderer.setSize(240, 240);
-      // document.querySelector(".axis").appendChild(renderer.domElement);
-      // let gridHelper = new THREE.GridHelper(100, 10, 6710886, 4473924);
-      // gridHelper.rotation.x = Math.PI / 2;
-      // scene.add(gridHelper);
-      // let axesHelper = new THREE.AxesHelper(60);
-      // axesHelper.scale.x = -1;
-      // scene.add(axesHelper);
-      // const dotGeometry = new THREE.SphereGeometry(2, 32, 32),
-      //   dotMaterial = new THREE.MeshBasicMaterial({ color: 16711680 }),
-      //   dot = new THREE.Mesh(dotGeometry, dotMaterial);
-      // scene.add(dot);
-      // const targetGeometry = new THREE.SphereGeometry(2, 32, 32),
-      //   targetMaterial = new THREE.MeshBasicMaterial({ color: 65280 }),
-      //   targetDot = new THREE.Mesh(targetGeometry, targetMaterial);
-      // scene.add(targetDot);
-      // const lineGeometry = new THREE.BufferGeometry(),
-      //   lineMaterial = new THREE.LineBasicMaterial({ color: 16776960 }),
-      //   targetLine = new THREE.Line(lineGeometry, lineMaterial);
-      // scene.add(targetLine);
-      // const trailPoints = [],
-      //   trailGeometry = new THREE.BufferGeometry(),
-      //   trailMaterial = new THREE.LineBasicMaterial({
-      //     color: 16744704,
-      //     opacity: 0.7,
-      //     transparent: !0,
-      //   }),
-      //   trail = new THREE.Line(trailGeometry, trailMaterial);
-      // scene.add(trail);
+      const xValueElement = document.getElementById("x-value");
+      const yValueElement = document.getElementById("y-value");
+      const zValueElement = document.getElementById("z-value"); 
+
+      async function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      async function fetchAllParametersContinuously() {
+        while (true) {
+          try {
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 5000); // 5s timeout
+            const response = await fetch("bridge.json");
+            clearTimeout(timeout);
+
+            if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+            const data = await response.json();
+
+          
+            document.getElementById("drone-height").innerText =
+              data.current_height?.toFixed(2) + " m" || "--";
+
+            document.getElementById("drone-phase").innerText =
+              data.phase || "N/A";
+            document.getElementById("launch-status").innerText =
+              data.launch_status || "N/A";
+
+            document.getElementById("battery-percentage").innerText =
+              data.battery_status?.percentage?.toFixed(1) + "%" || "Error";
+            document.getElementById("battery-voltage").innerText =
+              data.battery_status?.voltage?.toFixed(2) + "V" || "Error";
+
+            document.getElementById("system-ready").innerText =
+              data.system_ready ? "Ready" : "Not Ready";
+
+            // document.getElementById("x-velocity").innerText =
+            //   data.velocity?.x?.toFixed(2) || "N/A";
+            // document.getElementById("y-velocity").innerText =
+            //   data.velocity?.y?.toFixed(2) || "N/A";
+            // document.getElementById("z-velocity").innerText =
+            //   data.velocity?.z?.toFixed(2) || "N/A";
+
+            
+            const cam = document.getElementById("camera-feed");
+            cam.src = `data:image/jpeg;base64,${data.latest_image}`;
+            cam.alt = "Live Camera Feed";
+
+            const cam1 = document.getElementById("camera-feed1");
+            cam1.src = `data:image/jpeg;base64,${data.perpendicular_image}`;
+            cam1.alt = "Live Perpendicular Camera Feed";
+          } catch (error) {
+            console.error("Error fetching /all:", error.message);
+            document.getElementById("drone-height").innerText = "--";
+            document.getElementById("battery-percentage").innerText = "Error";
+            document.getElementById("battery-voltage").innerText = "Error";
+            document.getElementById("system-ready").innerText = "Error";
+            document.getElementById("drone-phase").innerText = "Error";
+            document.getElementById("launch-status").innerText = "Error";
+          }
+
+          await sleep(200); // 200ms delay between requests
+        }
+      }
+
+      function initialize() {
+        fetchAllParametersContinuously(); // single efficient fetch loop
+        // fetchCurrentMode(); // This still uses its own endpoint unless merged
+      }
+
+      initialize(); 
+      console.log("the great");
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(18483);
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1e3
+      );
+      camera.position.x = -100;
+      camera.position.y = 100;
+      camera.position.z = 100;
+      camera.lookAt(0, 0, 0);
+      const renderer = new THREE.WebGLRenderer({ antialias: !0 });
+      renderer.setSize(240, 240);
+      document.querySelector(".axis").appendChild(renderer.domElement);
+      let gridHelper = new THREE.GridHelper(100, 10, 6710886, 4473924);
+      gridHelper.rotation.x = Math.PI / 2;
+      scene.add(gridHelper);
+      let axesHelper = new THREE.AxesHelper(60);
+      axesHelper.scale.x = -1;
+      scene.add(axesHelper);
+      const dotGeometry = new THREE.SphereGeometry(2, 32, 32),
+        dotMaterial = new THREE.MeshBasicMaterial({ color: 16711680 }),
+        dot = new THREE.Mesh(dotGeometry, dotMaterial);
+      scene.add(dot);
+      const targetGeometry = new THREE.SphereGeometry(2, 32, 32),
+        targetMaterial = new THREE.MeshBasicMaterial({ color: 65280 }),
+        targetDot = new THREE.Mesh(targetGeometry, targetMaterial);
+      scene.add(targetDot);
+      const lineGeometry = new THREE.BufferGeometry(),
+        lineMaterial = new THREE.LineBasicMaterial({ color: 16776960 }),
+        targetLine = new THREE.Line(lineGeometry, lineMaterial);
+      scene.add(targetLine);
+      const trailPoints = [],
+        trailGeometry = new THREE.BufferGeometry(),
+        trailMaterial = new THREE.LineBasicMaterial({
+          color: 16744704,
+          opacity: 0.7,
+          transparent: !0,
+        }),
+        trail = new THREE.Line(trailGeometry, trailMaterial);
+      scene.add(trail);
       const position = { x: 0, y: 0, z: 0 },
         target = { x: 50, y: 50, z: 50 };
       let currentAxisConfig = 0;
@@ -594,97 +668,97 @@
         },
       ];
       // let currentMode = "automatic";
-      // const axesInfoElement = document.getElementById("axes-info"),
-      //   rotateAxesButton = document.getElementById("rotate-axes"),
-      //   resetOrientationButton = document.getElementById("reset-orientation"),
-      //   toggleModeButton = document.getElementById("toggle-mode"),
-      //   modeDisplayElement = document.getElementById("mode-display");
-      // function rotateAxes() {
-      //   currentAxisConfig = (currentAxisConfig + 1) % axisConfigs.length;
-      //   updateOrientation();
-      // }
-      // function resetOrientation() {
-      //   currentAxisConfig = 0;
-      //   updateOrientation();
-      // }
+      const axesInfoElement = document.getElementById("axes-info"),
+        rotateAxesButton = document.getElementById("rotate-axes"),
+        resetOrientationButton = document.getElementById("reset-orientation"),
+        toggleModeButton = document.getElementById("toggle-mode"),
+        modeDisplayElement = document.getElementById("mode-display");
+      function rotateAxes() {
+        currentAxisConfig = (currentAxisConfig + 1) % axisConfigs.length;
+        updateOrientation();
+      }
+      function resetOrientation() {
+        currentAxisConfig = 0;
+        updateOrientation();
+      }
 
-      // function updateOrientation() {
-      //   const e = axisConfigs[currentAxisConfig];
-      //   axesInfoElement.textContent = e.name;
-      //   trailPoints.length = 0;
-      //   trailGeometry.setFromPoints([]);
-      //   scene.remove(gridHelper);
-      //   scene.remove(axesHelper);
-      //   gridHelper = new THREE.GridHelper(100, 10, 6710886, 4473924);
-      //   axesHelper = new THREE.AxesHelper(60);
-      //   if (currentAxisConfig === 0) {
-      //     gridHelper.rotation.x = Math.PI / 2;
-      //     axesHelper.scale.x = -1;
-      //   } else if (currentAxisConfig === 1) {
-      //     gridHelper.rotation.x = Math.PI / 2;
-      //   } else if (currentAxisConfig === 2) {
-      //     axesHelper.scale.x = -1;
-      //   } else if (currentAxisConfig === 4) {
-      //     gridHelper.rotation.z = Math.PI / 2;
-      //     axesHelper.rotation.z = Math.PI / 2;
-      //     axesHelper.scale.x = -1;
-      //   } else if (currentAxisConfig === 5) {
-      //     gridHelper.rotation.z = Math.PI / 2;
-      //     axesHelper.rotation.z = Math.PI / 2;
-      //   }
-      //   scene.add(gridHelper);
-      //   scene.add(axesHelper);
-      //   if (currentAxisConfig === 0 || currentAxisConfig === 1) {
-      //     camera.position.set(currentAxisConfig === 0 ? 100 : -100, 100, 100);
-      //   } else if (currentAxisConfig === 2 || currentAxisConfig === 3) {
-      //     camera.position.set(currentAxisConfig === 2 ? 100 : -100, 100, -100);
-      //   } else {
-      //     camera.position.set(100, currentAxisConfig === 4 ? 100 : -100, 100);
-      //   }
-      //   camera.lookAt(0, 0, 0);
-      // }
+      function updateOrientation() {
+        const e = axisConfigs[currentAxisConfig];
+        axesInfoElement.textContent = e.name;
+        trailPoints.length = 0;
+        trailGeometry.setFromPoints([]);
+        scene.remove(gridHelper);
+        scene.remove(axesHelper);
+        gridHelper = new THREE.GridHelper(100, 10, 6710886, 4473924);
+        axesHelper = new THREE.AxesHelper(60);
+        if (currentAxisConfig === 0) {
+          gridHelper.rotation.x = Math.PI / 2;
+          axesHelper.scale.x = -1;
+        } else if (currentAxisConfig === 1) {
+          gridHelper.rotation.x = Math.PI / 2;
+        } else if (currentAxisConfig === 2) {
+          axesHelper.scale.x = -1;
+        } else if (currentAxisConfig === 4) {
+          gridHelper.rotation.z = Math.PI / 2;
+          axesHelper.rotation.z = Math.PI / 2;
+          axesHelper.scale.x = -1;
+        } else if (currentAxisConfig === 5) {
+          gridHelper.rotation.z = Math.PI / 2;
+          axesHelper.rotation.z = Math.PI / 2;
+        }
+        scene.add(gridHelper);
+        scene.add(axesHelper);
+        if (currentAxisConfig === 0 || currentAxisConfig === 1) {
+          camera.position.set(currentAxisConfig === 0 ? 100 : -100, 100, 100);
+        } else if (currentAxisConfig === 2 || currentAxisConfig === 3) {
+          camera.position.set(currentAxisConfig === 2 ? 100 : -100, 100, -100);
+        } else {
+          camera.position.set(100, currentAxisConfig === 4 ? 100 : -100, 100);
+        }
+        camera.lookAt(0, 0, 0);
+      }
 
-      // rotateAxesButton.addEventListener("click", rotateAxes);
-      // resetOrientationButton.addEventListener("click", resetOrientation);
-      // window.addEventListener("resize", () => {
-      //   camera.aspect = window.innerWidth / window.innerHeight;
-      //   camera.updateProjectionMatrix();
-      //   renderer.setSize(window.innerWidth, window.innerHeight);
-      // });
-      // console.log("get");
-      // let mouseDown = false,
-      //   mouseX = 0,
-      //   mouseY = 0;
-      // document.addEventListener("mousedown", (e) => {
-      //   mouseDown = true;
-      //   mouseX = e.clientX;
-      //   mouseY = e.clientY;
-      // });
-      // document.addEventListener("mouseup", () => {
-      //   mouseDown = false;
-      // });
-      // document.addEventListener("mousemove", (e) => {
-      //   if (mouseDown) {
-      //     const t = e.clientX - mouseX,
-      //       n = e.clientY - mouseY,
-      //       i = Math.sqrt(
-      //         camera.position.x * camera.position.x +
-      //         camera.position.y * camera.position.y +
-      //         camera.position.z * camera.position.z
-      //       ),
-      //       o = Math.atan2(camera.position.y, camera.position.x) + 0.01 * t,
-      //       s = Math.acos(camera.position.z / i) + 0.01 * n,
-      //       a = Math.max(0.1, Math.min(Math.PI - 0.1, s));
-      //     camera.position.x = i * Math.sin(a) * Math.cos(o);
-      //     camera.position.y = i * Math.sin(a) * Math.sin(o);
-      //     camera.position.z = i * Math.cos(a);
-      //     camera.lookAt(0, 0, 0);
-      //     mouseX = e.clientX;
-      //     mouseY = e.clientY;
-      //   }
-      // });
+      rotateAxesButton.addEventListener("click", rotateAxes);
+      resetOrientationButton.addEventListener("click", resetOrientation);
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+      console.log("get");
+      let mouseDown = false,
+        mouseX = 0,
+        mouseY = 0;
+      document.addEventListener("mousedown", (e) => {
+        mouseDown = true;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+      document.addEventListener("mouseup", () => {
+        mouseDown = false;
+      });
+      document.addEventListener("mousemove", (e) => {
+        if (mouseDown) {
+          const t = e.clientX - mouseX,
+            n = e.clientY - mouseY,
+            i = Math.sqrt(
+              camera.position.x * camera.position.x +
+                camera.position.y * camera.position.y +
+                camera.position.z * camera.position.z
+            ),
+            o = Math.atan2(camera.position.y, camera.position.x) + 0.01 * t,
+            s = Math.acos(camera.position.z / i) + 0.01 * n,
+            a = Math.max(0.1, Math.min(Math.PI - 0.1, s));
+          camera.position.x = i * Math.sin(a) * Math.cos(o);
+          camera.position.y = i * Math.sin(a) * Math.sin(o);
+          camera.position.z = i * Math.cos(a);
+          camera.lookAt(0, 0, 0);
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        }
+      });
 
-      const serverBaseUrl = "http://192.168.76.223:5000",
+      const serverBaseUrl = "http://192.168.31.119:5000",
         currentUrl = `${serverBaseUrl}/current_position`,
         targetUrl = `${serverBaseUrl}/target_position`,
         modeUrl = `${serverBaseUrl}/mode`,
@@ -697,13 +771,13 @@
         return axisConfigs[currentAxisConfig].transform(e, t, n);
       }
 
-      const xValueElement = document.getElementById("x-value");
-      const yValueElement = document.getElementById("y-value");
-      const zValueElement = document.getElementById("z-value");
+      // const xValueElement = document.getElementById("x-value");
+      // const yValueElement = document.getElementById("y-value");
+      // const zValueElement = document.getElementById("z-value");
 
       async function fetchCurrentPosition() {
         try {
-          const e = await fetch("http://192.168.76.223:5000/current_position");
+          const e = await fetch("http://192.168.31.119:5000/all");
           if (!e.ok) throw new Error(`HTTP error: ${e.status}`);
           const t = await e.json();
           const { x, y, z } = transformCoordinates(t.x, t.y, t.z);
@@ -720,12 +794,14 @@
           statusElement.style.color = "#00ff00";
           const a = Math.sqrt(
             Math.pow(position.x - lastPosition.x, 2) +
-            Math.pow(position.y - lastPosition.y, 2) +
-            Math.pow(position.z - lastPosition.z, 2)
+              Math.pow(position.y - lastPosition.y, 2) +
+              Math.pow(position.z - lastPosition.z, 2)
           );
           hasMovedSignificantly = a > 0.1;
           if (hasMovedSignificantly) {
-            trailPoints.push(new THREE.Vector3(position.x, position.y, position.z));
+            trailPoints.push(
+              new THREE.Vector3(position.x, position.y, position.z)
+            );
             if (trailPoints.length > 200) trailPoints.shift();
             trailGeometry.setFromPoints(trailPoints);
           }
@@ -736,7 +812,6 @@
           statusElement.style.color = "#ff0000";
         }
       }
-      
 
       const x1ValueElement = document.getElementById("x1-value");
       const y1ValueElement = document.getElementById("y1-value");
@@ -744,44 +819,42 @@
 
       async function fetchTargetPosition() {
         try {
-          const e = await fetch(targetUrl);
+          const e = await fetch("http://192.168.31.119:5000/all");
           if (!e.ok) throw new Error(`HTTP error: ${e.status}`);
           const t = await e.json(),
             s = transformCoordinates(t.x, t.y, t.z);
           x1ValueElement.textContent = s.x.toFixed(2);
           y1ValueElement.textContent = s.y.toFixed(2);
           z1ValueElement.textContent = s.z.toFixed(2);
-         // updateTargetLine();
+          updateTargetLine();
         } catch (e) {
           console.error("Error fetching target position:", e);
         }
       }
 
-      // function updateTargetLine() {
-      //   const e = [
-      //     new THREE.Vector3(position.x, position.y, position.z),
-      //     new THREE.Vector3(target.x, target.y, target.z)
-      //   ];
-      //   lineGeometry.setFromPoints(e);
-      // }
+      function updateTargetLine() {
+        const e = [
+          new THREE.Vector3(position.x, position.y, position.z),
+          new THREE.Vector3(target.x, target.y, target.z),
+        ];
+        lineGeometry.setFromPoints(e);
+      }
 
-      // function animate() {
-      //   requestAnimationFrame(animate);
-      //   dot.position.x += 0.1 * (position.x - dot.position.x);
-      //   dot.position.y += 0.1 * (position.y - dot.position.y);
-      //   dot.position.z += 0.1 * (position.z - dot.position.z);
-      //   targetDot.position.x = target.x;
-      //   targetDot.position.y = target.y;
-      //   targetDot.position.z = target.z;
-      //   renderer.render(scene, camera);
-      // }
-      // animate();
-      console.log("check");
+      function animate() {
+        requestAnimationFrame(animate);
+        dot.position.x += 0.1 * (position.x - dot.position.x);
+        dot.position.y += 0.1 * (position.y - dot.position.y);
+        dot.position.z += 0.1 * (position.z - dot.position.z);
+        targetDot.position.x = target.x;
+        targetDot.position.y = target.y;
+        targetDot.position.z = target.z;
+        renderer.render(scene, camera);
+      }
+      animate();
 
       setInterval(fetchCurrentPosition, 200);
       setInterval(fetchTargetPosition, 200);
       resetOrientation();
-
     </script>
   </body>
 </html>
