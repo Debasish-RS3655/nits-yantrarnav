@@ -235,9 +235,9 @@
         });
         
         // Server URLs
-        const serverBaseUrl = 'http://192.168.10.3:5000';
+        const serverBaseUrl = 'http://192.168.76.223:5000';
         const currentUrl = `${serverBaseUrl}/current`;
-        // const "http://192.168.10.3:5000/target_position" = `${serverBaseUrl}/target`;
+        // const "http://192.168.76.223:5000/target_position" = `${serverBaseUrl}/target`;
         
         // UI elements
         const statusElement = document.getElementById('status');
@@ -256,7 +256,7 @@
         // Fetch current position from server
         async function fetchCurrentPosition() {
             try {
-                const response = await fetch("http://192.168.10.3:5000/current_position");
+                const response = await fetch("http://192.168.76.223:5000/current_position");
                 if (!response.ok) {
                     throw new Error(`HTTP error: ${response.status}`);
                 }
@@ -318,7 +318,7 @@
         // Fetch target position from server
         async function fetchTargetPosition() {
             try {
-                const response = await fetch("http://192.168.10.3:5000/target_position");
+                const response = await fetch("http://192.168.76.223:5000/target_position");
                 if (!response.ok) {
                     throw new Error(`HTTP error: ${response.status}`);
                 }

@@ -4,6 +4,8 @@ from rclpy.node import Node
 from std_msgs.msg import String, Bool, Float32
 from sensor_msgs.msg import Image, BatteryState
 from geometry_msgs.msg import Point
+# NEW: Import the ROS 2 Empty service type
+from std_srvs.srv import Empty
 
 # NEW: Import QoS-related classes
 from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
@@ -121,6 +123,11 @@ class BridgeServer(Node):
         # Initialize CvBridge for image conversion
         self.bridge = CvBridge()        
 
+        # NEW: Create a client for the /rtabmap/reset_odom service within the BridgeServer node.
+        self.reset_odom_client = self.create_client(Empty, '/rtabmap/reset_odom')
+        while not self.reset_odom_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info("Waiting for /rtabmap/reset_odom service to become available...")
+
     # Updated velocity callback using optical flow sensor's flow_rate for x and y
     def velocity_callback(self, msg: OpticalFlow):
         global latest_velocity, lock
@@ -212,7 +219,7 @@ class BridgeServer(Node):
         global latest_image_base64
         try:
             cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
-            cv_image = cv2.resize(cv_image, (512, 512))
+            cv_image = cv2.resize(cv_image, (256, 256))
             ret, buffer = cv2.imencode('.jpg', cv_image)
             if ret:
                 jpg_as_text = base64.b64encode(buffer).decode('utf-8')
@@ -509,6 +516,88 @@ def get_velocities():
         else:
             velocity_data['flow_rate']['z'] = 0.0
         return jsonify(velocity_data)
+
+
+# New Endpoint: /all - Return all the latest data in one response
+@app.route('/all', methods=['GET'])
+def get_all_data():
+    global bridge_server_node, latest_image_base64, perpendicular_image_base64, latest_velocity, latest_z_velocity, lock
+    if bridge_server_node is None:
+        return jsonify({'error': 'BridgeServer node not available'}), 500
+
+    with lock:
+        depth_cam = latest_image_base64
+        perpendicular_cam = perpendicular_image_base64
+        if latest_velocity is None:
+            velocity_data = None
+        else:
+            velocity_data = latest_velocity.copy()
+            # Ensure the z value reflects the latest z_velocity
+            velocity_data['flow_rate']['z'] = latest_z_velocity if latest_z_velocity is not None else 0.0
+
+    # Aggregate data from different sources
+    data = {
+        'current_position': {
+            'x': bridge_server_node.x_,
+            'y': bridge_server_node.y_,
+            'z': bridge_server_node.current_height  # from /current_height topic
+        },
+        'target_position': {
+            'x': bridge_server_node.target_x * 100,
+            'y': bridge_server_node.target_y * 100,
+            'z': 3 * 100  # constant, as used in the existing /target_position endpoint
+        },
+        'battery_status': {
+            'percentage': bridge_server_node.battery_percent * 100 if bridge_server_node.battery_percent is not None else None,
+            'voltage': bridge_server_node.battery_voltage
+        },
+        'system_ready': bridge_server_node.system_ready_status,
+        'velocities': velocity_data,
+        'depth_cam_rgb': {'image': depth_cam} if depth_cam is not None else {'error': 'No image received yet'},
+        'perpendicular_cam_rgb': {'image': perpendicular_cam} if perpendicular_cam is not None else {'error': 'No perpendicular webcam image received yet'},
+        'drone_status': {
+            'phase': bridge_server_node.phase,
+            'launch_land_status': bridge_server_node.drone_launch_status
+        }
+    }
+    return jsonify(data)
+
+
+import time  # Add this import at the top if not already present
+
+# NEW Endpoint: /reset_odom_services
+# This endpoint will trigger the reset odom service call using the global BridgeServer node.
+@app.route('/reset_odom_services', methods=['GET'])
+def reset_odom_services():
+    global bridge_server_node
+    if bridge_server_node is None:
+        return jsonify({'status': 'failure', 'error': 'BridgeServer node not available'}), 500
+
+    # Create an empty request message.
+    req = Empty.Request()
+
+    # Call the service asynchronously using the client in the BridgeServer node.
+    future = bridge_server_node.reset_odom_client.call_async(req)
+
+    # Instead of calling rclpy.spin_once (which is already running in another thread),
+    # simply poll for the future to complete.
+    timeout = 5.0  # seconds
+    start_time = time.time()
+
+    while not future.done() and (time.time() - start_time < timeout):
+        time.sleep(0.1)  # Sleep briefly to avoid busy-waiting
+
+    if future.done() and future.result() is not None:
+        bridge_server_node.get_logger().info("Reset odom service call executed successfully.")
+        response_data = {'status': 'success'}
+        status_code = 200
+    else:
+        bridge_server_node.get_logger().error("Failed to call /rtabmap/reset_odom service.")
+        response_data = {'status': 'failure', 'error': 'Service call failed'}
+        status_code = 500
+
+    return jsonify(response_data), status_code
+
 
 # Function to spin the ROS node in a separate thread
 def ros_spin(node):

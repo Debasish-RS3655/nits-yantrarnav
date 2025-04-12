@@ -14,9 +14,14 @@ from PIL import Image
 
 # Load Pre-trained Model
 MODEL_PATH = r"final_gabor_best_model.pkl"
+SCALER_PATH = r"scaler.pkl"
+
 with open(MODEL_PATH, "rb") as model_file:
     model = pickle.load(model_file)
 
+with open(SCALER_PATH, "rb") as scaler_file:
+    scaler = pickle.load(scaler_file)
+    
 # Feature Extraction Functions
 def apply_gabor_filters(image_gray, frequencies=[0.1, 0.3, 0.5], thetas=[0, np.pi/4, np.pi/2, 3*np.pi/4]):
     features = []
@@ -62,18 +67,25 @@ def decode_base64_image(encoded_string):
         return None
 
 def predict_terrain(image):
-    """Extracts features and predicts the terrain type."""
+    """Extracts features, scales them, and predicts the terrain type."""
     features = extract_features(image)
     if features is None:
         return None, None
 
+    try:
+        scaled_features = scaler.transform(features)
+    except Exception as e:
+        print(f"Scaling error: {e}")
+        return None, None
+
     # Get class prediction and probability
-    class_pred = model.predict(features)[0]
-    prob = model.predict_proba(features).max()
+    class_pred = model.predict(scaled_features)[0]
+    prob = model.predict_proba(scaled_features).max()
 
     # Convert prediction to terrain type
     terrain_map = {0: "rocky_terrain", 1: "hard_terrain", 2: "sandy_terrain"}
     return terrain_map.get(class_pred, "unknown"), round(prob, 4)
+
 
 def send_prediction(coordinates, terrain_class, accuracy):
     """Sends the predicted area to the server."""
@@ -85,7 +97,6 @@ def send_prediction(coordinates, terrain_class, accuracy):
         "coordinate": coordinates
     }
     response = requests.post(url, json=data)
-    
     if response.status_code == 200:
         print(f"Prediction sent: {data}")
     else:

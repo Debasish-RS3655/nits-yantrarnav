@@ -29,6 +29,7 @@ setup(
             # "path_planner_simulation_server_node = my_robot_controller.path_planner_simulation_server:main"            
             
             "bridge_server = my_robot_controller.bridge_server:main",
+            "bridge_server_combined = my_robot_controller.bridge_server_combined:main",
             # "path_mover = my_robot_controller.path_mover:main",
             "path_planner = my_robot_controller.path_planner:main",
             "path_manual = my_robot_controller.path_manual:main",
