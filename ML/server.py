@@ -77,7 +77,7 @@ def predict_terrain(image):
 
 def send_prediction(coordinates, terrain_class, accuracy):
     """Sends the predicted area to the server."""
-    url = "http://192.168.31.119:5000/predicted_area"
+    url = "http://localhost:5000/predicted_area"
     data = {
         "status": "success",
         "class": terrain_class,
@@ -95,10 +95,11 @@ def main():
     while True:
         try:
             # Check if the rover is near a flat area
-            check_url = "http://192.168.31.119:5000/ml_check_area_temp"
+            check_url = "http://localhost:5000/ml_check_area_temp"
             check_response = requests.get(check_url).json()
 
             if "coordinate" in check_response and "image" in check_response:
+                start = time.time()
                 coordinates = f"x={check_response['coordinate']['x']} y={check_response['coordinate']['y']} z={check_response['coordinate']['z']}"
                 encoded_image = check_response["image"]
 
@@ -115,6 +116,9 @@ def main():
                     continue
 
                 print(f"Predicted Class: {terrain_class}, Accuracy: {accuracy}")
+                end = time.time()
+                response_time = end - start
+                print(f"Response Time: {response_time:.2f} seconds")
 
                 # Send prediction
                 send_prediction(coordinates, terrain_class, accuracy)

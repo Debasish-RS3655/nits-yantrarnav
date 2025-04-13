@@ -1,6 +1,7 @@
 [console_scripts]
 boundary_mapper = my_robot_controller.boundary_mapper:main
 bridge_server = my_robot_controller.bridge_server:main
+bridge_server_combined = my_robot_controller.bridge_server_combined:main
 coordinate = my_robot_controller.coordinate:main
 flat_area = my_robot_controller.flat_area:main
 height_publisher = my_robot_controller.height:main
