@@ -5,6 +5,10 @@ from rclpy.node import Node
 from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import String
 
+
+# this coordinate publisher node converts the coordinate data form the mavros into the format that master controller uses
+# Debashish Buragohain
+
 class CoordinatePublisher(Node):
     def __init__(self):
         super().__init__('Coordinate_Pub')

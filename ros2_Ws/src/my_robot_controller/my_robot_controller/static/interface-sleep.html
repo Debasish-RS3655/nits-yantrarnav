@@ -237,7 +237,7 @@
             id="reset-orientation"
             class="bg-black bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
           >
-            Reset Orientation
+            Tilt visualized axis
           </button>
 
           <button
@@ -256,7 +256,7 @@
             id="Reset"
             class="bg-black bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
           >
-            Reset
+            Reset Odometry
           </button>
           <button
             id="dk"
@@ -295,6 +295,15 @@
     <script src="./three.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> -->
     <script>
+
+
+
+      // --------------------------------------------------------- Telemetry URL here -----------------------------------------------------------------
+
+      const domain = 'http://192.168.31.119:5000';
+
+
+
       const position = { x: 0, y: 0, z: 0 },
         target = { x: 50, y: 50, z: 50 };
       let currentAxisConfig = 0;
@@ -425,7 +434,7 @@
       }
 
       document.getElementById("Launch").addEventListener("click", function () {
-        fetch("/launch", { method: "GET" })
+        fetch(`${domain}/launch`, { method: "GET" })
           .then((response) => response.json())
           .then((data) => {
             if (data.status) {
@@ -443,7 +452,7 @@
       let currentMode = null;
       async function fetchCurrentMode() {
         try {
-          const response = await fetch("http://192.168.31.119:5000/mode");
+          const response = await fetch(`${domain}/mode`);
           if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
           const data = await response.json();
           currentMode = data.mode;
@@ -457,7 +466,7 @@
 
       async function setMode(mode) {
         try {
-          const response = await fetch("http://192.168.31.119:5000/mode", {
+          const response = await fetch(`${domain}/mode`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -510,7 +519,7 @@
           try {
             const controller = new AbortController();
             const timeout = setTimeout(() => controller.abort(), 5000); // 5s timeout
-            const response = await fetch("http://192.168.31.119:5000/all", { signal: controller.signal });
+            const response = await fetch(`${domain}/all`, { signal: controller.signal });
            // const response = await fetch("bridge.json");
             clearTimeout(timeout);
 
@@ -560,11 +569,11 @@
               data.system_ready ? "Ready" : "Not Ready";
 
             document.getElementById("x-velocity").innerText =
-              data.velocity?.x?.toFixed(2) || "N/A";
+              data.velocities?.flow_rate?.x?.toFixed(2) || "N/A";
             document.getElementById("y-velocity").innerText =
-              data.velocity?.y?.toFixed(2) || "N/A";
+              data.velocities?.flow_rate?.y?.toFixed(2) || "N/A";
             document.getElementById("z-velocity").innerText =
-              data.velocity?.z?.toFixed(2) || "N/A";
+              data.velocities?.flow_rate?.z?.toFixed(2) || "N/A";
 
             const cam = document.getElementById("camera-feed");
             cam.src = `data:image/jpeg;base64,${data.depth_cam_rgb.image}`;
@@ -600,7 +609,7 @@
 
       document.getElementById("Reset").addEventListener("click", async () => {
         try {
-          const response = await fetch("/reset_odom_services");
+          const response = await fetch(`${domain}/reset_odom_services`);
           const data = await response.json();
 
           if (response.ok) {

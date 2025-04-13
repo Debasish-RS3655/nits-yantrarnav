@@ -9,7 +9,7 @@ from std_srvs.srv import Empty
 
 # NEW: Import QoS-related classes
 from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
-
+import time
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import threading
@@ -23,8 +23,10 @@ import math
 from mavros_msgs.msg import OpticalFlow
 
 # Global variables to hold the latest images (in base64)
-latest_image_base64 = None          # From the ROS camera subscriber
-perpendicular_image_base64 = None   # From the perpendicular webcam publisher
+depth_cam_rgb_image_base64 = None          # From the ROS camera subscriber
+perpendicular_image_base64 = None          # From the perpendicular image ROS cam subscriber
+ml_check_image_base64 = None               # cropped image for the ML model
+
 latest_velocity = None  # Will hold a dictionary with flow_rate data from optical flow sensor.
 latest_z_velocity = None  # Will hold the latest z_velocity from the /z_velocity topic.
 
@@ -90,7 +92,7 @@ class BridgeServer(Node):
         # Subscriber for the camera image topic
         self.camera_sub = self.create_subscription(Image, '/camera/camera/color/image_raw', self.camera_callback, 10)
         # subscriber for the perpendicular image topic
-        self.camera_vertical_sub = self.create_subscription(Image, '/image_raw', self.camera_callback, 10)
+        self.camera_vertical_sub = self.create_subscription(Image, '/image_raw', self.camera_vertical_callback, 10)
         
         # ---------------------------
         # Modified Battery subscriber:
@@ -115,9 +117,6 @@ class BridgeServer(Node):
         self.ml_check_area_array = []
         self.ml_predicted_area_pub = self.create_publisher(String, '/ml_predicted_area', 10)
 
-        # NEW: Subscriber for perpendicular webcam image (String message)
-        self.perpendicular_cam_sub = self.create_subscription(String, '/perpendicular_cam', self.perpendicular_cam_callback, 10)
-
         # NEW: Subscriber for current height (String message published by the range_to_height node)
         self.height_sub = self.create_subscription(String, '/current_height', self.update_current_height, 10)
         self.current_height = None
@@ -126,9 +125,7 @@ class BridgeServer(Node):
         self.bridge = CvBridge()        
 
         # NEW: Create a client for the /rtabmap/reset_odom service within the BridgeServer node.
-        self.reset_odom_client = self.create_client(Empty, '/rtabmap/reset_odom')
-        while not self.reset_odom_client.wait_for_service(timeout_sec=1.0):
-            self.get_logger().info("Waiting for /rtabmap/reset_odom service to become available...")
+        self.reset_odom_client = self.create_client(Empty, '/rtabmap/reset_odom')    
 
     # Updated velocity callback using optical flow sensor's flow_rate for x and y
     def velocity_callback(self, msg: OpticalFlow):
@@ -217,8 +214,48 @@ class BridgeServer(Node):
         except Exception as e:
             self.get_logger().error("Failed to parse current height: " + str(e))
 
+    def camera_vertical_callback(self, msg: Image):
+        global ml_check_image_base64, perpendicular_image_base64
+        try:
+            # Convert the incoming ROS Image message to an OpenCV image
+            cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
+            height, width, _ = cv_image.shape
+            
+            # Calculate the starting point for the central 256x256 crop.
+            # If the image is smaller than 256 in any dimension, start at 0.
+            start_x = (width - 256) // 2 if width >= 256 else 0
+            start_y = (height - 256) // 2 if height >= 256 else 0
+            
+            # Extract a 256x256 square from the center of the image.
+            cropped_image = cv_image[start_y:start_y+256, start_x:start_x+256]
+            
+            # If the extracted crop isn't exactly 256x256 (e.g., if the original image was smaller),
+            # resize it to ensure the dimensions are consistent.
+            if cropped_image.shape[0] != 256 or cropped_image.shape[1] != 256:
+                cropped_image = cv2.resize(cropped_image, (256, 256))
+            
+            # Encode the cropped image as JPEG and convert to base64.
+            ret, buffer = cv2.imencode('.jpg', cropped_image)
+            if ret:
+                jpg_as_text = base64.b64encode(buffer).decode('utf-8')
+                with lock:
+                    ml_check_image_base64 = jpg_as_text
+
+            # now store it for the transmission to the frontend by reducing its size
+            cv_image = cv2.resize(cv_image, (256, 256))
+            ret, buffer = cv2.imencode('.jpg', cv_image)
+            if ret:
+                jpg_as_text = base64.b64encode(buffer).decode('utf-8')
+                with lock:
+                    perpendicular_image_base64 = jpg_as_text
+
+        except CvBridgeError as e:
+            self.get_logger().error('CvBridge Error: ' + str(e))
+
+
+
     def camera_callback(self, msg: Image):
-        global latest_image_base64
+        global depth_cam_rgb_image_base64
         try:
             cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
             cv_image = cv2.resize(cv_image, (256, 256))
@@ -226,7 +263,7 @@ class BridgeServer(Node):
             if ret:
                 jpg_as_text = base64.b64encode(buffer).decode('utf-8')
                 with lock:
-                    latest_image_base64 = jpg_as_text
+                    depth_cam_rgb_image_base64 = jpg_as_text
         except CvBridgeError as e:
             self.get_logger().error('CvBridge Error: ' + str(e))
 
@@ -250,13 +287,6 @@ class BridgeServer(Node):
             self.get_logger().info(f"Added new flat area point: {new_point}")
         else:
             self.get_logger().info("Received flat area point is not unique; ignoring.")
-
-    def perpendicular_cam_callback(self, msg: String):
-        global perpendicular_image_base64
-        # Simply update the global variable with the latest perpendicular webcam image
-        with lock:
-            perpendicular_image_base64 = msg.data
-        self.get_logger().info("Updated perpendicular webcam image.")
 
 # Set up the Flask app and endpoints
 app = Flask(__name__, static_folder='static')
@@ -286,8 +316,7 @@ def target_position():
     pos = {
         'x': bridge_server_node.target_x * 100,
         'y': bridge_server_node.target_y * 100,
-        # 'z': bridge_server_node.target_z
-        'z': 3 * 100
+        'z': bridge_server_node.target_z * 100,
     }
     return jsonify(pos)
 
@@ -312,10 +341,10 @@ def set_mode():
 # Endpoint: Return the latest camera image in base64
 @app.route('/depth_cam_rgb', methods=['GET'])
 def get_latest_image():
-    global latest_image_base64
+    global depth_cam_rgb_image_base64
     with lock:
-        if latest_image_base64 is not None:
-            return jsonify({'image': latest_image_base64})
+        if depth_cam_rgb_image_base64 is not None:
+            return jsonify({'image': depth_cam_rgb_image_base64})
         else:
             return jsonify({'error': 'No image received yet'}), 404
 
@@ -373,7 +402,7 @@ def system_ready():
 # Endpoint: /ml_check_area (unchanged)
 @app.route('/ml_check_area', methods=['GET'])
 def ml_check_area():
-    global bridge_server_node, perpendicular_image_base64
+    global bridge_server_node, ml_check_image_base64
     if bridge_server_node is None:
         return jsonify({'error': 'BridgeServer node not available'}), 500
     near_threshold = 1.0  # meters
@@ -386,8 +415,8 @@ def ml_check_area():
         if math.sqrt(dx**2 + dy**2 + dz**2) < near_threshold:
             found = point
             break
-    if found and perpendicular_image_base64 is not None:
-        entry = {'coordinate': current_coord, 'image': perpendicular_image_base64}
+    if found and ml_check_image_base64 is not None:
+        entry = {'coordinate': current_coord, 'image': ml_check_image_base64}
         exists = False
         for e in bridge_server_node.ml_check_area_array:
             ec = e['coordinate']
@@ -407,7 +436,7 @@ def ml_check_area():
 # Always returns the current coordinates and the latest depth camera RGB image
 @app.route('/ml_check_area_temp', methods=['GET'])
 def ml_check_area_temp():
-    global bridge_server_node, latest_image_base64
+    global bridge_server_node, depth_cam_rgb_image_base64
     if bridge_server_node is None:
         return jsonify({'error': 'BridgeServer node not available'}), 500
 
@@ -418,8 +447,8 @@ def ml_check_area_temp():
     }
 
     with lock:
-        if latest_image_base64 is not None:
-            response = {'coordinate': current_coord, 'image': latest_image_base64}
+        if depth_cam_rgb_image_base64 is not None:
+            response = {'coordinate': current_coord, 'image': depth_cam_rgb_image_base64}
             return jsonify(response)
         else:
             return jsonify({'error': 'No image received yet'}), 404
@@ -523,12 +552,12 @@ def get_velocities():
 # New Endpoint: /all - Return all the latest data in one response
 @app.route('/all', methods=['GET'])
 def get_all_data():
-    global bridge_server_node, latest_image_base64, perpendicular_image_base64, latest_velocity, latest_z_velocity, lock
+    global bridge_server_node, depth_cam_rgb_image_base64, perpendicular_image_base64, latest_velocity, latest_z_velocity, lock
     if bridge_server_node is None:
         return jsonify({'error': 'BridgeServer node not available'}), 500
 
     with lock:
-        depth_cam = latest_image_base64
+        depth_cam = depth_cam_rgb_image_base64
         perpendicular_cam = perpendicular_image_base64
         if latest_velocity is None:
             velocity_data = None
@@ -547,7 +576,7 @@ def get_all_data():
         'target_position': {
             'x': bridge_server_node.target_x * 100,
             'y': bridge_server_node.target_y * 100,
-            'z': 3 * 100  # constant, as used in the existing /target_position endpoint
+            'z': bridge_server_node.target_z * 100  # constant, as used in the existing /target_position endpoint
         },
         'battery_status': {
             'percentage': bridge_server_node.battery_percent * 100 if bridge_server_node.battery_percent is not None else None,
@@ -565,41 +594,35 @@ def get_all_data():
     return jsonify(data)
 
 
-import time  # Add this import at the top if not already present
-
-# NEW Endpoint: /reset_odom_services
-# This endpoint will trigger the reset odom service call using the global BridgeServer node.
 @app.route('/reset_odom_services', methods=['GET'])
 def reset_odom_services():
     global bridge_server_node
     if bridge_server_node is None:
         return jsonify({'status': 'failure', 'error': 'BridgeServer node not available'}), 500
 
-    # Create an empty request message.
-    req = Empty.Request()
+    try:
+        # Create an empty request message for the std_srvs/srv/Empty service.
+        req = Empty.Request()
 
-    # Call the service asynchronously using the client in the BridgeServer node.
-    future = bridge_server_node.reset_odom_client.call_async(req)
+        # Optionally, wait for the service to become available (up to 5 seconds).
+        if not bridge_server_node.reset_odom_client.wait_for_service(timeout_sec=5.0):
+            bridge_server_node.get_logger().error("Reset odom service not available")
+            return jsonify({'status': 'failure', 'error': 'Reset odom service not available'}), 500
 
-    # Instead of calling rclpy.spin_once (which is already running in another thread),
-    # simply poll for the future to complete.
-    timeout = 5.0  # seconds
-    start_time = time.time()
+        # Call the /rtabmap/reset_odom service synchronously.
+        future = bridge_server_node.reset_odom_client.call_async(req)
+        rclpy.spin_until_future_complete(bridge_server_node, future)
 
-    while not future.done() and (time.time() - start_time < timeout):
-        time.sleep(0.1)  # Sleep briefly to avoid busy-waiting
+        if future.result() is not None:
+            bridge_server_node.get_logger().info("Reset odom service call executed successfully.")
+            return jsonify({'status': 'success'}), 200
+        else:
+            bridge_server_node.get_logger().error("Reset odom service call failed.")
+            return jsonify({'status': 'failure', 'error': 'Service call failed'}), 500
 
-    if future.done() and future.result() is not None:
-        bridge_server_node.get_logger().info("Reset odom service call executed successfully.")
-        response_data = {'status': 'success'}
-        status_code = 200
-    else:
-        bridge_server_node.get_logger().error("Failed to call /rtabmap/reset_odom service.")
-        response_data = {'status': 'failure', 'error': 'Service call failed'}
-        status_code = 500
-
-    return jsonify(response_data), status_code
-
+    except Exception as e:
+        bridge_server_node.get_logger().error("Exception during reset odom service call: " + str(e))
+        return jsonify({'status': 'failure', 'error': str(e)}), 500
 
 # Function to spin the ROS node in a separate thread
 def ros_spin(node):
