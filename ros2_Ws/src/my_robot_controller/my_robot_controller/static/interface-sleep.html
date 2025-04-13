@@ -510,8 +510,8 @@
           try {
             const controller = new AbortController();
             const timeout = setTimeout(() => controller.abort(), 5000); // 5s timeout
-        // const response = await fetch("http://192.168.31.119:5000/all", { signal: controller.signal });
-            const response = await fetch("bridge.json");
+            const response = await fetch("http://192.168.31.119:5000/all", { signal: controller.signal });
+           // const response = await fetch("bridge.json");
             clearTimeout(timeout);
 
             if (!response.ok) throw new Error(`HTTP error: ${response.status}`);

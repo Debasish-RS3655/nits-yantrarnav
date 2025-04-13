@@ -89,6 +89,8 @@ class BridgeServer(Node):
 
         # Subscriber for the camera image topic
         self.camera_sub = self.create_subscription(Image, '/camera/camera/color/image_raw', self.camera_callback, 10)
+        # subscriber for the perpendicular image topic
+        self.camera_vertical_sub = self.create_subscription(Image, '/image_raw', self.camera_callback, 10)
         
         # ---------------------------
         # Modified Battery subscriber:

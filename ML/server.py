@@ -99,6 +99,7 @@ def main():
             check_response = requests.get(check_url).json()
 
             if "coordinate" in check_response and "image" in check_response:
+                start = time.time()
                 coordinates = f"x={check_response['coordinate']['x']} y={check_response['coordinate']['y']} z={check_response['coordinate']['z']}"
                 encoded_image = check_response["image"]
 
@@ -115,6 +116,9 @@ def main():
                     continue
 
                 print(f"Predicted Class: {terrain_class}, Accuracy: {accuracy}")
+                end = time.time()
+                response_time = end - start
+                print(f"Response Time: {response_time:.2f} seconds")
 
                 # Send prediction
                 send_prediction(coordinates, terrain_class, accuracy)
