@@ -169,6 +169,8 @@ class PathPlanner(Node):
         Only operates when mode is automatic.
         Additionally, when phase > 2 (i.e. phase 3 or 4), the target chosen is the one nearest to the current coordinate."""
                 
+        # ---------------------------- Phase configuration ------------------------------------------------
+
         if self.mode != 'auto':
             self.get_logger().info(f"Mode is set to {self.mode}. Path planner not executed.")
             if self.mode == 'hover':
@@ -236,9 +238,14 @@ class PathPlanner(Node):
         
         else:
             self.get_logger().error("Unknown phase specified.")
+                
         
+        # -------------------------    Target Points Selector ----------------------------------------------------                                
+
+        # current target determination from the list
         # For phases greater than 2, choose the target from the list that is nearest to the current coordinate.
         if self.phase > 2 and self.target_list:
+            # i.e for the phases 3 and more that is after the lawnmower pattern we need to move to serially to the nearest points
             def distance(target):
                 dx = self.x_ - target[0]
                 dy = self.y_ - target[1]
@@ -247,20 +254,15 @@ class PathPlanner(Node):
             nearest_idx, nearest_target = min(enumerate(self.target_list), key=lambda t: distance(t[1]))
             self.target_index = nearest_idx
             self.current_target = nearest_target
+
         else:
             self.target_index = 0
+            # for phase 3 and beyond we sort the points
             if self.target_list:
                 self.current_target = self.target_list[0]
         
-        if self.current_target:
-            # Publish the new target only once when the phase is configured.
-            msg = String()
-            msg.data = f'x={self.current_target[0]} y={self.current_target[1]} z={self.current_target[2]}'
-            self.pos_target_pub.publish(msg)
-            self.get_logger().info(f'Target published: {msg.data}')
-        else:
-            self.get_logger().error("Target list is empty!")
-            
+
+
     def next_phase(self):
         self.phase += 1
         self.get_logger().info(f'Moving to Phase {self.phase}')
@@ -283,7 +285,7 @@ class PathPlanner(Node):
         dy = self.y_ - self.current_target[1]
         dz = self.z_ - self.current_target[2]
         distance = math.sqrt(dx**2 + dy**2 + dz**2)
-
+        # means if we have reached the current target position
         if distance < self.threshold:
             self.get_logger().info(f'Target reached: {self.current_target}')
             self.target_index += 1
@@ -303,6 +305,8 @@ class PathPlanner(Node):
                 msg.data = f'x={self.current_target[0]} y={self.current_target[1]} z={self.current_target[2]}'
                 self.pos_target_pub.publish(msg)
                 self.get_logger().info(f'Target published: {msg.data}')
+
+
                                                             
     def fallback_to_origin_once(self):
         """Fallback method if no flat areas are received after a waiting period."""
