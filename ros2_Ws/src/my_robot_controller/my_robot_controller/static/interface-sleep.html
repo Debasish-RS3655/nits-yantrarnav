@@ -12,93 +12,90 @@
       body {
         margin: 0;
         /* overflow: hidden; */
+        overflow-y: scroll; 
+      }
+
+      /* Hide scrollbar for Webkit browsers */
+      body::-webkit-scrollbar {
+        display: none;
       }
     </style>
   </head>
-  <body>
+  <body class="bg-gray-900 text-white font-sans min-h-screen">
     <div class="flex md:flex-row flex-col min-h-screen">
-      <div
-        class="flex flex-col gap-2 w-full md:flex-col md:gap-2 md:w-[37vw] bg-[#255F38]"
-      >
-        <div
-          id="info"
-          class="bg-[#253D2C] bg-opacity-100 text-white p-2.5 font-mono"
-        >
-          <h3 class="text-[1.5rem] text-center">Drone Command Center</h3>
-          <p class="text-[1.1rem] pt-[1rem]">
-            Connection Status: <span id="status">Connecting...</span>
+      <div class="flex flex-col gap-2 w-full md:flex-col md:gap-2 md:w-[50vw]">
+        <div class="bg-gray-800 p-4 rounded-lg shadow-md">
+          <h3 class="text-2xl text-center font-bold mb-4">
+            Drone Command Center
+          </h3>
+          <p class="mb-2">
+            Connection Status: <span id="status"> Connecting...</span>
           </p>
-          <p class="text-[1.1rem] pt-[0.5rem]">
+          <p class="mb-2">
             Current Axes: <span id="axes-info">Z-Up, X-Left</span>
           </p>
-          <p class="text-[1.1rem] hidden pt-[0.5rem]">
+          <p class="mb-2 hidden">
             Mode: <span id="mode-display">Automatic</span>
           </p>
-          <div class="status-box">
-            <p class="label">
-              Drone Phase:<span id="drone-phase">Loading...</span>
-            </p>
-          </div>
-          <div class="status-box">
-            <p class="label">
-              Launch Status: <span id="launch-status">Loading...</span>
-            </p>
-          </div>
-          <div class="status-box">
-            <p class="label">
-              Drone Height: <span id="drone-height">Loading...</span>
-            </p>
-            <div id="error" class="error"></div>
-          </div>
-          <div class="status-box">
-            <p class="label">
-              Battery Percentage:<span id="battery-percentage">Loading...</span>
-            </p>
-          </div>
-          <div class="status-box">
-            <p class="label">
-              Battery Voltage: <span id="battery-voltage">Loading...</span>
-            </p>
-          </div>
-          <div class="status-box">
-            <p class="label">
-              System Ready:<span id="system-ready">Loading...</span>
-            </p>
-          </div>
-          <!-- New velocity fields -->
-          <div class="status-box">
-            <p class="label">
-              X Velocity: <span id="x-velocity">Loading...</span>
-            </p>
-          </div>
-          <div class="status-box">
-            <p class="label">
-              Y Velocity: <span id="y-velocity">Loading...</span>
-            </p>
-          </div>
-          <div class="status-box">
-            <p class="label">
-              Z Velocity: <span id="z-velocity">Loading...</span>
-            </p>
+          <div class="grid grid-cols-3 gap-4 mt-4">
+            <div class="p-2 bg-gray-700 rounded-md">
+              <p>Drone Phase: <span id="drone-phase">Loading...</span></p>
+            </div>
+            <div class="p-2 bg-gray-700 rounded-md">
+              <p>Launch Status: <span id="launch-status">Loading...</span></p>
+            </div>
+            <div class="p-2 bg-gray-700 rounded-md">
+              <p>Drone Height: <span id="drone-height">Loading...</span></p>
+            </div>
+            <div class="p-2 bg-gray-700 rounded-md">
+              <p>
+                Battery Percentage:
+                <span id="battery-percentage">Loading...</span>
+              </p>
+            </div>
+            <div class="p-2 bg-gray-700 rounded-md">
+              <p>
+                Battery Voltage: <span id="battery-voltage">Loading...</span>
+              </p>
+            </div>
+            <div class="p-2 bg-gray-700 rounded-md">
+              <p>System Ready: <span id="system-ready">Loading...</span></p>
+            </div>
+            <div class="p-2 bg-gray-700 rounded-md">
+              <p>X Velocity: <span id="x-velocity">Loading...</span></p>
+            </div>
+            <div class="p-2 bg-gray-700 rounded-md">
+              <p>Y Velocity: <span id="y-velocity">Loading...</span></p>
+            </div>
+            <div class="p-2 bg-gray-700 rounded-md">
+              <p>Z Velocity: <span id="z-velocity">Loading...</span></p>
+            </div>
           </div>
         </div>
         <div class="scale-[0.88] relative top-[-1.6rem]">
           <div
-            class="p-[0.5rem] border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
+            class="p-[0.5rem] border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-white shadow"
           >
-            <p class="text-center pb-[0.5rem]">Current Position</p>
+            <p
+              class="text-center font-semibold text-gray-600 text-xl pb-[0.5rem]"
+            >
+              Current Position 
+            </p>
             <div id="coordinates" class="flex justify-center gap-4">
               <!-- X Coordinate -->
+
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden bg-blue-50 rounded-xl shadow"
               >
-                <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
+                <p
+                  class="pt-[0.6rem] text-center font-tusker2 font-medium text-gray-500 text-[1.2rem]"
+                >
                   X
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
                   <p
                     id="x-value"
-                    class="text-center font-tusker2 text-[1.87rem]"
+                    class="text-center text-lg font-bold text-blue-800 text-[1.87rem]"
                   >
                     0
                   </p>
@@ -106,15 +103,17 @@
               </div>
               <!-- Y Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden bg-blue-50 rounded-xl shadow"
               >
-                <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
+                <p
+                  class="pt-[0.6rem] text-center font-tusker2 font-medium text-gray-500 text-[1.2rem]"
+                >
                   Y
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
                   <p
                     id="y-value"
-                    class="text-center font-tusker2 text-[1.87rem]"
+                    class="text-center text-lg font-bold text-blue-800 text-[1.87rem]"
                   >
                     0
                   </p>
@@ -122,15 +121,17 @@
               </div>
               <!-- Z Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden bg-blue-50 rounded-xl shadow"
               >
-                <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
+                <p
+                  class="pt-[0.6rem] text-center font-tusker2 font-medium text-gray-500 text-[1.2rem]"
+                >
                   Z
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
                   <p
                     id="z-value"
-                    class="text-center font-tusker2 text-[1.87rem]"
+                    class="text-center text-lg font-bold text-blue-800 text-[1.87rem]"
                   >
                     0
                   </p>
@@ -139,21 +140,28 @@
             </div>
           </div>
           <div
-            class="p-[0.5rem] border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
+            class="p-[0.5rem] border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-white shadow"
           >
-            <p class="text-center pb-[0.5rem]">Target Position</p>
+            <p
+              class="text-center font-semibold text-gray-600 text-xl pb-[0.5rem]"
+            >
+              Target Position
+            </p>
             <div id="coordinates" class="flex justify-center gap-4">
               <!-- X Coordinate -->
+
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden bg-purple-50 rounded-xl shadow"
               >
-                <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
+                <p
+                  class="pt-[0.6rem] text-center font-tusker2 font-medium text-gray-500 text-[1.2rem]"
+                >
                   X
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
                   <p
                     id="x1-value"
-                    class="text-center font-tusker2 text-[1.87rem]"
+                    class="text-center text-lg font-bold text-purple-800 text-[1.87rem]"
                   >
                     0
                   </p>
@@ -161,15 +169,17 @@
               </div>
               <!-- Y Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden bg-purple-50 rounded-xl shadow"
               >
-                <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
+                <p
+                  class="pt-[0.6rem] text-center font-tusker2 font-medium text-gray-500 text-[1.2rem]"
+                >
                   Y
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
                   <p
                     id="y1-value"
-                    class="text-center font-tusker2 text-[1.87rem]"
+                    class="text-center text-lg font-bold text-purple-800 text-[1.87rem]"
                   >
                     0
                   </p>
@@ -177,15 +187,17 @@
               </div>
               <!-- Z Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden border border-black bg-[#57B4BA]"
+                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden bg-purple-50 rounded-xl shadow"
               >
-                <p class="pt-[0.6rem] text-center font-tusker2 text-[1.2rem]">
+                <p
+                  class="pt-[0.6rem] text-center font-tusker2 font-medium text-gray-500 text-[1.2rem]"
+                >
                   Z
                 </p>
                 <div class="relative top-[-0.5rem] z-[10]">
                   <p
                     id="z1-value"
-                    class="text-center font-tusker2 text-[1.87rem]"
+                    class="text-center text-lg font-bold text-purple-800 text-[1.87rem]"
                   >
                     0
                   </p>
@@ -195,14 +207,18 @@
           </div>
         </div>
       </div>
-      <div class="flex lg:w-full flex-col bg-[#000000]">
+      <div class="flex flex-col bg-[#000000]">
         <div class="flex md:flex-row flex-col md:justify-evenly items-center">
           <!-- Camera Feed Section -->
           <div
-            class="flex-grow md:flex md:p-[0.5rem] md:scale-[1] md:h-[450px] md:w-[450px] md:flex-col md:justify-center md:items-center md:pb-[1rem] flex p-[0.5rem] h-[450px] w-[450px] scale-[0.8] flex-col justify-center items-center border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
+            class="flex-grow md:flex md:p-[0.5rem] md:scale-[1] md:h-[300px] md:w-[300px] md:flex-col md:justify-center md:items-center md:pb-[1rem] flex p-[0.5rem] h-[450px] w-[450px] scale-[0.8] flex-col justify-center items-center border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
           >
-            <p class="text-center pb-[0.5rem]">Depth Camera Feed</p>
-            <div class="flex justify-center items-center h-[400px] w-[400px]">
+            <p
+              class="text-center font-semibold text-gray-600 text-xl pb-[0.5rem]"
+            >
+              Depth Camera Feed
+            </p>
+            <div class="flex justify-center items-center h-[250px] w-[250px]">
               <img
                 id="camera-feed"
                 class="border border-gray-500 w-full h-full object-contain"
@@ -211,10 +227,14 @@
             </div>
           </div>
           <div
-            class="flex-grow md:flex md:p-[0.5rem] md:scale-[1] md:h-[450px] md:w-[450px] md:flex-col md:justify-center md:items-center md:pb-[1rem] flex p-[0.5rem] h-[450px] w-[450px] scale-[0.8] flex-col justify-center items-center border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
+            class="flex-grow md:flex md:p-[0.5rem] md:scale-[1] md:h-[300px] md:w-[300px] md:flex-col md:justify-center md:items-center md:pb-[1rem] flex p-[0.5rem] h-[450px] w-[450px] scale-[0.8] flex-col justify-center items-center border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
           >
-            <p class="text-center pb-[0.5rem]">Perpendicular Camera Feed</p>
-            <div class="flex justify-center items-center h-[400px] w-[400px]">
+            <p
+              class="text-center font-semibold text-gray-600 text-xl pb-[0.5rem]"
+            >
+              Perpendicular Camera Feed
+            </p>
+            <div class="flex justify-center items-center h-[250px] w-[250px]">
               <img
                 id="camera-feed1"
                 class="border border-gray-500 w-full h-full object-contain"
@@ -237,7 +257,7 @@
             id="reset-orientation"
             class="bg-black bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
           >
-            Tilt visualized axis
+            Tilt Visualized Axis
           </button>
 
           <button
@@ -315,7 +335,9 @@
 
           <!-- Coordinates Row -->
           <div class="bg-purple-50 p-4 rounded-xl shadow text-center">
-            <p class="text-sm font-medium text-gray-500 mb-2">Coordinates ( ML Model )</p>
+            <p class="text-sm font-medium text-gray-500 mb-2">
+              Co-ordinates ( ML Model )
+            </p>
             <p id="coordinate" class="text-lg font-bold text-purple-800">
               Loading...
             </p>
@@ -558,9 +580,9 @@
               data.current_position.y,
               data.current_position.z
             );
-            xValueElement.textContent = (x * 100).toFixed(2);
-            yValueElement.textContent = (y * 100).toFixed(2);
-            zValueElement.textContent = (z * 100).toFixed(2);
+            xValueElement.textContent = (x * 100).toFixed(3);
+            yValueElement.textContent = (y * 100).toFixed(3);
+            zValueElement.textContent = (z * 100).toFixed(3);
             const {
               x: x1,
               y: y1,
@@ -570,9 +592,9 @@
               data.target_position.y,
               data.target_position.z
             );
-            x1ValueElement.textContent = (x1 * 100).toFixed(2);
-            y1ValueElement.textContent = (y1 * 100).toFixed(2);
-            z1ValueElement.textContent = (z1 * 100).toFixed(2);
+            x1ValueElement.textContent = (x1 * 100).toFixed(3);
+            y1ValueElement.textContent = (y1 * 100).toFixed(3);
+            z1ValueElement.textContent = (z1 * 100).toFixed(3);
 
             document.getElementById("drone-height").innerText =
               data.current_position.z != null
@@ -586,7 +608,7 @@
 
             document.getElementById("battery-percentage").innerText =
               data.battery_status?.percentage != null
-                ? data.battery_status.percentage.toFixed(1) + "%"
+                ? data.battery_status.percentage.toFixed(2) + "%"
                 : "--";
             document.getElementById("battery-voltage").innerText =
               data.battery_status?.voltage != null
@@ -635,11 +657,17 @@
               });
             }
 
-            document.getElementById("coordinate").innerHTML = `X=${coordX.toFixed(3)}&nbsp;&nbsp;&nbsp;Y=${coordY.toFixed(3)}&nbsp;&nbsp;&nbsp;Z=${coordZ.toFixed(3)}`;
+            document.getElementById(
+              "coordinate"
+            ).innerHTML = `X=${coordX.toFixed(
+              7
+            )}&nbsp;&nbsp;&nbsp;Y=${coordY.toFixed(
+              7
+            )}&nbsp;&nbsp;&nbsp;Z=${coordZ.toFixed(7)}`;
 
             document.getElementById("response_time").textContent =
               predicted.response_time !== null
-                ? predicted.response_time.toFixed(3)+" sec"
+                ? predicted.response_time.toFixed(3) + " sec"
                 : "Not available";
 
             document.getElementById("terrain_class").textContent =

@@ -4,12 +4,16 @@
   <name>my_robot_controller</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="vednarsekar@gmail.com">nits</maintainer>
+  <maintainer email="rahul@todo.todo">rahul</maintainer>
   <license>TODO: License declaration</license>
 
   <depend>rclpy</depend>
   <depend>std_msgs</depend>
-  <depend>geometry_msgs</depend>
+  <depend>flask</depend>
+  <depend>flask_cors</depend>
+  <depend>base64</depend>
+  <depend>cv2</depend>
+  <depend>cv_bridge</depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
