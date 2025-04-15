@@ -1,0 +1,2 @@
+[console_scripts]
+flat_area_processor = my_robot_controller.flat_area_processor:main

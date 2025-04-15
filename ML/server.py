@@ -75,14 +75,15 @@ def predict_terrain(image):
     terrain_map = {0: "rocky_terrain", 1: "hard_terrain", 2: "sandy_terrain"}
     return terrain_map.get(class_pred, "unknown"), round(prob, 4)
 
-def send_prediction(coordinates, terrain_class, accuracy):
+def send_prediction(coordinates, terrain_class, accuracy, response_time):
     """Sends the predicted area to the server."""
     url = "http://localhost:5000/predicted_area"
     data = {
         "status": "success",
         "class": terrain_class,
         "accuracy": str(accuracy),
-        "coordinate": coordinates
+        "coordinate": coordinates,
+        "response_time": response_time
     }
     response = requests.post(url, json=data)
     
@@ -121,7 +122,7 @@ def main():
                 print(f"Response Time: {response_time:.2f} seconds")
 
                 # Send prediction
-                send_prediction(coordinates, terrain_class, accuracy)
+                send_prediction(coordinates, terrain_class, accuracy, response_time)
 
             else:
                 print("No flat area detected, waiting...")
