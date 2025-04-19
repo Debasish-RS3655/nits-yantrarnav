@@ -31,21 +31,15 @@ def generate_launch_description():
         executable="height_publisher"
     )
 
-    # dummy nodes for testing
-    # flat_area = Node(
-    #     package="my_robot_controller",
-    #     executable="flat_area"
-    # )
+    flat_area = Node(
+        package="my_robot_controller",
+        executable="flat_area"
+    )
     
     boundary_mapper = Node(
         package="my_robot_controller",
         executable="boundary_mapper"
     )
-    
-    # odom = Node(
-    #     package="my_robot_controller",
-    #     executable="odom"        
-    # )
 
     coordinate = Node(
         package="my_robot_controller",
@@ -61,9 +55,8 @@ def generate_launch_description():
 
     ld.add_action(height_publisher)
 
-    # ld.add_action(flat_area)    
+    ld.add_action(flat_area)    
     ld.add_action(boundary_mapper)
-    # ld.add_action(odom)
     
         
     return ld

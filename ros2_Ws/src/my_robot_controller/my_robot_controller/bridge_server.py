@@ -457,10 +457,10 @@ def ml_check_area():
         return jsonify({'error': 'No flat area nearby or no perpendicular image available'}), 404
 
 # New Endpoint: /ml_check_area_temp
-# Always returns the current coordinates and the latest depth camera RGB image
+# Always returns the current coordinates and the latest perpendicular image rgb
 @app.route('/ml_check_area_temp', methods=['GET'])
 def ml_check_area_temp():
-    global bridge_server_node, depth_cam_rgb_image_base64
+    global bridge_server_node, ml_check_image_base64
     if bridge_server_node is None:
         return jsonify({'error': 'BridgeServer node not available'}), 500
 
@@ -471,8 +471,8 @@ def ml_check_area_temp():
     }
 
     with lock:
-        if depth_cam_rgb_image_base64 is not None:
-            response = {'coordinate': current_coord, 'image': depth_cam_rgb_image_base64}
+        if ml_check_image_base64 is not None:
+            response = {'coordinate': current_coord, 'image': ml_check_image_base64}
             return jsonify(response)
         else:
             return jsonify({'error': 'No image received yet'}), 404

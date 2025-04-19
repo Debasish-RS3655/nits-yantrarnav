@@ -1,99 +1,107 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String, Bool
+from std_msgs.msg import String
 from geometry_msgs.msg import Point
 import numpy as np
-import math
 
 class FlatAreaProcessor(Node):
     def __init__(self):
         super().__init__('flat_area_processor')
 
-        # Storage variables
+        # Storage for phases and points
         self.phase = None
-        self.current_position = None
-        self.flat_areas_pointcloud = []
-        self.ml_predicted_areas = []
-        self.landing_spots = []
-        self.flat_area_gap_threshold = 0.5  # Threshold for uniqueness
+        self.ml_predicted_areas = []  # list of tuples: (np.array([x,y,z]), terrain)
+        self.landing_spots = []       # list of np.array([x,y,z])
+        self.flat_area_gap_threshold = 0.5
 
-        # ROS 2 Subscribers
+        # ROS 2 Subscriptions
         self.create_subscription(String, '/position/phase', self.phase_callback, 10)
-        self.create_subscription(Point, '/current_coordinates', self.position_callback, 10)
-        self.create_subscription(Point, '/point_cloud_flat_area', self.pointcloud_callback, 10)
         self.create_subscription(String, '/ml_predicted_area', self.ml_flat_area_callback, 10)
         self.create_subscription(Point, '/landing_spots', self.landing_spot_callback, 10)
 
-        # ROS 2 Publisher
-        self.above_flat_area_pub = self.create_publisher(Bool, '/above_flat_area', 10)
+        # ROS 2 Publisher: publishes combined flat areas at phase 3
+        self.flat_area_pub = self.create_publisher(String, '/position/flat_area', 10)
 
-    def phase_callback(self, msg):
-        """ Updates the phase status (0-4). """
+    def phase_callback(self, msg: String):
+        """Track phase; when entering phase 3, publish final flat areas."""
         try:
-            self.phase = int(msg.data)
+            new_phase = int(msg.data)
         except ValueError:
             self.get_logger().error(f"Invalid phase data received: {msg.data}")
+            return
 
-    def position_callback(self, msg):
-        """ Updates current x, y, z position and checks if above a flat area. """
-        self.current_position = np.array([msg.x, msg.y, msg.z], dtype=np.float64)
-        if self.phase == 2:  # Mapping phase
-            self.check_above_flat_area()
-
-    def pointcloud_callback(self, msg):
-        """ Stores detected flat areas from point cloud data. """
-        self.flat_areas_pointcloud.append(np.array([msg.x, msg.y, msg.z], dtype=np.float64))
+        if self.phase != 3 and new_phase == 3:
+            # Transition into phase 3: compute and publish
+            self.publish_final_flat_areas()
+        self.phase = new_phase
 
     def ml_flat_area_callback(self, msg: String):
-        """ Stores ML-predicted flat areas and logs x, y, z if terrain is hard. """
-        self.get_logger().info(f"Received ML message: {msg.data}")
+        """Accumulate ML-predicted points with terrain until phase 3."""
         try:
-            parts = msg.data.split(" coordinate ")
-            if len(parts) != 2:
-                self.get_logger().error("ML message format incorrect; ' coordinate ' separator missing.")
-                return
+            # Expect: "class {terrain} coordinate x={x} y={y} z={z}"
+            text = msg.data.strip()
+            parts = text.split(' coordinate ')
+            terrain = parts[0].replace('class ', '').strip().lower()
 
-            terrain = parts[0].strip().replace("class ", "")
-            coords = {}
-            for token in parts[1].strip().split():
-                key, value = token.split("=")
-                coords[key.strip()] = float(value.strip())
+            coord_tokens = parts[1].split()
+            coords = {k: float(v) for token in coord_tokens for k,v in [token.split('=')]}
+            point = np.array([coords['x'], coords['y'], coords['z']], dtype=np.float64)
 
-            if not all(k in coords for k in ['x', 'y', 'z']):
-                self.get_logger().error("ML message missing x, y, or z values.")
-                return
-
-            self.ml_predicted_areas.append((np.array([coords['x'], coords['y'], coords['z']]), terrain))
-            self.get_logger().info(f"Stored ML terrain: {terrain}, coordinates: {coords}")
-
-            # ✅ Output only if terrain is "hard"
-            if terrain.lower() == "hard":
-                output = f"x={int(coords['x'])} y={int(coords['y'])} z={int(coords['z'])}"
-                self.get_logger().info(f"Output (hard terrain): {output}")
+            # Store ml prediction
+            self.ml_predicted_areas.append((point, terrain))
+            self.get_logger().info(f"Stored ML-predicted area: {terrain} at {point.tolist()}")
 
         except Exception as e:
             self.get_logger().error(f"Error parsing ML message: {e}")
 
     def landing_spot_callback(self, msg: Point):
-        """ Stores landing spots ensuring uniqueness based on distance threshold. """
-        new_point = np.array([msg.x, msg.y, msg.z])
-        unique = all(np.linalg.norm(new_point - np.array(p)) >= self.flat_area_gap_threshold for p in self.landing_spots)
-
-        if unique:
+        """Accumulate unique landing spot points until phase 3."""
+        new_point = np.array([msg.x, msg.y, msg.z], dtype=np.float64)
+        # Ensure uniqueness by distance
+        if all(np.linalg.norm(new_point - p) >= self.flat_area_gap_threshold
+               for p in self.landing_spots):
             self.landing_spots.append(new_point)
-            self.get_logger().info(f"Added unique landing spot: {new_point.tolist()}")
+            self.get_logger().info(f"Added landing spot: {new_point.tolist()}")
         else:
-            self.get_logger().info("Received landing spot is not unique; ignoring.")
+            self.get_logger().info("Ignored duplicate landing spot.")
 
-    def check_above_flat_area(self):
-        """ Checks if the current position is near any detected flat area and publishes result. """
-        if self.current_position is None or not self.flat_areas_pointcloud:
-            self.above_flat_area_pub.publish(Bool(data=False))
-            return
+    def publish_final_flat_areas(self):
+        """
+        On entering phase 3, find ML-predicted areas that match landing spots,
+        prioritize by terrain (hard > sandy > rocky), and publish.
+        """
+        # Terrain priority mapping
+        priority = {'hard_terrain': 0, 'sandy_terrain': 1, 'rocky_terrain': 2}
 
-        is_above_flat = any(np.linalg.norm(self.current_position - flat_point) < 0.5 for flat_point in self.flat_areas_pointcloud)
-        self.above_flat_area_pub.publish(Bool(data=is_above_flat))
+        # Sort ml-predicted by priority
+        sorted_ml = sorted(
+            self.ml_predicted_areas,
+            key=lambda item: priority.get(item[1], float('inf'))
+        )
+
+        # Filter: keep points that are near any landing spot
+        final_points = []
+        for point, terrain in sorted_ml:
+            if any(np.linalg.norm(point - ls) < self.flat_area_gap_threshold
+                   for ls in self.landing_spots):
+                # avoid duplicates in final list
+                if not any(np.allclose(point, fp) for fp in final_points):
+                    final_points.append(point)
+
+        # Format output as "x1=... y1=... z1=..., x2=... y2=... z2=..."
+        parts = []
+        for idx, pt in enumerate(final_points, start=1):
+            x, y, z = int(pt[0]), int(pt[1]), int(pt[2])
+            parts.append(f"x{idx}={x} y{idx}={y} z{idx}={z}")
+        msg_str = ', '.join(parts) if parts else ''
+
+        # Publish
+        out_msg = String()
+        out_msg.data = msg_str
+        self.flat_area_pub.publish(out_msg)
+        self.get_logger().info(f"Published flat areas: {msg_str}")
+
 
 def main(args=None):
     rclpy.init(args=args)

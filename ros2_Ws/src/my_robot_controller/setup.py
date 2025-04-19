@@ -20,17 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            # "position_node = my_robot_controller.position_publisher:main",
-            
-            # "path_planner_node = my_robot_controller.path_planner:main",
-            # "path_planner_server_node = my_robot_controller.path_planner_server:main",
-            # "path_planner_simulation_node = my_robot_controller.path_planner_simulation:main",
-            
-            # "path_planner_simulation_server_node = my_robot_controller.path_planner_simulation_server:main"            
-            
             "bridge_server = my_robot_controller.bridge_server:main",
             "bridge_server_combined = my_robot_controller.bridge_server_combined:main",
-            # "path_mover = my_robot_controller.path_mover:main",
             "path_planner = my_robot_controller.path_planner:main",
             "path_manual = my_robot_controller.path_manual:main",
             "mode_controller = my_robot_controller.mode_controller:main",
@@ -41,7 +32,7 @@ setup(
             "height_publisher = my_robot_controller.height:main",
 
             # replace with Shwetangshu and Mimansa's modules  
-            "flat_area = my_robot_controller.flat_area:main",
+            "flat_area = my_robot_controller.flat_area_processor:main",
             # "boundary_mapper = my_robot_controller.boundary_mapper:main",
             "odom = my_robot_controller.odom:main",
             "boundary_mapper = my_robot_controller.boundary_mapper:main",
