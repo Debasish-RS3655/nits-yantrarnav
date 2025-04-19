@@ -15,7 +15,8 @@ class PathPlanner(Node):
         self.drone_launch_land_sub = self.create_subscription(
             String, '/launch_land_status', self.update_launch_status, 10)
         self.drone_launch_status = None
-        
+                
+        self.trajectory_pub = self.create_publisher(String, '/trajectory_points', 10)
         # Publisher for the drone commands
         self.drone_commands_pub = self.create_publisher(String, '/drone_commands', 10)
         # Subscriber for the current mode
@@ -34,7 +35,7 @@ class PathPlanner(Node):
         
         # For the hovering mode
         self.hovering_status_sub = self.create_subscription(String, '/hovering_mode', self.update_hovering_mode, 10)
-        self.hovering_status = None
+        self.hovering_status = None                
         
         # Subscriber for the edge coordinates    
         self.edge_sub = self.create_subscription(String, '/edge_coordinates', self.update_edges, 10)            
@@ -70,6 +71,7 @@ class PathPlanner(Node):
         # Phase 5: Landing phase.
         self.phase = None  # Will be set after receiving origin.
         self.phase_pub = self.create_publisher(String, 'position/phase', 10)
+        
 
         self.target_list = []
         self.target_index = 0
@@ -147,7 +149,7 @@ class PathPlanner(Node):
             
     def update_flat_areas(self, msg: String):
         """Update the flat area list from the 'position/flat_area' topic.
-        Expected format: "x1=y1=z1, x2=y2=z2, ..."."""
+        Expected format: "x1= y1 =z1, x2= y2= z2, ..."."""
         try:
             flat_areas = []
             entries = msg.data.split(",")
@@ -220,6 +222,20 @@ class PathPlanner(Node):
                 else:
                     points.append((x0 + self.long_side, y, z0))
                     points.append((x0, y, z0))
+            
+            # the points here corresponds to the lawnmower pattern points
+            # after calculating the trajecotry points we publish them over to the tarjectory publisher for displaying                    
+            formatted_str = ', '.join(
+                f"x={x:.2f} y={y:.2f} z={z:.2f}"
+                for x, y, z in points
+            )
+
+            # If you want to publish it immediately:
+            trajectory_msg = String()
+            trajectory_msg.data = formatted_str
+            self.trajectory_pub.publish(trajectory_msg)
+            self.get_logger().info(f"Trajectory points string: {formatted_str}")                                                    
+            # include the trajectory points in the target list
             self.target_list = points
         
         elif phase == 3:

@@ -51,12 +51,22 @@ class BridgeServer(Node):
         self.drone_launch_status = None
         self.latest_prediction = None  # Store the latest terrain prediction
 
+        # subscribers for the visualization topics
+        self.edge_sub = self.create_subscription(String, '/edge_coordinates', self.update_edges, 10)
+        self.edge_points = ''
+        self.flat_area_sub = self.create_subscription(String, 'position/flat_area', self.update_flat_areas, 10)
+        self.flat_areas = ''  # List to store multiple (x, y, z) flat area coordinates
+        self.trajectory_points_sub = self.create_subscription(String, '/trajectory_points', self.update_trajectory_points, 10)
+        self.trajectory_points = ''
+
         # Subscribers for position topics
         self.pos_current_sub = self.create_subscription(String, 'position/current', self.update_current_pos, 10)
         self.pos_target_sub = self.create_subscription(String, 'position/target', self.update_target_pos, 10)
         self.pos_phase_sub = self.create_subscription(String, 'position/phase', self.update_phase_pos, 10)
         self.mode_pub = self.create_publisher(String, 'position/mode', 10)
         self.land_launch_pub = self.create_publisher(String, '/launch_commands', 10)
+        self.launch_commands = ''
+        self.drone_commands = ''
         
         # ---------------------------
         # OLD velocity subscriber removed:
@@ -128,6 +138,18 @@ class BridgeServer(Node):
 
         # NEW: Create a client for the /rtabmap/reset_odom service within the BridgeServer node.
         self.reset_odom_client = self.create_client(Empty, '/rtabmap/reset_odom')    
+
+    def update_edges(self, msg: String):
+        self.edge_points = msg.data
+
+    def update_flat_areas(self, msg: String):
+        """Update the flat area list from the 'position/flat_area' topic.
+        Expected format: "x1= y1 =z1, x2= y2= z2, ..."."""
+        self.flat_areas = msg.data
+        
+    def update_trajectory_points(self, msg: String):
+        self.trajectory_points = msg.data
+
 
     # Updated velocity callback using optical flow sensor's flow_rate for x and y
     def velocity_callback(self, msg: OpticalFlow):
@@ -539,6 +561,7 @@ def launch():
     msg = String()
     msg.data = "launch"
     bridge_server_node.land_launch_pub.publish(msg)
+    bridge_server_node.launch_commands = msg.data
     bridge_server_node.get_logger().info("Published launch command.")
     return jsonify({'status': 'launch command published'}), 200
 
@@ -569,6 +592,20 @@ def get_velocities():
             velocity_data['flow_rate']['z'] = 0.0
         return jsonify(velocity_data)
 
+
+@app.route('/visualization', methods=['GET'])
+def visualization():
+    global bridge_server_node
+    if bridge_server_node is None:
+        return jsonify({'error': 'BridgeServer node not available'}), 500
+
+    return jsonify({
+        'yellow': bridge_server_node.edge_points,
+        'red': bridge_server_node.trajectory_points,
+        'green': bridge_server_node.flat_areas,
+        'drone_commands': bridge_server_node.drone_commands,
+        'launch_commands': bridge_server_node.launch_commands
+    }), 200
 
 # New Endpoint: /all - Return all the latest data in one response
 # New Endpoint: /all - Return all the latest data in one response
