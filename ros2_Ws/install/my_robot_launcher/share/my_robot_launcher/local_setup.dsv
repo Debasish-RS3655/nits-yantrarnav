@@ -1,1 +1,2 @@
-/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.dsv
+source;share/my_robot_launcher/environment/ament_prefix_path.sh
+source;share/my_robot_launcher/environment/path.sh

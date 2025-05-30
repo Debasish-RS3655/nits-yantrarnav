@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher
+CMAKE_SOURCE_DIR = /mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher
+CMAKE_BINARY_DIR = /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher
 
 # Utility rule file for uninstall.
 
@@ -78,6 +78,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher /home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher /mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/uninstall.dir/depend
 

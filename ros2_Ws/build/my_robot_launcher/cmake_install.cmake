@@ -1,8 +1,8 @@
-# Install script for directory: /home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher
+# Install script for directory: /mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/install/my_robot_launcher")
+  set(CMAKE_INSTALL_PREFIX "/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -43,7 +43,66 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  include("/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/ament_cmake_symlink_install/ament_cmake_symlink_install.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_robot_launcher" TYPE DIRECTORY FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher/launch")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/package_run_dependencies" TYPE FILE FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/my_robot_launcher")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/parent_prefix_path" TYPE FILE FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/my_robot_launcher")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_robot_launcher/environment" TYPE FILE FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/ament_prefix_path.sh")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_robot_launcher/environment" TYPE FILE FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/ament_prefix_path.dsv")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_robot_launcher/environment" TYPE FILE FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_robot_launcher/environment" TYPE FILE FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/path.dsv")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_robot_launcher" TYPE FILE FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.bash")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_robot_launcher" TYPE FILE FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.sh")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_robot_launcher" TYPE FILE FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.zsh")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_robot_launcher" TYPE FILE FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/local_setup.dsv")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_robot_launcher" TYPE FILE FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_environment_hooks/package.dsv")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/packages" TYPE FILE FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_index/share/ament_index/resource_index/packages/my_robot_launcher")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_robot_launcher/cmake" TYPE FILE FILES
+    "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_core/my_robot_launcherConfig.cmake"
+    "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/ament_cmake_core/my_robot_launcherConfig-version.cmake"
+    )
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_robot_launcher" TYPE FILE FILES "/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher/package.xml")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -54,5 +113,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
