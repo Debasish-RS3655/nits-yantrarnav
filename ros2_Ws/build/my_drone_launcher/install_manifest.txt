@@ -1,0 +1,16 @@
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/launch/drone.launch.py
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/ament_index/resource_index/package_run_dependencies/my_drone_launcher
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/ament_index/resource_index/parent_prefix_path/my_drone_launcher
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/environment/ament_prefix_path.sh
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/environment/ament_prefix_path.dsv
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/environment/path.sh
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/environment/path.dsv
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/local_setup.bash
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/local_setup.sh
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/local_setup.zsh
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/local_setup.dsv
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/package.dsv
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/ament_index/resource_index/packages/my_drone_launcher
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/cmake/my_drone_launcherConfig.cmake
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/cmake/my_drone_launcherConfig-version.cmake
+/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/package.xml

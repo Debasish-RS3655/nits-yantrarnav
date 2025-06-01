@@ -1,0 +1,28 @@
+[0.240s] Invoking command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_drone_launcher': AMENT_PREFIX_PATH=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/opt/ros/humble CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble /usr/bin/cmake /mnt/f/NITS/ANAV/main/ros2_Ws/src/my_drone_launcher -DCMAKE_INSTALL_PREFIX=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher
+[0.386s] -- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+[1.795s] -- Configuring done
+[2.132s] -- Generating done
+[2.343s] -- Build files have been written to: /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_drone_launcher
+[2.430s] Invoked command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_drone_launcher' returned '0': AMENT_PREFIX_PATH=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/opt/ros/humble CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble /usr/bin/cmake /mnt/f/NITS/ANAV/main/ros2_Ws/src/my_drone_launcher -DCMAKE_INSTALL_PREFIX=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher
+[2.433s] Invoking command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_drone_launcher': AMENT_PREFIX_PATH=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/opt/ros/humble CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble /usr/bin/cmake --build /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_drone_launcher -- -j8 -l8
+[2.529s] Invoked command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_drone_launcher' returned '0': AMENT_PREFIX_PATH=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/opt/ros/humble CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble /usr/bin/cmake --build /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_drone_launcher -- -j8 -l8
+[2.552s] Invoking command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_drone_launcher': AMENT_PREFIX_PATH=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/opt/ros/humble CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble /usr/bin/cmake --install /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_drone_launcher
+[2.563s] -- Install configuration: ""
+[2.892s] -- Installing: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/launch
+[2.925s] -- Installing: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/launch/robot.launch.py
+[3.320s] -- Installing: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/ament_index/resource_index/package_run_dependencies/my_drone_launcher
+[3.418s] -- Installing: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/ament_index/resource_index/parent_prefix_path/my_drone_launcher
+[3.499s] -- Installing: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/environment/ament_prefix_path.sh
+[3.553s] -- Installing: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/environment/ament_prefix_path.dsv
+[3.602s] -- Installing: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/environment/path.sh
+[3.647s] -- Installing: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/environment/path.dsv
+[3.696s] -- Installing: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/local_setup.bash
+[3.746s] -- Installing: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/local_setup.sh
+[3.790s] -- Installing: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/local_setup.zsh
+[3.836s] -- Installing: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/local_setup.dsv
+[3.890s] -- Installing: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/package.dsv
+[4.139s] -- Installing: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/ament_index/resource_index/packages/my_drone_launcher
+[4.235s] -- Installing: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/cmake/my_drone_launcherConfig.cmake
+[4.297s] -- Installing: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/cmake/my_drone_launcherConfig-version.cmake
+[4.358s] -- Installing: /mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher/share/my_drone_launcher/package.xml
+[4.406s] Invoked command in '/mnt/f/NITS/ANAV/main/ros2_Ws/build/my_drone_launcher' returned '0': AMENT_PREFIX_PATH=/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/opt/ros/humble CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble /usr/bin/cmake --install /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_drone_launcher
