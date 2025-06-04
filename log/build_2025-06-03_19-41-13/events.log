@@ -1,0 +1,356 @@
+[0.000000] (-) TimerEvent: {}
+[0.000355] (my_robot_controller) JobQueued: {'identifier': 'my_robot_controller', 'dependencies': OrderedDict()}
+[0.000527] (my_drone_launcher) JobQueued: {'identifier': 'my_drone_launcher', 'dependencies': OrderedDict([('my_robot_controller', '/mnt/f/NITS/ANAV/main/install/my_robot_controller')])}
+[0.000712] (my_robot_launcher) JobQueued: {'identifier': 'my_robot_launcher', 'dependencies': OrderedDict([('my_robot_controller', '/mnt/f/NITS/ANAV/main/install/my_robot_controller')])}
+[0.000915] (my_robot_controller) JobStarted: {'identifier': 'my_robot_controller'}
+[0.098699] (-) TimerEvent: {}
+[0.199157] (-) TimerEvent: {}
+[0.299610] (-) TimerEvent: {}
+[0.400052] (-) TimerEvent: {}
+[0.500489] (-) TimerEvent: {}
+[0.601668] (-) TimerEvent: {}
+[0.702206] (-) TimerEvent: {}
+[0.803313] (-) TimerEvent: {}
+[0.903743] (-) TimerEvent: {}
+[1.004125] (-) TimerEvent: {}
+[1.104572] (-) TimerEvent: {}
+[1.212148] (-) TimerEvent: {}
+[1.313896] (-) TimerEvent: {}
+[1.414410] (-) TimerEvent: {}
+[1.515000] (-) TimerEvent: {}
+[1.615664] (-) TimerEvent: {}
+[1.716208] (-) TimerEvent: {}
+[1.817113] (-) TimerEvent: {}
+[1.917652] (-) TimerEvent: {}
+[2.018196] (-) TimerEvent: {}
+[2.118956] (-) TimerEvent: {}
+[2.220037] (-) TimerEvent: {}
+[2.321020] (-) TimerEvent: {}
+[2.421807] (-) TimerEvent: {}
+[2.522256] (-) TimerEvent: {}
+[2.622836] (-) TimerEvent: {}
+[2.723730] (-) TimerEvent: {}
+[2.824891] (-) TimerEvent: {}
+[2.925330] (-) TimerEvent: {}
+[2.986015] (my_robot_controller) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../../build/my_robot_controller', 'build', '--build-base', '/mnt/f/NITS/ANAV/main/build/my_robot_controller/build', 'install', '--record', '/mnt/f/NITS/ANAV/main/build/my_robot_controller/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_controller', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'rahul', 'SHLVL': '2', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/rahul', 'OLDPWD': '/mnt/f/NITS/ANAV', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'WSL_DISTRO_NAME': 'Ubuntu', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/mnt/f/NITS/ANAV/main/ros2_Ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'rahul', 'NAME': 'Rahul', 'WSL_INTEROP': '/run/WSL/16_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/rahul/.cargo/bin:/home/rahul/.local/bin:/opt/ros/humble/bin:/home/rahul/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/Kubernetes/Minikube:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/MATLAB/R2023b/runtime/win64:/mnt/c/Program Files/MATLAB/R2023b/bin:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin/:/mnt/c/Program Files/IVI Foundation/VISA/Win64/Bin/:/mnt/c/Program Files (x86)/National Instruments/Shared/LabVIEW CLI:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin:/mnt/c/Program Files/nodejs/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.cargo/bin:/mnt/c/Users/debas/.local/share/solana/install/active_release/bin:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/debas/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/debas/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files (x86)/MongoDB Atlas CLI/:/mnt/c/Users/debas/AppData/Local/Android/Sdk/platform-tools:/mnt/c/Users/debas/.avm/bin:/mnt/c/Users/debas/AppData/Roaming/npm:/mnt/c/Program Files/MongoDB/Server/6.0/bin:/mnt/c/Users/debas/AppData/Local/Programs/mongosh/:/mnt/c/Users/debas/.deno/bin:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.vscode/extensions/ms-python.debugpy-2025.8.0-win32-x64/bundled/scripts/noConfigScripts:/mnt/c/Users/debas/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand:/snap/bin:/home/rahul/.archon:/home/rahul/.archon', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PWD': '/mnt/f/NITS/ANAV/main/build/my_robot_controller', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/mnt/f/NITS/ANAV/main/build/my_robot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'CMAKE_PREFIX_PATH': '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher', 'WSLENV': ''}, 'shell': False}
+[3.025440] (-) TimerEvent: {}
+[3.125927] (-) TimerEvent: {}
+[3.226540] (-) TimerEvent: {}
+[3.342477] (-) TimerEvent: {}
+[3.442977] (-) TimerEvent: {}
+[3.543414] (-) TimerEvent: {}
+[3.643851] (-) TimerEvent: {}
+[3.744338] (-) TimerEvent: {}
+[3.844838] (-) TimerEvent: {}
+[3.945363] (-) TimerEvent: {}
+[3.962583] (my_robot_controller) StdoutLine: {'line': b'running egg_info\n'}
+[3.966328] (my_robot_controller) StdoutLine: {'line': b'creating ../../../build/my_robot_controller/my_robot_controller.egg-info\n'}
+[3.979648] (my_robot_controller) StdoutLine: {'line': b'writing ../../../build/my_robot_controller/my_robot_controller.egg-info/PKG-INFO\n'}
+[3.981044] (my_robot_controller) StdoutLine: {'line': b'writing dependency_links to ../../../build/my_robot_controller/my_robot_controller.egg-info/dependency_links.txt\n'}
+[3.982366] (my_robot_controller) StdoutLine: {'line': b'writing entry points to ../../../build/my_robot_controller/my_robot_controller.egg-info/entry_points.txt\n'}
+[3.986487] (my_robot_controller) StdoutLine: {'line': b'writing requirements to ../../../build/my_robot_controller/my_robot_controller.egg-info/requires.txt\n'}
+[3.989314] (my_robot_controller) StdoutLine: {'line': b'writing top-level names to ../../../build/my_robot_controller/my_robot_controller.egg-info/top_level.txt\n'}
+[3.995276] (my_robot_controller) StdoutLine: {'line': b"writing manifest file '../../../build/my_robot_controller/my_robot_controller.egg-info/SOURCES.txt'\n"}
+[4.020572] (my_robot_controller) StdoutLine: {'line': b"reading manifest file '../../../build/my_robot_controller/my_robot_controller.egg-info/SOURCES.txt'\n"}
+[4.045469] (-) TimerEvent: {}
+[4.077958] (my_robot_controller) StdoutLine: {'line': b"writing manifest file '../../../build/my_robot_controller/my_robot_controller.egg-info/SOURCES.txt'\n"}
+[4.080787] (my_robot_controller) StdoutLine: {'line': b'running build\n'}
+[4.081538] (my_robot_controller) StdoutLine: {'line': b'running build_py\n'}
+[4.085682] (my_robot_controller) StdoutLine: {'line': b'creating /mnt/f/NITS/ANAV/main/build/my_robot_controller/build\n'}
+[4.087294] (my_robot_controller) StdoutLine: {'line': b'creating /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib\n'}
+[4.089121] (my_robot_controller) StdoutLine: {'line': b'creating /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller\n'}
+[4.096920] (my_robot_controller) StdoutLine: {'line': b'copying my_robot_controller/boundary_mapper.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller\n'}
+[4.113477] (my_robot_controller) StdoutLine: {'line': b'copying my_robot_controller/boundary_mapper_actualv2.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller\n'}
+[4.132768] (my_robot_controller) StdoutLine: {'line': b'copying my_robot_controller/bridge_server.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller\n'}
+[4.145589] (-) TimerEvent: {}
+[4.151643] (my_robot_controller) StdoutLine: {'line': b'copying my_robot_controller/coordinate.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller\n'}
+[4.179691] (my_robot_controller) StdoutLine: {'line': b'copying my_robot_controller/coordinate_new.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller\n'}
+[4.210055] (my_robot_controller) StdoutLine: {'line': b'copying my_robot_controller/flat_area_processor.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller\n'}
+[4.236275] (my_robot_controller) StdoutLine: {'line': b'copying my_robot_controller/height.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller\n'}
+[4.245696] (-) TimerEvent: {}
+[4.256832] (my_robot_controller) StdoutLine: {'line': b'copying my_robot_controller/launcher.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller\n'}
+[4.283506] (my_robot_controller) StdoutLine: {'line': b'copying my_robot_controller/launch_monitor.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller\n'}
+[4.302647] (my_robot_controller) StdoutLine: {'line': b'copying my_robot_controller/path_planner.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller\n'}
+[4.345819] (-) TimerEvent: {}
+[4.358862] (my_robot_controller) StdoutLine: {'line': b'copying my_robot_controller/__init__.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller\n'}
+[4.369845] (my_robot_controller) StdoutLine: {'line': b'running install\n'}
+[4.370534] (my_robot_controller) StdoutLine: {'line': b'running install_lib\n'}
+[4.386269] (my_robot_controller) StdoutLine: {'line': b'creating /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller\n'}
+[4.398593] (my_robot_controller) StdoutLine: {'line': b'copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/boundary_mapper.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller\n'}
+[4.461152] (-) TimerEvent: {}
+[4.463969] (my_robot_controller) StdoutLine: {'line': b'copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/boundary_mapper_actualv2.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller\n'}
+[4.492929] (my_robot_controller) StdoutLine: {'line': b'copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/bridge_server.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller\n'}
+[4.519853] (my_robot_controller) StdoutLine: {'line': b'copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/coordinate.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller\n'}
+[4.561251] (-) TimerEvent: {}
+[4.570065] (my_robot_controller) StdoutLine: {'line': b'copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/coordinate_new.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller\n'}
+[4.615027] (my_robot_controller) StdoutLine: {'line': b'copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/flat_area_processor.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller\n'}
+[4.638677] (my_robot_controller) StdoutLine: {'line': b'copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/height.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller\n'}
+[4.661378] (-) TimerEvent: {}
+[4.671987] (my_robot_controller) StdoutLine: {'line': b'copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/launcher.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller\n'}
+[4.703750] (my_robot_controller) StdoutLine: {'line': b'copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/launch_monitor.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller\n'}
+[4.735157] (my_robot_controller) StdoutLine: {'line': b'copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/path_planner.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller\n'}
+[4.761502] (-) TimerEvent: {}
+[4.768127] (my_robot_controller) StdoutLine: {'line': b'copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/__init__.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller\n'}
+[4.799714] (my_robot_controller) StdoutLine: {'line': b'byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/boundary_mapper.py to boundary_mapper.cpython-310.pyc\n'}
+[4.834666] (my_robot_controller) StdoutLine: {'line': b'byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/boundary_mapper_actualv2.py to boundary_mapper_actualv2.cpython-310.pyc\n'}
+[4.861653] (-) TimerEvent: {}
+[4.870049] (my_robot_controller) StdoutLine: {'line': b'byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/bridge_server.py to bridge_server.cpython-310.pyc\n'}
+[4.916399] (my_robot_controller) StdoutLine: {'line': b'byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/coordinate.py to coordinate.cpython-310.pyc\n'}
+[4.948748] (my_robot_controller) StdoutLine: {'line': b'byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/coordinate_new.py to coordinate_new.cpython-310.pyc\n'}
+[4.961804] (-) TimerEvent: {}
+[5.003872] (my_robot_controller) StdoutLine: {'line': b'byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/flat_area_processor.py to flat_area_processor.cpython-310.pyc\n'}
+[5.036981] (my_robot_controller) StdoutLine: {'line': b'byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/height.py to height.cpython-310.pyc\n'}
+[5.061928] (-) TimerEvent: {}
+[5.078279] (my_robot_controller) StdoutLine: {'line': b'byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/launcher.py to launcher.cpython-310.pyc\n'}
+[5.114306] (my_robot_controller) StdoutLine: {'line': b'byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/launch_monitor.py to launch_monitor.cpython-310.pyc\n'}
+[5.162080] (-) TimerEvent: {}
+[5.171341] (my_robot_controller) StdoutLine: {'line': b'byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/path_planner.py to path_planner.cpython-310.pyc\n'}
+[5.221534] (my_robot_controller) StdoutLine: {'line': b'byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/__init__.py to __init__.cpython-310.pyc\n'}
+[5.259194] (my_robot_controller) StdoutLine: {'line': b'running install_data\n'}
+[5.262241] (-) TimerEvent: {}
+[5.267578] (my_robot_controller) StdoutLine: {'line': b'creating /mnt/f/NITS/ANAV/main/install/my_robot_controller/share/ament_index\n'}
+[5.270200] (my_robot_controller) StdoutLine: {'line': b'creating /mnt/f/NITS/ANAV/main/install/my_robot_controller/share/ament_index/resource_index\n'}
+[5.272984] (my_robot_controller) StdoutLine: {'line': b'creating /mnt/f/NITS/ANAV/main/install/my_robot_controller/share/ament_index/resource_index/packages\n'}
+[5.282544] (my_robot_controller) StdoutLine: {'line': b'copying resource/my_robot_controller -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/share/ament_index/resource_index/packages\n'}
+[5.304852] (my_robot_controller) StdoutLine: {'line': b'copying package.xml -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/share/my_robot_controller\n'}
+[5.317308] (my_robot_controller) StdoutLine: {'line': b'running install_egg_info\n'}
+[5.338763] (my_robot_controller) StdoutLine: {'line': b'Copying ../../../build/my_robot_controller/my_robot_controller.egg-info to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller-0.0.0-py3.10.egg-info\n'}
+[5.362305] (-) TimerEvent: {}
+[5.462975] (-) TimerEvent: {}
+[5.563508] (-) TimerEvent: {}
+[5.576214] (my_robot_controller) StdoutLine: {'line': b'running install_scripts\n'}
+[5.663568] (-) TimerEvent: {}
+[5.678317] (my_robot_controller) StdoutLine: {'line': b'Installing boundary_mapper script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller\n'}
+[5.687927] (my_robot_controller) StdoutLine: {'line': b'Installing bridge_server script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller\n'}
+[5.697795] (my_robot_controller) StdoutLine: {'line': b'Installing bridge_server_combined script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller\n'}
+[5.708825] (my_robot_controller) StdoutLine: {'line': b'Installing coordinate script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller\n'}
+[5.721670] (my_robot_controller) StdoutLine: {'line': b'Installing flat_area script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller\n'}
+[5.732631] (my_robot_controller) StdoutLine: {'line': b'Installing height_publisher script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller\n'}
+[5.744647] (my_robot_controller) StdoutLine: {'line': b'Installing hover script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller\n'}
+[5.763814] (-) TimerEvent: {}
+[5.768622] (my_robot_controller) StdoutLine: {'line': b'Installing launch_checker script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller\n'}
+[5.785822] (my_robot_controller) StdoutLine: {'line': b'Installing mode_controller script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller\n'}
+[5.799507] (my_robot_controller) StdoutLine: {'line': b'Installing odom script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller\n'}
+[5.810596] (my_robot_controller) StdoutLine: {'line': b'Installing path_manual script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller\n'}
+[5.821532] (my_robot_controller) StdoutLine: {'line': b'Installing path_planner script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller\n'}
+[5.832820] (my_robot_controller) StdoutLine: {'line': b'Installing perpendicular_webcam script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller\n'}
+[5.844954] (my_robot_controller) StdoutLine: {'line': b"writing list of installed files to '/mnt/f/NITS/ANAV/main/build/my_robot_controller/install.log'\n"}
+[5.863887] (-) TimerEvent: {}
+[5.886928] (my_robot_controller) CommandEnded: {'returncode': 0}
+[5.963948] (-) TimerEvent: {}
+[6.064493] (-) TimerEvent: {}
+[6.109074] (my_robot_controller) JobEnded: {'identifier': 'my_robot_controller', 'rc': 0}
+[6.140982] (my_drone_launcher) JobStarted: {'identifier': 'my_drone_launcher'}
+[6.164634] (-) TimerEvent: {}
+[6.223685] (my_robot_launcher) JobStarted: {'identifier': 'my_robot_launcher'}
+[6.264798] (-) TimerEvent: {}
+[6.365574] (-) TimerEvent: {}
+[6.466086] (-) TimerEvent: {}
+[6.515798] (my_robot_launcher) JobProgress: {'identifier': 'my_robot_launcher', 'progress': 'cmake'}
+[6.551457] (my_robot_launcher) Command: {'cmd': ['/usr/bin/cmake', '/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher', '-DCMAKE_INSTALL_PREFIX=/mnt/f/NITS/ANAV/main/install/my_robot_launcher'], 'cwd': '/mnt/f/NITS/ANAV/main/build/my_robot_launcher', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'rahul'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/rahul'), ('OLDPWD', '/mnt/f/NITS/ANAV'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/ros2_Ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'rahul'), ('NAME', 'Rahul'), ('WSL_INTEROP', '/run/WSL/16_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/rahul/.cargo/bin:/home/rahul/.local/bin:/opt/ros/humble/bin:/home/rahul/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/Kubernetes/Minikube:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/MATLAB/R2023b/runtime/win64:/mnt/c/Program Files/MATLAB/R2023b/bin:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin/:/mnt/c/Program Files/IVI Foundation/VISA/Win64/Bin/:/mnt/c/Program Files (x86)/National Instruments/Shared/LabVIEW CLI:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin:/mnt/c/Program Files/nodejs/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.cargo/bin:/mnt/c/Users/debas/.local/share/solana/install/active_release/bin:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/debas/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/debas/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files (x86)/MongoDB Atlas CLI/:/mnt/c/Users/debas/AppData/Local/Android/Sdk/platform-tools:/mnt/c/Users/debas/.avm/bin:/mnt/c/Users/debas/AppData/Roaming/npm:/mnt/c/Program Files/MongoDB/Server/6.0/bin:/mnt/c/Users/debas/AppData/Local/Programs/mongosh/:/mnt/c/Users/debas/.deno/bin:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.vscode/extensions/ms-python.debugpy-2025.8.0-win32-x64/bundled/scripts/noConfigScripts:/mnt/c/Users/debas/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand:/snap/bin:/home/rahul/.archon:/home/rahul/.archon'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/mnt/f/NITS/ANAV/main/build/my_robot_launcher'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble'), ('WSLENV', '')]), 'shell': False}
+[6.565604] (my_drone_launcher) JobProgress: {'identifier': 'my_drone_launcher', 'progress': 'cmake'}
+[6.566085] (-) TimerEvent: {}
+[6.586953] (my_drone_launcher) Command: {'cmd': ['/usr/bin/cmake', '/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_drone_launcher', '-DCMAKE_INSTALL_PREFIX=/mnt/f/NITS/ANAV/main/install/my_drone_launcher'], 'cwd': '/mnt/f/NITS/ANAV/main/build/my_drone_launcher', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'rahul'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/rahul'), ('OLDPWD', '/mnt/f/NITS/ANAV'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/ros2_Ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'rahul'), ('NAME', 'Rahul'), ('WSL_INTEROP', '/run/WSL/16_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/rahul/.cargo/bin:/home/rahul/.local/bin:/opt/ros/humble/bin:/home/rahul/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/Kubernetes/Minikube:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/MATLAB/R2023b/runtime/win64:/mnt/c/Program Files/MATLAB/R2023b/bin:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin/:/mnt/c/Program Files/IVI Foundation/VISA/Win64/Bin/:/mnt/c/Program Files (x86)/National Instruments/Shared/LabVIEW CLI:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin:/mnt/c/Program Files/nodejs/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.cargo/bin:/mnt/c/Users/debas/.local/share/solana/install/active_release/bin:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/debas/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/debas/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files (x86)/MongoDB Atlas CLI/:/mnt/c/Users/debas/AppData/Local/Android/Sdk/platform-tools:/mnt/c/Users/debas/.avm/bin:/mnt/c/Users/debas/AppData/Roaming/npm:/mnt/c/Program Files/MongoDB/Server/6.0/bin:/mnt/c/Users/debas/AppData/Local/Programs/mongosh/:/mnt/c/Users/debas/.deno/bin:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.vscode/extensions/ms-python.debugpy-2025.8.0-win32-x64/bundled/scripts/noConfigScripts:/mnt/c/Users/debas/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand:/snap/bin:/home/rahul/.archon:/home/rahul/.archon'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/mnt/f/NITS/ANAV/main/build/my_drone_launcher'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble'), ('WSLENV', '')]), 'shell': False}
+[6.666173] (-) TimerEvent: {}
+[6.766630] (-) TimerEvent: {}
+[6.867310] (-) TimerEvent: {}
+[6.988071] (-) TimerEvent: {}
+[7.387615] (-) TimerEvent: {}
+[7.488050] (-) TimerEvent: {}
+[7.588731] (-) TimerEvent: {}
+[7.689596] (-) TimerEvent: {}
+[7.757767] (my_robot_launcher) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[7.789697] (-) TimerEvent: {}
+[7.805531] (my_drone_launcher) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[7.889889] (-) TimerEvent: {}
+[8.005386] (-) TimerEvent: {}
+[8.244254] (-) TimerEvent: {}
+[8.345319] (-) TimerEvent: {}
+[8.446369] (-) TimerEvent: {}
+[8.547443] (-) TimerEvent: {}
+[8.648035] (-) TimerEvent: {}
+[8.767655] (-) TimerEvent: {}
+[8.868149] (-) TimerEvent: {}
+[8.968631] (-) TimerEvent: {}
+[9.069138] (-) TimerEvent: {}
+[9.169646] (-) TimerEvent: {}
+[9.270212] (-) TimerEvent: {}
+[9.293390] (my_drone_launcher) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[9.370362] (-) TimerEvent: {}
+[9.443003] (my_robot_launcher) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[9.472548] (-) TimerEvent: {}
+[9.573072] (-) TimerEvent: {}
+[9.673662] (-) TimerEvent: {}
+[9.774161] (-) TimerEvent: {}
+[9.874632] (-) TimerEvent: {}
+[9.975210] (-) TimerEvent: {}
+[10.027961] (my_drone_launcher) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[10.075405] (-) TimerEvent: {}
+[10.152907] (my_robot_launcher) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[10.175484] (-) TimerEvent: {}
+[10.275937] (-) TimerEvent: {}
+[10.376536] (-) TimerEvent: {}
+[10.477222] (-) TimerEvent: {}
+[10.577741] (-) TimerEvent: {}
+[10.678358] (-) TimerEvent: {}
+[10.723808] (my_drone_launcher) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[10.747350] (my_drone_launcher) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[10.761568] (my_drone_launcher) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[10.762518] (my_drone_launcher) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[10.778474] (-) TimerEvent: {}
+[10.796605] (my_drone_launcher) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[10.878650] (-) TimerEvent: {}
+[10.881649] (my_robot_launcher) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[10.918095] (my_robot_launcher) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[10.920039] (my_robot_launcher) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[10.921326] (my_robot_launcher) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[10.975863] (my_robot_launcher) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[10.978686] (-) TimerEvent: {}
+[11.079139] (-) TimerEvent: {}
+[11.179843] (-) TimerEvent: {}
+[11.281365] (-) TimerEvent: {}
+[11.381935] (-) TimerEvent: {}
+[11.482636] (-) TimerEvent: {}
+[11.561131] (my_drone_launcher) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[11.582740] (-) TimerEvent: {}
+[11.585738] (my_drone_launcher) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[11.586787] (my_drone_launcher) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[11.587714] (my_drone_launcher) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[11.682621] (my_robot_launcher) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[11.683595] (-) TimerEvent: {}
+[11.709770] (my_robot_launcher) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[11.710978] (my_robot_launcher) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[11.712179] (my_robot_launcher) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[11.783724] (-) TimerEvent: {}
+[11.786234] (my_drone_launcher) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[11.844134] (my_robot_launcher) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[11.908609] (-) TimerEvent: {}
+[12.010149] (-) TimerEvent: {}
+[12.111802] (-) TimerEvent: {}
+[12.213194] (-) TimerEvent: {}
+[12.313770] (-) TimerEvent: {}
+[12.414409] (-) TimerEvent: {}
+[12.514893] (-) TimerEvent: {}
+[12.615446] (-) TimerEvent: {}
+[12.716182] (-) TimerEvent: {}
+[12.816766] (-) TimerEvent: {}
+[12.918439] (-) TimerEvent: {}
+[13.020188] (-) TimerEvent: {}
+[13.120612] (-) TimerEvent: {}
+[13.221240] (-) TimerEvent: {}
+[13.331395] (-) TimerEvent: {}
+[13.360907] (my_drone_launcher) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[13.415772] (my_robot_launcher) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[13.431525] (-) TimerEvent: {}
+[13.531975] (-) TimerEvent: {}
+[13.632484] (-) TimerEvent: {}
+[13.733003] (-) TimerEvent: {}
+[13.833650] (-) TimerEvent: {}
+[13.934141] (-) TimerEvent: {}
+[14.034581] (-) TimerEvent: {}
+[14.135184] (-) TimerEvent: {}
+[14.235738] (-) TimerEvent: {}
+[14.336286] (-) TimerEvent: {}
+[14.443203] (-) TimerEvent: {}
+[14.543758] (-) TimerEvent: {}
+[14.644383] (-) TimerEvent: {}
+[14.744905] (-) TimerEvent: {}
+[14.845513] (-) TimerEvent: {}
+[14.946179] (-) TimerEvent: {}
+[15.047611] (-) TimerEvent: {}
+[15.129973] (my_drone_launcher) StdoutLine: {'line': b'-- Configuring done\n'}
+[15.130765] (my_robot_launcher) StdoutLine: {'line': b'-- Configuring done\n'}
+[15.147754] (-) TimerEvent: {}
+[15.248380] (-) TimerEvent: {}
+[15.350069] (-) TimerEvent: {}
+[15.450854] (-) TimerEvent: {}
+[15.484433] (my_robot_launcher) StdoutLine: {'line': b'-- Generating done\n'}
+[15.490504] (my_drone_launcher) StdoutLine: {'line': b'-- Generating done\n'}
+[15.551001] (-) TimerEvent: {}
+[15.697058] (-) TimerEvent: {}
+[15.797658] (-) TimerEvent: {}
+[15.880737] (my_robot_launcher) StdoutLine: {'line': b'-- Build files have been written to: /mnt/f/NITS/ANAV/main/build/my_robot_launcher\n'}
+[15.885728] (my_robot_launcher) CommandEnded: {'returncode': 0}
+[15.900398] (-) TimerEvent: {}
+[15.900684] (my_drone_launcher) StdoutLine: {'line': b'-- Build files have been written to: /mnt/f/NITS/ANAV/main/build/my_drone_launcher\n'}
+[15.913801] (my_robot_launcher) JobProgress: {'identifier': 'my_robot_launcher', 'progress': 'build'}
+[15.915235] (my_robot_launcher) Command: {'cmd': ['/usr/bin/cmake', '--build', '/mnt/f/NITS/ANAV/main/build/my_robot_launcher', '--', '-j8', '-l8'], 'cwd': '/mnt/f/NITS/ANAV/main/build/my_robot_launcher', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'rahul'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/rahul'), ('OLDPWD', '/mnt/f/NITS/ANAV'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/ros2_Ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'rahul'), ('NAME', 'Rahul'), ('WSL_INTEROP', '/run/WSL/16_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/rahul/.cargo/bin:/home/rahul/.local/bin:/opt/ros/humble/bin:/home/rahul/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/Kubernetes/Minikube:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/MATLAB/R2023b/runtime/win64:/mnt/c/Program Files/MATLAB/R2023b/bin:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin/:/mnt/c/Program Files/IVI Foundation/VISA/Win64/Bin/:/mnt/c/Program Files (x86)/National Instruments/Shared/LabVIEW CLI:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin:/mnt/c/Program Files/nodejs/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.cargo/bin:/mnt/c/Users/debas/.local/share/solana/install/active_release/bin:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/debas/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/debas/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files (x86)/MongoDB Atlas CLI/:/mnt/c/Users/debas/AppData/Local/Android/Sdk/platform-tools:/mnt/c/Users/debas/.avm/bin:/mnt/c/Users/debas/AppData/Roaming/npm:/mnt/c/Program Files/MongoDB/Server/6.0/bin:/mnt/c/Users/debas/AppData/Local/Programs/mongosh/:/mnt/c/Users/debas/.deno/bin:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.vscode/extensions/ms-python.debugpy-2025.8.0-win32-x64/bundled/scripts/noConfigScripts:/mnt/c/Users/debas/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand:/snap/bin:/home/rahul/.archon:/home/rahul/.archon'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/mnt/f/NITS/ANAV/main/build/my_robot_launcher'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble'), ('WSLENV', '')]), 'shell': False}
+[15.916529] (my_drone_launcher) CommandEnded: {'returncode': 0}
+[15.926605] (my_drone_launcher) JobProgress: {'identifier': 'my_drone_launcher', 'progress': 'build'}
+[15.926765] (my_drone_launcher) Command: {'cmd': ['/usr/bin/cmake', '--build', '/mnt/f/NITS/ANAV/main/build/my_drone_launcher', '--', '-j8', '-l8'], 'cwd': '/mnt/f/NITS/ANAV/main/build/my_drone_launcher', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'rahul'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/rahul'), ('OLDPWD', '/mnt/f/NITS/ANAV'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/ros2_Ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'rahul'), ('NAME', 'Rahul'), ('WSL_INTEROP', '/run/WSL/16_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/rahul/.cargo/bin:/home/rahul/.local/bin:/opt/ros/humble/bin:/home/rahul/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/Kubernetes/Minikube:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/MATLAB/R2023b/runtime/win64:/mnt/c/Program Files/MATLAB/R2023b/bin:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin/:/mnt/c/Program Files/IVI Foundation/VISA/Win64/Bin/:/mnt/c/Program Files (x86)/National Instruments/Shared/LabVIEW CLI:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin:/mnt/c/Program Files/nodejs/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.cargo/bin:/mnt/c/Users/debas/.local/share/solana/install/active_release/bin:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/debas/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/debas/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files (x86)/MongoDB Atlas CLI/:/mnt/c/Users/debas/AppData/Local/Android/Sdk/platform-tools:/mnt/c/Users/debas/.avm/bin:/mnt/c/Users/debas/AppData/Roaming/npm:/mnt/c/Program Files/MongoDB/Server/6.0/bin:/mnt/c/Users/debas/AppData/Local/Programs/mongosh/:/mnt/c/Users/debas/.deno/bin:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.vscode/extensions/ms-python.debugpy-2025.8.0-win32-x64/bundled/scripts/noConfigScripts:/mnt/c/Users/debas/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand:/snap/bin:/home/rahul/.archon:/home/rahul/.archon'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/mnt/f/NITS/ANAV/main/build/my_drone_launcher'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble'), ('WSLENV', '')]), 'shell': False}
+[16.011036] (-) TimerEvent: {}
+[16.032687] (my_drone_launcher) CommandEnded: {'returncode': 0}
+[16.111341] (-) TimerEvent: {}
+[16.121262] (my_drone_launcher) JobProgress: {'identifier': 'my_drone_launcher', 'progress': 'install'}
+[16.170805] (my_drone_launcher) Command: {'cmd': ['/usr/bin/cmake', '--install', '/mnt/f/NITS/ANAV/main/build/my_drone_launcher'], 'cwd': '/mnt/f/NITS/ANAV/main/build/my_drone_launcher', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'rahul'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/rahul'), ('OLDPWD', '/mnt/f/NITS/ANAV'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/ros2_Ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'rahul'), ('NAME', 'Rahul'), ('WSL_INTEROP', '/run/WSL/16_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/rahul/.cargo/bin:/home/rahul/.local/bin:/opt/ros/humble/bin:/home/rahul/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/Kubernetes/Minikube:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/MATLAB/R2023b/runtime/win64:/mnt/c/Program Files/MATLAB/R2023b/bin:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin/:/mnt/c/Program Files/IVI Foundation/VISA/Win64/Bin/:/mnt/c/Program Files (x86)/National Instruments/Shared/LabVIEW CLI:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin:/mnt/c/Program Files/nodejs/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.cargo/bin:/mnt/c/Users/debas/.local/share/solana/install/active_release/bin:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/debas/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/debas/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files (x86)/MongoDB Atlas CLI/:/mnt/c/Users/debas/AppData/Local/Android/Sdk/platform-tools:/mnt/c/Users/debas/.avm/bin:/mnt/c/Users/debas/AppData/Roaming/npm:/mnt/c/Program Files/MongoDB/Server/6.0/bin:/mnt/c/Users/debas/AppData/Local/Programs/mongosh/:/mnt/c/Users/debas/.deno/bin:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.vscode/extensions/ms-python.debugpy-2025.8.0-win32-x64/bundled/scripts/noConfigScripts:/mnt/c/Users/debas/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand:/snap/bin:/home/rahul/.archon:/home/rahul/.archon'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/mnt/f/NITS/ANAV/main/build/my_drone_launcher'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble'), ('WSLENV', '')]), 'shell': False}
+[16.177307] (my_robot_launcher) CommandEnded: {'returncode': 0}
+[16.196121] (my_drone_launcher) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[16.211456] (-) TimerEvent: {}
+[16.222951] (my_drone_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_drone_launcher/share/my_drone_launcher/launch\n'}
+[16.228989] (my_robot_launcher) JobProgress: {'identifier': 'my_robot_launcher', 'progress': 'install'}
+[16.243605] (my_robot_launcher) Command: {'cmd': ['/usr/bin/cmake', '--install', '/mnt/f/NITS/ANAV/main/build/my_robot_launcher'], 'cwd': '/mnt/f/NITS/ANAV/main/build/my_robot_launcher', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'rahul'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/rahul'), ('OLDPWD', '/mnt/f/NITS/ANAV'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/ros2_Ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'rahul'), ('NAME', 'Rahul'), ('WSL_INTEROP', '/run/WSL/16_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/rahul/.cargo/bin:/home/rahul/.local/bin:/opt/ros/humble/bin:/home/rahul/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/Kubernetes/Minikube:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/MATLAB/R2023b/runtime/win64:/mnt/c/Program Files/MATLAB/R2023b/bin:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin/:/mnt/c/Program Files/IVI Foundation/VISA/Win64/Bin/:/mnt/c/Program Files (x86)/National Instruments/Shared/LabVIEW CLI:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin:/mnt/c/Program Files/nodejs/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.cargo/bin:/mnt/c/Users/debas/.local/share/solana/install/active_release/bin:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/debas/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/debas/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files (x86)/MongoDB Atlas CLI/:/mnt/c/Users/debas/AppData/Local/Android/Sdk/platform-tools:/mnt/c/Users/debas/.avm/bin:/mnt/c/Users/debas/AppData/Roaming/npm:/mnt/c/Program Files/MongoDB/Server/6.0/bin:/mnt/c/Users/debas/AppData/Local/Programs/mongosh/:/mnt/c/Users/debas/.deno/bin:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.vscode/extensions/ms-python.debugpy-2025.8.0-win32-x64/bundled/scripts/noConfigScripts:/mnt/c/Users/debas/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand:/snap/bin:/home/rahul/.archon:/home/rahul/.archon'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/install/my_robot_controller:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/mnt/f/NITS/ANAV/main/build/my_robot_launcher'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble'), ('WSLENV', '')]), 'shell': False}
+[16.269643] (my_robot_launcher) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[16.295044] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/my_robot_launcher/launch\n'}
+[16.307104] (my_drone_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_drone_launcher/share/my_drone_launcher/launch/drone.launch.py\n'}
+[16.311549] (-) TimerEvent: {}
+[16.322871] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/my_robot_launcher/launch/robot.launch.old.py\n'}
+[16.381436] (my_drone_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_drone_launcher/share/ament_index/resource_index/package_run_dependencies/my_drone_launcher\n'}
+[16.384366] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/my_robot_launcher/launch/robot.launch.py\n'}
+[16.411683] (-) TimerEvent: {}
+[16.443083] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/my_robot_launcher/launch/robot.launch.separate.py\n'}
+[16.465269] (my_drone_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_drone_launcher/share/ament_index/resource_index/parent_prefix_path/my_drone_launcher\n'}
+[16.511786] (-) TimerEvent: {}
+[16.521111] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/ament_index/resource_index/package_run_dependencies/my_robot_launcher\n'}
+[16.540458] (my_drone_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_drone_launcher/share/my_drone_launcher/environment/ament_prefix_path.sh\n'}
+[16.586766] (my_drone_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_drone_launcher/share/my_drone_launcher/environment/ament_prefix_path.dsv\n'}
+[16.608210] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/ament_index/resource_index/parent_prefix_path/my_robot_launcher\n'}
+[16.611880] (-) TimerEvent: {}
+[16.634276] (my_drone_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_drone_launcher/share/my_drone_launcher/environment/path.sh\n'}
+[16.673028] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/my_robot_launcher/environment/ament_prefix_path.sh\n'}
+[16.677308] (my_drone_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_drone_launcher/share/my_drone_launcher/environment/path.dsv\n'}
+[16.712011] (-) TimerEvent: {}
+[16.717711] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/my_robot_launcher/environment/ament_prefix_path.dsv\n'}
+[16.728225] (my_drone_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_drone_launcher/share/my_drone_launcher/local_setup.bash\n'}
+[16.776896] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/my_robot_launcher/environment/path.sh\n'}
+[16.779050] (my_drone_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_drone_launcher/share/my_drone_launcher/local_setup.sh\n'}
+[16.812158] (-) TimerEvent: {}
+[16.839934] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/my_robot_launcher/environment/path.dsv\n'}
+[16.840707] (my_drone_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_drone_launcher/share/my_drone_launcher/local_setup.zsh\n'}
+[16.883606] (my_drone_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_drone_launcher/share/my_drone_launcher/local_setup.dsv\n'}
+[16.912302] (-) TimerEvent: {}
+[16.917918] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/my_robot_launcher/local_setup.bash\n'}
+[16.947424] (my_drone_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_drone_launcher/share/my_drone_launcher/package.dsv\n'}
+[16.963022] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/my_robot_launcher/local_setup.sh\n'}
+[17.012435] (-) TimerEvent: {}
+[17.017354] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/my_robot_launcher/local_setup.zsh\n'}
+[17.056166] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/my_robot_launcher/local_setup.dsv\n'}
+[17.094267] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/my_robot_launcher/package.dsv\n'}
+[17.112548] (-) TimerEvent: {}
+[17.163860] (my_drone_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_drone_launcher/share/ament_index/resource_index/packages/my_drone_launcher\n'}
+[17.176455] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/ament_index/resource_index/packages/my_robot_launcher\n'}
+[17.212688] (-) TimerEvent: {}
+[17.246042] (my_drone_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_drone_launcher/share/my_drone_launcher/cmake/my_drone_launcherConfig.cmake\n'}
+[17.257980] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/my_robot_launcher/cmake/my_robot_launcherConfig.cmake\n'}
+[17.298687] (my_drone_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_drone_launcher/share/my_drone_launcher/cmake/my_drone_launcherConfig-version.cmake\n'}
+[17.313060] (-) TimerEvent: {}
+[17.314030] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/my_robot_launcher/cmake/my_robot_launcherConfig-version.cmake\n'}
+[17.363530] (my_drone_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_drone_launcher/share/my_drone_launcher/package.xml\n'}
+[17.374548] (my_robot_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/my_robot_launcher/share/my_robot_launcher/package.xml\n'}
+[17.409905] (my_drone_launcher) CommandEnded: {'returncode': 0}
+[17.413099] (-) TimerEvent: {}
+[17.513763] (-) TimerEvent: {}
+[17.614724] (-) TimerEvent: {}
+[17.715893] (-) TimerEvent: {}
+[17.816429] (-) TimerEvent: {}
+[17.916963] (-) TimerEvent: {}
+[18.017594] (-) TimerEvent: {}
+[18.020372] (my_drone_launcher) JobEnded: {'identifier': 'my_drone_launcher', 'rc': 0}
+[18.039135] (my_robot_launcher) CommandEnded: {'returncode': 0}
+[18.117704] (-) TimerEvent: {}
+[18.218327] (-) TimerEvent: {}
+[18.319017] (-) TimerEvent: {}
+[18.419567] (-) TimerEvent: {}
+[18.520799] (-) TimerEvent: {}
+[18.609781] (my_robot_launcher) JobEnded: {'identifier': 'my_robot_launcher', 'rc': 0}
+[18.620953] (-) TimerEvent: {}
+[18.621473] (-) EventReactorShutdown: {}
