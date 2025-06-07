@@ -1,0 +1,76 @@
+[2.993s] Invoking command in '/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_controller': PYTHONPATH=/mnt/f/NITS/ANAV/main/build/my_robot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/my_robot_controller build --build-base /mnt/f/NITS/ANAV/main/build/my_robot_controller/build install --record /mnt/f/NITS/ANAV/main/build/my_robot_controller/install.log --single-version-externally-managed install_data
+[3.962s] running egg_info
+[3.966s] creating ../../../build/my_robot_controller/my_robot_controller.egg-info
+[3.980s] writing ../../../build/my_robot_controller/my_robot_controller.egg-info/PKG-INFO
+[3.981s] writing dependency_links to ../../../build/my_robot_controller/my_robot_controller.egg-info/dependency_links.txt
+[3.982s] writing entry points to ../../../build/my_robot_controller/my_robot_controller.egg-info/entry_points.txt
+[3.986s] writing requirements to ../../../build/my_robot_controller/my_robot_controller.egg-info/requires.txt
+[3.989s] writing top-level names to ../../../build/my_robot_controller/my_robot_controller.egg-info/top_level.txt
+[3.995s] writing manifest file '../../../build/my_robot_controller/my_robot_controller.egg-info/SOURCES.txt'
+[4.041s] reading manifest file '../../../build/my_robot_controller/my_robot_controller.egg-info/SOURCES.txt'
+[4.078s] writing manifest file '../../../build/my_robot_controller/my_robot_controller.egg-info/SOURCES.txt'
+[4.080s] running build
+[4.081s] running build_py
+[4.085s] creating /mnt/f/NITS/ANAV/main/build/my_robot_controller/build
+[4.087s] creating /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib
+[4.089s] creating /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller
+[4.096s] copying my_robot_controller/boundary_mapper.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller
+[4.113s] copying my_robot_controller/boundary_mapper_actualv2.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller
+[4.132s] copying my_robot_controller/bridge_server.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller
+[4.151s] copying my_robot_controller/coordinate.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller
+[4.179s] copying my_robot_controller/coordinate_new.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller
+[4.210s] copying my_robot_controller/flat_area_processor.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller
+[4.236s] copying my_robot_controller/height.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller
+[4.257s] copying my_robot_controller/launcher.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller
+[4.283s] copying my_robot_controller/launch_monitor.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller
+[4.302s] copying my_robot_controller/path_planner.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller
+[4.358s] copying my_robot_controller/__init__.py -> /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller
+[4.369s] running install
+[4.370s] running install_lib
+[4.386s] creating /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[4.398s] copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/boundary_mapper.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[4.463s] copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/boundary_mapper_actualv2.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[4.492s] copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/bridge_server.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[4.519s] copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/coordinate.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[4.570s] copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/coordinate_new.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[4.614s] copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/flat_area_processor.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[4.638s] copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/height.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[4.671s] copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/launcher.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[4.703s] copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/launch_monitor.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[4.735s] copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/path_planner.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[4.768s] copying /mnt/f/NITS/ANAV/main/build/my_robot_controller/build/lib/my_robot_controller/__init__.py -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[4.799s] byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/boundary_mapper.py to boundary_mapper.cpython-310.pyc
+[4.834s] byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/boundary_mapper_actualv2.py to boundary_mapper_actualv2.cpython-310.pyc
+[4.870s] byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/bridge_server.py to bridge_server.cpython-310.pyc
+[4.916s] byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/coordinate.py to coordinate.cpython-310.pyc
+[4.949s] byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/coordinate_new.py to coordinate_new.cpython-310.pyc
+[5.003s] byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/flat_area_processor.py to flat_area_processor.cpython-310.pyc
+[5.037s] byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/height.py to height.cpython-310.pyc
+[5.078s] byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/launcher.py to launcher.cpython-310.pyc
+[5.114s] byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/launch_monitor.py to launch_monitor.cpython-310.pyc
+[5.171s] byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/path_planner.py to path_planner.cpython-310.pyc
+[5.221s] byte-compiling /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/__init__.py to __init__.cpython-310.pyc
+[5.259s] running install_data
+[5.267s] creating /mnt/f/NITS/ANAV/main/install/my_robot_controller/share/ament_index
+[5.270s] creating /mnt/f/NITS/ANAV/main/install/my_robot_controller/share/ament_index/resource_index
+[5.273s] creating /mnt/f/NITS/ANAV/main/install/my_robot_controller/share/ament_index/resource_index/packages
+[5.282s] copying resource/my_robot_controller -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/share/ament_index/resource_index/packages
+[5.305s] copying package.xml -> /mnt/f/NITS/ANAV/main/install/my_robot_controller/share/my_robot_controller
+[5.317s] running install_egg_info
+[5.339s] Copying ../../../build/my_robot_controller/my_robot_controller.egg-info to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller-0.0.0-py3.10.egg-info
+[5.576s] running install_scripts
+[5.678s] Installing boundary_mapper script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller
+[5.688s] Installing bridge_server script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller
+[5.697s] Installing bridge_server_combined script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller
+[5.709s] Installing coordinate script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller
+[5.721s] Installing flat_area script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller
+[5.732s] Installing height_publisher script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller
+[5.744s] Installing hover script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller
+[5.772s] Installing launch_checker script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller
+[5.786s] Installing mode_controller script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller
+[5.799s] Installing odom script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller
+[5.810s] Installing path_manual script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller
+[5.821s] Installing path_planner script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller
+[5.832s] Installing perpendicular_webcam script to /mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/my_robot_controller
+[5.844s] writing list of installed files to '/mnt/f/NITS/ANAV/main/build/my_robot_controller/install.log'
+[5.890s] Invoked command in '/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_controller' returned '0': PYTHONPATH=/mnt/f/NITS/ANAV/main/build/my_robot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/mnt/f/NITS/ANAV/main/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/my_robot_controller build --build-base /mnt/f/NITS/ANAV/main/build/my_robot_controller/build install --record /mnt/f/NITS/ANAV/main/build/my_robot_controller/install.log --single-version-externally-managed install_data

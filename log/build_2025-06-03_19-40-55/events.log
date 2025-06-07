@@ -1,0 +1,111 @@
+[0.000000] (-) TimerEvent: {}
+[0.033511] (-) JobUnselected: {'identifier': 'my_drone_launcher'}
+[0.033826] (-) JobUnselected: {'identifier': 'my_robot_controller'}
+[0.034342] (my_robot_launcher) JobQueued: {'identifier': 'my_robot_launcher', 'dependencies': OrderedDict([('my_robot_controller', '/mnt/f/NITS/ANAV/main/install/my_robot_controller')])}
+[0.034657] (my_robot_launcher) JobStarted: {'identifier': 'my_robot_launcher'}
+[0.098663] (-) TimerEvent: {}
+[0.200182] (-) TimerEvent: {}
+[0.215955] (my_robot_launcher) JobProgress: {'identifier': 'my_robot_launcher', 'progress': 'cmake'}
+[0.282844] (my_robot_launcher) Command: {'cmd': ['/usr/bin/cmake', '/mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher', '-DCMAKE_INSTALL_PREFIX=/mnt/f/NITS/ANAV/main/install/my_robot_launcher'], 'cwd': '/mnt/f/NITS/ANAV/main/build/my_robot_launcher', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'rahul'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/rahul'), ('OLDPWD', '/mnt/f/NITS/ANAV'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/ros2_Ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'rahul'), ('NAME', 'Rahul'), ('WSL_INTEROP', '/run/WSL/16_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/rahul/.cargo/bin:/home/rahul/.local/bin:/opt/ros/humble/bin:/home/rahul/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/Kubernetes/Minikube:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/MATLAB/R2023b/runtime/win64:/mnt/c/Program Files/MATLAB/R2023b/bin:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin/:/mnt/c/Program Files/IVI Foundation/VISA/Win64/Bin/:/mnt/c/Program Files (x86)/National Instruments/Shared/LabVIEW CLI:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin:/mnt/c/Program Files/nodejs/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.cargo/bin:/mnt/c/Users/debas/.local/share/solana/install/active_release/bin:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/debas/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/debas/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files (x86)/MongoDB Atlas CLI/:/mnt/c/Users/debas/AppData/Local/Android/Sdk/platform-tools:/mnt/c/Users/debas/.avm/bin:/mnt/c/Users/debas/AppData/Roaming/npm:/mnt/c/Program Files/MongoDB/Server/6.0/bin:/mnt/c/Users/debas/AppData/Local/Programs/mongosh/:/mnt/c/Users/debas/.deno/bin:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.vscode/extensions/ms-python.debugpy-2025.8.0-win32-x64/bundled/scripts/noConfigScripts:/mnt/c/Users/debas/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand:/snap/bin:/home/rahul/.archon:/home/rahul/.archon'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/mnt/f/NITS/ANAV/main/build/my_robot_launcher'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_drone_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/my_robot_controller:/opt/ros/humble'), ('WSLENV', '')]), 'shell': False}
+[0.300258] (-) TimerEvent: {}
+[0.400894] (-) TimerEvent: {}
+[0.501930] (-) TimerEvent: {}
+[0.602891] (-) TimerEvent: {}
+[0.703689] (-) TimerEvent: {}
+[0.804332] (-) TimerEvent: {}
+[0.904782] (-) TimerEvent: {}
+[1.005310] (-) TimerEvent: {}
+[1.105929] (-) TimerEvent: {}
+[1.222643] (-) TimerEvent: {}
+[1.323304] (-) TimerEvent: {}
+[1.424180] (-) TimerEvent: {}
+[1.525093] (-) TimerEvent: {}
+[1.626282] (-) TimerEvent: {}
+[1.727974] (-) TimerEvent: {}
+[1.828609] (-) TimerEvent: {}
+[1.929275] (-) TimerEvent: {}
+[1.950016] (my_robot_launcher) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[2.029354] (-) TimerEvent: {}
+[2.130038] (-) TimerEvent: {}
+[2.231187] (-) TimerEvent: {}
+[2.332070] (-) TimerEvent: {}
+[2.432469] (-) TimerEvent: {}
+[2.532931] (-) TimerEvent: {}
+[2.633472] (-) TimerEvent: {}
+[2.734085] (-) TimerEvent: {}
+[2.834629] (-) TimerEvent: {}
+[2.935136] (-) TimerEvent: {}
+[3.005087] (my_robot_launcher) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[3.035261] (-) TimerEvent: {}
+[3.135712] (-) TimerEvent: {}
+[3.236190] (-) TimerEvent: {}
+[3.336645] (-) TimerEvent: {}
+[3.437171] (-) TimerEvent: {}
+[3.537780] (-) TimerEvent: {}
+[3.622130] (my_robot_launcher) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[3.637881] (-) TimerEvent: {}
+[3.738428] (-) TimerEvent: {}
+[3.838961] (-) TimerEvent: {}
+[3.939502] (-) TimerEvent: {}
+[4.040256] (-) TimerEvent: {}
+[4.141934] (-) TimerEvent: {}
+[4.242825] (-) TimerEvent: {}
+[4.343928] (-) TimerEvent: {}
+[4.444710] (-) TimerEvent: {}
+[4.545625] (-) TimerEvent: {}
+[4.674644] (-) TimerEvent: {}
+[4.775309] (-) TimerEvent: {}
+[4.875726] (-) TimerEvent: {}
+[4.905532] (my_robot_launcher) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[4.928303] (my_robot_launcher) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[4.929117] (my_robot_launcher) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[4.929968] (my_robot_launcher) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[4.975836] (-) TimerEvent: {}
+[4.993883] (my_robot_launcher) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[5.075939] (-) TimerEvent: {}
+[5.176463] (-) TimerEvent: {}
+[5.277015] (-) TimerEvent: {}
+[5.377508] (-) TimerEvent: {}
+[5.478276] (-) TimerEvent: {}
+[5.578742] (-) TimerEvent: {}
+[5.585527] (my_robot_launcher) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[5.627847] (my_robot_launcher) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[5.629233] (my_robot_launcher) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[5.630951] (my_robot_launcher) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[5.678866] (-) TimerEvent: {}
+[5.779288] (-) TimerEvent: {}
+[5.828232] (my_robot_launcher) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[5.879372] (-) TimerEvent: {}
+[5.979807] (-) TimerEvent: {}
+[6.080292] (-) TimerEvent: {}
+[6.180729] (-) TimerEvent: {}
+[6.281403] (-) TimerEvent: {}
+[6.381856] (-) TimerEvent: {}
+[6.482281] (-) TimerEvent: {}
+[6.582737] (-) TimerEvent: {}
+[6.683154] (-) TimerEvent: {}
+[6.755725] (my_robot_launcher) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[6.783274] (-) TimerEvent: {}
+[6.883822] (-) TimerEvent: {}
+[6.984252] (-) TimerEvent: {}
+[7.084775] (-) TimerEvent: {}
+[7.185516] (-) TimerEvent: {}
+[7.286102] (-) TimerEvent: {}
+[7.386835] (-) TimerEvent: {}
+[7.487322] (-) TimerEvent: {}
+[7.587757] (-) TimerEvent: {}
+[7.688296] (-) TimerEvent: {}
+[7.788735] (-) TimerEvent: {}
+[7.889257] (-) TimerEvent: {}
+[7.989660] (-) TimerEvent: {}
+[8.090269] (-) TimerEvent: {}
+[8.190704] (-) TimerEvent: {}
+[8.291184] (-) TimerEvent: {}
+[8.391623] (-) TimerEvent: {}
+[8.492168] (-) TimerEvent: {}
+[8.592861] (-) TimerEvent: {}
+[8.669721] (my_robot_launcher) CommandEnded: {'returncode': -2}
+[8.697346] (-) TimerEvent: {}
+[8.798161] (-) TimerEvent: {}
+[8.801538] (my_robot_launcher) JobEnded: {'identifier': 'my_robot_launcher', 'rc': 'SIGINT'}
+[8.865105] (-) EventReactorShutdown: {}
