@@ -30,7 +30,6 @@ ml_check_image_base64 = None               # cropped image for the ML model
 latest_velocity = None  # Will hold a dictionary with flow_rate data from optical flow sensor.
 latest_z_velocity = None  # Will hold the latest z_velocity from the /z_velocity topic.
 
-
 # Lock to ensure thread-safe access to global image and velocity variables
 lock = threading.Lock()
 
@@ -42,6 +41,17 @@ class BridgeServer(Node):
         self.x_ = 0
         self.y_ = 0
         self.z_ = 0
+
+        # NEW: Add origin coordinates
+        self.x_origin = None
+        self.y_origin = None
+        self.z_origin = None
+
+        # NEW: Add orientation variables
+        self.ox_ = 0.0
+        self.oy_ = 0.0
+        self.oz_ = 0.0
+        self.ow_ = 1.0
 
         self.target_x = 0
         self.target_y = 0
@@ -61,22 +71,16 @@ class BridgeServer(Node):
 
         # Subscribers for position topics
         self.pos_current_sub = self.create_subscription(String, 'position/current', self.update_current_pos, 10)
+        # NEW: Subscriber for origin position
+        self.pos_origin_sub = self.create_subscription(String, 'position/origin', self.update_origin_pos, 10)
+        # NEW: Subscriber for orientation
+        self.pos_orientation_sub = self.create_subscription(String, 'position/orientation', self.update_orientation_pos, 10)
         self.pos_target_sub = self.create_subscription(String, 'position/target', self.update_target_pos, 10)
         self.pos_phase_sub = self.create_subscription(String, 'position/phase', self.update_phase_pos, 10)
         self.mode_pub = self.create_publisher(String, 'position/mode', 10)
         self.land_launch_pub = self.create_publisher(String, '/launch_commands', 10)
         self.launch_commands = ''
         self.drone_commands = ''
-        
-        # ---------------------------
-        # OLD velocity subscriber removed:
-        # self.vel_sub = self.create_subscription(
-        #     TwistStamped,
-        #     '/mavros/local_position/velocity_local',
-        #     self.velocity_callback,
-        #     10  # QoS depth
-        # )
-        # ---------------------------
         
         # NEW: Subscribe to the optical flow sensor topic to update flow_rate (x and y)
         self.flow_sub = self.create_subscription(
@@ -106,7 +110,6 @@ class BridgeServer(Node):
         # subscriber for the perpendicular image topic
         self.camera_vertical_sub = self.create_subscription(Image, '/image_raw', self.camera_vertical_callback, 10)
         
-        # ---------------------------
         # Modified Battery subscriber:
         # Create a QoS profile for the battery topic with BEST_EFFORT reliability.
         qos_profile_battery = QoSProfile(
@@ -115,7 +118,6 @@ class BridgeServer(Node):
             depth=10
         )
         self.battery_sub = self.create_subscription(BatteryState, '/mavros/battery', self.battery_callback, qos_profile_battery)
-        # ---------------------------
         
         self.battery_percent = None
         self.battery_voltage = None
@@ -149,7 +151,6 @@ class BridgeServer(Node):
         
     def update_trajectory_points(self, msg: String):
         self.trajectory_points = msg.data
-
 
     # Updated velocity callback using optical flow sensor's flow_rate for x and y
     def velocity_callback(self, msg: OpticalFlow):
@@ -199,6 +200,44 @@ class BridgeServer(Node):
                     self.z_ = value
         except Exception as e:
             self.get_logger().error('Failed to parse current position: ' + str(e))
+
+    # NEW: Callback for origin position
+    def update_origin_pos(self, msg: String):
+        try:
+            parts = msg.data.split()
+            for part in parts:
+                key, value = part.split('=')
+                value = float(value)
+                with lock:
+                    if key == 'x':
+                        self.x_origin = value
+                    elif key == 'y':
+                        self.y_origin = value
+                    elif key == 'z':
+                        self.z_origin = value
+            self.get_logger().info(f"Updated origin position: x={self.x_origin}, y={self.y_origin}, z={self.z_origin}")
+        except Exception as e:
+            self.get_logger().error('Failed to parse origin position: ' + str(e))
+
+    # NEW: Callback for orientation
+    def update_orientation_pos(self, msg: String):
+        try:
+            parts = msg.data.split()
+            for part in parts:
+                key, value = part.split('=')
+                value = float(value)
+                with lock:
+                    if key == 'ox':
+                        self.ox_ = value
+                    elif key == 'oy':
+                        self.oy_ = value
+                    elif key == 'oz':
+                        self.oz_ = value
+                    elif key == 'ow':
+                        self.ow_ = value
+            self.get_logger().info(f"Updated orientation: ox={self.ox_}, oy={self.oy_}, oz={self.oz_}, ow={self.ow_}")
+        except Exception as e:
+            self.get_logger().error('Failed to parse orientation: ' + str(e))
 
     def update_target_pos(self, msg: String):
         try:
@@ -275,8 +314,6 @@ class BridgeServer(Node):
 
         except CvBridgeError as e:
             self.get_logger().error('CvBridge Error: ' + str(e))
-
-
 
     def camera_callback(self, msg: Image):
         global depth_cam_rgb_image_base64
@@ -478,7 +515,6 @@ def ml_check_area_temp():
             return jsonify({'error': 'No image received yet'}), 404
 
 # Endpoint: /predicted_area (modified publisher format)
-
 @app.route('/predicted_area', methods=['POST'])
 def predicted_area():
     global bridge_server_node
@@ -551,6 +587,33 @@ def predicted_data():
         return jsonify({'error': 'No prediction data available'}), 404
     return jsonify(bridge_server_node.latest_prediction)
 
+# NEW: Endpoint for coordinates and orientation
+@app.route('/coordinates', methods=['GET'])
+def coordinates():
+    global bridge_server_node
+    if bridge_server_node is None:
+        return jsonify({'error': 'BridgeServer node not available'}), 500
+    with lock:
+        coordinates = {
+            'current': {
+                'x': bridge_server_node.x_,
+                'y': bridge_server_node.y_,
+                'z': bridge_server_node.z_
+            },
+            'origin': {
+                'x': bridge_server_node.x_origin if bridge_server_node.x_origin is not None else 0.0,
+                'y': bridge_server_node.y_origin if bridge_server_node.y_origin is not None else 0.0,
+                'z': bridge_server_node.z_origin if bridge_server_node.z_origin is not None else 0.0
+            },
+            'orientation': {
+                'ox': bridge_server_node.ox_,
+                'oy': bridge_server_node.oy_,
+                'oz': bridge_server_node.oz_,
+                'ow': bridge_server_node.ow_
+            }
+        }
+    return jsonify(coordinates)
+
 @app.route('/launch', methods=['GET'])
 def launch():
     global bridge_server_node
@@ -592,7 +655,6 @@ def get_velocities():
             velocity_data['flow_rate']['z'] = 0.0
         return jsonify(velocity_data)
 
-
 @app.route('/visualization', methods=['GET'])
 def visualization():
     global bridge_server_node
@@ -624,6 +686,25 @@ def get_all_data():
             velocity_data = latest_velocity.copy()
             # Ensure the z value reflects the latest z_velocity
             velocity_data['flow_rate']['z'] = latest_z_velocity if latest_z_velocity is not None else 0.0
+        # NEW: Add coordinates data
+        coordinates = {
+            'current': {
+                'x': bridge_server_node.x_,
+                'y': bridge_server_node.y_,
+                'z': bridge_server_node.z_
+            },
+            'origin': {
+                'x': bridge_server_node.x_origin if bridge_server_node.x_origin is not None else 0.0,
+                'y': bridge_server_node.y_origin if bridge_server_node.y_origin is not None else 0.0,
+                'z': bridge_server_node.z_origin if bridge_server_node.z_origin is not None else 0.0
+            },
+            'orientation': {
+                'ox': bridge_server_node.ox_,
+                'oy': bridge_server_node.oy_,
+                'oz': bridge_server_node.oz_,
+                'ow': bridge_server_node.ow_
+            }
+        }
 
     # Aggregate data from different sources
     data = {
@@ -649,10 +730,11 @@ def get_all_data():
             'phase': bridge_server_node.phase,
             'launch_land_status': bridge_server_node.drone_launch_status
         },
-        'predicted_data': bridge_server_node.latest_prediction if bridge_server_node.latest_prediction is not None else {'error': 'No prediction data available'}
+        'predicted_data': bridge_server_node.latest_prediction if bridge_server_node.latest_prediction is not None else {'error': 'No prediction data available'},
+        # NEW: Include coordinates
+        'coordinates': coordinates
     }
     return jsonify(data)
-
 
 @app.route('/reset_odom_services', methods=['GET'])
 def reset_odom_services():

@@ -1,0 +1,15 @@
+Publish origin coordinates: Phase is set after publishing origin coordinates
+ros2 topic pub position/origin std_msgs/String "data: 'x=0.0 y=0.0 z=0.0'" --once
+
+Publish yellow boundary detected:
+ros2 topic pub /yellow_boundary_found std_msgs/Bool "data: true" --once
+
+Publish edge coordinates: 
+ros2 topic pub /edge_coordinates std_msgs/String "data: 'x=0 y=0 z=1, x=4 y=0 z=1, x=4 y=3 z=1, x=0 y=3 z=1'" --once
+
+
+
+
+Listen to drone commands topic:
+ros2 topic echo /drone_commands
+

@@ -8,9 +8,8 @@ from std_msgs.msg import String
 
 class CoordinatePublisher(Node):
     def __init__(self):
-        super().__init__('coordinate_publisher')
-        
-        # Subscribe to the vision_pose topic
+        super().__init__('coordinate_publisher')        
+        # Subscribe to the svision_pose topic
         self.pose_sub = self.create_subscription(
             PoseStamped,
             '/mavros/vision_pose/pose',
@@ -20,7 +19,7 @@ class CoordinatePublisher(Node):
         
         # Publishers for position, origin, and orientation
         self.current_pub = self.create_publisher(String, 'position/current', 10)
-        self.origin_pub = self.create_publisher(String, 'position/origin', 10)
+        self.origin_pub = self.create_publissher(String, 'position/origin', 10)
         self.orientation_pub = self.create_publisher(String, 'position/orientation', 10)
         
         # Subscriber for launch/land status

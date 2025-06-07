@@ -11,7 +11,7 @@ def generate_launch_description():
     ld.add_action(
         ExecuteProcess(
             cmd=[
-                 'gnome-terminal', '--',
+                'gnome-terminal', '--',
                 'bash', '-c',
                 'source /opt/ros/humble/setup.bash && '
                 'source ~/ros2_ws/install/setup.bash && '

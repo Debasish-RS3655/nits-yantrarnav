@@ -12,34 +12,29 @@ class PathPlanner(Node):
         super().__init__('path_planner')
                                                             
         # Subscriber for the launch land status
-        self.drone_launch_land_sub = self.create_subscription(
-            String, '/launch_land_status', self.update_launch_status, 10)
-        self.drone_launch_status = None
-                
+        self.drone_launch_land_sub = self.create_subscription(String, '/launch_land_status', self.update_launch_status, 10)
+        self.drone_launch_status = None                        
+        
         self.trajectory_pub = self.create_publisher(String, '/trajectory_points', 10)
-        # Publisher for the drone commands
+        # Publisher for the drone commands    
         self.drone_commands_pub = self.create_publisher(String, '/drone_commands', 10)
-        # Subscriber for the current mode
-        self.pos_mode = self.create_subscription(String, '/position/mode', self.update_mode, 10)
+        
         # Subscriber for the current position
-        self.pos_current_sub = self.create_subscription(String, 'position/current', self.update_pos, 10)            
+        self.pos_current_sub = self.create_subscription(String, 'position/current', self.update_current_pos, 10)            
         # Publisher for the target position
         self.pos_target_pub = self.create_publisher(String, 'position/target', 10)
+        
         # Current position (updated continuously)
         self.x_ = 0.0
         self.y_ = 0.0
         self.z_ = 0.0
     
         # By default the mode is set to manual
-        self.mode = 'manual'
-        
-        # For the hovering mode
-        self.hovering_status_sub = self.create_subscription(String, '/hovering_mode', self.update_hovering_mode, 10)
-        self.hovering_status = None                
+        self.mode = 'auto'
         
         # Subscriber for the edge coordinates    
         self.edge_sub = self.create_subscription(String, '/edge_coordinates', self.update_edges, 10)            
-        self.edge_coordinates = []      # Expect four edges: [(x1,y1,z1), (x2,y2,z2), ...]
+        self.edge_coordinates = []                         # Expect four edges: [(x1,y1,z1), (x2,y2,z2), ...]
                 
         # Subscriber for the origin coordinate (set via the 'position/origin' topic)
         self.origin_sub = self.create_subscription(String, 'position/origin', self.update_origin, 10)
@@ -59,8 +54,8 @@ class PathPlanner(Node):
         # For a rectangular area, the side lengths will be computed from edge coordinates.
         self.long_side = None    # Initially None until computed
         self.short_side = None   # Initially None until computed
-        self.lawn_gap = 2.0      # Gap between lines in lawnmower pattern
-        self.threshold = 0.5     # Distance threshold to switch to the next target
+        self.lawn_gap = 1.0      # Gap between lines in lawnmower pattern  (in metres)
+        self.threshold = 0.05    # Distance threshold to switch to the next target (in metres)
 
         # State machine phases:
         # Phase 0: Move straight until yellow boundary reached.
@@ -72,17 +67,16 @@ class PathPlanner(Node):
         self.phase = None  # Will be set after receiving origin.
         self.phase_pub = self.create_publisher(String, 'position/phase', 10)
         
-
-        self.target_list = []
-        self.target_index = 0
+        self.target_list = []                   # target list contains the entire history of all the target points
         self.current_target = None
         
-        self.fallback_to_origin_timer = None
-        # Main loop timer (runs every 0.5 sec)
+        self.fallback_to_origin_timer = None    
+        # Main loop timer (runs every 0.5 sec)        
         self.main_timer_ = self.create_timer(0.5, self.main_loop)                         
         self.get_logger().info('Path planner node started.')
         
         # Launch the drone (pre-checks and command publishing)
+        # ---------------------- any prechecks need to be performed here ----------------------------------------                
         self.launch_drone()
                 
     # Publishes launch command to the drone commands topic
@@ -105,21 +99,12 @@ class PathPlanner(Node):
             self.get_logger().info("Invalid launch status received: " + str(new_launch_status))
             return
         self.drone_launch_status = new_launch_status        
-        self.get_logger().info(f"Launch status updated to: {self.drone_launch_status}")        
-    
-    # Update the hovering status of the drone
-    def update_hovering_mode(self, msg: String):
-        new_hovering_mode = msg.data
-        if new_hovering_mode not in ['ongoing', 'completed']:
-            self.get_logger().info("Invalid hovering status received: " + str(new_hovering_mode))
-            return
-        self.hovering_status = new_hovering_mode        
-        self.get_logger().info(f"Hovering status updated to: {self.hovering_status}")        
+        self.get_logger().info(f"Launch status updated to: {self.drone_launch_status}")            
 
-    # Update the current mode of the drone
+    # Update the current mode of the drone (auto and manual)
     def update_mode(self, msg: String):
         new_mode = msg.data
-        if new_mode not in ['manual', 'auto', 'hover']:
+        if new_mode not in ['manual', 'auto']:
             self.get_logger().info("Invalid mode received: " + str(new_mode))
             return
         self.mode = new_mode
@@ -129,7 +114,7 @@ class PathPlanner(Node):
         if not self.yellow_boundary_found_status and msg.data:
             self.yellow_boundary_found_status = True
         
-    def update_pos(self, msg: String):
+    def update_current_pos(self, msg: String):
         """Update the current position from the 'position/current' topic.
         Expected format: "x=<value> y=<value> z=<value>"."""
         try:
@@ -143,7 +128,7 @@ class PathPlanner(Node):
                     self.y_ = value
                 elif key == 'z':
                     self.z_ = value
-            self.get_logger().info(f'Updated position: x={self.x_}, y={self.y_}, z={self.z_}')
+            self.get_logger().info(f'Current position: x={self.x_}, y={self.y_}, z={self.z_}')
         except Exception as e:
             self.get_logger().error('Failed to parse current position: ' + str(e))
             
@@ -166,25 +151,18 @@ class PathPlanner(Node):
             self.get_logger().error(f"Failed to parse flat areas: {e}")
     
     def configure_phase(self, phase):
-        """Set up the target list for the given phase based on the current origin.
+        """
+        Set up the target list for the given phase based on the current origin.
         Also publishes the new target coordinate only once.
         Only operates when mode is automatic.
         Additionally, when phase > 2 (i.e. phase 3 or 4), the target chosen is the one nearest to the current coordinate."""
                 
         # ---------------------------- Phase configuration ------------------------------------------------
-
         if self.mode != 'auto':
             self.get_logger().info(f"Mode is set to {self.mode}. Path planner not executed.")
-            if self.mode == 'hover':
-                if self.hovering_status == 'ongoing':
-                    self.get_logger().info('Drone is hovering.')
-                elif self.hovering_status == 'completed':
-                    self.get_logger().info('Hovering completed. Drone will be landing.')
-                    self.phase = 5  # Ready to land.                    
-                else:
-                    self.get_logger().info("Invalid hovering status: " + str(self.hovering_status))
-            elif self.mode == 'manual':
+            if self.mode == 'manual':
                 self.get_logger().info('Drone is in manual mode.')
+            else: self.get_logger().info('Drone is in an unknown mode.')
             return            
         
         if phase == 0:
@@ -209,12 +187,14 @@ class PathPlanner(Node):
             if self.long_side is None or self.short_side is None:
                 self.get_logger().warn("Side lengths not yet computed. Cannot configure lawnmower pattern.")
                 return
+            
             x0, y0, z0 = self.origin_x, self.origin_y, self.origin_z
-            points = []
-            rows = int(self.short_side // self.lawn_gap) + 1
+            
+            points = []                 # all points are added in this list
+            rows = int(self.short_side // self.lawn_gap) + 1            # calculate the number of rows based on the short side and lawn gap
             for i in range(rows):
                 y = y0 + i * self.lawn_gap
-                if y > y0 + self.short_side:
+                if y > y0 + self.short_side:                            # in case the y exceeds the short side we keep it within the bounds
                     y = y0 + self.short_side
                 if i % 2 == 0:
                     points.append((x0, y, z0))
@@ -224,7 +204,7 @@ class PathPlanner(Node):
                     points.append((x0, y, z0))
             
             # the points here corresponds to the lawnmower pattern points
-            # after calculating the trajecotry points we publish them over to the tarjectory publisher for displaying                    
+            # after calculating the trajectory points we publish them over to the tarjectory publisher for displaying                    
             formatted_str = ', '.join(
                 f"x={x:.2f} y={y:.2f} z={z:.2f}"
                 for x, y, z in points
@@ -257,72 +237,90 @@ class PathPlanner(Node):
                 
         
         # -------------------------    Target Points Selector ----------------------------------------------------                                
+        # (Moved into main_loop as per instructions)
+        pass
 
-        # current target determination from the list
-        # For phases greater than 2, choose the target from the list that is nearest to the current coordinate.
-        if self.phase > 2 and self.target_list:
-            # i.e for the phases 3 and more that is after the lawnmower pattern we need to move to serially to the nearest points
-            def distance(target):
-                dx = self.x_ - target[0]
-                dy = self.y_ - target[1]
-                dz = self.z_ - target[2]
-                return math.sqrt(dx**2 + dy**2 + dz**2)
-            nearest_idx, nearest_target = min(enumerate(self.target_list), key=lambda t: distance(t[1]))
-            self.target_index = nearest_idx
-            self.current_target = nearest_target
-
-        else:
-            self.target_index = 0
-            # for phase 3 and beyond we sort the points
-            if self.target_list:
-                self.current_target = self.target_list[0]
-        
-
+    def set_phase(self):
+        self.phase = 0
+        self.get_logger().info(f'Phase set to {self.phase}')
+        phase_msg = String()
+        phase_msg.data = str(self.phase)
+        self.phase_pub.publish(phase_msg)        
+        # launch the first phase config here
+        self.configure_phase(self.phase)
 
     def next_phase(self):
         self.phase += 1
-        self.get_logger().info(f'Moving to Phase {self.phase}')
+        self.get_logger().info(f'Moved to Phase {self.phase}')
         phase_msg = String()
         phase_msg.data = str(self.phase)
         self.phase_pub.publish(phase_msg)        
         
     def main_loop(self):
-        """Main loop to check if the current target is reached.
+        """
+        Main loop to check if the current target is reached.
         New targets are published only when the current target is reached.
-        Runs only in automatic mode."""
+        Runs only in automatic mode.
+        """
         if self.mode != 'auto':
             self.get_logger().info(f"Mode is set to {self.mode}. Automatic path planning is paused.")
             return
 
-        if self.current_target is None:
+        if self.phase == 0 or self.phase == 1 or self.phase == 2:
+            self.get_logger().info("Reached phase 2")
+            self.configure_phase(self.phase)  # Ensure phase is configured before proceeding
+            return
+
+        # If there is no current_target but there are targets remaining, pick one and publish it
+        if self.current_target is None and self.target_list:
+            if self.phase > 2:
+                # For phases 3 and above, pick whichever remaining point is nearest to (self.x_, self.y_, self.z_)
+                def distance(target):
+                    dx = self.x_ - target[0]
+                    dy = self.y_ - target[1]
+                    dz = self.z_ - target[2]
+                    return math.sqrt(dx**2 + dy**2 + dz**2)
+                
+                self.current_target = min(self.target_list, key=distance)
+            else:
+                # For phase 2, just take the first point in the list
+                self.current_target = self.target_list[0]
+
+            msg = String()
+            msg.data = f'x={self.current_target[0]} y={self.current_target[1]} z={self.current_target[2]}'
+            self.pos_target_pub.publish(msg)
+            self.get_logger().info(f'Target published: {msg.data}')
+
+        if self.current_target is None:                                            
             return
 
         dx = self.x_ - self.current_target[0]
         dy = self.y_ - self.current_target[1]
-        dz = self.z_ - self.current_target[2]
-        distance = math.sqrt(dx**2 + dy**2 + dz**2)
+        dz = self.z_ - self.current_target[2]        
+        distance = math.sqrt(dx**2 + dy**2 + dz**2)                    
+        
         # means if we have reached the current target position
         if distance < self.threshold:
             self.get_logger().info(f'Target reached: {self.current_target}')
-            self.target_index += 1
-            if self.target_index >= len(self.target_list):
-                if self.phase < 5:
+            # Remove the reached target from the list
+            try:
+                self.target_list.remove(self.current_target)
+            except ValueError:
+                pass
+
+            # Clear current_target so that next iteration picks a new one
+            self.current_target = None
+            # If no targets remain, move to next phase or finish
+            if not self.target_list:
+                if self.phase < 5:                    
                     self.next_phase()
                     self.configure_phase(self.phase)
                 else:
                     self.get_logger().info('Completed all phases.')
                     self.land_drone()
-                    self.main_timer_.cancel()                
+                    self.main_timer_.cancel()
                     return
-            else:
-                self.current_target = self.target_list[self.target_index]
-                self.get_logger().info(f'Switching to next target: {self.current_target}')
-                msg = String()
-                msg.data = f'x={self.current_target[0]} y={self.current_target[1]} z={self.current_target[2]}'
-                self.pos_target_pub.publish(msg)
-                self.get_logger().info(f'Target published: {msg.data}')
-
-
+        # if not this means that the drone is currently performing a waypoint navigation
                                                             
     def fallback_to_origin_once(self):
         """Fallback method if no flat areas are received after a waiting period."""
@@ -337,7 +335,7 @@ class PathPlanner(Node):
             self.get_logger().info(f"Flat areas received during wait: {self.flat_areas}. Using them.")
             self.target_list = self.flat_areas
 
-        self.target_index = 0
+        self.current_target = None
         if self.target_list:
             self.current_target = self.target_list[0]
             msg = String()
@@ -370,6 +368,8 @@ class PathPlanner(Node):
                 self.get_logger().info(f"Edge coordinates updated: {self.edge_coordinates}")
                 # Calculate the rectangle dimensions based on the new edge coordinates.
                 self.calculate_rectangle_dimensions()
+                # after we have calculated the rectangle dimensions we re configure the phase
+                self.next_phase()
             else:
                 self.get_logger().warn(f"Expected 4 edge coordinates, received {len(new_edges)}")
         except Exception as e:
@@ -407,6 +407,7 @@ class PathPlanner(Node):
                 elif key == 'z':
                     self.origin_z = value
             self.get_logger().info(f'Origin updated: x={self.origin_x}, y={self.origin_y}, z={self.origin_z}')
+            self.set_phase()  # Set the initial phase after origin is set
         except Exception as e:
             self.get_logger().error('Failed to parse origin position: ' + str(e))
     

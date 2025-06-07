@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/my_robot_launcher
+CMAKE_SOURCE_DIR = /mnt/f/NITS/ANAV/main/ros2_Ws/src/my_robot_launcher
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher
+CMAKE_BINARY_DIR = /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,9 +142,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/CMakeFiles /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/CMakeFiles /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nits/master_controller/nits-yantrarnav/ros2_Ws/build/my_robot_launcher/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/f/NITS/ANAV/main/ros2_Ws/build/my_robot_launcher/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
