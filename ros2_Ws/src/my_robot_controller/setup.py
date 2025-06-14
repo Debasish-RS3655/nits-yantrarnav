@@ -36,6 +36,7 @@ setup(
             # "boundary_mapper = my_robot_controller.boundary_mapper:main",
             "odom = my_robot_controller.odom:main",
             "boundary_mapper = my_robot_controller.boundary_mapper:main",                            
+            "path_mover_dummy = my_robot_controller.path_mover_dummy:main"
         ],
     },
 )
