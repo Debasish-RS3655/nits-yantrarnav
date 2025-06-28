@@ -7,8 +7,14 @@ ros2 topic pub /yellow_boundary_found std_msgs/Bool "data: true" --once
 Publish edge coordinates: 
 ros2 topic pub /edge_coordinates std_msgs/String "data: 'x=0 y=0 z=1, x=4 y=0 z=1, x=4 y=3 z=1, x=0 y=3 z=1'" --once
 
+Publish detected flat areas:
+ros2 topic pub /position/flat_area std_msgs/String "data: 'x=1.50 y=2.00 z=0.50, x=3.00 y=1.00 z=0.50, x=2.00 y=3.50 z=0.50'" --once
 
+Publish landed:
+ros2 topic pub /launch_land_status std_msgs/String "data: 'landed'" --once
 
+Publish launched:
+ros2 topic pub /launch_land_status std_msgs/String "data: 'launched'" --once
 
 Listen to drone commands topic:
 ros2 topic echo /drone_commands
