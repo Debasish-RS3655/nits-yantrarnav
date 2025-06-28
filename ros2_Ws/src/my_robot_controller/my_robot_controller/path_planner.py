@@ -68,7 +68,8 @@ class PathPlanner(Node):
         self.boustrophedon_points = []
         
         self.phase = None  # Will be set after receiving origin.
-        self.phase_pub = self.create_publisher(String, 'position/phase', 10)
+        self.phase_pub = self.create_publisher(String, 'position/phase', 10)        
+        self._phase3_landed_flag = False        # landed flag for phase 3, to ensure we land on each flat area only once
         
         self.target_list = []                   # target list contains the entire history of all the target points
         self.current_target = None
@@ -94,6 +95,14 @@ class PathPlanner(Node):
         msg.data = 'land'
         self.drone_commands_pub.publish(msg)        
         self.get_logger().info('Land command published to drone commands.')
+        
+    def land_and_launch(self):
+        # Called once when we reach a flat‐area target (phase 3)
+        if not self._phase3_landed_flag:
+            self.get_logger().info('Phase 3: reached flat area target — sending land command.')
+            self.land_drone()
+            self._phase3_landed_flag = True
+        # After landing, update_launch_status() will see 'landed' and call launch
 
     # Update the launch status of the drone
     def update_launch_status(self, msg: String):
@@ -103,6 +112,14 @@ class PathPlanner(Node):
             return
         self.drone_launch_status = new_launch_status        
         self.get_logger().info(f"Launch status updated to: {self.drone_launch_status}")            
+        
+        # In phase 3, once we see the drone has actually landed, trigger the re-launch
+        if self.phase == 3 and self._phase3_landed_flag and new_launch_status == 'landed':
+            self.get_logger().info('Phase 3: confirmed landed → launching again.')
+            self.launch_drone()
+            # now that we've re-launched for this flat area, clear the flag so we can
+            # move on in main_loop() to pop the current_target and pick the next one.
+            self._phase3_landed_flag = False        
 
     # Update the current mode of the drone (auto and manual)
     def update_mode(self, msg: String):
@@ -148,6 +165,10 @@ class PathPlanner(Node):
                     flat_areas.append((x, y, z))
     
             if flat_areas:
+                # We’ve now got valid flat areas—cancel any pending fallback timer
+                if self.fallback_to_origin_timer is not None:
+                    self.fallback_to_origin_timer.cancel()
+                    self.fallback_to_origin_timer = None
                 self.flat_areas = flat_areas
                 self.get_logger().info(f"Updated flat areas: {self.flat_areas}")
         except Exception as e:
@@ -226,8 +247,8 @@ class PathPlanner(Node):
                 self.get_logger().info(f"Using available flat areas: {self.flat_areas}")
                 self.target_list = self.flat_areas
             else:
-                self.get_logger().warning("No flat areas available. Waiting 5 seconds before fallback to origin.")
-                self.fallback_to_origin_timer = self.create_timer(5.0, self.fallback_to_origin_once)
+                self.get_logger().warning("No flat areas available. Waiting 20 seconds before fallback to origin.")
+                self.fallback_to_origin_timer = self.create_timer(20.0, self.fallback_to_origin_once)
                 return
         
         elif phase == 4:
@@ -307,9 +328,15 @@ class PathPlanner(Node):
         # means if we have reached the current target position
         if distance < self.threshold:
             self.get_logger().info(f'Target reached: {self.current_target}')
+            if self.phase == 3:
+                # instead of removing target immediately, first land+launch
+                self.land_and_launch()
+                # return early so we don’t pop the target until after re-launch
+                return
             # Remove the reached target from the list
-            try:
+            try:                    
                 self.target_list.remove(self.current_target)
+                # if the phase is 3 we need to land on each of the flat areas given   
             except ValueError:
                 pass
 
