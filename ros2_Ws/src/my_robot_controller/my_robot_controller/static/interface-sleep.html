@@ -72,69 +72,135 @@
             </div>
           </div>
         </div>
-        <div class="scale-[0.88] relative top-[-1.6rem]">
-          <div
-            class="p-[0.5rem] border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-white shadow"
-          >
-            <p
-              class="text-center font-semibold text-gray-600 text-xl pb-[0.5rem]"
+        <div class="scale-[0.92] relative top-[-0.5rem] grid grid-rows-2 gap-2">
+          <div class="grid grid-cols-2 gap-2">
+            <div
+              class="p-[0.5rem] border-black border m-[0.2rem] rounded-[0.5rem] pb-[1rem] bg-white shadow"
             >
-              Current Position 
-            </p>
-            <div id="coordinates" class="flex justify-center gap-4">
-              <!-- X Coordinate -->
-
-              <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden bg-blue-50 rounded-xl shadow"
+              <p
+                class="text-center font-semibold text-gray-600 text-xl pb-[0.5rem]"
               >
-                <p
-                  class="pt-[0.6rem] text-center font-tusker2 font-medium text-gray-500 text-[1.2rem]"
+                Current Position 
+              </p>
+              <div id="coordinates" class="flex justify-center gap-1">
+                <!-- X Coordinate -->
+                <div
+                  class="relative scale-[0.95] mx-1 ml-[0] h-[6rem] w-[9.1rem] overflow-hidden bg-blue-50 rounded-xl shadow"
                 >
-                  X
-                </p>
-                <div class="relative top-[-0.5rem] z-[10]">
                   <p
-                    id="x-value"
-                    class="text-center text-lg font-bold text-blue-800 text-[1.87rem]"
+                    class="pt-[0.6rem] text-center font-tusker2 border-b border-black font-medium text-gray-500 text-[1.2rem]"
                   >
-                    0
+                    X
                   </p>
+                  <div class="relative top-[-0.1rem] z-[10]">
+                    <p
+                      id="x-value"
+                      class="text-center text-lg font-bold text-blue-800 text-[1.6rem]"
+                    >
+                      0
+                    </p>
+                  </div>
+                </div>
+                <!-- Y Coordinate -->
+                <div
+                  class="relative scale-[0.95] w-[9.1rem] mx-1 ml-[0] h-[6rem]  overflow-hidden bg-blue-50 rounded-xl shadow"
+                >
+                  <p
+                    class="pt-[0.6rem] text-center border-b border-black font-tusker2 font-medium text-gray-500 text-[1.2rem]"
+                  >
+                    Y
+                  </p>
+                  <div class="relative top-[-0.1rem] z-[10]">
+                    <p
+                      id="y-value"
+                      class="text-center text-lg font-bold text-blue-800 text-[1.6rem]"
+                    >
+                      0
+                    </p>
+                  </div>
+                </div>
+                <!-- Z Coordinate -->
+                <div
+                  class="relative scale-[0.95] w-[9.1rem] mx-1 ml-[0] h-[6rem]  overflow-hidden bg-blue-50 rounded-xl shadow"
+                >
+                  <p
+                    class="pt-[0.6rem] border-b border-black text-center font-tusker2 font-medium text-gray-500 text-[1.2rem]"
+                  >
+                    Z
+                  </p>
+                  <div class="relative top-[-0.1rem] z-[10]">
+                    <p
+                      id="z-value"
+                      class="text-center text-lg font-bold text-blue-800 text-[1.6rem]"
+                    >
+                      0
+                    </p>
+                  </div>
                 </div>
               </div>
-              <!-- Y Coordinate -->
-              <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden bg-blue-50 rounded-xl shadow"
+            </div>
+            <div
+              class="p-[0.5rem] border-black border m-[0.2rem] rounded-[0.5rem] pb-[1rem] bg-white shadow"
+            >
+              <p
+                class="text-center font-semibold text-gray-600 text-xl pb-[0.5rem]"
               >
-                <p
-                  class="pt-[0.6rem] text-center font-tusker2 font-medium text-gray-500 text-[1.2rem]"
+                Target Position
+              </p>
+              <div id="coordinates" class="flex justify-center gap-1">
+                <!-- X Coordinate -->
+                <div
+                  class="relative scale-[0.95] w-[9.1rem] mx-1 ml-[0] h-[6rem] overflow-hidden bg-purple-50 rounded-xl shadow"
                 >
-                  Y
-                </p>
-                <div class="relative top-[-0.5rem] z-[10]">
                   <p
-                    id="y-value"
-                    class="text-center text-lg font-bold text-blue-800 text-[1.87rem]"
+                    class="pt-[0.6rem] border-b border-black text-center font-tusker2 font-medium text-gray-500 text-[1.2rem]"
                   >
-                    0
+                    X
                   </p>
+                  <div class="relative top-[-0.1rem] z-[10]">
+                    <p
+                      id="x1-value"
+                      class="text-center text-lg font-bold text-purple-800 text-[1.6rem]"
+                    >
+                      0
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <!-- Z Coordinate -->
-              <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden bg-blue-50 rounded-xl shadow"
-              >
-                <p
-                  class="pt-[0.6rem] text-center font-tusker2 font-medium text-gray-500 text-[1.2rem]"
+                <!-- Y Coordinate -->
+                <div
+                  class="relative scale-[0.95] w-[9.1rem] mx-1 ml-[0] h-[6rem]  overflow-hidden bg-purple-50 rounded-xl shadow"
                 >
-                  Z
-                </p>
-                <div class="relative top-[-0.5rem] z-[10]">
                   <p
-                    id="z-value"
-                    class="text-center text-lg font-bold text-blue-800 text-[1.87rem]"
+                    class="pt-[0.6rem] border-b border-black text-center font-tusker2 font-medium text-gray-500 text-[1.2rem]"
                   >
-                    0
+                    Y
                   </p>
+                  <div class="relative top-[-0.1rem] z-[10]">
+                    <p
+                      id="y1-value"
+                      class="text-center text-lg font-bold text-purple-800 text-[1.6rem]"
+                    >
+                      0
+                    </p>
+                  </div>
+                </div>
+                <!-- Z Coordinate -->
+                <div
+                  class="relative scale-[0.95] w-[9.1rem] mx-1 ml-[0] h-[6rem]  overflow-hidden bg-purple-50 rounded-xl shadow"
+                >
+                  <p
+                    class="pt-[0.6rem] border-b border-black text-center font-tusker2 font-medium text-gray-500 text-[1.2rem]"
+                  >
+                    Z
+                  </p>
+                  <div class="relative top-[-0.1rem] z-[10]">
+                    <p
+                      id="z1-value"
+                      class="text-center text-lg font-bold text-purple-800 text-[1.6rem]"
+                    >
+                      0
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -145,23 +211,22 @@
             <p
               class="text-center font-semibold text-gray-600 text-xl pb-[0.5rem]"
             >
-              Target Position
+              Landing Coordinates
             </p>
             <div id="coordinates" class="flex justify-center gap-4">
               <!-- X Coordinate -->
-
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden bg-purple-50 rounded-xl shadow"
+                class="relative scale-[0.95] w-[9.1rem] mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden bg-green-50 rounded-xl shadow"
               >
                 <p
-                  class="pt-[0.6rem] text-center font-tusker2 font-medium text-gray-500 text-[1.2rem]"
+                  class="pt-[0.6rem] border-b border-black text-center font-tusker2 font-medium text-gray-500 text-[1.2rem]"
                 >
                   X
                 </p>
-                <div class="relative top-[-0.5rem] z-[10]">
+                <div class="relative top-[-0.1rem] z-[10]">
                   <p
-                    id="x1-value"
-                    class="text-center text-lg font-bold text-purple-800 text-[1.87rem]"
+                    id="x2-value"
+                    class="text-center text-lg font-bold text-green-800 text-[1.87rem]"
                   >
                     0
                   </p>
@@ -169,17 +234,17 @@
               </div>
               <!-- Y Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden bg-purple-50 rounded-xl shadow"
+                class="relative scale-[0.95] w-[9.1rem] mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden bg-green-50 rounded-xl shadow"
               >
                 <p
-                  class="pt-[0.6rem] text-center font-tusker2 font-medium text-gray-500 text-[1.2rem]"
+                  class="pt-[0.6rem] text-center border-b border-black font-tusker2 font-medium text-gray-500 text-[1.2rem]"
                 >
                   Y
                 </p>
-                <div class="relative top-[-0.5rem] z-[10]">
+                <div class="relative top-[-0.1rem] z-[10]">
                   <p
-                    id="y1-value"
-                    class="text-center text-lg font-bold text-purple-800 text-[1.87rem]"
+                    id="y2-value"
+                    class="text-center text-lg font-bold text-green-800 text-[1.87rem]"
                   >
                     0
                   </p>
@@ -187,17 +252,17 @@
               </div>
               <!-- Z Coordinate -->
               <div
-                class="relative mx-1 ml-[0] h-[6rem] w-[8rem] overflow-hidden bg-purple-50 rounded-xl shadow"
+                class="relative  mx-1 ml-[0] h-[6rem] w-[9.1rem] overflow-hidden bg-green-50 rounded-xl shadow"
               >
                 <p
-                  class="pt-[0.6rem] text-center font-tusker2 font-medium text-gray-500 text-[1.2rem]"
+                  class="pt-[0.6rem] text-center border-b border-black font-tusker2 font-medium text-gray-500 text-[1.2rem]"
                 >
                   Z
                 </p>
-                <div class="relative top-[-0.5rem] z-[10]">
+                <div class="relative top-[-0.1rem] z-[10]">
                   <p
-                    id="z1-value"
-                    class="text-center text-lg font-bold text-purple-800 text-[1.87rem]"
+                    id="z2-value"
+                    class="text-center text-lg font-bold text-green-800 text-[1.87rem]"
                   >
                     0
                   </p>
@@ -557,6 +622,9 @@
       const x1ValueElement = document.getElementById("x1-value");
       const y1ValueElement = document.getElementById("y1-value");
       const z1ValueElement = document.getElementById("z1-value");
+      const x2ValueElement = document.getElementById("x2-value");
+      const y2ValueElement = document.getElementById("y2-value");
+      const z2ValueElement = document.getElementById("z2-value");
 
       async function sleep(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));
@@ -672,6 +740,29 @@
 
             document.getElementById("terrain_class").textContent =
               predicted.terrain_class || "N/A";
+
+            // Fetch and update landing coordinates
+            const landResponse = await fetch(`${domain}/land_coordinates`);
+            const landData = await landResponse.json();
+            let landX = 0, landY = 0, landZ = 0;
+            if (landData.landing_coordinates) {
+              const landParts = landData.landing_coordinates.split(" ");
+              landParts.forEach((part) => {
+                const [key, value] = part.split("=");
+                if (key === "x") landX = parseFloat(value) * 100;
+                if (key === "y") landY = parseFloat(value) * 100;
+                if (key === "z") landZ = parseFloat(value) * 100;
+              });
+              const { x: x2, y: y2, z: z2 } = transformCoordinates(landX, landY, landZ);
+              x2ValueElement.textContent = x2.toFixed(3);
+              y2ValueElement.textContent = y2.toFixed(3);
+              z2ValueElement.textContent = z2.toFixed(3);
+            } else {
+              x2ValueElement.textContent = "--";
+              y2ValueElement.textContent = "--";
+              z2ValueElement.textContent = "--";
+            }
+
           } catch (error) {
             console.error("Error fetching /all:", error.message);
             document.getElementById("drone-height").innerText = "--";
@@ -682,6 +773,9 @@
             document.getElementById("launch-status").innerText = "Error";
             statusElement.textContent = "Connection Error";
             statusElement.style.color = "#ff0000";
+            x2ValueElement.textContent = "--";
+            y2ValueElement.textContent = "--";
+            z2ValueElement.textContent = "--";
           }
 
           await sleep(200); // 200ms delay between requests
@@ -693,6 +787,7 @@
       }
 
       initializes();
+
 
       document.getElementById("Reset").addEventListener("click", async () => {
         try {
