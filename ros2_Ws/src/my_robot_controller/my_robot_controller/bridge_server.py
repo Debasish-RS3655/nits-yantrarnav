@@ -3,7 +3,7 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String, Bool, Float32
 from sensor_msgs.msg import Image, BatteryState
-from geometry_msgs.msg import Point
+from geometry_msgs.msg import Point, PoseStamped
 # NEW: Import the ROS 2 Empty service type
 from std_srvs.srv import Empty
 
@@ -41,6 +41,10 @@ class BridgeServer(Node):
         self.x_ = 0
         self.y_ = 0
         self.z_ = 0
+        
+        # setpoint tracker for the landing coordinates
+        self._setpoint_count = 0
+        self._landing_coords = None   # will hold a dict like {'x':…, 'y':…, 'z':…}
 
         # NEW: Add origin coordinates
         self.x_origin = None
@@ -81,6 +85,16 @@ class BridgeServer(Node):
         self.land_launch_pub = self.create_publisher(String, '/launch_commands', 10)
         self.launch_commands = ''
         self.drone_commands = ''
+        
+        
+        # setpoint subscriber for the landing coordinates
+        self.setpoint_sub = self.create_subscription(
+            PoseStamped,
+            '/mavros/setpoint_position/local',
+            self._on_setpoint, 
+            10
+        )
+        
         
         # NEW: Subscribe to the optical flow sensor topic to update flow_rate (x and y)
         self.flow_sub = self.create_subscription(
@@ -140,6 +154,19 @@ class BridgeServer(Node):
 
         # NEW: Create a client for the /rtabmap/reset_odom service within the BridgeServer node.
         self.reset_odom_client = self.create_client(Empty, '/rtabmap/reset_odom')    
+
+    # callback for the setpoint
+    def _on_setpoint(self, msg: PoseStamped):
+        self._setpoint_count += 1
+        # If this is the 8th, 9th or 10th message, cache it
+        if 8 <= self._setpoint_count <= 10:
+            self._landing_coords = {
+                'x': msg.pose.position.x,
+                'y': msg.pose.position.y,
+                'z': msg.pose.position.z
+            }
+        self.get_logger().debug(f"Setpoint #{self._setpoint_count}: {self._landing_coords}")
+
 
     def update_edges(self, msg: String):
         self.edge_points = msg.data
@@ -765,6 +792,21 @@ def reset_odom_services():
     except Exception as e:
         bridge_server_node.get_logger().error("Exception during reset odom service call: " + str(e))
         return jsonify({'status': 'failure', 'error': str(e)}), 500
+    
+# route for the landing coordinates
+@app.route('/land_coordinates', methods=['GET'])
+def land_coordinates():
+    global bridge_server_node
+    if bridge_server_node is None:
+        return jsonify({'error': 'BridgeServer node not available'}), 500
+
+    coords = bridge_server_node._landing_coords
+    if coords is None:
+        return jsonify({'status': 'not published'}), 404
+
+    # format as "x=0.0 y=0.0 z=0.0"
+    coord_str = f"x={coords['x']} y={coords['y']} z={coords['z']}"
+    return jsonify({'landing_coordinates': coord_str}), 200
 
 # Function to spin the ROS node in a separate thread
 def ros_spin(node):
