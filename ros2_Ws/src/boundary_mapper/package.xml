@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>boundary_fencer</name>
+  <name>boundary_mapper</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
   <maintainer email="debashishburagohain000@gmail.com">rahul</maintainer>
   <license>TODO: License declaration</license>
 
-  <depend>rclpy</depend>
-  <depend>std_msgs</depend>
-  <depend>geometry_msgs</depend>
+  <build_depend>rclpy</build_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
