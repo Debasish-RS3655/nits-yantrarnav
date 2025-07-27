@@ -1,3 +1,4 @@
 {
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "cmake.sourceDirectory": "F:/NITS/ANAV/main/ros2_Ws/src/my_drone_launcher"
 }
