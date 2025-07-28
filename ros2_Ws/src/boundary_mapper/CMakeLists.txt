@@ -9,7 +9,7 @@ find_package(geometry_msgs REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/FenceCorners.msg"
-  DEPENDENCIES std_msgs geometry_msgs
+  DEPENDENCIES geometry_msgs
 )
 
 ament_python_install_package(${PROJECT_NAME})

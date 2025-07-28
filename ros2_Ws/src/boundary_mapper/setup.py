@@ -11,10 +11,7 @@ setup(
         ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
     ],
-    install_requires=[
-        'setuptools',
-        'rosidl_default_runtime',
-        ],
+    install_requires=['setuptools', 'ros_numpy', 'numpy'],
     zip_safe=True,
     maintainer='Debashish Buragohain',
     maintainer_email='debashishburagohain000@gmail.com',

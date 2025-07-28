@@ -2,22 +2,15 @@
 <package format="3">
   <name>boundary_mapper</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="debashishburagohain000@gmail.com">rahul</maintainer>
-  <license>TODO: License declaration</license>
+  <description>Boundary mapper package</description>
+  <maintainer email="debashishburagohain000@gmail.com">Debashish Buragohain</maintainer>
+  <license>Apache-2.0</license>
 
-  <buildtool_depend>ament_python</buildtool_depend>
-  <buildtool_depend>rosidl_default_generators</buildtool_depend>
-
-  <build_depend>rclpy</build_depend>
-  <build_depend>std_msgs</build_depend>
-  <build_depend>geometry_msgs</build_depend>
-  <build_depend>rosidl_default_runtime</build_depend>
-
-  <exec_depend>rclpy</exec_depend>
-  <exec_depend>std_msgs</exec_depend>
-  <exec_depend>geometry_msgs</exec_depend>
-  <exec_depend>rosidl_default_runtime</exec_depend>
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>mavros_msgs</depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
