@@ -11,7 +11,10 @@ setup(
         ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
     ],
-    install_requires=['setuptools'],
+    install_requires=[
+        'setuptools',
+        'rosidl_default_runtime',
+        ],
     zip_safe=True,
     maintainer='Debashish Buragohain',
     maintainer_email='debashishburagohain000@gmail.com',
@@ -20,7 +23,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "talker = boundary_mapper.talker:main",
+            "navigator = boundary_mapper.navigator:main",
+            "mapper = boundary_mapper.mapper:main",
+            "edge_calculator = boundary_mapper.edge_calculator:main",
         ],
     },
 )
