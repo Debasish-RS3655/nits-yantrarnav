@@ -11,7 +11,7 @@ setup(
         ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
     ],
-    install_requires=['setuptools', 'ros_numpy', 'numpy'],
+    install_requires=['setuptools', 'numpy'],
     zip_safe=True,
     maintainer='Debashish Buragohain',
     maintainer_email='debashishburagohain000@gmail.com',

@@ -1,0 +1,6 @@
+source;share/boundary_mapper/hook/pythonpath.ps1
+source;share/boundary_mapper/hook/pythonpath.dsv
+source;share/boundary_mapper/hook/pythonpath.sh
+source;share/boundary_mapper/hook/ament_prefix_path.ps1
+source;share/boundary_mapper/hook/ament_prefix_path.dsv
+source;share/boundary_mapper/hook/ament_prefix_path.sh

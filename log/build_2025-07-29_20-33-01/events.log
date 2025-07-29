@@ -1,0 +1,261 @@
+[0.000000] (-) TimerEvent: {}
+[0.000506] (-) JobUnselected: {'identifier': 'my_drone_launcher'}
+[0.000818] (-) JobUnselected: {'identifier': 'my_robot_controller'}
+[0.001013] (-) JobUnselected: {'identifier': 'my_robot_launcher'}
+[0.001300] (boundary_mapper) JobQueued: {'identifier': 'boundary_mapper', 'dependencies': OrderedDict()}
+[0.001485] (boundary_mapper_launcher) JobQueued: {'identifier': 'boundary_mapper_launcher', 'dependencies': OrderedDict([('boundary_mapper', '/mnt/f/NITS/ANAV/main/install/boundary_mapper')])}
+[0.001740] (boundary_mapper) JobStarted: {'identifier': 'boundary_mapper'}
+[0.098145] (-) TimerEvent: {}
+[0.198691] (-) TimerEvent: {}
+[0.299151] (-) TimerEvent: {}
+[0.399659] (-) TimerEvent: {}
+[0.500152] (-) TimerEvent: {}
+[0.601151] (-) TimerEvent: {}
+[0.701713] (-) TimerEvent: {}
+[0.802398] (-) TimerEvent: {}
+[0.902782] (-) TimerEvent: {}
+[1.003280] (-) TimerEvent: {}
+[1.103756] (-) TimerEvent: {}
+[1.204172] (-) TimerEvent: {}
+[1.304631] (-) TimerEvent: {}
+[1.405217] (-) TimerEvent: {}
+[1.505752] (-) TimerEvent: {}
+[1.606344] (-) TimerEvent: {}
+[1.707079] (-) TimerEvent: {}
+[1.807651] (-) TimerEvent: {}
+[1.908408] (-) TimerEvent: {}
+[2.009137] (-) TimerEvent: {}
+[2.109703] (-) TimerEvent: {}
+[2.210342] (-) TimerEvent: {}
+[2.310844] (-) TimerEvent: {}
+[2.411313] (-) TimerEvent: {}
+[2.459633] (boundary_mapper) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../../build/boundary_mapper', 'build', '--build-base', '/mnt/f/NITS/ANAV/main/build/boundary_mapper/build', 'install', '--record', '/mnt/f/NITS/ANAV/main/build/boundary_mapper/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/mnt/f/NITS/ANAV/main/ros2_Ws/src/boundary_mapper', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'rahul', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/rahul', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'WSL_DISTRO_NAME': 'Ubuntu', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/mnt/f/NITS/ANAV/main/install:/mnt/f/NITS/ANAV/main/ros2_Ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'rahul', 'NAME': 'Rahul', 'WSL_INTEROP': '/run/WSL/337_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/rahul/.local/bin:/opt/ros/humble/bin:/home/rahul/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/Kubernetes/Minikube:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/MATLAB/R2023b/runtime/win64:/mnt/c/Program Files/MATLAB/R2023b/bin:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin/:/mnt/c/Program Files/IVI Foundation/VISA/Win64/Bin/:/mnt/c/Program Files (x86)/National Instruments/Shared/LabVIEW CLI:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin:/mnt/c/Program Files/nodejs/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/flair:/mnt/c/Program Files/Cloudflare/Cloudflare WARP/:/mnt/c/Users/debas/.cargo/bin:/mnt/c/Users/debas/.local/share/solana/install/active_release/bin:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/debas/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/debas/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files (x86)/MongoDB Atlas CLI/:/mnt/c/Users/debas/AppData/Local/Android/Sdk/platform-tools:/mnt/c/Users/debas/.avm/bin:/mnt/c/Users/debas/AppData/Roaming/npm:/mnt/c/Program Files/MongoDB/Server/6.0/bin:/mnt/c/Users/debas/AppData/Local/Programs/mongosh/:/mnt/c/Users/debas/.deno/bin:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.vscode/extensions/ms-python.debugpy-2025.10.0-win32-x64/bundled/scripts/noConfigScripts:/mnt/c/Users/debas/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand:/snap/bin:/home/rahul/.archon', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher:/mnt/f/NITS/ANAV/main/install/boundary_mapper:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PWD': '/mnt/f/NITS/ANAV/main/build/boundary_mapper', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/mnt/f/NITS/ANAV/main/build/boundary_mapper/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/python3.10/site-packages:/mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/python3.10/site-packages:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'CMAKE_PREFIX_PATH': '/mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper_launcher', 'WSLENV': ''}, 'shell': False}
+[2.511447] (-) TimerEvent: {}
+[2.611830] (-) TimerEvent: {}
+[2.712335] (-) TimerEvent: {}
+[2.812767] (-) TimerEvent: {}
+[2.913253] (-) TimerEvent: {}
+[3.013705] (-) TimerEvent: {}
+[3.114130] (-) TimerEvent: {}
+[3.214609] (-) TimerEvent: {}
+[3.314982] (-) TimerEvent: {}
+[3.415422] (-) TimerEvent: {}
+[3.492091] (boundary_mapper) StdoutLine: {'line': b'running egg_info\n'}
+[3.496372] (boundary_mapper) StdoutLine: {'line': b'creating ../../../build/boundary_mapper/boundary_mapper.egg-info\n'}
+[3.499448] (boundary_mapper) StdoutLine: {'line': b'writing ../../../build/boundary_mapper/boundary_mapper.egg-info/PKG-INFO\n'}
+[3.507415] (boundary_mapper) StdoutLine: {'line': b'writing dependency_links to ../../../build/boundary_mapper/boundary_mapper.egg-info/dependency_links.txt\n'}
+[3.512020] (boundary_mapper) StdoutLine: {'line': b'writing entry points to ../../../build/boundary_mapper/boundary_mapper.egg-info/entry_points.txt\n'}
+[3.515522] (-) TimerEvent: {}
+[3.516052] (boundary_mapper) StdoutLine: {'line': b'writing requirements to ../../../build/boundary_mapper/boundary_mapper.egg-info/requires.txt\n'}
+[3.519290] (boundary_mapper) StdoutLine: {'line': b'writing top-level names to ../../../build/boundary_mapper/boundary_mapper.egg-info/top_level.txt\n'}
+[3.525904] (boundary_mapper) StdoutLine: {'line': b"writing manifest file '../../../build/boundary_mapper/boundary_mapper.egg-info/SOURCES.txt'\n"}
+[3.553392] (boundary_mapper) StdoutLine: {'line': b"reading manifest file '../../../build/boundary_mapper/boundary_mapper.egg-info/SOURCES.txt'\n"}
+[3.597676] (boundary_mapper) StdoutLine: {'line': b"writing manifest file '../../../build/boundary_mapper/boundary_mapper.egg-info/SOURCES.txt'\n"}
+[3.600494] (boundary_mapper) StdoutLine: {'line': b'running build\n'}
+[3.601344] (boundary_mapper) StdoutLine: {'line': b'running build_py\n'}
+[3.605317] (boundary_mapper) StdoutLine: {'line': b'creating /mnt/f/NITS/ANAV/main/build/boundary_mapper/build\n'}
+[3.606792] (boundary_mapper) StdoutLine: {'line': b'creating /mnt/f/NITS/ANAV/main/build/boundary_mapper/build/lib\n'}
+[3.608743] (boundary_mapper) StdoutLine: {'line': b'creating /mnt/f/NITS/ANAV/main/build/boundary_mapper/build/lib/boundary_mapper\n'}
+[3.615268] (boundary_mapper) StdoutLine: {'line': b'copying boundary_mapper/edge_calculator.py -> /mnt/f/NITS/ANAV/main/build/boundary_mapper/build/lib/boundary_mapper\n'}
+[3.616048] (-) TimerEvent: {}
+[3.632882] (boundary_mapper) StdoutLine: {'line': b'copying boundary_mapper/mapper.py -> /mnt/f/NITS/ANAV/main/build/boundary_mapper/build/lib/boundary_mapper\n'}
+[3.654310] (boundary_mapper) StdoutLine: {'line': b'copying boundary_mapper/navigator.py -> /mnt/f/NITS/ANAV/main/build/boundary_mapper/build/lib/boundary_mapper\n'}
+[3.676411] (boundary_mapper) StdoutLine: {'line': b'copying boundary_mapper/__init__.py -> /mnt/f/NITS/ANAV/main/build/boundary_mapper/build/lib/boundary_mapper\n'}
+[3.687072] (boundary_mapper) StdoutLine: {'line': b'running install\n'}
+[3.688188] (boundary_mapper) StdoutLine: {'line': b'running install_lib\n'}
+[3.707107] (boundary_mapper) StdoutLine: {'line': b'creating /mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper\n'}
+[3.716115] (-) TimerEvent: {}
+[3.719874] (boundary_mapper) StdoutLine: {'line': b'copying /mnt/f/NITS/ANAV/main/build/boundary_mapper/build/lib/boundary_mapper/edge_calculator.py -> /mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper\n'}
+[3.750856] (boundary_mapper) StdoutLine: {'line': b'copying /mnt/f/NITS/ANAV/main/build/boundary_mapper/build/lib/boundary_mapper/mapper.py -> /mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper\n'}
+[3.781411] (boundary_mapper) StdoutLine: {'line': b'copying /mnt/f/NITS/ANAV/main/build/boundary_mapper/build/lib/boundary_mapper/navigator.py -> /mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper\n'}
+[3.816221] (-) TimerEvent: {}
+[3.817122] (boundary_mapper) StdoutLine: {'line': b'copying /mnt/f/NITS/ANAV/main/build/boundary_mapper/build/lib/boundary_mapper/__init__.py -> /mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper\n'}
+[3.851821] (boundary_mapper) StdoutLine: {'line': b'byte-compiling /mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper/edge_calculator.py to edge_calculator.cpython-310.pyc\n'}
+[3.882805] (boundary_mapper) StdoutLine: {'line': b'byte-compiling /mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper/mapper.py to mapper.cpython-310.pyc\n'}
+[3.914438] (boundary_mapper) StdoutLine: {'line': b'byte-compiling /mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper/navigator.py to navigator.cpython-310.pyc\n'}
+[3.916298] (-) TimerEvent: {}
+[3.949363] (boundary_mapper) StdoutLine: {'line': b'byte-compiling /mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper/__init__.py to __init__.cpython-310.pyc\n'}
+[3.972507] (boundary_mapper) StdoutLine: {'line': b'running install_data\n'}
+[3.978892] (boundary_mapper) StdoutLine: {'line': b'creating /mnt/f/NITS/ANAV/main/install/boundary_mapper/share/ament_index\n'}
+[3.980574] (boundary_mapper) StdoutLine: {'line': b'creating /mnt/f/NITS/ANAV/main/install/boundary_mapper/share/ament_index/resource_index\n'}
+[3.982515] (boundary_mapper) StdoutLine: {'line': b'creating /mnt/f/NITS/ANAV/main/install/boundary_mapper/share/ament_index/resource_index/packages\n'}
+[3.990315] (boundary_mapper) StdoutLine: {'line': b'copying resource/boundary_mapper -> /mnt/f/NITS/ANAV/main/install/boundary_mapper/share/ament_index/resource_index/packages\n'}
+[4.007966] (boundary_mapper) StdoutLine: {'line': b'copying package.xml -> /mnt/f/NITS/ANAV/main/install/boundary_mapper/share/boundary_mapper\n'}
+[4.016405] (-) TimerEvent: {}
+[4.017332] (boundary_mapper) StdoutLine: {'line': b'running install_egg_info\n'}
+[4.037028] (boundary_mapper) StdoutLine: {'line': b'Copying ../../../build/boundary_mapper/boundary_mapper.egg-info to /mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper-0.0.0-py3.10.egg-info\n'}
+[4.116489] (-) TimerEvent: {}
+[4.216935] (-) TimerEvent: {}
+[4.309009] (boundary_mapper) StdoutLine: {'line': b'running install_scripts\n'}
+[4.317065] (-) TimerEvent: {}
+[4.414347] (boundary_mapper) StdoutLine: {'line': b'Installing edge_calculator script to /mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/boundary_mapper\n'}
+[4.417240] (-) TimerEvent: {}
+[4.425844] (boundary_mapper) StdoutLine: {'line': b'Installing mapper script to /mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/boundary_mapper\n'}
+[4.438244] (boundary_mapper) StdoutLine: {'line': b'Installing navigator script to /mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/boundary_mapper\n'}
+[4.453311] (boundary_mapper) StdoutLine: {'line': b"writing list of installed files to '/mnt/f/NITS/ANAV/main/build/boundary_mapper/install.log'\n"}
+[4.493603] (boundary_mapper) CommandEnded: {'returncode': 0}
+[4.517405] (-) TimerEvent: {}
+[4.618206] (-) TimerEvent: {}
+[4.756670] (-) TimerEvent: {}
+[4.814256] (boundary_mapper) JobEnded: {'identifier': 'boundary_mapper', 'rc': 0}
+[4.824529] (boundary_mapper_launcher) JobStarted: {'identifier': 'boundary_mapper_launcher'}
+[4.856790] (-) TimerEvent: {}
+[4.957456] (-) TimerEvent: {}
+[5.058090] (-) TimerEvent: {}
+[5.108134] (boundary_mapper_launcher) JobProgress: {'identifier': 'boundary_mapper_launcher', 'progress': 'cmake'}
+[5.137748] (boundary_mapper_launcher) Command: {'cmd': ['/usr/bin/cmake', '/mnt/f/NITS/ANAV/main/ros2_Ws/src/boundary_mapper_launcher', '-DCMAKE_INSTALL_PREFIX=/mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher'], 'cwd': '/mnt/f/NITS/ANAV/main/build/boundary_mapper_launcher', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'rahul'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/rahul'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/install:/mnt/f/NITS/ANAV/main/ros2_Ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'rahul'), ('NAME', 'Rahul'), ('WSL_INTEROP', '/run/WSL/337_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/rahul/.local/bin:/opt/ros/humble/bin:/home/rahul/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/Kubernetes/Minikube:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/MATLAB/R2023b/runtime/win64:/mnt/c/Program Files/MATLAB/R2023b/bin:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin/:/mnt/c/Program Files/IVI Foundation/VISA/Win64/Bin/:/mnt/c/Program Files (x86)/National Instruments/Shared/LabVIEW CLI:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin:/mnt/c/Program Files/nodejs/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/flair:/mnt/c/Program Files/Cloudflare/Cloudflare WARP/:/mnt/c/Users/debas/.cargo/bin:/mnt/c/Users/debas/.local/share/solana/install/active_release/bin:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/debas/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/debas/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files (x86)/MongoDB Atlas CLI/:/mnt/c/Users/debas/AppData/Local/Android/Sdk/platform-tools:/mnt/c/Users/debas/.avm/bin:/mnt/c/Users/debas/AppData/Roaming/npm:/mnt/c/Program Files/MongoDB/Server/6.0/bin:/mnt/c/Users/debas/AppData/Local/Programs/mongosh/:/mnt/c/Users/debas/.deno/bin:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.vscode/extensions/ms-python.debugpy-2025.10.0-win32-x64/bundled/scripts/noConfigScripts:/mnt/c/Users/debas/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand:/snap/bin:/home/rahul/.archon'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/install/boundary_mapper:/mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/mnt/f/NITS/ANAV/main/build/boundary_mapper_launcher'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/python3.10/site-packages:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper_launcher:/mnt/f/NITS/ANAV/main/install/boundary_mapper:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper:/opt/ros/humble'), ('WSLENV', '')]), 'shell': False}
+[5.158184] (-) TimerEvent: {}
+[5.258744] (-) TimerEvent: {}
+[5.359643] (-) TimerEvent: {}
+[5.460230] (-) TimerEvent: {}
+[5.560967] (-) TimerEvent: {}
+[5.661552] (-) TimerEvent: {}
+[5.762073] (-) TimerEvent: {}
+[5.781858] (boundary_mapper_launcher) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[5.862173] (-) TimerEvent: {}
+[5.962688] (-) TimerEvent: {}
+[6.063131] (-) TimerEvent: {}
+[6.163583] (-) TimerEvent: {}
+[6.263998] (-) TimerEvent: {}
+[6.364423] (-) TimerEvent: {}
+[6.464938] (-) TimerEvent: {}
+[6.565597] (-) TimerEvent: {}
+[6.666081] (-) TimerEvent: {}
+[6.751727] (boundary_mapper_launcher) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[6.766174] (-) TimerEvent: {}
+[6.866612] (-) TimerEvent: {}
+[6.967084] (-) TimerEvent: {}
+[7.067563] (-) TimerEvent: {}
+[7.167981] (-) TimerEvent: {}
+[7.268403] (-) TimerEvent: {}
+[7.368791] (-) TimerEvent: {}
+[7.374656] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[7.468948] (-) TimerEvent: {}
+[7.569695] (-) TimerEvent: {}
+[7.670192] (-) TimerEvent: {}
+[7.770672] (-) TimerEvent: {}
+[7.871158] (-) TimerEvent: {}
+[7.946043] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[7.970279] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[7.971402] (-) TimerEvent: {}
+[7.980107] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[7.981585] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[8.030546] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[8.071548] (-) TimerEvent: {}
+[8.172108] (-) TimerEvent: {}
+[8.272798] (-) TimerEvent: {}
+[8.373370] (-) TimerEvent: {}
+[8.473961] (-) TimerEvent: {}
+[8.574435] (-) TimerEvent: {}
+[8.626294] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[8.650055] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[8.651244] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[8.652252] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[8.674533] (-) TimerEvent: {}
+[8.774924] (-) TimerEvent: {}
+[8.820764] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[8.875014] (-) TimerEvent: {}
+[8.975415] (-) TimerEvent: {}
+[9.075808] (-) TimerEvent: {}
+[9.176167] (-) TimerEvent: {}
+[9.276735] (-) TimerEvent: {}
+[9.377397] (-) TimerEvent: {}
+[9.477863] (-) TimerEvent: {}
+[9.578306] (-) TimerEvent: {}
+[9.678868] (-) TimerEvent: {}
+[9.779285] (-) TimerEvent: {}
+[9.879704] (-) TimerEvent: {}
+[9.980092] (-) TimerEvent: {}
+[10.080515] (-) TimerEvent: {}
+[10.108955] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[10.180614] (-) TimerEvent: {}
+[10.281097] (-) TimerEvent: {}
+[10.381492] (-) TimerEvent: {}
+[10.481909] (-) TimerEvent: {}
+[10.582274] (-) TimerEvent: {}
+[10.682654] (-) TimerEvent: {}
+[10.783160] (-) TimerEvent: {}
+[10.883627] (-) TimerEvent: {}
+[10.984060] (-) TimerEvent: {}
+[11.084495] (-) TimerEvent: {}
+[11.184922] (-) TimerEvent: {}
+[11.285695] (-) TimerEvent: {}
+[11.386105] (-) TimerEvent: {}
+[11.486552] (-) TimerEvent: {}
+[11.586975] (-) TimerEvent: {}
+[11.687585] (-) TimerEvent: {}
+[11.788186] (-) TimerEvent: {}
+[11.888649] (-) TimerEvent: {}
+[11.989085] (-) TimerEvent: {}
+[12.089550] (-) TimerEvent: {}
+[12.190158] (-) TimerEvent: {}
+[12.290758] (-) TimerEvent: {}
+[12.391321] (-) TimerEvent: {}
+[12.492073] (-) TimerEvent: {}
+[12.592512] (-) TimerEvent: {}
+[12.693083] (-) TimerEvent: {}
+[12.793796] (-) TimerEvent: {}
+[12.894384] (-) TimerEvent: {}
+[12.994903] (-) TimerEvent: {}
+[13.095416] (-) TimerEvent: {}
+[13.196006] (-) TimerEvent: {}
+[13.296377] (-) TimerEvent: {}
+[13.321391] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Configuring done\n'}
+[13.396475] (-) TimerEvent: {}
+[13.496908] (-) TimerEvent: {}
+[13.512621] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Generating done\n'}
+[13.596991] (-) TimerEvent: {}
+[13.647314] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Build files have been written to: /mnt/f/NITS/ANAV/main/build/boundary_mapper_launcher\n'}
+[13.653113] (boundary_mapper_launcher) CommandEnded: {'returncode': 0}
+[13.658446] (boundary_mapper_launcher) JobProgress: {'identifier': 'boundary_mapper_launcher', 'progress': 'build'}
+[13.663996] (boundary_mapper_launcher) Command: {'cmd': ['/usr/bin/cmake', '--build', '/mnt/f/NITS/ANAV/main/build/boundary_mapper_launcher', '--', '-j8', '-l8'], 'cwd': '/mnt/f/NITS/ANAV/main/build/boundary_mapper_launcher', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'rahul'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/rahul'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/install:/mnt/f/NITS/ANAV/main/ros2_Ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'rahul'), ('NAME', 'Rahul'), ('WSL_INTEROP', '/run/WSL/337_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/rahul/.local/bin:/opt/ros/humble/bin:/home/rahul/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/Kubernetes/Minikube:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/MATLAB/R2023b/runtime/win64:/mnt/c/Program Files/MATLAB/R2023b/bin:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin/:/mnt/c/Program Files/IVI Foundation/VISA/Win64/Bin/:/mnt/c/Program Files (x86)/National Instruments/Shared/LabVIEW CLI:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin:/mnt/c/Program Files/nodejs/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/flair:/mnt/c/Program Files/Cloudflare/Cloudflare WARP/:/mnt/c/Users/debas/.cargo/bin:/mnt/c/Users/debas/.local/share/solana/install/active_release/bin:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/debas/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/debas/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files (x86)/MongoDB Atlas CLI/:/mnt/c/Users/debas/AppData/Local/Android/Sdk/platform-tools:/mnt/c/Users/debas/.avm/bin:/mnt/c/Users/debas/AppData/Roaming/npm:/mnt/c/Program Files/MongoDB/Server/6.0/bin:/mnt/c/Users/debas/AppData/Local/Programs/mongosh/:/mnt/c/Users/debas/.deno/bin:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.vscode/extensions/ms-python.debugpy-2025.10.0-win32-x64/bundled/scripts/noConfigScripts:/mnt/c/Users/debas/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand:/snap/bin:/home/rahul/.archon'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/install/boundary_mapper:/mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/mnt/f/NITS/ANAV/main/build/boundary_mapper_launcher'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/python3.10/site-packages:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper_launcher:/mnt/f/NITS/ANAV/main/install/boundary_mapper:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper:/opt/ros/humble'), ('WSLENV', '')]), 'shell': False}
+[13.697066] (-) TimerEvent: {}
+[13.758265] (boundary_mapper_launcher) CommandEnded: {'returncode': 0}
+[13.773579] (boundary_mapper_launcher) JobProgress: {'identifier': 'boundary_mapper_launcher', 'progress': 'install'}
+[13.787443] (boundary_mapper_launcher) Command: {'cmd': ['/usr/bin/cmake', '--install', '/mnt/f/NITS/ANAV/main/build/boundary_mapper_launcher'], 'cwd': '/mnt/f/NITS/ANAV/main/build/boundary_mapper_launcher', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'rahul'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/rahul'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/install:/mnt/f/NITS/ANAV/main/ros2_Ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'rahul'), ('NAME', 'Rahul'), ('WSL_INTEROP', '/run/WSL/337_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/rahul/.local/bin:/opt/ros/humble/bin:/home/rahul/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/Kubernetes/Minikube:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/MATLAB/R2023b/runtime/win64:/mnt/c/Program Files/MATLAB/R2023b/bin:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin/:/mnt/c/Program Files/IVI Foundation/VISA/Win64/Bin/:/mnt/c/Program Files (x86)/National Instruments/Shared/LabVIEW CLI:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin:/mnt/c/Program Files/nodejs/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/flair:/mnt/c/Program Files/Cloudflare/Cloudflare WARP/:/mnt/c/Users/debas/.cargo/bin:/mnt/c/Users/debas/.local/share/solana/install/active_release/bin:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/debas/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/debas/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/debas/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files (x86)/MongoDB Atlas CLI/:/mnt/c/Users/debas/AppData/Local/Android/Sdk/platform-tools:/mnt/c/Users/debas/.avm/bin:/mnt/c/Users/debas/AppData/Roaming/npm:/mnt/c/Program Files/MongoDB/Server/6.0/bin:/mnt/c/Users/debas/AppData/Local/Programs/mongosh/:/mnt/c/Users/debas/.deno/bin:/mnt/c/Program Files/flair:/mnt/c/Users/debas/.vscode/extensions/ms-python.debugpy-2025.10.0-win32-x64/bundled/scripts/noConfigScripts:/mnt/c/Users/debas/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand:/snap/bin:/home/rahul/.archon'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/install/boundary_mapper:/mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/mnt/f/NITS/ANAV/main/build/boundary_mapper_launcher'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/mnt/f/NITS/ANAV/main/install/boundary_mapper/lib/python3.10/site-packages:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper_launcher:/mnt/f/NITS/ANAV/main/install/boundary_mapper:/mnt/f/NITS/ANAV/main/ros2_Ws/install/boundary_mapper:/opt/ros/humble'), ('WSLENV', '')]), 'shell': False}
+[13.797171] (-) TimerEvent: {}
+[13.799394] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[13.807313] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher/share/boundary_mapper_launcher/launch\n'}
+[13.839144] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher/share/boundary_mapper_launcher/launch/robot.launch.py\n'}
+[13.897255] (-) TimerEvent: {}
+[13.927498] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher/share/ament_index/resource_index/package_run_dependencies/boundary_mapper_launcher\n'}
+[13.997354] (-) TimerEvent: {}
+[14.006793] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher/share/ament_index/resource_index/parent_prefix_path/boundary_mapper_launcher\n'}
+[14.077743] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher/share/boundary_mapper_launcher/environment/ament_prefix_path.sh\n'}
+[14.097454] (-) TimerEvent: {}
+[14.171896] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher/share/boundary_mapper_launcher/environment/ament_prefix_path.dsv\n'}
+[14.197594] (-) TimerEvent: {}
+[14.270873] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher/share/boundary_mapper_launcher/environment/path.sh\n'}
+[14.297752] (-) TimerEvent: {}
+[14.329281] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher/share/boundary_mapper_launcher/environment/path.dsv\n'}
+[14.397953] (-) TimerEvent: {}
+[14.450138] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher/share/boundary_mapper_launcher/local_setup.bash\n'}
+[14.498088] (-) TimerEvent: {}
+[14.605497] (-) TimerEvent: {}
+[14.709783] (-) TimerEvent: {}
+[14.815307] (-) TimerEvent: {}
+[14.932517] (-) TimerEvent: {}
+[15.041288] (-) TimerEvent: {}
+[15.146362] (-) TimerEvent: {}
+[15.207755] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher/share/boundary_mapper_launcher/local_setup.sh\n'}
+[15.246495] (-) TimerEvent: {}
+[15.335146] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher/share/boundary_mapper_launcher/local_setup.zsh\n'}
+[15.346645] (-) TimerEvent: {}
+[15.395502] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher/share/boundary_mapper_launcher/local_setup.dsv\n'}
+[15.446756] (-) TimerEvent: {}
+[15.450787] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher/share/boundary_mapper_launcher/package.dsv\n'}
+[15.531973] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher/share/ament_index/resource_index/packages/boundary_mapper_launcher\n'}
+[15.546930] (-) TimerEvent: {}
+[15.643133] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher/share/boundary_mapper_launcher/cmake/boundary_mapper_launcherConfig.cmake\n'}
+[15.647118] (-) TimerEvent: {}
+[15.714311] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher/share/boundary_mapper_launcher/cmake/boundary_mapper_launcherConfig-version.cmake\n'}
+[15.747281] (-) TimerEvent: {}
+[15.799953] (boundary_mapper_launcher) StdoutLine: {'line': b'-- Installing: /mnt/f/NITS/ANAV/main/install/boundary_mapper_launcher/share/boundary_mapper_launcher/package.xml\n'}
+[15.847401] (-) TimerEvent: {}
+[15.853515] (boundary_mapper_launcher) CommandEnded: {'returncode': 0}
+[15.947522] (-) TimerEvent: {}
+[16.047990] (-) TimerEvent: {}
+[16.148384] (-) TimerEvent: {}
+[16.249005] (-) TimerEvent: {}
+[16.313599] (boundary_mapper_launcher) JobEnded: {'identifier': 'boundary_mapper_launcher', 'rc': 0}
+[16.320635] (-) EventReactorShutdown: {}

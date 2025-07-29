@@ -1,0 +1,5 @@
+[console_scripts]
+edge_calculator = boundary_mapper.edge_calculator:main
+mapper = boundary_mapper.mapper:main
+navigator = boundary_mapper.navigator:main
+
