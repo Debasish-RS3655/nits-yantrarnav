@@ -28,7 +28,7 @@ class BoundaryMapper(Node):
         self.declare_parameter('cloud_topic', '/rtabmap/cloud_ground')
         self.declare_parameter('min_segment_length', 0.5)
         self.declare_parameter('min_yellow_points', 20)
-        self.declare_parameter('min_yellow_density', 5.0)  # points per m²
+        self.declare_parameter('min_yellow_density', 5)  # points per m²
         self.declare_parameter('outlier_mean_k', 30)
         self.declare_parameter('outlier_stddev_mul', 1.0)
         # Arm equality thresholds (meters)
@@ -63,7 +63,7 @@ class BoundaryMapper(Node):
         self.current_z = 0.0
 
         self.create_subscription(PointCloud2, topic, self.cloud_callback, 10)
-        self.create_subscription(PoseStamped, '/mavros/local_position/pose', self.pose_cb, 10)
+        self.create_subscription(PoseStamped, '/mavros/vision_pose/pose', self.pose_cb, 10)
 
         self.pub = self.create_publisher(String, 'boundary_edges', 10)
         self.marker_pub = self.create_publisher(MarkerArray, 'boundary_markers', 10)
@@ -144,7 +144,7 @@ class BoundaryMapper(Node):
                 s = r+g+b
                 if s == 0: continue
                 rn, gn = r/s, g/s
-                if rn > 0.3508 and gn > 0.3508 and rn > gn:
+                if rn > 0.351 and gn > 0.351 and rn > gn:
                     pts.append((x,y))
                     xyzrgb.append((x,y,z))
         else:
@@ -152,7 +152,7 @@ class BoundaryMapper(Node):
                 s = r+g+b
                 if s == 0: continue
                 rn, gn = r/s, g/s
-                if rn > 0.3508 and gn > 0.3508 and rn > gn:
+                if rn > 0.351 and gn > 0.351 and rn > gn:
                     pts.append((x,y))
                     xyzrgb.append((x,y,z))
 
