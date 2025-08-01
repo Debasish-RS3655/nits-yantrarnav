@@ -1,0 +1,21 @@
+[1.959s] Invoking command in '/home/nits/master_controller/nits-yantrarnav/build/boundary_mapper': NX_CONNECTION=172.20.10.2 53034 172.20.10.8 4000 PYTHONPATH=/home/nits/master_controller/nits-yantrarnav/build/boundary_mapper/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper/build --no-deps symlink_data
+[2.320s] /home/nits/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[2.320s]   warnings.warn(msg)
+[2.743s] running develop
+[3.292s] running egg_info
+[3.330s] writing boundary_mapper.egg-info/PKG-INFO
+[3.331s] writing dependency_links to boundary_mapper.egg-info/dependency_links.txt
+[3.332s] writing entry points to boundary_mapper.egg-info/entry_points.txt
+[3.332s] writing requirements to boundary_mapper.egg-info/requires.txt
+[3.332s] writing top-level names to boundary_mapper.egg-info/top_level.txt
+[3.414s] reading manifest file 'boundary_mapper.egg-info/SOURCES.txt'
+[3.417s] writing manifest file 'boundary_mapper.egg-info/SOURCES.txt'
+[3.568s] running build_ext
+[3.569s] Creating /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages/boundary-mapper.egg-link (link to .)
+[3.571s] Installing edge_calculator script to /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/boundary_mapper
+[3.573s] Installing mapper script to /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/boundary_mapper
+[3.573s] Installing navigator script to /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/boundary_mapper
+[3.574s] 
+[3.574s] Installed /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper
+[3.574s] running symlink_data
+[3.687s] Invoked command in '/home/nits/master_controller/nits-yantrarnav/build/boundary_mapper' returned '0': NX_CONNECTION=172.20.10.2 53034 172.20.10.8 4000 PYTHONPATH=/home/nits/master_controller/nits-yantrarnav/build/boundary_mapper/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper/build --no-deps symlink_data

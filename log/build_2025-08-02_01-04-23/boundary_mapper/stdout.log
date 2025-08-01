@@ -1,0 +1,17 @@
+running develop
+running egg_info
+writing boundary_mapper.egg-info/PKG-INFO
+writing dependency_links to boundary_mapper.egg-info/dependency_links.txt
+writing entry points to boundary_mapper.egg-info/entry_points.txt
+writing requirements to boundary_mapper.egg-info/requires.txt
+writing top-level names to boundary_mapper.egg-info/top_level.txt
+reading manifest file 'boundary_mapper.egg-info/SOURCES.txt'
+writing manifest file 'boundary_mapper.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages/boundary-mapper.egg-link (link to .)
+Installing edge_calculator script to /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/boundary_mapper
+Installing mapper script to /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/boundary_mapper
+Installing navigator script to /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/boundary_mapper
+
+Installed /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper
+running symlink_data

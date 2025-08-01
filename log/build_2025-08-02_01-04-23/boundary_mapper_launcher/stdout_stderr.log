@@ -1,0 +1,18 @@
+-- Install configuration: ""
+-- Execute custom install script
+-- Up-to-date symlink: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/launch/robot.launch.py
+-- Up-to-date symlink: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/ament_index/resource_index/package_run_dependencies/boundary_mapper_launcher
+-- Up-to-date symlink: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/ament_index/resource_index/parent_prefix_path/boundary_mapper_launcher
+-- Up-to-date symlink: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/environment/path.sh
+-- Up-to-date symlink: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/environment/path.dsv
+-- Up-to-date symlink: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/local_setup.bash
+-- Up-to-date symlink: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/local_setup.sh
+-- Up-to-date symlink: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/local_setup.zsh
+-- Up-to-date symlink: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/local_setup.dsv
+-- Symlinking: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/package.dsv
+-- Up-to-date symlink: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/ament_index/resource_index/packages/boundary_mapper_launcher
+-- Up-to-date symlink: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/cmake/boundary_mapper_launcherConfig.cmake
+-- Up-to-date symlink: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/cmake/boundary_mapper_launcherConfig-version.cmake
+-- Up-to-date symlink: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/package.xml

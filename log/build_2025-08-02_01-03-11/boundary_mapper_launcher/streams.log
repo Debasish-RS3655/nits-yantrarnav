@@ -1,0 +1,42 @@
+[0.022s] Invoking command in '/home/nits/master_controller/nits-yantrarnav/build/boundary_mapper_launcher': AMENT_PREFIX_PATH=/home/nits/master_controller/nits-yantrarnav/install/boundary_mapper:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/nits/ros2WsNew/ros2_ws/install/video_recorder_pkg:/home/nits/ros2WsNew/ros2_ws/install/static_transforms_pkg:/opt/ros/humble NX_CONNECTION=172.20.10.2 53034 172.20.10.8 4000 PYTHONPATH=/home/nits/master_controller/nits-yantrarnav/build/boundary_mapper:/home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake /home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/boundary_mapper_launcher -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher
+[0.357s] -- The C compiler identification is GNU 11.4.0
+[0.589s] -- The CXX compiler identification is GNU 11.4.0
+[0.658s] -- Detecting C compiler ABI info
+[0.883s] -- Detecting C compiler ABI info - done
+[0.900s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.901s] -- Detecting C compile features
+[0.906s] -- Detecting C compile features - done
+[0.913s] -- Detecting CXX compiler ABI info
+[1.152s] -- Detecting CXX compiler ABI info - done
+[1.177s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[1.177s] -- Detecting CXX compile features
+[1.178s] -- Detecting CXX compile features - done
+[1.195s] -- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+[2.298s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[2.477s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[2.748s] -- Configuring done
+[2.756s] -- Generating done
+[2.760s] -- Build files have been written to: /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper_launcher
+[2.773s] Invoked command in '/home/nits/master_controller/nits-yantrarnav/build/boundary_mapper_launcher' returned '0': AMENT_PREFIX_PATH=/home/nits/master_controller/nits-yantrarnav/install/boundary_mapper:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/nits/ros2WsNew/ros2_ws/install/video_recorder_pkg:/home/nits/ros2WsNew/ros2_ws/install/static_transforms_pkg:/opt/ros/humble NX_CONNECTION=172.20.10.2 53034 172.20.10.8 4000 PYTHONPATH=/home/nits/master_controller/nits-yantrarnav/build/boundary_mapper:/home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake /home/nits/master_controller/nits-yantrarnav/ros2_Ws/src/boundary_mapper_launcher -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher
+[2.778s] Invoking command in '/home/nits/master_controller/nits-yantrarnav/build/boundary_mapper_launcher': AMENT_PREFIX_PATH=/home/nits/master_controller/nits-yantrarnav/install/boundary_mapper:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/nits/ros2WsNew/ros2_ws/install/video_recorder_pkg:/home/nits/ros2WsNew/ros2_ws/install/static_transforms_pkg:/opt/ros/humble NX_CONNECTION=172.20.10.2 53034 172.20.10.8 4000 PYTHONPATH=/home/nits/master_controller/nits-yantrarnav/build/boundary_mapper:/home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper_launcher -- -j6 -l6
+[2.888s] Invoked command in '/home/nits/master_controller/nits-yantrarnav/build/boundary_mapper_launcher' returned '0': AMENT_PREFIX_PATH=/home/nits/master_controller/nits-yantrarnav/install/boundary_mapper:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/nits/ros2WsNew/ros2_ws/install/video_recorder_pkg:/home/nits/ros2WsNew/ros2_ws/install/static_transforms_pkg:/opt/ros/humble NX_CONNECTION=172.20.10.2 53034 172.20.10.8 4000 PYTHONPATH=/home/nits/master_controller/nits-yantrarnav/build/boundary_mapper:/home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper_launcher -- -j6 -l6
+[2.911s] Invoking command in '/home/nits/master_controller/nits-yantrarnav/build/boundary_mapper_launcher': AMENT_PREFIX_PATH=/home/nits/master_controller/nits-yantrarnav/install/boundary_mapper:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/nits/ros2WsNew/ros2_ws/install/video_recorder_pkg:/home/nits/ros2WsNew/ros2_ws/install/static_transforms_pkg:/opt/ros/humble NX_CONNECTION=172.20.10.2 53034 172.20.10.8 4000 PYTHONPATH=/home/nits/master_controller/nits-yantrarnav/build/boundary_mapper:/home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper_launcher
+[2.926s] -- Install configuration: ""
+[2.927s] -- Execute custom install script
+[2.930s] -- Symlinking: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/launch/robot.launch.py
+[2.953s] -- Symlinking: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/ament_index/resource_index/package_run_dependencies/boundary_mapper_launcher
+[2.980s] -- Symlinking: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/ament_index/resource_index/parent_prefix_path/boundary_mapper_launcher
+[3.006s] -- Symlinking: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/environment/ament_prefix_path.sh
+[3.026s] -- Symlinking: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/environment/ament_prefix_path.dsv
+[3.056s] -- Symlinking: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/environment/path.sh
+[3.080s] -- Symlinking: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/environment/path.dsv
+[3.104s] -- Symlinking: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/local_setup.bash
+[3.125s] -- Symlinking: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/local_setup.sh
+[3.150s] -- Symlinking: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/local_setup.zsh
+[3.172s] -- Symlinking: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/local_setup.dsv
+[3.209s] -- Symlinking: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/package.dsv
+[3.238s] -- Symlinking: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/ament_index/resource_index/packages/boundary_mapper_launcher
+[3.258s] -- Symlinking: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/cmake/boundary_mapper_launcherConfig.cmake
+[3.280s] -- Symlinking: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/cmake/boundary_mapper_launcherConfig-version.cmake
+[3.302s] -- Symlinking: /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper_launcher/share/boundary_mapper_launcher/package.xml
+[3.330s] Invoked command in '/home/nits/master_controller/nits-yantrarnav/build/boundary_mapper_launcher' returned '0': AMENT_PREFIX_PATH=/home/nits/master_controller/nits-yantrarnav/install/boundary_mapper:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/nits/ros2WsNew/ros2_ws/install/video_recorder_pkg:/home/nits/ros2WsNew/ros2_ws/install/static_transforms_pkg:/opt/ros/humble NX_CONNECTION=172.20.10.2 53034 172.20.10.8 4000 PYTHONPATH=/home/nits/master_controller/nits-yantrarnav/build/boundary_mapper:/home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper_launcher

@@ -1,0 +1,15 @@
+package.xml
+setup.cfg
+setup.py
+boundary_mapper/__init__.py
+boundary_mapper/edge_calculator.py
+boundary_mapper/mapper.py
+boundary_mapper/navigator.py
+boundary_mapper.egg-info/PKG-INFO
+boundary_mapper.egg-info/SOURCES.txt
+boundary_mapper.egg-info/dependency_links.txt
+boundary_mapper.egg-info/entry_points.txt
+boundary_mapper.egg-info/requires.txt
+boundary_mapper.egg-info/top_level.txt
+boundary_mapper.egg-info/zip-safe
+resource/boundary_mapper

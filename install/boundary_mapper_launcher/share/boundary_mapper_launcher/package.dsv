@@ -1,0 +1,8 @@
+source;share/boundary_mapper_launcher/hook/cmake_prefix_path.ps1
+source;share/boundary_mapper_launcher/hook/cmake_prefix_path.dsv
+source;share/boundary_mapper_launcher/hook/cmake_prefix_path.sh
+source;share/boundary_mapper_launcher/local_setup.bash
+source;share/boundary_mapper_launcher/local_setup.dsv
+source;share/boundary_mapper_launcher/local_setup.ps1
+source;share/boundary_mapper_launcher/local_setup.sh
+source;share/boundary_mapper_launcher/local_setup.zsh
