@@ -1,3 +1,0 @@
-numpy
-ros_numpy
-setuptools
