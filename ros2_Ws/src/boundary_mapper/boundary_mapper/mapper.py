@@ -31,6 +31,8 @@ class BoundaryMapper(Node):
         self.declare_parameter('min_yellow_density', 5.5)  # points per m²
         self.declare_parameter('outlier_mean_k', 30)
         self.declare_parameter('outlier_stddev_mul', 1.0)
+        # NEW: arms equality threshold (meters)
+        self.declare_parameter('l_arm_equal_threshold', 4.0)
 
         topic = self.get_parameter('cloud_topic').value
         self.min_segment_length = self.get_parameter('min_segment_length').value
@@ -38,6 +40,8 @@ class BoundaryMapper(Node):
         self.min_yellow_density = self.get_parameter('min_yellow_density').value
         self.outlier_mean_k = self.get_parameter('outlier_mean_k').value
         self.outlier_stddev_mul = self.get_parameter('outlier_stddev_mul').value
+        # NEW: store threshold
+        self.l_arm_equal_threshold = self.get_parameter('l_arm_equal_threshold').value
 
         self.current_pose = None
         self.current_z = 0.0
@@ -118,10 +122,14 @@ class BoundaryMapper(Node):
             A, I, C = lshape
             len1 = np.linalg.norm(A - I)
             len2 = np.linalg.norm(C - I)
-            if len1 >= self.min_segment_length and len2 >= self.min_segment_length:
+            # MODIFIED: must satisfy min lengths AND near-equal arms
+            if (len1 >= self.min_segment_length and
+                len2 >= self.min_segment_length and
+                abs(len1 - len2) <= self.l_arm_equal_threshold):  # NEW equality check
                 marker_points = [A, I, C]
                 coords = [f"{p[0]:.3f},{p[1]:.3f},{z_on_plane(p[0],p[1]):.3f}" for p in marker_points]
                 self.publish_edge(coords)
+            # else: fall through to line detection
 
         if not coords:
             # fallback: try a line
