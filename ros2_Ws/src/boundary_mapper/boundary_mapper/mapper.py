@@ -28,11 +28,19 @@ class BoundaryMapper(Node):
         self.declare_parameter('cloud_topic', '/rtabmap/cloud_ground')
         self.declare_parameter('min_segment_length', 0.5)
         self.declare_parameter('min_yellow_points', 20)
-        self.declare_parameter('min_yellow_density', 5.5)  # points per m²
+        self.declare_parameter('min_yellow_density', 5.0)  # points per m²
         self.declare_parameter('outlier_mean_k', 30)
         self.declare_parameter('outlier_stddev_mul', 1.0)
-        # NEW: arms equality threshold (meters)
-        self.declare_parameter('l_arm_equal_threshold', 4.0)
+        # Arm equality thresholds (meters)
+        self.declare_parameter('l_arm_equal_threshold', 4.0)           # default case
+        self.declare_parameter('l_long_edge_min_length', 8.0)          # when longer arm >= this
+        self.declare_parameter('l_long_edge_equal_threshold', 11.5)    # allowed diff for long edges
+        # Two-corner (multi-edge) controls
+        self.declare_parameter('detect_two_edges', True)
+        self.declare_parameter('second_edge_exclusion_radius', 2.0)
+        # NEW: multi-edge validity (parallel arms should be nearly equal)
+        self.declare_parameter('multi_edge_len_match_tol', 2.0)        # meters
+        self.declare_parameter('multi_edge_parallel_cos_min', 0.85)    # cosine of angle
 
         topic = self.get_parameter('cloud_topic').value
         self.min_segment_length = self.get_parameter('min_segment_length').value
@@ -40,8 +48,16 @@ class BoundaryMapper(Node):
         self.min_yellow_density = self.get_parameter('min_yellow_density').value
         self.outlier_mean_k = self.get_parameter('outlier_mean_k').value
         self.outlier_stddev_mul = self.get_parameter('outlier_stddev_mul').value
-        # NEW: store threshold
+
         self.l_arm_equal_threshold = self.get_parameter('l_arm_equal_threshold').value
+        self.l_long_edge_min_length = self.get_parameter('l_long_edge_min_length').value
+        self.l_long_edge_equal_threshold = self.get_parameter('l_long_edge_equal_threshold').value
+
+        self.detect_two_edges = self.get_parameter('detect_two_edges').value
+        self.second_edge_exclusion_radius = self.get_parameter('second_edge_exclusion_radius').value
+
+        self.multi_edge_len_match_tol = self.get_parameter('multi_edge_len_match_tol').value
+        self.multi_edge_parallel_cos_min = self.get_parameter('multi_edge_parallel_cos_min').value
 
         self.current_pose = None
         self.current_z = 0.0
@@ -67,6 +83,54 @@ class BoundaryMapper(Node):
         coeffs, *_ = np.linalg.lstsq(A, z, rcond=None)
         return coeffs  # a, b, c
 
+    def edge_accepts(self, len1, len2):
+        """Apply your L-arm equality rules (short/long thresholds)."""
+        if len1 < self.min_segment_length or len2 < self.min_segment_length:
+            return False
+        longer = max(len1, len2)
+        diff = abs(len1 - len2)
+        if diff <= self.l_arm_equal_threshold:
+            return True
+        if longer >= self.l_long_edge_min_length and diff <= self.l_long_edge_equal_threshold:
+            return True
+        return False
+
+    def validate_two_edges(self, A1, I1, C1, A2, I2, C2):
+        """Check that corresponding parallel arms across corners have near-equal lengths."""
+        v1a = A1 - I1; v1c = C1 - I1
+        v2a = A2 - I2; v2c = C2 - I2
+
+        def norm(v): return np.linalg.norm(v)
+        def unit(v): 
+            n = norm(v); 
+            return v / n if n > 1e-9 else v
+
+        d1a, d1c = unit(v1a), unit(v1c)
+        d2a, d2c = unit(v2a), unit(v2c)
+
+        # Pair arm from corner1 with the most parallel arm from corner2
+        # Pair 1: choose for v1a
+        if abs(d1a @ d2a) >= abs(d1a @ d2c):
+            pair1_len_diff = abs(norm(v1a) - norm(v2a))
+            pair1_cos = abs(d1a @ d2a)
+            # The other pair is v1c with v2c
+            pair2_len_diff = abs(norm(v1c) - norm(v2c))
+            pair2_cos = abs(d1c @ d2c)
+        else:
+            pair1_len_diff = abs(norm(v1a) - norm(v2c))
+            pair1_cos = abs(d1a @ d2c)
+            # The other pair is v1c with v2a
+            pair2_len_diff = abs(norm(v1c) - norm(v2a))
+            pair2_cos = abs(d1c @ d2a)
+
+        # Both corresponding sides must be sufficiently parallel and near-equal length
+        if (pair1_cos >= self.multi_edge_parallel_cos_min and
+            pair2_cos >= self.multi_edge_parallel_cos_min and
+            pair1_len_diff <= self.multi_edge_len_match_tol and
+            pair2_len_diff <= self.multi_edge_len_match_tol):
+            return True
+        return False
+
     def cloud_callback(self, msg: PointCloud2):
         pts = []
         xyzrgb = []
@@ -80,7 +144,7 @@ class BoundaryMapper(Node):
                 s = r+g+b
                 if s == 0: continue
                 rn, gn = r/s, g/s
-                if rn > 0.351 and gn > 0.351 and rn > gn:
+                if rn > 0.3508 and gn > 0.3508 and rn > gn:
                     pts.append((x,y))
                     xyzrgb.append((x,y,z))
         else:
@@ -88,7 +152,7 @@ class BoundaryMapper(Node):
                 s = r+g+b
                 if s == 0: continue
                 rn, gn = r/s, g/s
-                if rn > 0.351 and gn > 0.351 and rn > gn:
+                if rn > 0.3508 and gn > 0.3508 and rn > gn:
                     pts.append((x,y))
                     xyzrgb.append((x,y,z))
 
@@ -113,36 +177,58 @@ class BoundaryMapper(Node):
         def z_on_plane(x,y):
             return coeffs[0]*x + coeffs[1]*y + coeffs[2]
 
-        coords = []
-        marker_points = []
-
-        # Try L-shape detection
+        # ---- Exclusive decision path: try TWO_EDGES -> EDGE -> LINE ----
+        # 1) Try two corners
+        two_edges_done = False
+        if self.detect_two_edges:
+            lshape1 = self.detect_lshape(pts_np)
+            if lshape1:
+                A1, I1, C1 = lshape1
+                len1_1 = np.linalg.norm(A1 - I1)
+                len1_2 = np.linalg.norm(C1 - I1)
+                if self.edge_accepts(len1_1, len1_2):
+                    # search second corner after excluding vicinity around I1
+                    mask = np.linalg.norm(pts_np - I1, axis=1) > self.second_edge_exclusion_radius
+                    remaining = pts_np[mask]
+                    if len(remaining) >= 4:
+                        lshape2 = self.detect_lshape(remaining)
+                        if lshape2:
+                            A2, I2, C2 = lshape2
+                            len2_1 = np.linalg.norm(A2 - I2)
+                            len2_2 = np.linalg.norm(C2 - I2)
+                            if self.edge_accepts(len2_1, len2_2):
+                                # validate rectangle-like: parallel pairs near-equal
+                                if self.validate_two_edges(A1, I1, C1, A2, I2, C2):
+                                    coords1 = [f"{p[0]:.3f},{p[1]:.3f},{z_on_plane(p[0],p[1]):.3f}" for p in [A1, I1, C1]]
+                                    coords2 = [f"{p[0]:.3f},{p[1]:.3f},{z_on_plane(p[0],p[1]):.3f}" for p in [A2, I2, C2]]
+                                    self.publish_two_edges(coords1, coords2)
+                                    self.publish_markers_two(msg.header.frame_id or "map", msg.header.stamp,
+                                                             [A1, I1, C1], [A2, I2, C2], z_on_plane, xyzrgb)
+                                    return  # EXCLUSIVE: stop here
+        # 2) Try single edge
         lshape = self.detect_lshape(pts_np)
         if lshape:
             A, I, C = lshape
             len1 = np.linalg.norm(A - I)
             len2 = np.linalg.norm(C - I)
-            # MODIFIED: must satisfy min lengths AND near-equal arms
-            if (len1 >= self.min_segment_length and
-                len2 >= self.min_segment_length and
-                abs(len1 - len2) <= self.l_arm_equal_threshold):  # NEW equality check
-                marker_points = [A, I, C]
-                coords = [f"{p[0]:.3f},{p[1]:.3f},{z_on_plane(p[0],p[1]):.3f}" for p in marker_points]
+            if self.edge_accepts(len1, len2):
+                coords = [f"{p[0]:.3f},{p[1]:.3f},{z_on_plane(p[0],p[1]):.3f}" for p in [A, I, C]]
                 self.publish_edge(coords)
-            # else: fall through to line detection
+                self.publish_markers(msg.header.frame_id or "map", msg.header.stamp, [A, I, C], z_on_plane, xyzrgb)
+                return  # EXCLUSIVE
 
-        if not coords:
-            # fallback: try a line
-            line = self.detect_line(pts_np)
-            if line:
-                P1, P2 = line
-                marker_points = [P1, P2]
-                coords = [f"{P1[0]:.3f},{P1[1]:.3f},{z_on_plane(P1[0],P1[1]):.3f}",
-                          f"{P2[0]:.3f},{P2[1]:.3f},{z_on_plane(P2[0],P2[1]):.3f}"]
-                self.publish_line(coords)
+        # 3) Fallback: line
+        line = self.detect_line(pts_np)
+        if line:
+            P1, P2 = line
+            coords = [f"{P1[0]:.3f},{P1[1]:.3f},{z_on_plane(P1[0],P1[1]):.3f}",
+                      f"{P2[0]:.3f},{P2[1]:.3f},{z_on_plane(P2[0],P2[1]):.3f}"]
+            self.publish_line(coords)
+            self.publish_markers(msg.header.frame_id or "map", msg.header.stamp, [P1, P2], z_on_plane, xyzrgb)
+            return  # EXCLUSIVE
 
-        if marker_points:
-            self.publish_markers(msg.header.frame_id or "map", msg.header.stamp, marker_points, z_on_plane, xyzrgb)
+        # If nothing matched, publish nothing this cycle
+        return
 
     def detect_lshape(self, pts2d):
         best = None
@@ -194,6 +280,11 @@ class BoundaryMapper(Node):
                 best = (Pmin,Pmax)
         return best
 
+    def publish_two_edges(self, coords1, coords2):
+        msg = String()
+        msg.data = 'two_edges:' + ';'.join(coords1) + '|' + ';'.join(coords2)
+        self.pub.publish(msg)
+
     def publish_edge(self, coords):
         msg = String(); msg.data = 'edge:' + ';'.join(coords)
         self.pub.publish(msg)
@@ -202,10 +293,9 @@ class BoundaryMapper(Node):
         msg = String(); msg.data = 'line:' + ';'.join(coords)
         self.pub.publish(msg)
 
-    def publish_markers(self, frame_id, stamp, points, z_func, xyzrgb):
+    def publish_markers_two(self, frame_id, stamp, points1, points2, z_func, xyzrgb):
         ma = MarkerArray()
 
-        # Yellow points
         m = Marker()
         m.header.frame_id = frame_id
         m.header.stamp = stamp
@@ -219,7 +309,50 @@ class BoundaryMapper(Node):
             m.points.append(gp)
         ma.markers.append(m)
 
-        # Boundary line
+        l1 = Marker()
+        l1.header.frame_id = frame_id
+        l1.header.stamp = stamp
+        l1.ns = "boundary_line"
+        l1.id = 1
+        l1.type = Marker.LINE_STRIP
+        l1.scale.x = 0.05
+        l1.color.r = 0.0; l1.color.g = 1.0; l1.color.b = 0.0; l1.color.a = 1.0
+        for p in points1:
+            gp = GeoPoint(x=float(p[0]), y=float(p[1]), z=z_func(p[0],p[1]))
+            l1.points.append(gp)
+        ma.markers.append(l1)
+
+        l2 = Marker()
+        l2.header.frame_id = frame_id
+        l2.header.stamp = stamp
+        l2.ns = "boundary_line"
+        l2.id = 2
+        l2.type = Marker.LINE_STRIP
+        l2.scale.x = 0.05
+        l2.color.r = 0.0; l2.color.g = 1.0; l2.color.b = 0.0; l2.color.a = 1.0
+        for p in points2:
+            gp = GeoPoint(x=float(p[0]), y=float(p[1]), z=z_func(p[0],p[1]))
+            l2.points.append(gp)
+        ma.markers.append(l2)
+
+        self.marker_pub.publish(ma)
+
+    def publish_markers(self, frame_id, stamp, points, z_func, xyzrgb):
+        ma = MarkerArray()
+
+        m = Marker()
+        m.header.frame_id = frame_id
+        m.header.stamp = stamp
+        m.ns = "yellow_points"
+        m.id = 0
+        m.type = Marker.SPHERE_LIST
+        m.scale.x = m.scale.y = m.scale.z = 0.03
+        m.color.r = 1.0; m.color.g = 1.0; m.color.b = 0.0; m.color.a = 1.0
+        for (x,y,z) in xyzrgb:
+            gp = GeoPoint(x=float(x),y=float(y),z=float(z))
+            m.points.append(gp)
+        ma.markers.append(m)
+
         l = Marker()
         l.header.frame_id = frame_id
         l.header.stamp = stamp
