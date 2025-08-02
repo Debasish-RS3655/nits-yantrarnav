@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import QoSProfile, ReliabilityPolicy
-from mavros_msgs.msg import PositionTarget
+from sensor_msgs.msg import PointCloud2
+from mavros_msgs.msg import PositionTarget, State
 from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import String
 from visualization_msgs.msg import Marker, MarkerArray
@@ -17,54 +17,44 @@ class BoundaryNavigator(Node):
         # parameters
         self.declare_parameter('step_size', 0.5)
         self.declare_parameter('slide_tol', 0.1)
-        self.declare_parameter('min_takeoff_height', 1.0)  # z gate for first setpoint
-        self.declare_parameter('arrival_tol', 1.0)         # meters to trigger next setpoint
-
-        self.step = float(self.get_parameter('step_size').value)
-        self.slide_tol = float(self.get_parameter('slide_tol').value)
-        self.min_takeoff_height = float(self.get_parameter('min_takeoff_height').value)
-        self.arrival_tol = float(self.get_parameter('arrival_tol').value)
+        self.step = self.get_parameter('step_size').value
+        self.slide_tol = self.get_parameter('slide_tol').value
 
         # state
         self.current_pose = None
+        self.armed = False
+        self.mode = ''
         self.phase = 0   # 0=forward_x, 1=follow_line, 2=align_edge, 3=return_right, 4=done
-        self.line_pts = None
-        self.edge_pts = None
-        self.edge_dir = None
+        self.line_pts = None  # list of (x, y, z)
+        self.edge_pts = None  # list of (x, y, z)
+        self.edge_dir = None  # +1 or -1 for y direction on edge alignment
         self.current_target = None
-        self.last_setpoint = None  # (x,y,z)
-        self.takeoff_gate_open = False
-        self._takeoff_log_once = False
 
-        # subscribers (pose kept; no MAVROS state / no ACK)
-        qos_profile = QoSProfile(depth=10)
-        qos_profile.reliability = ReliabilityPolicy.BEST_EFFORT
-        self.create_subscription(PoseStamped, '/mavros/vision_pose/pose', self.pose_cb, qos_profile)
+        # subscribers
+        self.create_subscription(State, '/mavros/state', self.state_cb, 10)
+        self.create_subscription(PoseStamped, '/mavros/local_position/pose', self.pose_cb, 10)
         self.create_subscription(String, 'boundary_edges', self.edges_cb, 10)
 
         # publishers
+        # self.nav_pub = self.create_publisher(PositionTarget, '/mavros/setpoint_raw/local', 10)
         self.nav_pub = self.create_publisher(PositionTarget, '/dummy_mavros/setpoint_raw/local', 10)
         self.viz_pub = self.create_publisher(MarkerArray, '/boundary_navigator_setpoints', 10)
-
-        # 5 Hz
         self.create_timer(0.2, self.tick)
-        self.get_logger().info("BoundaryNavigator started (1 m takeoff gate + 1 m proximity).")
+
+        self.get_logger().info("BoundaryNavigator node started.")
+
+    def state_cb(self, msg: State):
+        self.armed = msg.armed
+        self.mode = msg.mode
 
     def pose_cb(self, msg: PoseStamped):
         self.current_pose = msg
-        if not self.takeoff_gate_open:
-            z = self.current_pose.pose.position.z
-            if z >= self.min_takeoff_height:
-                self.takeoff_gate_open = True
-                self.get_logger().info(f"Min takeoff height reached (z={z:.2f} m). Starting.")
-            elif not self._takeoff_log_once:
-                self._takeoff_log_once = True
-                self.get_logger().info(f"Waiting for z ≥ {self.min_takeoff_height} m before first setpoint.")
 
     def edges_cb(self, msg: String):
         if self.current_pose is None:
-            self.get_logger().warn("Received boundary_edges but pose not yet available. Skipping.")
+            self.get_logger().warn("Received boundary_edges but pose is not yet available from MAVROS. Skipping this message.")
             return
+
         data = msg.data.split(':')
         typ = data[0]
         coords = []
@@ -75,76 +65,65 @@ class BoundaryNavigator(Node):
             self.line_pts = coords
             if self.phase == 0:
                 self.phase = 1
-                self.get_logger().info('Line detected → follow_line')
+                self.get_logger().info('Line detected, switching to follow_line phase')
+
         elif typ == 'edge' and coords:
             self.edge_pts = coords
-            if self.phase in (0, 1):
+            if self.phase in (0,1):
                 self.phase = 2
                 curr_y = self.current_pose.pose.position.y
                 iy = coords[1][1]
                 self.edge_dir = 1 if iy > curr_y else -1
-                self.get_logger().info('Edge detected → align_edge')
+                self.get_logger().info('Edge detected, switching to align_edge phase')
 
     def tick(self):
-        if self.current_pose is None or self.phase == 4:
+        if not (self.armed and self.mode == 'OFFBOARD' and self.current_pose):
             return
-        if not self.takeoff_gate_open:
-            return
+        x = self.current_pose.pose.position.x
+        y = self.current_pose.pose.position.y
+        z = self.current_pose.pose.position.z
 
-        x = float(self.current_pose.pose.position.x)
-        y = float(self.current_pose.pose.position.y)
-        z = float(self.current_pose.pose.position.z)
+        def reached(tx, ty):
+            return np.hypot(tx - x, ty - y) < self.slide_tol
 
-        # If we have an active setpoint, keep sending it until we are within arrival_tol
-        if self.last_setpoint is not None:
-            lx, ly, lz = self.last_setpoint
-            self.send_setpoint(lx, ly, lz)
-            dx, dy, dz = lx - x, ly - y, lz - z
-            dist = np.sqrt(dx*dx + dy*dy + dz*dz)  # 3D distance
-            if dist > self.arrival_tol:
-                return  # not yet reached → keep current setpoint
-            # reached → clear and compute next below
-            self.last_setpoint = None
-
-        # Compute and send the next target now
         if self.phase == 0:
-            tx, ty, tz = x + self.step, y, z
-            self.current_target = (tx, ty)
-            self.set_and_send(tx, ty, tz)
+            tx, ty = x + self.step, y
+            if self.current_target is None or reached(*self.current_target):
+                self.current_target = (tx, ty)
+                self.send_setpoint(tx, ty, z)
 
         elif self.phase == 1 and self.line_pts:
             px1, py1, _ = self.line_pts[0]
             px2, py2, _ = self.line_pts[1]
             line_x = (px1 + px2) / 2.0
-            tx, ty, tz = line_x, y + self.step, z
-            self.current_target = (tx, ty)
-            self.set_and_send(tx, ty, tz)
+            tx, ty = line_x, y + self.step
+            if self.current_target is None or reached(*self.current_target):
+                self.current_target = (tx, ty)
+                self.send_setpoint(tx, ty, z)
 
         elif self.phase == 2 and self.edge_pts:
             ix, iy, _ = self.edge_pts[1]
+            tx, ty = ix, y + self.edge_dir * self.step
             if abs(y - iy) < self.slide_tol:
                 self.phase = 3
-                self.get_logger().info('Aligned to edge → return_right')
-                return
-            tx, ty, tz = ix, y + self.edge_dir * self.step, z
-            self.current_target = (tx, ty)
-            self.set_and_send(tx, ty, tz)
+                self.get_logger().info('Aligned to edge, switching to return_right phase')
+            elif self.current_target is None or reached(*self.current_target):
+                self.current_target = (tx, ty)
+                self.send_setpoint(tx, ty, z)
 
         elif self.phase == 3 and self.edge_pts:
             A = np.array(self.edge_pts[0])
             C = np.array(self.edge_pts[2])
             target_corner = C if self.edge_dir > 0 else A
-            if abs(y - float(target_corner[1])) < self.slide_tol:
+            tx, ty = x, y - self.edge_dir * self.step
+            if abs(y - target_corner[1]) < self.slide_tol:
                 self.phase = 4
-                self.get_logger().info('Reached opposite edge → done')
-                return
-            tx, ty, tz = x, y - self.edge_dir * self.step, z
-            self.current_target = (tx, ty)
-            self.set_and_send(tx, ty, tz)
+                self.get_logger().info('Reached opposite edge, navigation done')
+            elif self.current_target is None or reached(*self.current_target):
+                self.current_target = (tx, ty)
+                self.send_setpoint(tx, ty, z)
 
-    def set_and_send(self, x, y, z):
-        self.last_setpoint = (float(x), float(y), float(z))
-        self.send_setpoint(x, y, z)
+        # Phase 4: idle
 
     def send_setpoint(self, x, y, z):
         sp = PositionTarget()
@@ -160,10 +139,11 @@ class BoundaryNavigator(Node):
             PositionTarget.IGNORE_YAW |
             PositionTarget.IGNORE_YAW_RATE
         )
-        sp.position.x = float(x)
-        sp.position.y = float(y)
-        sp.position.z = float(z)
+        sp.position.x = x
+        sp.position.y = y
+        sp.position.z = z
         self.nav_pub.publish(sp)
+
         self.publish_setpoint_marker(x, y, z)
 
     def publish_setpoint_marker(self, x, y, z):
