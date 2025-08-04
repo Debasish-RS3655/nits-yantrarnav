@@ -276,32 +276,16 @@
         <div class="flex md:flex-row flex-col md:justify-evenly items-center">
           <!-- Camera Feed Section -->
           <div
-            class="flex-grow md:flex md:p-[0.5rem] md:scale-[1] md:h-[300px] md:w-[300px] md:flex-col md:justify-center md:items-center md:pb-[1rem] flex p-[0.5rem] h-[450px] w-[450px] scale-[0.8] flex-col justify-center items-center border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
+            class="flex-grow md:flex md:p-[0.5rem] md:scale-[1] md:h-[500px] md:w-[500px] md:flex-col md:justify-center md:items-center md:pb-[1rem] flex p-[0.5rem] h-[450px] w-[450px] scale-[0.8] flex-col justify-center items-center border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
           >
             <p
               class="text-center font-semibold text-gray-600 text-xl pb-[0.5rem]"
             >
               Depth Camera Feed
             </p>
-            <div class="flex justify-center items-center h-[250px] w-[250px]">
+            <div class="flex justify-center items-center h-[400px] w-[400px]">
               <img
                 id="camera-feed"
-                class="border border-gray-500 w-full h-full object-contain"
-                alt="Camera Feed"
-              />
-            </div>
-          </div>
-          <div
-            class="flex-grow md:flex md:p-[0.5rem] md:scale-[1] md:h-[300px] md:w-[300px] md:flex-col md:justify-center md:items-center md:pb-[1rem] flex p-[0.5rem] h-[450px] w-[450px] scale-[0.8] flex-col justify-center items-center border-black border m-[0.5rem] rounded-[0.5rem] pb-[1rem] bg-[#FDFBEE]"
-          >
-            <p
-              class="text-center font-semibold text-gray-600 text-xl pb-[0.5rem]"
-            >
-              Perpendicular Camera Feed
-            </p>
-            <div class="flex justify-center items-center h-[250px] w-[250px]">
-              <img
-                id="camera-feed1"
                 class="border border-gray-500 w-full h-full object-contain"
                 alt="Camera Feed"
               />
@@ -333,22 +317,22 @@
           </button>
           <button
             id="Launch"
-            class="bg-black bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
+            class="bg-green bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
           >
-            Automatic
+            Launch
           </button>
           <button
             id="Reset"
-            class="bg-black bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
+            class="bg-red bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
           >
             Reset Odometry
           </button>
-          <button
+          <!-- <button
             id="dk"
             class="bg-black bg-opacity-70 text-white border border-gray-600 px-4 py-2 rounded-md font-mono cursor-pointer transition duration-300 hover:bg-indigo-900"
           >
             Button 2
-          </button>
+          </button> -->
         </div>
         <div
           class="border hidden m-[1rem] border-green-500 p-4 rounded-lg bg-white shadow"
@@ -375,48 +359,17 @@
             </button>
           </div>
         </div>
-        <div
-          class="border m-[1rem] border-green-500 p-4 rounded-lg bg-white shadow"
-        >
-          <div class="font-semibold text-gray-600 mb-2">ML Prediction:</div>
-          <div class="grid grid-cols-3 gap-4 text-center mb-6">
-            <div class="p-4 bg-blue-50 rounded-xl shadow">
-              <p class="text-sm font-medium text-gray-500">Accuracy</p>
-              <p id="accuracy" class="text-lg font-bold text-blue-800">...</p>
-            </div>
-            <div class="p-4 bg-green-50 rounded-xl shadow">
-              <p class="text-sm font-medium text-gray-500">Response Time</p>
-              <p id="response_time" class="text-lg font-bold text-green-800">
-                ...
-              </p>
-            </div>
-            <div class="p-4 bg-yellow-50 rounded-xl shadow">
-              <p class="text-sm font-medium text-gray-500">Terrain Class</p>
-              <p id="terrain_class" class="text-lg font-bold text-yellow-800">
-                ...
-              </p>
-            </div>
-          </div>
-
-          <!-- Coordinates Row -->
-          <div class="bg-purple-50 p-4 rounded-xl shadow text-center">
-            <p class="text-sm font-medium text-gray-500 mb-2">
-              Co-ordinates ( ML Model )
-            </p>
-            <p id="coordinate" class="text-lg font-bold text-purple-800">
-              Loading...
-            </p>
-          </div>
-        </div>
       </div>
     </div>
+    
     <script src="./three.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> -->
     <script>
       // --------------------------------------------------------- Telemetry URL here -----------------------------------------------------------------
 
-      const domain = "http://192.168.31.119:5000";
-
+      // Extract domain from query string
+      const urlParams = new URLSearchParams(window.location.search);
+      const domain = urlParams.get('domain') || "http://192.168.31.119:5000"; // fallback default
       const position = { x: 0, y: 0, z: 0 },
         target = { x: 50, y: 50, z: 50 };
       let currentAxisConfig = 0;
@@ -696,10 +649,6 @@
             const cam = document.getElementById("camera-feed");
             cam.src = `data:image/jpeg;base64,${data.depth_cam_rgb.image}`;
             cam.alt = "Live Camera Feed";
-
-            const cam1 = document.getElementById("camera-feed1");
-            cam1.src = `data:image/jpeg;base64,${data.perpendicular_cam_rgb.image}`;
-            cam1.alt = "Live Perpendicular Camera Feed";
 
             statusElement.textContent = "Connected";
             statusElement.style.color = "#00ff00";
