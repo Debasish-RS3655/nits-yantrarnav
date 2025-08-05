@@ -8,6 +8,9 @@ from std_msgs.msg import String
 from visualization_msgs.msg import Marker, MarkerArray
 import numpy as np
 
+# QoS
+from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy, HistoryPolicy
+
 def cross2d(a, b):
     return a[0]*b[1] - a[1]*b[0]
 
@@ -25,20 +28,34 @@ class BoundaryNavigator(Node):
         self.armed = False
         self.mode = ''
         self.phase = 0   # 0=forward_x, 1=follow_line, 2=align_edge, 3=return_right, 4=done
-        self.line_pts = None  # list of (x, y, z)
-        self.edge_pts = None  # list of (x, y, z)
-        self.edge_dir = None  # +1 or -1 for y direction on edge alignment
+        self.line_pts = None
+        self.edge_pts = None
+        self.edge_dir = None
         self.current_target = None
 
         # subscribers
         self.create_subscription(State, '/mavros/state', self.state_cb, 10)
-        self.create_subscription(PoseStamped, '/mavros/local_position/pose', self.pose_cb, 10)
+
+        # FIXED QoS for MAVROS pose (BEST_EFFORT)
+        pose_qos = QoSProfile(
+            reliability=ReliabilityPolicy.BEST_EFFORT,
+            durability=DurabilityPolicy.VOLATILE,
+            history=HistoryPolicy.KEEP_LAST,
+            depth=1
+        )
+        self.create_subscription(PoseStamped, '/mavros/local_position/pose', self.pose_cb, pose_qos)
+
         self.create_subscription(String, 'boundary_edges', self.edges_cb, 10)
 
         # publishers
-        # self.nav_pub = self.create_publisher(PositionTarget, '/mavros/setpoint_raw/local', 10)
         self.nav_pub = self.create_publisher(PositionTarget, '/dummy_mavros/setpoint_raw/local', 10)
-        self.viz_pub = self.create_publisher(MarkerArray, '/boundary_navigator_setpoints', 10)
+
+        # Visualization markers with TRANSIENT_LOCAL QoS (prevents blinking)
+        viz_qos = QoSProfile(depth=1)
+        viz_qos.reliability = ReliabilityPolicy.RELIABLE
+        viz_qos.durability = DurabilityPolicy.TRANSIENT_LOCAL
+        self.viz_pub = self.create_publisher(MarkerArray, '/boundary_navigator_setpoints', viz_qos)
+
         self.create_timer(0.2, self.tick)
 
         self.get_logger().info("BoundaryNavigator node started.")
