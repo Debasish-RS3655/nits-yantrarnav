@@ -1,0 +1,14 @@
+Metadata-Version: 2.2
+Name: boundary_mapper
+Version: 0.0.0
+Summary: Boundary mapper package
+Maintainer: Debashish Buragohain
+Maintainer-email: debashishburagohain000@gmail.com
+License: Apache-2.0
+Requires-Dist: setuptools
+Requires-Dist: numpy
+Dynamic: license
+Dynamic: maintainer
+Dynamic: maintainer-email
+Dynamic: requires-dist
+Dynamic: summary

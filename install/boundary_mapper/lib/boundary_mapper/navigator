@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-# EASY-INSTALL-ENTRY-SCRIPT: 'boundary-mapper','console_scripts','navigator'
+# EASY-INSTALL-ENTRY-SCRIPT: 'boundary-mapper==0.0.0','console_scripts','navigator'
 import re
 import sys
 
 # for compatibility with easy_install; see #2198
-__requires__ = 'boundary-mapper'
+__requires__ = 'boundary-mapper==0.0.0'
 
 try:
     from importlib.metadata import distribution
@@ -30,4 +30,4 @@ globals().setdefault('load_entry_point', importlib_load_entry_point)
 
 if __name__ == '__main__':
     sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
-    sys.exit(load_entry_point('boundary-mapper', 'console_scripts', 'navigator')())
+    sys.exit(load_entry_point('boundary-mapper==0.0.0', 'console_scripts', 'navigator')())

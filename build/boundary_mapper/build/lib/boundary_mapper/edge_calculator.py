@@ -11,7 +11,7 @@ class EdgeCalculator(Node):
         super().__init__('edge_calculator_py')
         # Params
         self.declare_parameter('tol', 0.5)                        # kept for compatibility; unused
-        self.declare_parameter('min_edge_separation', 0.15)        # meters between saved corners (I points)
+        self.declare_parameter('min_edge_separation', 0.2)        # meters between saved corners (I points)
         self.declare_parameter('marker_frame', 'map')
         self.declare_parameter('corner_marker_scale', 0.25)       # meters (sphere diameter)
         self.declare_parameter('line_width', 0.07)                # meters

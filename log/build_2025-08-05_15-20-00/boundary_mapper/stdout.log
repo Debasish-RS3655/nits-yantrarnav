@@ -1,0 +1,38 @@
+running develop
+Removing /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages/boundary-mapper.egg-link (link to .)
+running egg_info
+writing ../../../build/boundary_mapper/boundary_mapper.egg-info/PKG-INFO
+writing dependency_links to ../../../build/boundary_mapper/boundary_mapper.egg-info/dependency_links.txt
+writing entry points to ../../../build/boundary_mapper/boundary_mapper.egg-info/entry_points.txt
+writing requirements to ../../../build/boundary_mapper/boundary_mapper.egg-info/requires.txt
+writing top-level names to ../../../build/boundary_mapper/boundary_mapper.egg-info/top_level.txt
+reading manifest file '../../../build/boundary_mapper/boundary_mapper.egg-info/SOURCES.txt'
+writing manifest file '../../../build/boundary_mapper/boundary_mapper.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper/build/lib/boundary_mapper
+copying boundary_mapper/edge_calculator.py -> /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper/build/lib/boundary_mapper
+copying boundary_mapper/navigator.py -> /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper/build/lib/boundary_mapper
+copying boundary_mapper/mapper.py -> /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper/build/lib/boundary_mapper
+copying boundary_mapper/__init__.py -> /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper/build/lib/boundary_mapper
+running install
+running install_lib
+creating /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper
+copying /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper/build/lib/boundary_mapper/edge_calculator.py -> /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper
+copying /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper/build/lib/boundary_mapper/navigator.py -> /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper
+copying /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper/build/lib/boundary_mapper/mapper.py -> /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper
+copying /home/nits/master_controller/nits-yantrarnav/build/boundary_mapper/build/lib/boundary_mapper/__init__.py -> /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper
+byte-compiling /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper/edge_calculator.py to edge_calculator.cpython-310.pyc
+byte-compiling /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper/navigator.py to navigator.cpython-310.pyc
+byte-compiling /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper/mapper.py to mapper.cpython-310.pyc
+byte-compiling /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper/__init__.py to __init__.cpython-310.pyc
+running install_data
+copying resource/boundary_mapper -> /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/share/ament_index/resource_index/packages
+copying package.xml -> /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/share/boundary_mapper
+running install_egg_info
+Copying ../../../build/boundary_mapper/boundary_mapper.egg-info to /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/python3.10/site-packages/boundary_mapper-0.0.0-py3.10.egg-info
+running install_scripts
+Installing edge_calculator script to /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/boundary_mapper
+Installing mapper script to /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/boundary_mapper
+Installing navigator script to /home/nits/master_controller/nits-yantrarnav/install/boundary_mapper/lib/boundary_mapper
+writing list of installed files to '/home/nits/master_controller/nits-yantrarnav/build/boundary_mapper/install.log'

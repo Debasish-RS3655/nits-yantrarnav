@@ -4,6 +4,3 @@ source;share/boundary_mapper/hook/pythonpath.sh
 source;share/boundary_mapper/hook/ament_prefix_path.ps1
 source;share/boundary_mapper/hook/ament_prefix_path.dsv
 source;share/boundary_mapper/hook/ament_prefix_path.sh
-source;../../build/boundary_mapper/share/boundary_mapper/hook/pythonpath_develop.ps1
-source;../../build/boundary_mapper/share/boundary_mapper/hook/pythonpath_develop.dsv
-source;../../build/boundary_mapper/share/boundary_mapper/hook/pythonpath_develop.sh

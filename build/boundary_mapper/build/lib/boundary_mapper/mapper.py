@@ -48,7 +48,7 @@ class BoundaryMapper(Node):
         # ---- NEW corner sanity params (only used in detect_lshape) ----
         # Legs must be at least this long (m), gaps along each leg must be <= this (m),
         # and the density ratio between the two legs must be below this.
-        self.declare_parameter('corner_min_leg', 0.4)
+        self.declare_parameter('corner_min_leg', 1.0)
         self.declare_parameter('corner_max_gap', 0.6)
         self.declare_parameter('edge_density_ratio_max', 1.6)
         # ----------------------------------------------------------------
