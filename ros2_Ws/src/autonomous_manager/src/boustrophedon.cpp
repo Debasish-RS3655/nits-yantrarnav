@@ -2,6 +2,18 @@
  * boustrophedon.cpp
  * Lawn-mower mission with home-as-origin transform,
  * robust setpoint publishing (8 Hz), and VIO-friendly arrival checks.
+ * 
+ * 
+ * 
+ * ros2 run autonomous_manager boustrophedon_node \
+  --ros-args \
+  -p home_x_from_origin:=1.6 \
+  -p home_y_from_origin:=1.6 \
+  -p rect_long:=12.0 \
+  -p rect_short:=9.0 \
+  -p lawn_gap:=1.0 \
+  -p cruise_alt:=3.0
+ * 
  */
 
  #include <chrono>
@@ -51,8 +63,8 @@
    {
      // Publishers
      pose_pub_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("/mavros/setpoint_position/local", 20);
-     marker_pub_ = this->create_publisher<visualization_msgs::msg::Marker>("/visualization_marker", 10);
-     marker_array_pub_ = this->create_publisher<visualization_msgs::msg::MarkerArray>("/visualization_marker_array", 10);
+     marker_pub_ = this->create_publisher<visualization_msgs::msg::Marker>("/boustrophedon_marker", 10);
+     marker_array_pub_ = this->create_publisher<visualization_msgs::msg::MarkerArray>("/boustrophedon_marker_array", 10);
  
      // Subscribers
      pose_sub_ = this->create_subscription<geometry_msgs::msg::PoseStamped>(
@@ -311,7 +323,7 @@
      clear.action = visualization_msgs::msg::Marker::DELETEALL;
      marker_pub_->publish(clear);
  
-     // Rectangle outline A'->B'->C'->D'->A'  (PINK)
+     // Rectangle outline A'->B'->C'->D'->A'
      visualization_msgs::msg::Marker rect;
      rect.header.frame_id = "map";
      rect.header.stamp = this->now();
@@ -320,7 +332,7 @@
      rect.type = visualization_msgs::msg::Marker::LINE_STRIP;
      rect.action = visualization_msgs::msg::Marker::ADD;
      rect.scale.x = 0.05;
-     rect.color.r = 1.0; rect.color.g = 0.0; rect.color.b = 1.0; rect.color.a = 1.0; // PINK
+     rect.color.r = 1.0; rect.color.g = 1.0; rect.color.b = 0.0; rect.color.a = 1.0;
  
      geometry_msgs::msg::Point p; p.z = 0.0;
      p.x = x0;      p.y = y0;       rect.points.push_back(p); // A'
@@ -369,8 +381,8 @@
  
        if (wp.land) { // landing marker
          m.color.r = 1.0; m.color.g = 0.2; m.color.b = 0.2; m.color.a = 1.0;
-       } else if (i == 0) { // home - RED
-         m.color.r = 1.0; m.color.g = 0.0; m.color.b = 0.0; m.color.a = 1.0;
+       } else if (i == 0) { // home
+         m.color.r = 0.2; m.color.g = 1.0; m.color.b = 0.2; m.color.a = 1.0;
        } else {
          m.color.r = 0.2; m.color.g = 0.6; m.color.b = 1.0; m.color.a = 1.0;
        }
@@ -456,7 +468,7 @@
            takeoff_sent_ = true;
            takeoff_start_time_ = this->now();
            RCLCPP_INFO(this->get_logger(), "Takeoff command sent to %.2f m", req->altitude);
-           }
+         }
          if ((this->now() - takeoff_start_time_).seconds() > 5.0 &&
              std::abs(current_pose_.pose.position.z - mission_plan_[0].z) < POSITION_THRESHOLD) {
            hover_time_ = this->now();
